@@ -344,12 +344,9 @@
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
             [self configureHeaderCell:cell title:@"Grades"];
-            
-            if ([cell.textLabel.text isEqual: @"Grades"] && (!loginButton) && (indexPath.row == 0) && (indexPath.section == 0)) {
                 
                 UIView *cellView = cell.contentView;
-                CGRect loginButtonFrame = CGRectMake((cellView.frame.size.width - (80 + inset)), 18, 80, (cellView.frame.size.height));
-                loginButton = [[QBFlatButton alloc] initWithFrame:loginButtonFrame];
+                loginButton = [[QBFlatButton alloc] initWithFrame:CGRectMake((cellView.frame.size.width - (80 + inset)), 18, 80, (cellView.frame.size.height -(cellView.frame.size.height/2)))];
                 [loginButton addTarget:self action:@selector(loginButtonWasPressed)forControlEvents:UIControlEventTouchUpInside];
                 loginButton.faceColor = [UIColor grayColor];
                 loginButton.sideColor = [UIColor clearColor];
@@ -363,12 +360,10 @@
                 [loginButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
                 [loginButton setTitle:@"Login" forState:UIControlStateNormal];
                 [cellView addSubview:loginButton];
-            }
         } else {
             cell.selectionStyle = UITableViewCellSelectionStyleBlue;
-            cell.textLabel.text = [NSString stringWithFormat:@"Period %ld               A+", (long)indexPath.row];
-            cell.detailTextLabel.text = @"Class name";
-            //TODO get grades and config using method (TB Created)
+            MAGradeClient *grade = [[MAGradeClient alloc] init];
+            [self configureGradesCell:cell grade:grade];
         }
     } else if (indexPath.section == 1) {
         if (indexPath.row == 0) {
@@ -404,7 +399,15 @@
     cell.imageView.image = nil;
 }
 
-//TODO add configureGradesCell
+- (void)configureGradesCell:(UITableViewCell *)cell grade:(MAGradeClient *)grade {
+    cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:18];
+    cell.detailTextLabel.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:18];
+    
+    cell.textLabel.text = @"class";
+    cell.detailTextLabel.text = @"A+";
+    
+    cell.imageView.image = nil;
+}
 
 
 - (void)configureHourlyCell:(UITableViewCell *)cell weather:(MACondition *)weather {

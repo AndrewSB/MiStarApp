@@ -13,14 +13,9 @@
 #import "MAManager.h"
 
 @interface MAGradeCell : UITableViewCell
+
 @property (nonatomic,strong) QBFlatButton  *loginButton; //Use your button's Class there instead of UIButton
 
-
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier cellForRowAtIndexPath:(NSIndexPath *)indexPath;
-
-@property (nonatomic,strong) UIButton *button; //Use your button's Class there instead of UIButton
-
-
-
 
 @end

@@ -20,6 +20,7 @@
 
 
 - (void)configureHeaderCell:(UITableViewCell *)cell title:(NSString *)title;
+- (void)configureGradesCell:(UITableViewCell *)cell grade:(MAGradeClient *)grade;
 - (void)configureHourlyCell:(UITableViewCell *)cell weather:(MACondition *)weather;
 - (void)configureDailyCell:(UITableViewCell *)cell weather:(MACondition *)weather;
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;

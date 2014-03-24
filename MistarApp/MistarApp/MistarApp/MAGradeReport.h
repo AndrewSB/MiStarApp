@@ -10,4 +10,7 @@
 
 @interface MAGradeReport : NSObject
 
+- (NSString *)percentEscapeString:(NSString *)string;
+- (void)loginToMistarWithPin:(NSString *)pin password:(NSString *)password success:(void (^)(void))successHandler failure:(void (^)(void))failureHandler;
+
 @end

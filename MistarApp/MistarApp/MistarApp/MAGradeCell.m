@@ -9,17 +9,11 @@
 #import "MAGradeCell.h"
 
 @implementation MAGradeCell
-@synthesize loginButton;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
-
-        
-
-
-        //Init your button and add it to the cell's contentView as a subview. 
     }
     return self;
 }
@@ -30,10 +24,8 @@
 
 - (void)prepareForReuse
 {
-    self.loginButton = nil;
-    loginButton = nil;
-    [loginButton removeFromSuperview];
     [self removeFromSuperview];
+    self.loginButton = nil;
     [self.loginButton removeFromSuperview];
     self.textLabel.text = nil;
     
