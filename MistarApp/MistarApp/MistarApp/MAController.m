@@ -23,6 +23,7 @@
 
 @implementation MAController
 
+
 - (id)init {
     if (self = [super init]) {
         _hourlyFormatter = [[NSDateFormatter alloc] init];
@@ -44,12 +45,19 @@
     return self;
 }
 
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
+    
+    [self.navigationController setNavigationBarHidden:YES];
+    UIBarButtonItem *newBackButton = [[UIBarButtonItem alloc] initWithTitle:@"Home" style:UIBarButtonItemStyleBordered target:self action:@selector(home:)];
+    self.navigationItem.leftBarButtonItem=newBackButton;
+
+    
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
     tap.cancelsTouchesInView = NO;
@@ -255,6 +263,50 @@
     
 };
 
+
+//Righhere
+-(void) viewWillDisappear:(BOOL)animated {
+    
+    if (self.navigationController != self.backgroundImageView) {
+        NSLog(@"No longer bg");
+    }
+
+    NSLog(@"Navigation button was pressed");
+    [super viewWillDisappear:animated];
+}
+
+-(void)home:(UIBarButtonItem *)sender {
+    NSLog(@"Righthtere");
+    // Set progress report as the view controller
+    [self.navigationController popToViewController:self animated:YES];
+    
+    UIImage *background = [UIImage imageNamed:@"bg"];
+    
+    // Add static image bg
+    self.backgroundImageView = [[UIImageView alloc] initWithImage:background];
+    self.backgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
+    [self.view addSubview:self.backgroundImageView];
+    
+    // Add blurred layer to image when tableView goes in front of it
+    self.blurredImageView = [[UIImageView alloc] init];
+    self.blurredImageView.contentMode = UIViewContentModeScaleAspectFill;
+    self.blurredImageView.alpha = 0;
+    [self.blurredImageView setImageToBlur:background blurRadius:10 completionBlock:nil];
+    [self.view addSubview:self.blurredImageView];
+    
+    // Create tableView
+    self.tableView = [[UITableView alloc] init];
+    self.tableView.backgroundColor = [UIColor clearColor];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    self.tableView.separatorColor = [UIColor colorWithWhite:1 alpha:0.2];
+    self.tableView.pagingEnabled = YES;
+    [self.view addSubview:self.tableView];
+    
+}
+
+
+
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
 
     MAGradeClient *gradeClient = [[MAGradeClient alloc] init];
@@ -346,7 +398,7 @@
             [self configureHeaderCell:cell title:@"Grades"];
                 
                 UIView *cellView = cell.contentView;
-                loginButton = [[QBFlatButton alloc] initWithFrame:CGRectMake((cellView.frame.size.width - (80 + inset)), 18, 80, (cellView.frame.size.height -(cellView.frame.size.height/2)))];
+                loginButton = [[QBFlatButton alloc] initWithFrame:CGRectMake((cellView.frame.size.width - (80 + inset)), 20, 80, (cellView.frame.size.height -(cellView.frame.size.height/2)))];
                 [loginButton addTarget:self action:@selector(loginButtonWasPressed)forControlEvents:UIControlEventTouchUpInside];
                 loginButton.faceColor = [UIColor grayColor];
                 loginButton.sideColor = [UIColor clearColor];
@@ -359,11 +411,57 @@
                 loginButton.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:20];
                 [loginButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
                 [loginButton setTitle:@"Login" forState:UIControlStateNormal];
+                cell.loginButton = loginButton;
                 [cellView addSubview:loginButton];
+                cell.loginButton = loginButton;
         } else {
             cell.selectionStyle = UITableViewCellSelectionStyleBlue;
             MAGradeClient *grade = [[MAGradeClient alloc] init];
-            [self configureGradesCell:cell grade:grade];
+            switch (indexPath.row) {
+                case 1:{
+                    cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:18];
+                    cell.textLabel.text = @"IB Math SL 1";
+                    cell.detailTextLabel.text = @"A-";
+                    break;
+                }
+                case 2: {
+                    cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:18];
+                    cell.textLabel.text = @"IB  History HL 2";
+                    cell.detailTextLabel.text = @"B";
+                    break;
+                }
+                case 3:{
+                    cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:18];
+                    cell.textLabel.text = @"IB French SL 2";
+                    cell.detailTextLabel.text = @"A";
+                    break;
+                }
+                case 4:{
+                    cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:18];
+                    cell.textLabel.text = @"AP Physics E&M";
+                    cell.detailTextLabel.text = @"B+";
+                    break;
+                }
+                case 5: {
+                    cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:18];
+                    cell.textLabel.text = @"IB Computer Science HL 2";
+                    cell.detailTextLabel.text = @"A-";
+                    break;
+                }
+                case 6: {
+                    cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:18];
+                    cell.textLabel.text = @"IB English HL 2";
+                    cell.detailTextLabel.text = @"A";
+                    break;
+                }
+                default:{
+                    cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:18];
+                    cell.textLabel.text = @"Class Name";
+                    cell.detailTextLabel.text = @"Grade";
+                    break;
+                }
+            }
+            //[self configureGradesCell:cell grade:grade]; //TODO enable this later
         }
     } else if (indexPath.section == 1) {
         if (indexPath.row == 0) {
@@ -389,6 +487,56 @@
     return cell;
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    NSString *cellText = cell.textLabel.text;
+    
+    if (indexPath.section == 0 && indexPath.row != 0) {
+        // Open progress report
+        NSLog(@"Opened progress report");
+        
+        UIViewController *detailViewControl = [[UIViewController alloc] init];
+        
+        // Set progress report as the view controller
+        [self.navigationController pushViewController:detailViewControl animated:YES];
+        
+        UIImage *background = [UIImage imageNamed:@"bg"];
+        
+        [self.navigationController setNavigationBarHidden:NO];
+        
+        // Add static image bg
+        self.backgroundImageView = [[UIImageView alloc] initWithImage:background];
+        self.backgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
+        [self.view addSubview:self.backgroundImageView];
+        
+        // Add blurred layer to image when tableView goes in front of it
+        self.blurredImageView = [[UIImageView alloc] init];
+        self.blurredImageView.contentMode = UIViewContentModeScaleAspectFill;
+        self.blurredImageView.alpha = 0;
+        [self.blurredImageView setImageToBlur:background blurRadius:10 completionBlock:nil];
+        [self.view addSubview:self.blurredImageView];
+        
+        
+        self.tableView = [[UITableView alloc] init];
+        self.tableView.backgroundColor = [UIColor clearColor];
+        self.tableView.delegate = self;
+        self.tableView.separatorColor = [UIColor colorWithWhite:1 alpha:0.2];
+        self.tableView.pagingEnabled = YES;
+        
+        self.tableView.dataSource = self;
+        
+        [self.view addSubview:self.tableView];
+        
+        [self.navigationController setNavigationBarHidden:NO];
+        
+        
+//        // Set progress report as the view controller
+//        [self.navigationController pushViewController:detailViewControl animated:YES];
+        
+        
+    }
+}
+
 #pragma mark - UITableViewDelegate
 
 
@@ -403,7 +551,7 @@
     cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:18];
     cell.detailTextLabel.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:18];
     
-    cell.textLabel.text = @"class";
+    cell.textLabel.text = @"classaaaaa";
     cell.detailTextLabel.text = @"A+";
     
     cell.imageView.image = nil;

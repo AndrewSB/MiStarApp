@@ -57,8 +57,8 @@
                     NSString *regexedString = [self userIDRegex:returnString];
                     NSString *userID = [self onlyNumbersRegex:regexedString];
                     NSLog(@"UserID is %@", userID);
-                    if (successHandler) successHandler;
-                    if (failureHandler) failureHandler;
+                    if (successHandler) successHandler();
+                    else if (failureHandler) failureHandler();
                 }
                 else {
                     NSLog(@"error: %@", homeError);
@@ -66,6 +66,9 @@
                 
             }];
             ///////
+        }
+        else {
+            NSLog(@"Couldn't log in");
         }
     }];
 }

@@ -11,6 +11,8 @@
 #import "MAGradeClient.h"
 #import "MAGradeCell.h"
 #import "MAManager.h"
+#import "MAAppDelegate.h"
+#import "MAGradeStore.h"
 
 @interface MAController : UIViewController
 <UITableViewDataSource, UITabBarDelegate, UIScrollViewDelegate>

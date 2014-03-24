@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		464DABB618E07C1100C59988 /* MAGradeStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 464DABB518E07C1100C59988 /* MAGradeStore.m */; };
 		4669585318DF4D7900A72F85 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4669585218DF4D7900A72F85 /* Foundation.framework */; };
 		4669585518DF4D7900A72F85 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4669585418DF4D7900A72F85 /* CoreGraphics.framework */; };
 		4669585718DF4D7900A72F85 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4669585618DF4D7900A72F85 /* UIKit.framework */; };
@@ -68,6 +69,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		464DABB418E07C1100C59988 /* MAGradeStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAGradeStore.h; sourceTree = "<group>"; };
+		464DABB518E07C1100C59988 /* MAGradeStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAGradeStore.m; sourceTree = "<group>"; };
 		4669584F18DF4D7900A72F85 /* MistarApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MistarApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4669585218DF4D7900A72F85 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		4669585418DF4D7900A72F85 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -299,6 +302,8 @@
 				46A6177618DF80BC001400BC /* MAGradeReport.m */,
 				46EBF04718E014C800F3CD75 /* MAGradeCell.h */,
 				46EBF04818E014C800F3CD75 /* MAGradeCell.m */,
+				464DABB418E07C1100C59988 /* MAGradeStore.h */,
+				464DABB518E07C1100C59988 /* MAGradeStore.m */,
 			);
 			name = Grades;
 			sourceTree = "<group>";
@@ -464,6 +469,7 @@
 				46A6176F18DF5038001400BC /* MAManager.m in Sources */,
 				4669586318DF4D7900A72F85 /* MAAppDelegate.m in Sources */,
 				46A6177718DF80BC001400BC /* MAGradeReport.m in Sources */,
+				464DABB618E07C1100C59988 /* MAGradeStore.m in Sources */,
 				46A6177418DF809A001400BC /* MAGradeClient.m in Sources */,
 				46A6176918DF5000001400BC /* MAController.m in Sources */,
 				46A6176618DF4FE7001400BC /* MACondition.m in Sources */,

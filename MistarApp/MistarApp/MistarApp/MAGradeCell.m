@@ -24,9 +24,10 @@
 
 - (void)prepareForReuse
 {
-    [self removeFromSuperview];
-    self.loginButton = nil;
+    
     [self.loginButton removeFromSuperview];
+    self.loginButton = nil;
+    
     self.textLabel.text = nil;
     
     [super prepareForReuse];
