@@ -12,19 +12,18 @@
 #import "MAGradeCell.h"
 #import "MAManager.h"
 #import "MAAppDelegate.h"
-#import "MAGradeStore.h"
+#import "MAGradeTableView.h"
+#import "MAClass.h"
+#import "MAStudent.h"
 
 @interface MAController : UIViewController
 <UITableViewDataSource, UITabBarDelegate, UIScrollViewDelegate>
 
-- (void)dismissKeyboard;
-- (void)loginButtonWasPressed;
+- (void)userStateButtonWasPressed;
 
 
 - (void)configureHeaderCell:(UITableViewCell *)cell title:(NSString *)title;
-- (void)configureGradesCell:(UITableViewCell *)cell grade:(MAGradeClient *)grade;
-- (void)configureHourlyCell:(UITableViewCell *)cell weather:(MACondition *)weather;
-- (void)configureDailyCell:(UITableViewCell *)cell weather:(MACondition *)weather;
+- (void)configureGradesCell:(UITableViewCell *)cell row:(NSInteger *)row;
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
 
 

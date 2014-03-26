@@ -13,27 +13,19 @@
 
 
 @implementation MAAppDelegate
-@synthesize detailViewController;
+@synthesize window;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     // Init the navController for the Master Detail View of the grade cells
     
-    UINavigationController *navController = [[UINavigationController alloc] init];
-    
-    
-    detailViewController = [[UIViewController alloc] init]; //step6
-    
-    UIViewController *view = [[MAController alloc] init];
-    
-    navController = [[UINavigationController alloc] initWithRootViewController:view];
-    
-    self.window.rootViewController = view;
+    UIViewController *viewController = [[MAController alloc] init];
+    UINavigationController *navController = [[MACustonNavigationController alloc] initWithRootViewController:viewController];
+    self.window.rootViewController = navController;
     
     [self.window makeKeyAndVisible];
-    
     
     
     

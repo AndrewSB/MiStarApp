@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MAController.h"
+#import "MACustonNavigationController.h"
 
 @interface MAAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-
-@property (strong, nonatomic) UIViewController *detailViewController;
 
 @end

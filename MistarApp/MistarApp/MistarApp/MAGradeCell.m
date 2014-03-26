@@ -25,11 +25,10 @@
 - (void)prepareForReuse
 {
     
-    [self.loginButton removeFromSuperview];
-    self.loginButton = nil;
-    
+    [self.userStateButton removeFromSuperview];
+    self.userStateButton = nil;
     self.textLabel.text = nil;
-    
+    self.imageView.image = nil;
     [super prepareForReuse];
 }
 

@@ -46,22 +46,38 @@
             }
             ///////////
             NSMutableURLRequest *requestHome = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://mistar.oakland.k12.mi.us/novi/StudentPortal/Home/PortalMainPage"]];
-            [requestHome setHTTPMethod:@"GET"]; // this looks like GET request, not POST
+            [requestHome setHTTPMethod:@"GET"];
             
             [NSURLConnection sendAsynchronousRequest:requestHome queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *homeResponse, NSData *homeData, NSError *homeError) {
                 // do whatever with the data...and errors
                 if ([homeData length] > 0 && homeError == nil) {
-                    NSError *parseError;
-                    
-                    NSString *returnString = (@"Response was not JSON (from home), it was = %@", [[NSMutableString alloc] initWithData:homeData encoding:NSUTF8StringEncoding]);
-                    NSString *regexedString = [self userIDRegex:returnString];
+                    NSString *regexedString = [self userIDRegex:[[NSString alloc] initWithData:homeData encoding:NSUTF8StringEncoding ]];
                     NSString *userID = [self onlyNumbersRegex:regexedString];
                     NSLog(@"UserID is %@", userID);
-                    if (successHandler) successHandler();
-                    else if (failureHandler) failureHandler();
+                    
+                    if (userID) {
+                        // Request AJAX from mistar
+                        
+                        NSMutableURLRequest *requestGrades = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://mistar.oakland.k12.mi.us/novi/StudentPortal/Home/LoadProfileData/Assignments?_=1395815726372"]]; // Need to AJAXLoad this number (or something, idk)
+                        [requestGrades setHTTPMethod:@"GET"];
+                        [NSURLConnection sendAsynchronousRequest:requestGrades queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *gradeResponse, NSData *gradeData, NSError *gradeError) {
+                            
+                            if ([gradeData length] > 0 && gradeError == nil) {
+                                NSLog(@"%@",requestGrades);
+                                NSLog(@"grade Response = %@ \ngrade Data = %@", gradeResponse, [[NSString alloc] initWithData:gradeData encoding:NSUTF8StringEncoding]);
+                            } else {
+                                NSLog(@"grade Error = %@", gradeError);
+                            }
+                        }];
+                        
+                        
+                        
+                    } else {
+                        NSLog(@"Error: parse error = %@", homeError);
+                    }
                 }
                 else {
-                    NSLog(@"error: %@", homeError);
+                    NSLog(@"error: home error: %@", homeError);
                 }
                 
             }];
@@ -73,6 +89,10 @@
     }];
 }
 
+
+- (void) webViewDidFinishLoad {
+    
+}
 
 // Parsers
 - (NSString *)onlyNumbersRegex:(NSString *)string {
