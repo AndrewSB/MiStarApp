@@ -51,11 +51,7 @@
 		46A6175818DF4EA2001400BC /* weather-snow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46A6173D18DF4EA2001400BC /* weather-snow@2x.png */; };
 		46A6175918DF4EA2001400BC /* weather-tstorm.png in Resources */ = {isa = PBXBuildFile; fileRef = 46A6173E18DF4EA2001400BC /* weather-tstorm.png */; };
 		46A6175A18DF4EA2001400BC /* weather-tstorm@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46A6173F18DF4EA2001400BC /* weather-tstorm@2x.png */; };
-		46A6176318DF4F8E001400BC /* MAClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 46A6176218DF4F8E001400BC /* MAClient.m */; };
-		46A6176618DF4FE7001400BC /* MACondition.m in Sources */ = {isa = PBXBuildFile; fileRef = 46A6176518DF4FE7001400BC /* MACondition.m */; };
 		46A6176918DF5000001400BC /* MAController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46A6176818DF5000001400BC /* MAController.m */; };
-		46A6176C18DF5015001400BC /* MADailyForecast.m in Sources */ = {isa = PBXBuildFile; fileRef = 46A6176B18DF5015001400BC /* MADailyForecast.m */; };
-		46A6176F18DF5038001400BC /* MAManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 46A6176E18DF5038001400BC /* MAManager.m */; };
 		46A6177418DF809A001400BC /* MAGradeClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 46A6177318DF809A001400BC /* MAGradeClient.m */; };
 		46A6177718DF80BC001400BC /* MAGradeReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 46A6177618DF80BC001400BC /* MAGradeReport.m */; };
 		46EBF04918E014C800F3CD75 /* MAGradeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 46EBF04818E014C800F3CD75 /* MAGradeCell.m */; };
@@ -126,16 +122,8 @@
 		46A6173D18DF4EA2001400BC /* weather-snow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weather-snow@2x.png"; sourceTree = "<group>"; };
 		46A6173E18DF4EA2001400BC /* weather-tstorm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weather-tstorm.png"; sourceTree = "<group>"; };
 		46A6173F18DF4EA2001400BC /* weather-tstorm@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weather-tstorm@2x.png"; sourceTree = "<group>"; };
-		46A6176118DF4F8E001400BC /* MAClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAClient.h; sourceTree = "<group>"; };
-		46A6176218DF4F8E001400BC /* MAClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAClient.m; sourceTree = "<group>"; };
-		46A6176418DF4FE7001400BC /* MACondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MACondition.h; sourceTree = "<group>"; };
-		46A6176518DF4FE7001400BC /* MACondition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MACondition.m; sourceTree = "<group>"; };
 		46A6176718DF5000001400BC /* MAController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAController.h; sourceTree = "<group>"; };
 		46A6176818DF5000001400BC /* MAController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAController.m; sourceTree = "<group>"; };
-		46A6176A18DF5015001400BC /* MADailyForecast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MADailyForecast.h; sourceTree = "<group>"; };
-		46A6176B18DF5015001400BC /* MADailyForecast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MADailyForecast.m; sourceTree = "<group>"; };
-		46A6176D18DF5038001400BC /* MAManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAManager.h; sourceTree = "<group>"; };
-		46A6176E18DF5038001400BC /* MAManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAManager.m; sourceTree = "<group>"; };
 		46A6177218DF809A001400BC /* MAGradeClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAGradeClient.h; sourceTree = "<group>"; };
 		46A6177318DF809A001400BC /* MAGradeClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAGradeClient.m; sourceTree = "<group>"; };
 		46A6177518DF80BC001400BC /* MAGradeReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAGradeReport.h; sourceTree = "<group>"; };
@@ -211,14 +199,11 @@
 				4669586218DF4D7900A72F85 /* MAAppDelegate.m */,
 				46A6176718DF5000001400BC /* MAController.h */,
 				46A6176818DF5000001400BC /* MAController.m */,
-				46A6176D18DF5038001400BC /* MAManager.h */,
-				46A6176E18DF5038001400BC /* MAManager.m */,
 				46504B1318E1CE7400F0DA99 /* MACustonNavigationController.h */,
 				46504B1418E1CE7400F0DA99 /* MACustonNavigationController.m */,
 				4669586418DF4D7900A72F85 /* Images.xcassets */,
 				4669585918DF4D7900A72F85 /* Supporting Files */,
 				46A6177118DF7EA4001400BC /* Grades */,
-				46A6177018DF7E96001400BC /* Weather */,
 			);
 			path = MistarApp;
 			sourceTree = "<group>";
@@ -292,19 +277,6 @@
 				46A6173F18DF4EA2001400BC /* weather-tstorm@2x.png */,
 			);
 			path = "Weather Icons";
-			sourceTree = "<group>";
-		};
-		46A6177018DF7E96001400BC /* Weather */ = {
-			isa = PBXGroup;
-			children = (
-				46A6176118DF4F8E001400BC /* MAClient.h */,
-				46A6176218DF4F8E001400BC /* MAClient.m */,
-				46A6176418DF4FE7001400BC /* MACondition.h */,
-				46A6176518DF4FE7001400BC /* MACondition.m */,
-				46A6176A18DF5015001400BC /* MADailyForecast.h */,
-				46A6176B18DF5015001400BC /* MADailyForecast.m */,
-			);
-			name = Weather;
 			sourceTree = "<group>";
 		};
 		46A6177118DF7EA4001400BC /* Grades */ = {
@@ -486,20 +458,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				46A6176F18DF5038001400BC /* MAManager.m in Sources */,
 				46504B1218E1C14C00F0DA99 /* MAStudent.m in Sources */,
 				4669586318DF4D7900A72F85 /* MAAppDelegate.m in Sources */,
 				46A6177718DF80BC001400BC /* MAGradeReport.m in Sources */,
 				46A6177418DF809A001400BC /* MAGradeClient.m in Sources */,
 				46A6176918DF5000001400BC /* MAController.m in Sources */,
 				46504B1B18E1DE1800F0DA99 /* MAGradeTableView.m in Sources */,
-				46A6176618DF4FE7001400BC /* MACondition.m in Sources */,
 				46504B1518E1CE7400F0DA99 /* MACustonNavigationController.m in Sources */,
 				4669585F18DF4D7900A72F85 /* main.m in Sources */,
 				46504B1E18E1E92100F0DA99 /* MAClass.m in Sources */,
-				46A6176C18DF5015001400BC /* MADailyForecast.m in Sources */,
 				46359CBE18E33EA900CC98A6 /* MAAssignment.m in Sources */,
-				46A6176318DF4F8E001400BC /* MAClient.m in Sources */,
 				46EBF04918E014C800F3CD75 /* MAGradeCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

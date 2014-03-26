@@ -10,7 +10,6 @@
 
 #import "MAGradeClient.h"
 #import "MAGradeCell.h"
-#import "MAManager.h"
 #import "MAAppDelegate.h"
 #import "MAGradeTableView.h"
 #import "MAClass.h"
@@ -24,6 +23,8 @@
 
 - (void)configureHeaderCell:(UITableViewCell *)cell title:(NSString *)title;
 - (void)configureGradesCell:(UITableViewCell *)cell row:(NSInteger *)row;
+
+- (void)configureCell:(UITableViewCell *)cell row:(NSInteger *)row;
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
 
 

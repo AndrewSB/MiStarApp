@@ -11,7 +11,6 @@
 #import <TSMessage.h>
 
 
-
 @implementation MAAppDelegate
 @synthesize window;
 

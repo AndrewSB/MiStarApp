@@ -95,37 +95,6 @@
 };
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    BOOL testing = 1;
-    
-    if (testing) {
-        
-        NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:[NSURL URLWithString:@"https://mistar.oakland.k12.mi.us/novi/StudentPortal/Home/Login"]];
-        [request setHTTPMethod:@"POST"];
-        [request setValue:@"USERAGENT_STRING" forHTTPHeaderField: @"User-Agent"];
-        NSString *postString = [NSString stringWithFormat:@"Pin=%@&Password=%@", @"20014204" ,@"yuiop"];
-        NSData * postBody = [postString dataUsingEncoding:NSUTF8StringEncoding];
-        [request setHTTPBody:postBody];
-        
-        
-        
-        
-        MAStudent *student = [[MAStudent alloc] init];
-        NSLog(@"Created student");
-        [self.view addSubview:[student loadWebViewWithRequest:request size:CGRectMake(0, 0, 275, 500)]];
-        
-        
-        
-        
-        
-        
-        
-//        request.URL = [NSURL URLWithString:@"https://mistar.oakland.k12.mi.us/novi/StudentPortal/Home"];
-//        [self.view addSubview:[student loadWebViewWithRequest:request size:CGRectMake(0, 0, 200, 600)]];
-//        NSLog(@"Loaded webview");
-
-    } else {
-    
-    
     MAGradeClient *gradeClient = [[MAGradeClient alloc] init];
     
     NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
@@ -138,7 +107,6 @@
         NSLog(@"Client is: %@ with credential: %@", userPin, userPassword);
         
         [gradeClient provideLoginWithPin:userPin password:userPassword];
-    }
     }
 }
 
@@ -193,9 +161,9 @@
     
     NSInteger cellCount = [self tableView:tableView numberOfRowsInSection:indexPath.section];
     
+    [self configureCell:cell row:indexPath.row];
+    
     if (indexPath.row == 0) {
-        [self configureHeaderCell:cell title:@"Andrew Breckenridge"];
-                
         UIView *cellView = cell.contentView;
         userStateButton = [[QBFlatButton alloc] initWithFrame:CGRectMake((cellView.frame.size.width - (80 + 20)), (self.screenHeight/(cellCount * 4)), 80, ((self.screenHeight + (cellCount * cellCount))/(cellCount * 2)))];
         [userStateButton addTarget:self action:@selector(userStateButtonWasPressed)forControlEvents:UIControlEventTouchUpInside];
@@ -212,12 +180,6 @@
         [userStateButton setTitle:@"Logout" forState:UIControlStateNormal];
         cell.userStateButton = userStateButton;
         [cellView addSubview:userStateButton];
-    } else {
-        cell.selectionStyle = UITableViewCellSelectionStyleBlue;
-        cell.detailTextLabel.numberOfLines = 2;
-        cell.detailTextLabel.textAlignment = NSTextAlignmentCenter;
-        [self configureGradesCell:cell row:indexPath.row];
-        
     }
         return cell;
 }
@@ -263,6 +225,79 @@
     
     cell.imageView.image = nil;
 }
+
+
+- (void)configureCell:(UITableViewCell *)cell row:(NSInteger *)row {
+    int rowNumber = row;
+    switch (rowNumber) {
+        case 0: { // i.e. it's the header
+            cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:18];
+            cell.textLabel.text = @"Andrew Breckenridge"; //Replace with name
+            cell.detailTextLabel.text = nil;
+            cell.imageView.image = nil;
+            break;
+        }
+            
+        default: {
+            cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:18];
+            cell.detailTextLabel.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:18];
+            cell.imageView.image = nil;
+            
+            cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+            cell.detailTextLabel.numberOfLines = 2;
+            cell.detailTextLabel.textAlignment = NSTextAlignmentCenter;
+            
+            switch (rowNumber) {
+                case 1: {
+                    
+                    break;
+                }
+                 
+                case 2: {
+                    
+                    break;
+                }
+                    
+                case 3: {
+                    
+                    break;
+                }
+                    
+                case 4: {
+                    
+                    break;
+                }
+                    
+                case 5: {
+                    
+                    break;
+                }
+                    
+                case 6: {
+                    
+                    break;
+                }
+                    
+                case 7: {
+                    
+                    break;
+                }
+                    
+                case 8: {
+                    
+                    break;
+                }
+                    
+                default: {
+                    
+                    break;
+                }
+            }
+            break;
+        }
+    }
+}
+
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
