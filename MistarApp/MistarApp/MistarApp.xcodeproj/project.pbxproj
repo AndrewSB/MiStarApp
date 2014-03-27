@@ -24,6 +24,7 @@
 		4669586E18DF4D7A00A72F85 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4669585618DF4D7900A72F85 /* UIKit.framework */; };
 		4669587618DF4D7A00A72F85 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4669587418DF4D7A00A72F85 /* InfoPlist.strings */; };
 		4669587818DF4D7A00A72F85 /* MistarAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4669587718DF4D7A00A72F85 /* MistarAppTests.m */; };
+		469BEB0518E3B65200A8DCD3 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 469BEB0418E3B65200A8DCD3 /* libPods.a */; };
 		46A6174018DF4EA2001400BC /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 46A6172418DF4EA2001400BC /* bg.png */; };
 		46A6174118DF4EA2001400BC /* bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46A6172518DF4EA2001400BC /* bg@2x.png */; };
 		46A6174218DF4EA2001400BC /* originalImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 46A6172618DF4EA2001400BC /* originalImage.jpg */; };
@@ -54,8 +55,12 @@
 		46A6176918DF5000001400BC /* MAController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46A6176818DF5000001400BC /* MAController.m */; };
 		46A6177418DF809A001400BC /* MAGradeClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 46A6177318DF809A001400BC /* MAGradeClient.m */; };
 		46A6177718DF80BC001400BC /* MAGradeReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 46A6177618DF80BC001400BC /* MAGradeReport.m */; };
+		46DC6D0518E3B16B006AA5D8 /* MAGradeParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 46DC6D0418E3B16B006AA5D8 /* MAGradeParser.m */; };
+		46DC6D0C18E3B2F8006AA5D8 /* TFHpple.m in Sources */ = {isa = PBXBuildFile; fileRef = 46DC6D0718E3B2F8006AA5D8 /* TFHpple.m */; };
+		46DC6D0D18E3B2F8006AA5D8 /* TFHppleElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 46DC6D0918E3B2F8006AA5D8 /* TFHppleElement.m */; };
+		46DC6D0E18E3B2F8006AA5D8 /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 46DC6D0B18E3B2F8006AA5D8 /* XPathQuery.m */; };
+		46DC6D1118E3B381006AA5D8 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 46DC6D1018E3B381006AA5D8 /* libxml2.dylib */; settings = {ATTRIBUTES = (Required, ); }; };
 		46EBF04918E014C800F3CD75 /* MAGradeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 46EBF04818E014C800F3CD75 /* MAGradeCell.m */; };
-		B0504526486447ECB2D3DED4 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 52D87429006843B089F31F48 /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +100,7 @@
 		4669587318DF4D7A00A72F85 /* MistarAppTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MistarAppTests-Info.plist"; sourceTree = "<group>"; };
 		4669587518DF4D7A00A72F85 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4669587718DF4D7A00A72F85 /* MistarAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MistarAppTests.m; sourceTree = "<group>"; };
+		469BEB0418E3B65200A8DCD3 /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
 		46A6172418DF4EA2001400BC /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg.png; sourceTree = "<group>"; };
 		46A6172518DF4EA2001400BC /* bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg@2x.png"; sourceTree = "<group>"; };
 		46A6172618DF4EA2001400BC /* originalImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = originalImage.jpg; sourceTree = "<group>"; };
@@ -128,6 +134,15 @@
 		46A6177318DF809A001400BC /* MAGradeClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAGradeClient.m; sourceTree = "<group>"; };
 		46A6177518DF80BC001400BC /* MAGradeReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAGradeReport.h; sourceTree = "<group>"; };
 		46A6177618DF80BC001400BC /* MAGradeReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAGradeReport.m; sourceTree = "<group>"; };
+		46DC6D0318E3B16B006AA5D8 /* MAGradeParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAGradeParser.h; sourceTree = "<group>"; };
+		46DC6D0418E3B16B006AA5D8 /* MAGradeParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAGradeParser.m; sourceTree = "<group>"; };
+		46DC6D0618E3B2F8006AA5D8 /* TFHpple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFHpple.h; sourceTree = "<group>"; };
+		46DC6D0718E3B2F8006AA5D8 /* TFHpple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFHpple.m; sourceTree = "<group>"; };
+		46DC6D0818E3B2F8006AA5D8 /* TFHppleElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFHppleElement.h; sourceTree = "<group>"; };
+		46DC6D0918E3B2F8006AA5D8 /* TFHppleElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFHppleElement.m; sourceTree = "<group>"; };
+		46DC6D0A18E3B2F8006AA5D8 /* XPathQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPathQuery.h; sourceTree = "<group>"; };
+		46DC6D0B18E3B2F8006AA5D8 /* XPathQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPathQuery.m; sourceTree = "<group>"; };
+		46DC6D1018E3B381006AA5D8 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		46EBF04718E014C800F3CD75 /* MAGradeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAGradeCell.h; sourceTree = "<group>"; };
 		46EBF04818E014C800F3CD75 /* MAGradeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAGradeCell.m; sourceTree = "<group>"; };
 		52D87429006843B089F31F48 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -139,10 +154,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				469BEB0518E3B65200A8DCD3 /* libPods.a in Frameworks */,
+				46DC6D1118E3B381006AA5D8 /* libxml2.dylib in Frameworks */,
 				4669585518DF4D7900A72F85 /* CoreGraphics.framework in Frameworks */,
 				4669585718DF4D7900A72F85 /* UIKit.framework in Frameworks */,
 				4669585318DF4D7900A72F85 /* Foundation.framework in Frameworks */,
-				B0504526486447ECB2D3DED4 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -182,6 +198,8 @@
 		4669585118DF4D7900A72F85 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				469BEB0418E3B65200A8DCD3 /* libPods.a */,
+				46DC6D1018E3B381006AA5D8 /* libxml2.dylib */,
 				4669585218DF4D7900A72F85 /* Foundation.framework */,
 				4669585418DF4D7900A72F85 /* CoreGraphics.framework */,
 				4669585618DF4D7900A72F85 /* UIKit.framework */,
@@ -194,6 +212,7 @@
 		4669585818DF4D7900A72F85 /* MistarApp */ = {
 			isa = PBXGroup;
 			children = (
+				46DC6D0F18E3B2FD006AA5D8 /* hpple */,
 				46A6172318DF4EA2001400BC /* Images */,
 				4669586118DF4D7900A72F85 /* MAAppDelegate.h */,
 				4669586218DF4D7900A72F85 /* MAAppDelegate.m */,
@@ -288,6 +307,8 @@
 				46504B1D18E1E92100F0DA99 /* MAClass.m */,
 				46A6177518DF80BC001400BC /* MAGradeReport.h */,
 				46A6177618DF80BC001400BC /* MAGradeReport.m */,
+				46DC6D0318E3B16B006AA5D8 /* MAGradeParser.h */,
+				46DC6D0418E3B16B006AA5D8 /* MAGradeParser.m */,
 				46504B1018E1C14C00F0DA99 /* MAStudent.h */,
 				46504B1118E1C14C00F0DA99 /* MAStudent.m */,
 				46359CBC18E33EA900CC98A6 /* MAAssignment.h */,
@@ -298,6 +319,19 @@
 				46504B1A18E1DE1800F0DA99 /* MAGradeTableView.m */,
 			);
 			name = Grades;
+			sourceTree = "<group>";
+		};
+		46DC6D0F18E3B2FD006AA5D8 /* hpple */ = {
+			isa = PBXGroup;
+			children = (
+				46DC6D0618E3B2F8006AA5D8 /* TFHpple.h */,
+				46DC6D0718E3B2F8006AA5D8 /* TFHpple.m */,
+				46DC6D0818E3B2F8006AA5D8 /* TFHppleElement.h */,
+				46DC6D0918E3B2F8006AA5D8 /* TFHppleElement.m */,
+				46DC6D0A18E3B2F8006AA5D8 /* XPathQuery.h */,
+				46DC6D0B18E3B2F8006AA5D8 /* XPathQuery.m */,
+			);
+			name = hpple;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -465,10 +499,14 @@
 				46A6176918DF5000001400BC /* MAController.m in Sources */,
 				46504B1B18E1DE1800F0DA99 /* MAGradeTableView.m in Sources */,
 				46504B1518E1CE7400F0DA99 /* MACustonNavigationController.m in Sources */,
+				46DC6D0E18E3B2F8006AA5D8 /* XPathQuery.m in Sources */,
 				4669585F18DF4D7900A72F85 /* main.m in Sources */,
+				46DC6D0D18E3B2F8006AA5D8 /* TFHppleElement.m in Sources */,
+				46DC6D0518E3B16B006AA5D8 /* MAGradeParser.m in Sources */,
 				46504B1E18E1E92100F0DA99 /* MAClass.m in Sources */,
 				46359CBE18E33EA900CC98A6 /* MAAssignment.m in Sources */,
 				46EBF04918E014C800F3CD75 /* MAGradeCell.m in Sources */,
+				46DC6D0C18E3B2F8006AA5D8 /* TFHpple.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -542,6 +580,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -574,6 +616,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -588,7 +634,22 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MistarApp/MistarApp-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"\"${PODS_ROOT}/Headers\"",
+					"\"${PODS_ROOT}/Headers/HexColors\"",
+					"\"${PODS_ROOT}/Headers/LBBlurredImage\"",
+					"\"${PODS_ROOT}/Headers/Mantle\"",
+					"\"${PODS_ROOT}/Headers/QBFlatButton\"",
+					"\"${PODS_ROOT}/Headers/ReactiveCocoa\"",
+					"\"${PODS_ROOT}/Headers/ReactiveCocoa/ReactiveCocoa\"",
+					"\"${PODS_ROOT}/Headers/TSMessages\"",
+					"$(SDKROOT)/usr/include/libxml2",
+				);
 				INFOPLIST_FILE = "MistarApp/MistarApp-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -602,7 +663,22 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MistarApp/MistarApp-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"\"${PODS_ROOT}/Headers\"",
+					"\"${PODS_ROOT}/Headers/HexColors\"",
+					"\"${PODS_ROOT}/Headers/LBBlurredImage\"",
+					"\"${PODS_ROOT}/Headers/Mantle\"",
+					"\"${PODS_ROOT}/Headers/QBFlatButton\"",
+					"\"${PODS_ROOT}/Headers/ReactiveCocoa\"",
+					"\"${PODS_ROOT}/Headers/ReactiveCocoa/ReactiveCocoa\"",
+					"\"${PODS_ROOT}/Headers/TSMessages\"",
+					"$(SDKROOT)/usr/include/libxml2",
+				);
 				INFOPLIST_FILE = "MistarApp/MistarApp-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
