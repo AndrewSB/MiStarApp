@@ -14,17 +14,19 @@
 #import "MAGradeTableView.h"
 #import "MAClass.h"
 #import "MAStudent.h"
+#import "MADetailTableViewDelegate.h"
 
 @interface MAController : UIViewController
 <UITableViewDataSource, UITabBarDelegate, UIScrollViewDelegate>
 
 - (void)userStateButtonWasPressed;
 
+- (void)configureDetailCell:(UITableViewCell *)cell row:(NSInteger *)row;
 
 - (void)configureHeaderCell:(UITableViewCell *)cell title:(NSString *)title;
 - (void)configureGradesCell:(UITableViewCell *)cell row:(NSInteger *)row;
 
-- (void)configureCell:(UITableViewCell *)cell row:(NSInteger *)row;
+- (void)configureCell:(UITableViewCell *)cell row:(NSInteger *)row section:(NSInteger *)section;
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
 
 

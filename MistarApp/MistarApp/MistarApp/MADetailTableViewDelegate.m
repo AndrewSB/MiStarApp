@@ -1,14 +1,14 @@
 //
-//  MAGradeTableView.m
+//  MADetailTableViewDelegate.m
 //  MistarApp
 //
-//  Created by Andrew Breckenridge on 3/25/14.
+//  Created by Andrew Breckenridge on 3/28/14.
 //  Copyright (c) 2014 Andrew Breckenridge. All rights reserved.
 //
 
-#import "MAGradeTableView.h"
+#import "MADetailTableViewDelegate.h"
 
-@implementation MAGradeTableView
+@implementation MADetailTableViewDelegate
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
@@ -106,6 +106,9 @@
         }
     }
 }
+
+
+
 
 
 @end

@@ -27,7 +27,6 @@
     [self.window makeKeyAndVisible];
     
     
-    
     // Use the insanely cool TSMessages to show network alerts
     [TSMessage setDefaultViewController: self.window.rootViewController];
     return YES;

@@ -44,6 +44,9 @@
             } else {;
                 NSLog(@"Response was not JSON (from login), it was = %@", loggedInPage);
             }
+            
+            if (loggedInPage == @"{\"msg\":\"Login Not Found\",\"valid\":\"0\"}") {
+            }
             ///////////
             NSMutableURLRequest *requestHome = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://mistar.oakland.k12.mi.us/novi/StudentPortal/Home/PortalMainPage"]];
             [requestHome setHTTPMethod:@"GET"];            [NSURLConnection sendAsynchronousRequest:requestHome queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *homeResponse, NSData *homeData, NSError *homeError) {
@@ -73,7 +76,6 @@
                                         MAGradeParser *gradeParser = [[MAGradeParser alloc] init];
                                         [gradeParser parseWithData:gradeData];
                                         
-                                        
                                     } else {
                                         NSLog(@"grade Error = %@", gradeError);
                                     }
@@ -89,7 +91,7 @@
                 else {
                     NSLog(@"error: home error: %@", homeError);
                 }
-                
+          outer:;
             }];
             ///////
         }

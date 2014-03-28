@@ -55,6 +55,7 @@
 		46A6176918DF5000001400BC /* MAController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46A6176818DF5000001400BC /* MAController.m */; };
 		46A6177418DF809A001400BC /* MAGradeClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 46A6177318DF809A001400BC /* MAGradeClient.m */; };
 		46A6177718DF80BC001400BC /* MAGradeReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 46A6177618DF80BC001400BC /* MAGradeReport.m */; };
+		46BD26BC18E5751F00CC431D /* MADetailTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 46BD26BB18E5751F00CC431D /* MADetailTableViewDelegate.m */; };
 		46DC6D0518E3B16B006AA5D8 /* MAGradeParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 46DC6D0418E3B16B006AA5D8 /* MAGradeParser.m */; };
 		46DC6D0C18E3B2F8006AA5D8 /* TFHpple.m in Sources */ = {isa = PBXBuildFile; fileRef = 46DC6D0718E3B2F8006AA5D8 /* TFHpple.m */; };
 		46DC6D0D18E3B2F8006AA5D8 /* TFHppleElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 46DC6D0918E3B2F8006AA5D8 /* TFHppleElement.m */; };
@@ -134,6 +135,8 @@
 		46A6177318DF809A001400BC /* MAGradeClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAGradeClient.m; sourceTree = "<group>"; };
 		46A6177518DF80BC001400BC /* MAGradeReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAGradeReport.h; sourceTree = "<group>"; };
 		46A6177618DF80BC001400BC /* MAGradeReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAGradeReport.m; sourceTree = "<group>"; };
+		46BD26BA18E5751F00CC431D /* MADetailTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MADetailTableViewDelegate.h; sourceTree = "<group>"; };
+		46BD26BB18E5751F00CC431D /* MADetailTableViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MADetailTableViewDelegate.m; sourceTree = "<group>"; };
 		46DC6D0318E3B16B006AA5D8 /* MAGradeParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAGradeParser.h; sourceTree = "<group>"; };
 		46DC6D0418E3B16B006AA5D8 /* MAGradeParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAGradeParser.m; sourceTree = "<group>"; };
 		46DC6D0618E3B2F8006AA5D8 /* TFHpple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFHpple.h; sourceTree = "<group>"; };
@@ -317,6 +320,8 @@
 				46EBF04818E014C800F3CD75 /* MAGradeCell.m */,
 				46504B1918E1DE1800F0DA99 /* MAGradeTableView.h */,
 				46504B1A18E1DE1800F0DA99 /* MAGradeTableView.m */,
+				46BD26BA18E5751F00CC431D /* MADetailTableViewDelegate.h */,
+				46BD26BB18E5751F00CC431D /* MADetailTableViewDelegate.m */,
 			);
 			name = Grades;
 			sourceTree = "<group>";
@@ -497,6 +502,7 @@
 				46A6177718DF80BC001400BC /* MAGradeReport.m in Sources */,
 				46A6177418DF809A001400BC /* MAGradeClient.m in Sources */,
 				46A6176918DF5000001400BC /* MAController.m in Sources */,
+				46BD26BC18E5751F00CC431D /* MADetailTableViewDelegate.m in Sources */,
 				46504B1B18E1DE1800F0DA99 /* MAGradeTableView.m in Sources */,
 				46504B1518E1CE7400F0DA99 /* MACustonNavigationController.m in Sources */,
 				46DC6D0E18E3B2F8006AA5D8 /* XPathQuery.m in Sources */,

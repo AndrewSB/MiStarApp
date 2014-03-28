@@ -89,7 +89,8 @@
         pinTextField.keyboardType = UIKeyboardTypeNumberPad;
         pinTextField.placeholder = @"Student ID";
         passwordTextField.placeholder = @"Password";
-        
+        pinTextField.keyboardAppearance = UIKeyboardAppearanceDark;
+        passwordTextField.keyboardAppearance = UIKeyboardAppearanceDark;
         [alert show];
     }
 };
@@ -105,11 +106,15 @@
         NSString *userPin = [alertView textFieldAtIndex:0].text;
         NSString *userPassword = [alertView textFieldAtIndex:1].text;
         NSLog(@"Client is: %@ with credential: %@", userPin, userPassword);
-        
+        if ([userPin isEqualToString:@"2345"]) {
+                NSLog(@"Outer");
+                UIAlertView *loginFailed = [[UIAlertView alloc] initWithTitle:@"Login Failed" message:@"Your username or password was incorrect, try logging in again" delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+            [loginFailed show];
+            return;
+        }
         [gradeClient provideLoginWithPin:userPin password:userPassword];
     }
 }
-
 //- (BOOL)userEnteredData {
 //    if (_loginField.text.length > 0 && _passwordField.text.length > 0) {
 //        NSLog(@"Would have submitted passwd");
@@ -122,6 +127,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 - (void)viewWillLayoutSubviews {
     [super viewWillLayoutSubviews];
@@ -142,8 +148,9 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-        return MAX(6,6) + 1; //TODO add getNumberOfClasses for people with 7 or 8
+        return MIN(6,6) + 1; //TODO add getNumberOfClasses for people with 7 or 8
 }
+
 
 - (MAGradeCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -160,8 +167,8 @@
     QBFlatButton* userStateButton = nil;
     
     NSInteger cellCount = [self tableView:tableView numberOfRowsInSection:indexPath.section];
-    
-    [self configureCell:cell row:indexPath.row];
+
+    [self configureCell:cell row:indexPath.row section:indexPath.section];
     
     if (indexPath.row == 0) {
         UIView *cellView = cell.contentView;
@@ -193,17 +200,37 @@
         
         UIViewController *detailViewControl = [[UIViewController alloc] init];
         
-        UITableView *detailTableView = [[MAGradeTableView alloc] initWithFrame:self.view.frame style:UITableViewStylePlain];
+        UITableView *detailTableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStylePlain];
         detailTableView.backgroundColor = [UIColor clearColor];
         detailTableView.separatorColor = [UIColor colorWithWhite:1 alpha:0.2];
         detailTableView.pagingEnabled = YES;
+        
+        
+        detailTableView.delegate = self;
+        detailTableView.dataSource = self;
+        
+        MAGradeCell *cell = [[MAGradeCell alloc] init];
+        int row = -indexPath.row;
+        int section = 2;
+        
+        [self configureCell:(UITableView *)detailTableView row:row section:2];
         
         // Set progress report as the view controller
         [self.navigationController pushViewController:detailViewControl animated:YES];
         [self.navigationController setNavigationBarHidden:NO animated:YES];
         
         //self.navigationController.navigationBar.backgroundColor = [UIColor clearColor];
-        detailViewControl.view.backgroundColor = [UIColor whiteColor];
+        detailViewControl.view.backgroundColor = [UIColor blackColor];
+        
+        
+        UIImage *background = [UIImage imageNamed:@"bg"];
+        UIImageView *backgroundImageView = [[UIImageView alloc] initWithImage:background];
+        self.backgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
+        
+        [detailViewControl.view addSubview:backgroundImageView];
+        [detailViewControl.view addSubview:detailTableView];
+        
+        
 
     }
 }
@@ -217,28 +244,69 @@
     cell.imageView.image = nil;
 }
 
+
+- (void)configureDetailCell:(UITableViewCell *)cell row:(NSInteger *)row {
+    cell.imageView.image = nil;
+    cell.detailTextLabel.numberOfLines = 2;
+    cell.detailTextLabel.textAlignment = NSTextAlignmentCenter;
+    int rowNumber = row;
+    switch (rowNumber) {
+        case 0:{
+            cell.textLabel.text = @"2/4     Signed Course Procedure";
+            cell.detailTextLabel.text = @"5\n5";
+            cell.imageView.image = nil;
+            break;
+        }
+        case 1:{
+            cell.textLabel.text = @"2/11    QUIZ Act One & Drama Terms";
+            cell.detailTextLabel.text = @"22\n29";
+            cell.imageView.image = nil;
+            break;
+        }
+        case 2:{
+            cell.textLabel.text = @"2/13    Act III Writes";
+            cell.detailTextLabel.text = @"15\n16";
+            cell.imageView.image = nil;
+            break;
+        }
+        case 3:{
+            cell.textLabel.text = @"3/6    Movie Review-Crucible";
+            cell.detailTextLabel.text = @"10\n10";
+            cell.imageView.image = nil;
+            break;
+        }
+        case 4:{
+            cell.textLabel.text = @"2/20    Discussion-The Crucible";
+            cell.detailTextLabel.text = @"15\n15";
+            cell.imageView.image = nil;
+            break;
+        }
+            
+        default:{
+            cell.textLabel.text = @"2/13    Act III Writes";
+            cell.detailTextLabel.text = @"15\n16";
+            cell.imageView.image = nil;
+            break;
+        }
+    }
+    
+}
+
 - (void)configureGradesCell:(UITableViewCell *)cell row:(NSInteger *)row {
     cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:18];
     cell.detailTextLabel.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:18];
     
-    MAGradeClient *gradeClient = [[MAGradeClient alloc] init];
     
     cell.imageView.image = nil;
 }
 
 
-- (void)configureCell:(UITableViewCell *)cell row:(NSInteger *)row {
+- (void)configureCell:(UITableViewCell *)cell row:(NSInteger *)row section:(NSInteger *)section {
     int rowNumber = row;
-    switch (rowNumber) {
-        case 0: { // i.e. it's the header
-            cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:18];
-            cell.textLabel.text = @"Andrew Breckenridge"; //Replace with name
-            cell.detailTextLabel.text = nil;
-            cell.imageView.image = nil;
-            break;
-        }
-            
-        default: {
+    int sectionNumber = section;
+    
+    if (section == 0) {
+        if (row == -1) {
             cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:18];
             cell.detailTextLabel.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:18];
             cell.imageView.image = nil;
@@ -247,57 +315,144 @@
             cell.detailTextLabel.numberOfLines = 2;
             cell.detailTextLabel.textAlignment = NSTextAlignmentCenter;
             
-            switch (rowNumber) {
-                case 1: {
-                    
-                    break;
-                }
-                 
-                case 2: {
-                    
-                    break;
-                }
-                    
-                case 3: {
-                    
-                    break;
-                }
-                    
-                case 4: {
-                    
-                    break;
-                }
-                    
-                case 5: {
-                    
-                    break;
-                }
-                    
-                case 6: {
-                    
-                    break;
-                }
-                    
-                case 7: {
-                    
-                    break;
-                }
-                    
-                case 8: {
-                    
-                    break;
-                }
-                    
-                default: {
-                    
-                    break;
-                }
-            }
-            break;
+            cell.textLabel.text = @"SMD"; //Replace with name
+            cell.detailTextLabel.text = @"A-\n90.2";
+            cell.imageView.image = nil;
+        } else if (row == 0) {
+            cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:18];
+            cell.textLabel.text = @"Andrew Breckenridge"; //Replace with name
+            cell.detailTextLabel.text = nil;
+            cell.imageView.image = nil;
+        } else if (row == 1) {
+            cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:18];
+            cell.detailTextLabel.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:18];
+            cell.imageView.image = nil;
+            
+            cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+            cell.detailTextLabel.numberOfLines = 2;
+            cell.detailTextLabel.textAlignment = NSTextAlignmentCenter;
+            
+            cell.textLabel.text = @"IB Math SL 2"; //Replace with name
+            cell.detailTextLabel.text = @"A-\n90.2";
+            cell.imageView.image = nil;
+
+        } else if (row == 2) {
+            cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:18];
+            cell.detailTextLabel.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:18];
+            cell.imageView.image = nil;
+            
+            cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+            cell.detailTextLabel.numberOfLines = 2;
+            cell.detailTextLabel.textAlignment = NSTextAlignmentCenter;
+            
+            cell.textLabel.text = @"IB 20thCen Wrld Hist HL2"; //Replace with name
+            cell.detailTextLabel.text = @"B\n94.4";
+            cell.imageView.image = nil;
+
+        } else if (row == 3) {
+            cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:18];
+            cell.detailTextLabel.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:18];
+            cell.imageView.image = nil;
+            
+            cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+            cell.detailTextLabel.numberOfLines = 2;
+            cell.detailTextLabel.textAlignment = NSTextAlignmentCenter;
+            
+            cell.textLabel.text = @"IB French SL 2"; //Replace with name
+            cell.detailTextLabel.text = @"A\n94.2";
+            cell.imageView.image = nil;
+            
+        } else if (row == 4) {
+            cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:18];
+            cell.detailTextLabel.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:18];
+            cell.imageView.image = nil;
+            
+            cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+            cell.detailTextLabel.numberOfLines = 2;
+            cell.detailTextLabel.textAlignment = NSTextAlignmentCenter;
+            
+            cell.textLabel.text = @"AP Physics C: Elec & Mag"; //Replace with name
+            cell.detailTextLabel.text = @"A-\n80.2";
+            cell.imageView.image = nil;
+            
+        } else if (row == 5) {
+            cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:18];
+            cell.detailTextLabel.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:18];
+            cell.imageView.image = nil;
+            
+            cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+            cell.detailTextLabel.numberOfLines = 2;
+            cell.detailTextLabel.textAlignment = NSTextAlignmentCenter;
+            
+            cell.textLabel.text = @"IB Computer Science HL 2"; //Replace with name
+            cell.detailTextLabel.text = @"A\n95.2";
+            cell.imageView.image = nil;
+            
+        } else if (row == 6) {
+            cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:18];
+            cell.detailTextLabel.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:18];
+            cell.imageView.image = nil;
+            
+            cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+            cell.detailTextLabel.numberOfLines = 2;
+            cell.detailTextLabel.textAlignment = NSTextAlignmentCenter;
+            
+            cell.textLabel.text = @"IB English HL 2"; //Replace with name
+            cell.detailTextLabel.text = @"A\n93.6";
+            cell.imageView.image = nil;
+            
+        }
+    } else if (section == 1) {
+        if (row == 0) {
+            cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:18];
+            cell.textLabel.text = @"Suck Breckenridge"; //Replace with name
+            cell.detailTextLabel.text = nil;
+            cell.imageView.image = nil;
+        } else if (row == 1) {
+            
+        } else if (row == 2) {
+            
+        } else if (row == 3) {
+            
+        } else if (row == 4) {
+            
+        } else if (row == 5) {
+            
+        } else if (row == 6) {
+            cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:18];
+            cell.detailTextLabel.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:18];
+            cell.imageView.image = nil;
+            
+            cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+            cell.detailTextLabel.numberOfLines = 2;
+            cell.detailTextLabel.textAlignment = NSTextAlignmentCenter;
+            
+            cell.textLabel.text = @"IB Englishe HL 2"; //Replace with name
+            cell.detailTextLabel.text = @"A\n93.6";
+            cell.imageView.image = nil;
+        }
+    } else if (section == 2) {
+        if (row == 0) {
+            cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:18];
+            cell.textLabel.text = @"Lol Breckenridge"; //Replace with name
+            cell.detailTextLabel.text = nil;
+            cell.imageView.image = nil;
+        } else if (row == 1) {
+            
+        } else if (row == 2) {
+            
+        } else if (row == 3) {
+            
+        } else if (row == 4) {
+            
+        } else if (row == 5) {
+            
+        } else if (row == 6) {
+            
         }
     }
+    
 }
-
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
