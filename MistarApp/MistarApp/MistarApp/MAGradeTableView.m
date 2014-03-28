@@ -65,46 +65,6 @@
 
 - (void)configureCell:(UITableViewCell *)cell row:(NSInteger *)row {
     int rowNumber = row;
-    switch (rowNumber) {
-        case 0: { // i.e. it's the header
-            cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:18];
-            cell.textLabel.text = @"Andrew Breckenridge"; //Replace with name
-            cell.detailTextLabel.text = nil;
-            cell.imageView.image = nil;
-            break;
-        }
-        case 1:{
-            cell.textLabel.text = @"2/11    QUIZ Act One & Drama Terms";
-            cell.detailTextLabel.text = @"22\n29";
-            cell.imageView.image = nil;
-            break;
-        }
-        case 2:{
-            cell.textLabel.text = @"2/13    Act III Writes";
-            cell.detailTextLabel.text = @"15\n16";
-            cell.imageView.image = nil;
-            break;
-        }
-        case 3:{
-            cell.textLabel.text = @"3/6    Movie Review-Crucible";
-            cell.detailTextLabel.text = @"10\n10";
-            cell.imageView.image = nil;
-            break;
-        }
-        case 4:{
-            cell.textLabel.text = @"2/20    Discussion-The Crucible";
-            cell.detailTextLabel.text = @"15\n15";
-            cell.imageView.image = nil;
-            break;
-        }
-            
-        default:{
-            cell.textLabel.text = @"2/13    Act III Writes";
-            cell.detailTextLabel.text = @"15\n16";
-            cell.imageView.image = nil;
-            break;
-        }
-    }
 }
 
 

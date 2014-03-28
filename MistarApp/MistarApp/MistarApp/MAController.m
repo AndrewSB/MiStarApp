@@ -184,7 +184,7 @@
                 
         userStateButton.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:18];
         [userStateButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [userStateButton setTitle:@"Logout" forState:UIControlStateNormal];
+        [userStateButton setTitle:@"Login" forState:UIControlStateNormal];
         cell.userStateButton = userStateButton;
         [cellView addSubview:userStateButton];
     }
@@ -250,45 +250,6 @@
     cell.detailTextLabel.numberOfLines = 2;
     cell.detailTextLabel.textAlignment = NSTextAlignmentCenter;
     int rowNumber = row;
-    switch (rowNumber) {
-        case 0:{
-            cell.textLabel.text = @"2/4     Signed Course Procedure";
-            cell.detailTextLabel.text = @"5\n5";
-            cell.imageView.image = nil;
-            break;
-        }
-        case 1:{
-            cell.textLabel.text = @"2/11    QUIZ Act One & Drama Terms";
-            cell.detailTextLabel.text = @"22\n29";
-            cell.imageView.image = nil;
-            break;
-        }
-        case 2:{
-            cell.textLabel.text = @"2/13    Act III Writes";
-            cell.detailTextLabel.text = @"15\n16";
-            cell.imageView.image = nil;
-            break;
-        }
-        case 3:{
-            cell.textLabel.text = @"3/6    Movie Review-Crucible";
-            cell.detailTextLabel.text = @"10\n10";
-            cell.imageView.image = nil;
-            break;
-        }
-        case 4:{
-            cell.textLabel.text = @"2/20    Discussion-The Crucible";
-            cell.detailTextLabel.text = @"15\n15";
-            cell.imageView.image = nil;
-            break;
-        }
-            
-        default:{
-            cell.textLabel.text = @"2/13    Act III Writes";
-            cell.detailTextLabel.text = @"15\n16";
-            cell.imageView.image = nil;
-            break;
-        }
-    }
     
 }
 
@@ -304,154 +265,6 @@
 - (void)configureCell:(UITableViewCell *)cell row:(NSInteger *)row section:(NSInteger *)section {
     int rowNumber = row;
     int sectionNumber = section;
-    
-    if (section == 0) {
-        if (row == -1) {
-            cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:18];
-            cell.detailTextLabel.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:18];
-            cell.imageView.image = nil;
-            
-            cell.selectionStyle = UITableViewCellSelectionStyleBlue;
-            cell.detailTextLabel.numberOfLines = 2;
-            cell.detailTextLabel.textAlignment = NSTextAlignmentCenter;
-            
-            cell.textLabel.text = @"SMD"; //Replace with name
-            cell.detailTextLabel.text = @"A-\n90.2";
-            cell.imageView.image = nil;
-        } else if (row == 0) {
-            cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:18];
-            cell.textLabel.text = @"Andrew Breckenridge"; //Replace with name
-            cell.detailTextLabel.text = nil;
-            cell.imageView.image = nil;
-        } else if (row == 1) {
-            cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:18];
-            cell.detailTextLabel.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:18];
-            cell.imageView.image = nil;
-            
-            cell.selectionStyle = UITableViewCellSelectionStyleBlue;
-            cell.detailTextLabel.numberOfLines = 2;
-            cell.detailTextLabel.textAlignment = NSTextAlignmentCenter;
-            
-            cell.textLabel.text = @"IB Math SL 2"; //Replace with name
-            cell.detailTextLabel.text = @"A-\n90.2";
-            cell.imageView.image = nil;
-
-        } else if (row == 2) {
-            cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:18];
-            cell.detailTextLabel.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:18];
-            cell.imageView.image = nil;
-            
-            cell.selectionStyle = UITableViewCellSelectionStyleBlue;
-            cell.detailTextLabel.numberOfLines = 2;
-            cell.detailTextLabel.textAlignment = NSTextAlignmentCenter;
-            
-            cell.textLabel.text = @"IB 20thCen Wrld Hist HL2"; //Replace with name
-            cell.detailTextLabel.text = @"B\n94.4";
-            cell.imageView.image = nil;
-
-        } else if (row == 3) {
-            cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:18];
-            cell.detailTextLabel.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:18];
-            cell.imageView.image = nil;
-            
-            cell.selectionStyle = UITableViewCellSelectionStyleBlue;
-            cell.detailTextLabel.numberOfLines = 2;
-            cell.detailTextLabel.textAlignment = NSTextAlignmentCenter;
-            
-            cell.textLabel.text = @"IB French SL 2"; //Replace with name
-            cell.detailTextLabel.text = @"A\n94.2";
-            cell.imageView.image = nil;
-            
-        } else if (row == 4) {
-            cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:18];
-            cell.detailTextLabel.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:18];
-            cell.imageView.image = nil;
-            
-            cell.selectionStyle = UITableViewCellSelectionStyleBlue;
-            cell.detailTextLabel.numberOfLines = 2;
-            cell.detailTextLabel.textAlignment = NSTextAlignmentCenter;
-            
-            cell.textLabel.text = @"AP Physics C: Elec & Mag"; //Replace with name
-            cell.detailTextLabel.text = @"A-\n80.2";
-            cell.imageView.image = nil;
-            
-        } else if (row == 5) {
-            cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:18];
-            cell.detailTextLabel.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:18];
-            cell.imageView.image = nil;
-            
-            cell.selectionStyle = UITableViewCellSelectionStyleBlue;
-            cell.detailTextLabel.numberOfLines = 2;
-            cell.detailTextLabel.textAlignment = NSTextAlignmentCenter;
-            
-            cell.textLabel.text = @"IB Computer Science HL 2"; //Replace with name
-            cell.detailTextLabel.text = @"A\n95.2";
-            cell.imageView.image = nil;
-            
-        } else if (row == 6) {
-            cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:18];
-            cell.detailTextLabel.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:18];
-            cell.imageView.image = nil;
-            
-            cell.selectionStyle = UITableViewCellSelectionStyleBlue;
-            cell.detailTextLabel.numberOfLines = 2;
-            cell.detailTextLabel.textAlignment = NSTextAlignmentCenter;
-            
-            cell.textLabel.text = @"IB English HL 2"; //Replace with name
-            cell.detailTextLabel.text = @"A\n93.6";
-            cell.imageView.image = nil;
-            
-        }
-    } else if (section == 1) {
-        if (row == 0) {
-            cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:18];
-            cell.textLabel.text = @"Suck Breckenridge"; //Replace with name
-            cell.detailTextLabel.text = nil;
-            cell.imageView.image = nil;
-        } else if (row == 1) {
-            
-        } else if (row == 2) {
-            
-        } else if (row == 3) {
-            
-        } else if (row == 4) {
-            
-        } else if (row == 5) {
-            
-        } else if (row == 6) {
-            cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:18];
-            cell.detailTextLabel.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:18];
-            cell.imageView.image = nil;
-            
-            cell.selectionStyle = UITableViewCellSelectionStyleBlue;
-            cell.detailTextLabel.numberOfLines = 2;
-            cell.detailTextLabel.textAlignment = NSTextAlignmentCenter;
-            
-            cell.textLabel.text = @"IB Englishe HL 2"; //Replace with name
-            cell.detailTextLabel.text = @"A\n93.6";
-            cell.imageView.image = nil;
-        }
-    } else if (section == 2) {
-        if (row == 0) {
-            cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:18];
-            cell.textLabel.text = @"Lol Breckenridge"; //Replace with name
-            cell.detailTextLabel.text = nil;
-            cell.imageView.image = nil;
-        } else if (row == 1) {
-            
-        } else if (row == 2) {
-            
-        } else if (row == 3) {
-            
-        } else if (row == 4) {
-            
-        } else if (row == 5) {
-            
-        } else if (row == 6) {
-            
-        }
-    }
-    
 }
 
 
