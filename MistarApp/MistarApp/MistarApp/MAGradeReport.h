@@ -11,7 +11,9 @@
 
 @interface MAGradeReport : NSObject
 
+@property BOOL cancel;
+
 - (NSString *)percentEscapeString:(NSString *)string;
-- (void)loginToMistarWithPin:(NSString *)pin password:(NSString *)password success:(void (^)(void))successHandler failure:(void (^)(void))failureHandler;
+- (NSArray *)loginToMistarWithPin:(NSString *)pin password:(NSString *)password success:(void (^)(void))successHandler failure:(void (^)(void))failureHandler;
 
 @end

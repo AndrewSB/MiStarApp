@@ -19,13 +19,11 @@
     MAGradeReport *gradeReport = [[MAGradeReport alloc] init];
     NSLog(@"Got these details %@ & %@", pin, password);
     [gradeReport loginToMistarWithPin:pin password:password success:^{
-        NSLog(@"You've reached the point where you get stuff");
-        NSMutableArray *gradesArray = [[NSMutableArray alloc] initWithCapacity:6];
-        
-        _gradesArray = gradesArray;
+        NSLog(@"successpoint");
     } failure:^{
         NSLog(@"Some error in logging into Mistar and getting the UID");
     }];
+    NSLog(@"returnpoint");
     return _gradesArray;
 }
 

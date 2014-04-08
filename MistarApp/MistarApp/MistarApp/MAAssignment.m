@@ -10,13 +10,24 @@
 
 @implementation MAAssignment
 
-- (id)initWithName:(NSString *)name date:(NSDate *)date total:(NSNumber *)total recieved:(NSNumber *)recieved {
+- (id)initWithDate:(NSString *)dateAssigned dateSubmitted:(NSString *)dateSubmitted assignmentName:(NSString *)assignmentName totalPoints:(NSNumber *)totalPoints recievedPoints:(NSNumber *)recievedPoints extraCredit:(NSNumber *)extraCredit notGraded:(NSNumber *)notGraded {
     
-    _assignmentName = name;
-    _date = date;
-    _totalPoints = total;
-    _recievedPoints = recieved;
+    NSDateFormatter *dateF = [[NSDateFormatter alloc] init];
+    [dateF setDateFormat:@"MM/dd/yyyy"];
+    
+    _dateAssigned = [dateF dateFromString:dateAssigned];
+    _dateSubmitted = [dateF dateFromString:dateSubmitted];
+
+    _assignmentName = assignmentName;
+    
+    _totalPoints = [NSNumber numberWithInteger:[totalPoints integerValue]];
+    _recievedPoints = [NSNumber numberWithInteger:[recievedPoints integerValue]];
+    
+    _extraCredit = extraCredit;
+    _notGraded = notGraded;
+    
     return self;
 }
+
 
 @end

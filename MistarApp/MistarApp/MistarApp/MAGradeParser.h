@@ -10,11 +10,13 @@
 #import "TFHpple.h"
 #import "MAGradeReport.h"
 #import "MAAssignment.h"
+#import "MAClass.h"
+#import "MAStudent.h"
 
 
 @interface MAGradeParser : NSObject
 
-- (void)parseWithData:(NSData *)data;
+- (NSArray *)parseWithData:(NSData *)data;
 
 - (NSArray *)getMasterView:(NSData *)data;
 - (NSArray *)getDetailViewForClass:(NSString *)class data:(NSData *)data;

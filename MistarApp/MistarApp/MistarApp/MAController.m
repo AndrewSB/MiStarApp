@@ -113,6 +113,7 @@
             return;
         }
         [gradeClient provideLoginWithPin:userPin password:userPassword];
+        NSLog(@"gradeCliented");
     }
 }
 //- (BOOL)userEnteredData {
@@ -167,8 +168,6 @@
     QBFlatButton* userStateButton = nil;
     
     NSInteger cellCount = [self tableView:tableView numberOfRowsInSection:indexPath.section];
-
-    [self configureCell:cell row:indexPath.row section:indexPath.section];
     
     if (indexPath.row == 0) {
         UIView *cellView = cell.contentView;
@@ -184,7 +183,12 @@
                 
         userStateButton.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:18];
         [userStateButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [userStateButton setTitle:@"Login" forState:UIControlStateNormal];
+        
+        if (loggedIn) {
+            [userStateButton setTitle:@"Logout" forState:UIControlStateNormal];
+        } else {
+            [userStateButton setTitle:@"Login" forState:UIControlStateNormal];
+        }
         cell.userStateButton = userStateButton;
         [cellView addSubview:userStateButton];
     }
@@ -213,7 +217,6 @@
         int row = -indexPath.row;
         int section = 2;
         
-        [self configureCell:(UITableView *)detailTableView row:row section:2];
         
         // Set progress report as the view controller
         [self.navigationController pushViewController:detailViewControl animated:YES];
@@ -261,13 +264,6 @@
     cell.imageView.image = nil;
 }
 
-
-- (void)configureCell:(UITableViewCell *)cell row:(NSInteger *)row section:(NSInteger *)section {
-    int rowNumber = row;
-    int sectionNumber = section;
-}
-
-
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSInteger cellCount = [self tableView:tableView numberOfRowsInSection:indexPath.section];
     return self.screenHeight / (CGFloat)cellCount;
@@ -281,6 +277,7 @@
     CGFloat percent = MIN(position / height, 1.0);
     self.blurredImageView.alpha = percent;
 }
+
 
 
 /*

@@ -12,11 +12,9 @@
 @interface MAStudent : NSObject
 
 
-- (MAStudent *)loginToMistarWithPin:(NSString *)pin password:(NSString *)password;
 
-@property (nonatomic, strong) NSArray *classes;
+@property (nonatomic, strong) NSMutableArray *classes;
 @property (nonatomic, strong) NSString *name;
-@property (nonatomic, strong) NSArray *attendances;
 
 
 @end

@@ -10,20 +10,48 @@
 
 @implementation MAGradeParser
 
-- (void)parseWithData:(NSData *)data {
+- (NSArray *)parseWithData:(NSData *)data {
     
     TFHpple *tfhpple = [[TFHpple alloc] initWithData:data isXML:NO];
     
     NSString *xPathQuery = @"//tr/td[@valign=\"top\"]";
     NSArray *test = [tfhpple searchWithXPathQuery:xPathQuery];
     
-    for (TFHppleElement *element in test) {
-        NSString *match = [element text];
-        
-        NSLog(@"%@",match);
+//    for (TFHppleElement *element in test) {
+//        NSString *match = [element text];
+//        
+//        NSLog(@"bishhh %@",match);
+//    }
+
+    NSArray *teachers = [self getTeachersWithData:data];
+    NSArray *assignments = [self getAssignmentsWithData:data];
+    NSArray *classes = [self getClassesWithData:data];
+    NSArray *grades = [self getGradesWithData:data];
+    
+//    NSLog(@"teach %@",teachers);
+//    NSLog(@"ass %@",assignments);
+//    NSLog(@"class %@",classes);
+//    NSLog(@"datA %@",grades);
+    
+    
+//    for (TFHppleElement *item in teachers) {
+//        NSLog(@"%@", item.text);
+//        NSLog(@"%@", [[item.attributes objectForKey:@"href"] substringFromIndex:7]);
+//    }
+    
+    
+    //Do the assignments
+    
+    
+//    for (TFHppleElement *item in classes) {
+//        //NSLog(@"%@", item.text);
+//    }
+    
+    for (TFHppleElement *item in grades) {
+        NSLog(@"%@", item.text);
     }
     
-    
+    return test;
 }
 
 //- (NSArray *)getMasterView:(NSData *)data {
@@ -49,81 +77,48 @@
     NSString *xPathQuery = @"//a[@title=\"Send Email\"]";
     NSArray *test = [tfhpple searchWithXPathQuery:xPathQuery];
     
-    for (TFHppleElement *element in test) {
-        NSString *match = [element text];
-        
-        NSLog(@"%@",match);
-    }
     return test;
 }
 
 - (NSArray *)getClassesWithData:(NSData *)data {
     TFHpple *tfhpple = [[TFHpple alloc] initWithData:data isXML:NO];
-    NSString *xPathQuery = @"//tr/td[@valign=\"top\"]";
+    NSString *xPathQuery = @"//td/\/b";
     NSArray *test = [tfhpple searchWithXPathQuery:xPathQuery];
-    NSMutableArray *tester = [[NSMutableArray alloc] initWithArray:test];
     
-    NSMutableIndexSet *discardedItems = [NSMutableIndexSet indexSet];
-    NSUInteger *index = 0;
-    
-    for (TFHppleElement *element in tester) {
-        NSString *match = [element text];
-        if ([match rangeOfString:@"("].location == NSNotFound) {
-            [discardedItems addIndex:*index];
+    NSMutableArray *optimizedTest = [[NSMutableArray alloc] init];
+    for (TFHppleElement *item in test) {
+        if ([item.text rangeOfString:@"("].location != NSNotFound) {
+            if ([item.text rangeOfString:@"Academic Advisory"].location == NSNotFound) {
+                NSString *className = [[item.text substringFromIndex:3] substringToIndex:([item.text length] - 14)];
+                [optimizedTest addObject:className];
+            }
         }
-        index++;
     }
-    [tester removeObjectsAtIndexes:discardedItems];
     
-    return tester;
+    return optimizedTest;
 }
 
-//- (NSArray *)getAssignmentsWithData:(NSData *)data {
-//    TFHpple *tfhpple = [[TFHpple alloc] initWithData:data isXML:NO];
-//    NSString *xPathQuery = @"//tr/td[@valign=\"top\"]";
-//    NSArray *test = [tfhpple searchWithXPathQuery:xPathQuery];
-//    
-//    for (TFHppleElement *element in test) {
-//        NSString *match = [element text];
-//        
-//        NSLog(@"%@",match);
-//    }
-//
-//}
+- (NSArray *)getAssignmentsWithData:(NSData *)data {
+    TFHpple *tfhpple = [[TFHpple alloc] initWithData:data isXML:NO];
+    NSString *xPathQuery = @"//tr/td[@valign=\"top\"]";
+    NSArray *test = [tfhpple searchWithXPathQuery:xPathQuery];
+    
+    return test;
+}
 
 - (NSArray *)getGradesWithData:(NSData *)data {
     NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    NSString *regexStr = @""; //@"(<\/b>[A-F][+| |-]|<\/b>[A-F][+| |-] \(\d\d\.\d%\))";
+    NSString *regexStr = @"(<\/b>[A-F][+| |-]|<\/b>[A-F][+| |-] \(\d\d\.\d%\))";
     NSError *error = nil;
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:regexStr options:0 error:&error];
     
-    __block NSMutableArray *result = nil; //Instanciate returner
+    NSArray *matches = [regex matchesInString:string options:0 range:(NSRange){0, [string length]}];
     
-    //Enumerate all matches
-    if ((regex==nil) && (error!=nil)){
-        return [[NSArray alloc] initWithObjects:nil];
-    } else {
-        [regex enumerateMatchesInString:string
-                                options:0
-                                  range:NSMakeRange(0, [string length])
-                             usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop){
-                                 if (result!=nil){
-                                     //Iterate ranges
-                                     for (int i=0; i<[result numberOfRanges]; i++) {
-                                         NSRange range = [result rangeAtIndex:i];
-                                         //NSLog(@"%ld,%ld group #%d %@", range.location, range.length, i, (range.length==0 ? @"--" : [string substringWithRange:range]));
-                                         //myResult = [string substringWithRange:range];
-                                         *stop = YES;
-                                     }
-                                 } else {
-                                    //
-                                     //myResult = @"Regex failed";
-                                     *stop = YES;
-                                 }
-                             }];
+    for (NSTextCheckingResult *item in matches) {
+        NSLog(@"%@", item);
     }
-    return result;
-
+    
+    return matches;
 }
 
 

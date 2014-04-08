@@ -12,6 +12,8 @@
 
 @implementation MAGradeReport
 
+
+
 - (NSString *)percentEscapeString:(NSString *)string {
     NSString *result = CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
                                                                                  (CFStringRef)string,
@@ -21,9 +23,13 @@
     return [result stringByReplacingOccurrencesOfString:@" " withString:@"+"];
 }
 
-- (void)loginToMistarWithPin:(NSString *)pin password:(NSString *)password success:(void (^)(void))successHandler failure:(void (^)(void))failureHandler{
+- (NSArray *)loginToMistarWithPin:(NSString *)pin password:(NSString *)password success:(void (^)(void))successHandler failure:(void (^)(void))failureHandler{
+    _cancel = false;
+    
     //Create and send request
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://mistar.oakland.k12.mi.us/novi/StudentPortal/Home/Login"]];
+    
+    __block NSArray *myResult = nil; //set Returner
     
     [request setHTTPMethod:@"POST"];
     
@@ -45,60 +51,65 @@
                 NSLog(@"Response was not JSON (from login), it was = %@", loggedInPage);
             }
             
-            if (loggedInPage == @"{\"msg\":\"Login Not Found\",\"valid\":\"0\"}") {
-            }
-            ///////////
-            NSMutableURLRequest *requestHome = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://mistar.oakland.k12.mi.us/novi/StudentPortal/Home/PortalMainPage"]];
-            [requestHome setHTTPMethod:@"GET"];            [NSURLConnection sendAsynchronousRequest:requestHome queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *homeResponse, NSData *homeData, NSError *homeError) {
-                // do whatever with the data...and errors
-                if ([homeData length] > 0 && homeError == nil) {
-                    NSString *regexedString = [self userIDRegex:[[NSString alloc] initWithData:homeData encoding:NSUTF8StringEncoding ]];
-                    NSString *userID = [self onlyNumbersRegex:regexedString];
-                    NSLog(@"UserID is %@", userID);
-                    
-                    if (userID) {
-                        // Request AJAX from mistar
-                        NSMutableURLRequest *setStudentID = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://mistar.oakland.k12.mi.us/novi/StudentPortal/StudentBanner/SetStudentBanner/%@" , userID]]];
-                        [setStudentID setHTTPMethod:@"GET"];
-                        
-                        [NSURLConnection sendAsynchronousRequest:setStudentID queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *studentIDResponse, NSData *studentIDData, NSError *studentIDError) {
-
-
-                            if ([studentIDData length] > 0 && studentIDError == nil) {
-                                //Get gradePage
+            if (![loggedInPage  isEqual:@"{\"msg\":\"\",\"valid\":\"1\"}"]) {
+                NSLog(@"Mistar login error, returning NO");
+                _cancel = true;
+            } else {
+            
+                if (!_cancel) {
+                    ///////////
+                    NSMutableURLRequest *requestHome = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://mistar.oakland.k12.mi.us/novi/StudentPortal/Home/PortalMainPage"]];
+                    [requestHome setHTTPMethod:@"GET"];            [NSURLConnection sendAsynchronousRequest:requestHome queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *homeResponse, NSData *homeData, NSError *homeError) {
+                        // do whatever with the data...and errors
+                        if ([homeData length] > 0 && homeError == nil) {
+                            NSString *regexedString = [self userIDRegex:[[NSString alloc] initWithData:homeData encoding:NSUTF8StringEncoding ]];
+                            NSString *userID = [self onlyNumbersRegex:regexedString];
+                            NSLog(@"UserID is %@", userID);
+                            
+                            if (userID) {
+                                // Request AJAX from mistar
+                                NSMutableURLRequest *setStudentID = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://mistar.oakland.k12.mi.us/novi/StudentPortal/StudentBanner/SetStudentBanner/%@" , userID]]];
+                                [setStudentID setHTTPMethod:@"GET"];
                                 
-                                NSMutableURLRequest *requestGrades = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://mistar.oakland.k12.mi.us/novi/StudentPortal/Home/LoadProfileData/Assignments"]]; // Need to AJAXLoad this number (or something, idk)
-                                [requestGrades setHTTPMethod:@"GET"];
-                                [NSURLConnection sendAsynchronousRequest:requestGrades queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *gradeResponse, NSData *gradeData, NSError *gradeError) {
+                                [NSURLConnection sendAsynchronousRequest:setStudentID queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *studentIDResponse, NSData *studentIDData, NSError *studentIDError) {
                                     
-                                    if ([gradeData length] > 0 && gradeError == nil) {
-                                        NSLog(@"%@",[[NSString alloc] initWithData:gradeData encoding:NSUTF8StringEncoding]);
-                                        MAGradeParser *gradeParser = [[MAGradeParser alloc] init];
-                                        [gradeParser parseWithData:gradeData];
+                                    
+                                    if ([studentIDData length] > 0 && studentIDError == nil) {
+                                        //Get gradePage
                                         
+                                        NSMutableURLRequest *requestGrades = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://mistar.oakland.k12.mi.us/novi/StudentPortal/Home/LoadProfileData/Assignments"]]; // Need to AJAXLoad this number (or something, idk)
+                                        [requestGrades setHTTPMethod:@"GET"];
+                                        [NSURLConnection sendAsynchronousRequest:requestGrades queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *gradeResponse, NSData *gradeData, NSError *gradeError) {
+                                            
+                                            if ([gradeData length] > 0 && gradeError == nil) {
+                                                //the HTML response is = NSLog(@"the html%@",[[NSString alloc] initWithData:gradeData encoding:NSUTF8StringEncoding]);
+                                                MAGradeParser *gradeParser = [[MAGradeParser alloc] init];
+                                                myResult = [gradeParser parseWithData:gradeData];
+                                                NSLog(@"after myResult");
+                                                
+                                            } else {
+                                                NSLog(@"grade Error = %@", gradeError);
+                                            }
+                                        }];
                                     } else {
-                                        NSLog(@"grade Error = %@", gradeError);
+                                        NSLog(@"Error setting studentID = %@", studentIDError);
                                     }
                                 }];
                             } else {
-                                NSLog(@"Error setting studentID = %@", studentIDError);
+                                NSLog(@"Error: parse error = %@", homeError);
                             }
-                        }];
-                    } else {
-                        NSLog(@"Error: parse error = %@", homeError);
-                    }
+                        } else {
+                            NSLog(@"error: home error: %@", homeError);
+                        }
+                    }];
+                    ///////
                 }
-                else {
-                    NSLog(@"error: home error: %@", homeError);
-                }
-          outer:;
-            }];
-            ///////
-        }
-        else {
+            }
+        } else {
             NSLog(@"Couldn't log in");
         }
     }];
+    return myResult;
 }
 
 // Parsers

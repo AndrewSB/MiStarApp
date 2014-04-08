@@ -10,10 +10,11 @@
 
 @implementation MAClass
 
-- (id)initWithName:(NSString *)name grade:(NSString *)grade percentage:(NSNumber *)percentage {
-    self.name = name;
-    self.grade = grade;
-    self.percentage = percentage;
+- (id)initWithName:(NSString *)name grade:(NSString *)grade percentage:(NSNumber *)percentage assignments:(NSMutableArray *)assignments {
+    _name = name;
+    _grade = grade;
+    _percentage = percentage;
+    _assignments = [[NSMutableArray alloc] initWithArray:[NSArray arrayWithArray:assignments]];
     
     return self;
 }
