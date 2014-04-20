@@ -1,0 +1,775 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4623559518FFF12A00D67CC5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4623559418FFF12A00D67CC5 /* Foundation.framework */; };
+		4623559718FFF12A00D67CC5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4623559618FFF12A00D67CC5 /* CoreGraphics.framework */; };
+		4623559918FFF12A00D67CC5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4623559818FFF12A00D67CC5 /* UIKit.framework */; };
+		4623559F18FFF12A00D67CC5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4623559D18FFF12A00D67CC5 /* InfoPlist.strings */; };
+		462355A118FFF12A00D67CC5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 462355A018FFF12A00D67CC5 /* main.m */; };
+		462355A518FFF12A00D67CC5 /* MAAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 462355A418FFF12A00D67CC5 /* MAAppDelegate.m */; };
+		462355A818FFF12A00D67CC5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 462355A618FFF12A00D67CC5 /* Main.storyboard */; };
+		462355AB18FFF12A00D67CC5 /* MAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 462355AA18FFF12A00D67CC5 /* MAViewController.m */; };
+		462355AD18FFF12A00D67CC5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 462355AC18FFF12A00D67CC5 /* Images.xcassets */; };
+		462355B418FFF12B00D67CC5 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 462355B318FFF12B00D67CC5 /* XCTest.framework */; };
+		462355B518FFF12B00D67CC5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4623559418FFF12A00D67CC5 /* Foundation.framework */; };
+		462355B618FFF12B00D67CC5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4623559818FFF12A00D67CC5 /* UIKit.framework */; };
+		462355BE18FFF12B00D67CC5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 462355BC18FFF12B00D67CC5 /* InfoPlist.strings */; };
+		462355C018FFF12B00D67CC5 /* mistar_with_storyboardTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 462355BF18FFF12B00D67CC5 /* mistar_with_storyboardTests.m */; };
+		462355CD18FFF27C00D67CC5 /* MAController.m in Sources */ = {isa = PBXBuildFile; fileRef = 462355CA18FFF27C00D67CC5 /* MAController.m */; };
+		462355E118FFF29D00D67CC5 /* MAGradeClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 462355D018FFF29D00D67CC5 /* MAGradeClient.m */; };
+		462355E218FFF29D00D67CC5 /* MAClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 462355D218FFF29D00D67CC5 /* MAClass.m */; };
+		462355E318FFF29D00D67CC5 /* MAGradeReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 462355D418FFF29D00D67CC5 /* MAGradeReport.m */; };
+		462355E418FFF29D00D67CC5 /* MAGradeParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 462355D618FFF29D00D67CC5 /* MAGradeParser.m */; };
+		462355E518FFF29D00D67CC5 /* MAStudent.m in Sources */ = {isa = PBXBuildFile; fileRef = 462355D818FFF29D00D67CC5 /* MAStudent.m */; };
+		462355E618FFF29D00D67CC5 /* MAAssignment.m in Sources */ = {isa = PBXBuildFile; fileRef = 462355DA18FFF29D00D67CC5 /* MAAssignment.m */; };
+		462355E718FFF29D00D67CC5 /* MAGradeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 462355DC18FFF29D00D67CC5 /* MAGradeCell.m */; };
+		462355E818FFF29D00D67CC5 /* MAGradeTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 462355DE18FFF29D00D67CC5 /* MAGradeTableView.m */; };
+		462355E918FFF29D00D67CC5 /* MADetailTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 462355E018FFF29D00D67CC5 /* MADetailTableViewDelegate.m */; };
+		462355F118FFF2BB00D67CC5 /* TFHpple.m in Sources */ = {isa = PBXBuildFile; fileRef = 462355EC18FFF2BB00D67CC5 /* TFHpple.m */; };
+		462355F218FFF2BB00D67CC5 /* TFHppleElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 462355EE18FFF2BB00D67CC5 /* TFHppleElement.m */; };
+		462355F318FFF2BB00D67CC5 /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 462355F018FFF2BB00D67CC5 /* XPathQuery.m */; };
+		4623560F18FFF32200D67CC5 /* weather-broken.png in Resources */ = {isa = PBXBuildFile; fileRef = 462355F718FFF32200D67CC5 /* weather-broken.png */; };
+		4623561018FFF32200D67CC5 /* weather-broken@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 462355F818FFF32200D67CC5 /* weather-broken@2x.png */; };
+		4623561118FFF32200D67CC5 /* weather-clear.png in Resources */ = {isa = PBXBuildFile; fileRef = 462355F918FFF32200D67CC5 /* weather-clear.png */; };
+		4623561218FFF32200D67CC5 /* weather-clear@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 462355FA18FFF32200D67CC5 /* weather-clear@2x.png */; };
+		4623561318FFF32200D67CC5 /* weather-few-night.png in Resources */ = {isa = PBXBuildFile; fileRef = 462355FB18FFF32200D67CC5 /* weather-few-night.png */; };
+		4623561418FFF32200D67CC5 /* weather-few-night@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 462355FC18FFF32200D67CC5 /* weather-few-night@2x.png */; };
+		4623561518FFF32200D67CC5 /* weather-few.png in Resources */ = {isa = PBXBuildFile; fileRef = 462355FD18FFF32200D67CC5 /* weather-few.png */; };
+		4623561618FFF32200D67CC5 /* weather-few@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 462355FE18FFF32200D67CC5 /* weather-few@2x.png */; };
+		4623561718FFF32200D67CC5 /* weather-mist.png in Resources */ = {isa = PBXBuildFile; fileRef = 462355FF18FFF32200D67CC5 /* weather-mist.png */; };
+		4623561818FFF32200D67CC5 /* weather-mist@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4623560018FFF32200D67CC5 /* weather-mist@2x.png */; };
+		4623561918FFF32200D67CC5 /* weather-moon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4623560118FFF32200D67CC5 /* weather-moon.png */; };
+		4623561A18FFF32200D67CC5 /* weather-moon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4623560218FFF32200D67CC5 /* weather-moon@2x.png */; };
+		4623561B18FFF32200D67CC5 /* weather-rain-night.png in Resources */ = {isa = PBXBuildFile; fileRef = 4623560318FFF32200D67CC5 /* weather-rain-night.png */; };
+		4623561C18FFF32200D67CC5 /* weather-rain-night@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4623560418FFF32200D67CC5 /* weather-rain-night@2x.png */; };
+		4623561D18FFF32200D67CC5 /* weather-rain.png in Resources */ = {isa = PBXBuildFile; fileRef = 4623560518FFF32200D67CC5 /* weather-rain.png */; };
+		4623561E18FFF32200D67CC5 /* weather-rain@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4623560618FFF32200D67CC5 /* weather-rain@2x.png */; };
+		4623561F18FFF32200D67CC5 /* weather-scattered.png in Resources */ = {isa = PBXBuildFile; fileRef = 4623560718FFF32200D67CC5 /* weather-scattered.png */; };
+		4623562018FFF32200D67CC5 /* weather-scattered@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4623560818FFF32200D67CC5 /* weather-scattered@2x.png */; };
+		4623562118FFF32200D67CC5 /* weather-shower.png in Resources */ = {isa = PBXBuildFile; fileRef = 4623560918FFF32200D67CC5 /* weather-shower.png */; };
+		4623562218FFF32200D67CC5 /* weather-shower@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4623560A18FFF32200D67CC5 /* weather-shower@2x.png */; };
+		4623562318FFF32200D67CC5 /* weather-snow.png in Resources */ = {isa = PBXBuildFile; fileRef = 4623560B18FFF32200D67CC5 /* weather-snow.png */; };
+		4623562418FFF32200D67CC5 /* weather-snow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4623560C18FFF32200D67CC5 /* weather-snow@2x.png */; };
+		4623562518FFF32200D67CC5 /* weather-tstorm.png in Resources */ = {isa = PBXBuildFile; fileRef = 4623560D18FFF32200D67CC5 /* weather-tstorm.png */; };
+		4623562618FFF32200D67CC5 /* weather-tstorm@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4623560E18FFF32200D67CC5 /* weather-tstorm@2x.png */; };
+		4623562A18FFF32E00D67CC5 /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 4623562718FFF32E00D67CC5 /* bg.png */; };
+		4623562B18FFF32E00D67CC5 /* bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4623562818FFF32E00D67CC5 /* bg@2x.png */; };
+		4623562C18FFF32E00D67CC5 /* originalImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4623562918FFF32E00D67CC5 /* originalImage.jpg */; };
+		4623562E18FFF35400D67CC5 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4623562D18FFF35400D67CC5 /* libxml2.dylib */; };
+		4623563118FFF38100D67CC5 /* MANavController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4623563018FFF38100D67CC5 /* MANavController.m */; };
+		6EA81663FEB0476DA02E2B05 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5AB13AD0524DEF94299447 /* libPods.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		462355B718FFF12B00D67CC5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4623558918FFF12A00D67CC5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4623559018FFF12A00D67CC5;
+			remoteInfo = "mistar-with-storyboard";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		4623559118FFF12A00D67CC5 /* mistar-with-storyboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "mistar-with-storyboard.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4623559418FFF12A00D67CC5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		4623559618FFF12A00D67CC5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		4623559818FFF12A00D67CC5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		4623559C18FFF12A00D67CC5 /* mistar-with-storyboard-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "mistar-with-storyboard-Info.plist"; sourceTree = "<group>"; };
+		4623559E18FFF12A00D67CC5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		462355A018FFF12A00D67CC5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		462355A218FFF12A00D67CC5 /* mistar-with-storyboard-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "mistar-with-storyboard-Prefix.pch"; sourceTree = "<group>"; };
+		462355A318FFF12A00D67CC5 /* MAAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAAppDelegate.h; sourceTree = "<group>"; };
+		462355A418FFF12A00D67CC5 /* MAAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAAppDelegate.m; sourceTree = "<group>"; };
+		462355A718FFF12A00D67CC5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		462355A918FFF12A00D67CC5 /* MAViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAViewController.h; sourceTree = "<group>"; };
+		462355AA18FFF12A00D67CC5 /* MAViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAViewController.m; sourceTree = "<group>"; };
+		462355AC18FFF12A00D67CC5 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		462355B218FFF12B00D67CC5 /* mistar-with-storyboardTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "mistar-with-storyboardTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		462355B318FFF12B00D67CC5 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		462355BB18FFF12B00D67CC5 /* mistar-with-storyboardTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "mistar-with-storyboardTests-Info.plist"; sourceTree = "<group>"; };
+		462355BD18FFF12B00D67CC5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		462355BF18FFF12B00D67CC5 /* mistar_with_storyboardTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = mistar_with_storyboardTests.m; sourceTree = "<group>"; };
+		462355C918FFF27C00D67CC5 /* MAController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAController.h; sourceTree = "<group>"; };
+		462355CA18FFF27C00D67CC5 /* MAController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAController.m; sourceTree = "<group>"; };
+		462355CF18FFF29D00D67CC5 /* MAGradeClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAGradeClient.h; sourceTree = "<group>"; };
+		462355D018FFF29D00D67CC5 /* MAGradeClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAGradeClient.m; sourceTree = "<group>"; };
+		462355D118FFF29D00D67CC5 /* MAClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAClass.h; sourceTree = "<group>"; };
+		462355D218FFF29D00D67CC5 /* MAClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAClass.m; sourceTree = "<group>"; };
+		462355D318FFF29D00D67CC5 /* MAGradeReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAGradeReport.h; sourceTree = "<group>"; };
+		462355D418FFF29D00D67CC5 /* MAGradeReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAGradeReport.m; sourceTree = "<group>"; };
+		462355D518FFF29D00D67CC5 /* MAGradeParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAGradeParser.h; sourceTree = "<group>"; };
+		462355D618FFF29D00D67CC5 /* MAGradeParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAGradeParser.m; sourceTree = "<group>"; };
+		462355D718FFF29D00D67CC5 /* MAStudent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAStudent.h; sourceTree = "<group>"; };
+		462355D818FFF29D00D67CC5 /* MAStudent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAStudent.m; sourceTree = "<group>"; };
+		462355D918FFF29D00D67CC5 /* MAAssignment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAAssignment.h; sourceTree = "<group>"; };
+		462355DA18FFF29D00D67CC5 /* MAAssignment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAAssignment.m; sourceTree = "<group>"; };
+		462355DB18FFF29D00D67CC5 /* MAGradeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAGradeCell.h; sourceTree = "<group>"; };
+		462355DC18FFF29D00D67CC5 /* MAGradeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAGradeCell.m; sourceTree = "<group>"; };
+		462355DD18FFF29D00D67CC5 /* MAGradeTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAGradeTableView.h; sourceTree = "<group>"; };
+		462355DE18FFF29D00D67CC5 /* MAGradeTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAGradeTableView.m; sourceTree = "<group>"; };
+		462355DF18FFF29D00D67CC5 /* MADetailTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MADetailTableViewDelegate.h; sourceTree = "<group>"; };
+		462355E018FFF29D00D67CC5 /* MADetailTableViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MADetailTableViewDelegate.m; sourceTree = "<group>"; };
+		462355EB18FFF2BB00D67CC5 /* TFHpple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFHpple.h; sourceTree = "<group>"; };
+		462355EC18FFF2BB00D67CC5 /* TFHpple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFHpple.m; sourceTree = "<group>"; };
+		462355ED18FFF2BB00D67CC5 /* TFHppleElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFHppleElement.h; sourceTree = "<group>"; };
+		462355EE18FFF2BB00D67CC5 /* TFHppleElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFHppleElement.m; sourceTree = "<group>"; };
+		462355EF18FFF2BB00D67CC5 /* XPathQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPathQuery.h; sourceTree = "<group>"; };
+		462355F018FFF2BB00D67CC5 /* XPathQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPathQuery.m; sourceTree = "<group>"; };
+		462355F718FFF32200D67CC5 /* weather-broken.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weather-broken.png"; sourceTree = "<group>"; };
+		462355F818FFF32200D67CC5 /* weather-broken@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weather-broken@2x.png"; sourceTree = "<group>"; };
+		462355F918FFF32200D67CC5 /* weather-clear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weather-clear.png"; sourceTree = "<group>"; };
+		462355FA18FFF32200D67CC5 /* weather-clear@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weather-clear@2x.png"; sourceTree = "<group>"; };
+		462355FB18FFF32200D67CC5 /* weather-few-night.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weather-few-night.png"; sourceTree = "<group>"; };
+		462355FC18FFF32200D67CC5 /* weather-few-night@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weather-few-night@2x.png"; sourceTree = "<group>"; };
+		462355FD18FFF32200D67CC5 /* weather-few.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weather-few.png"; sourceTree = "<group>"; };
+		462355FE18FFF32200D67CC5 /* weather-few@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weather-few@2x.png"; sourceTree = "<group>"; };
+		462355FF18FFF32200D67CC5 /* weather-mist.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weather-mist.png"; sourceTree = "<group>"; };
+		4623560018FFF32200D67CC5 /* weather-mist@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weather-mist@2x.png"; sourceTree = "<group>"; };
+		4623560118FFF32200D67CC5 /* weather-moon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weather-moon.png"; sourceTree = "<group>"; };
+		4623560218FFF32200D67CC5 /* weather-moon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weather-moon@2x.png"; sourceTree = "<group>"; };
+		4623560318FFF32200D67CC5 /* weather-rain-night.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weather-rain-night.png"; sourceTree = "<group>"; };
+		4623560418FFF32200D67CC5 /* weather-rain-night@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weather-rain-night@2x.png"; sourceTree = "<group>"; };
+		4623560518FFF32200D67CC5 /* weather-rain.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weather-rain.png"; sourceTree = "<group>"; };
+		4623560618FFF32200D67CC5 /* weather-rain@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weather-rain@2x.png"; sourceTree = "<group>"; };
+		4623560718FFF32200D67CC5 /* weather-scattered.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weather-scattered.png"; sourceTree = "<group>"; };
+		4623560818FFF32200D67CC5 /* weather-scattered@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weather-scattered@2x.png"; sourceTree = "<group>"; };
+		4623560918FFF32200D67CC5 /* weather-shower.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weather-shower.png"; sourceTree = "<group>"; };
+		4623560A18FFF32200D67CC5 /* weather-shower@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weather-shower@2x.png"; sourceTree = "<group>"; };
+		4623560B18FFF32200D67CC5 /* weather-snow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weather-snow.png"; sourceTree = "<group>"; };
+		4623560C18FFF32200D67CC5 /* weather-snow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weather-snow@2x.png"; sourceTree = "<group>"; };
+		4623560D18FFF32200D67CC5 /* weather-tstorm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weather-tstorm.png"; sourceTree = "<group>"; };
+		4623560E18FFF32200D67CC5 /* weather-tstorm@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weather-tstorm@2x.png"; sourceTree = "<group>"; };
+		4623562718FFF32E00D67CC5 /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg.png; sourceTree = "<group>"; };
+		4623562818FFF32E00D67CC5 /* bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg@2x.png"; sourceTree = "<group>"; };
+		4623562918FFF32E00D67CC5 /* originalImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = originalImage.jpg; sourceTree = "<group>"; };
+		4623562D18FFF35400D67CC5 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libxml2.dylib; sourceTree = "<group>"; };
+		4623562F18FFF38100D67CC5 /* MANavController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MANavController.h; sourceTree = "<group>"; };
+		4623563018FFF38100D67CC5 /* MANavController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MANavController.m; sourceTree = "<group>"; };
+		50B9C2E0203E49D6B59CC820 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		EA5AB13AD0524DEF94299447 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4623558E18FFF12A00D67CC5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4623559718FFF12A00D67CC5 /* CoreGraphics.framework in Frameworks */,
+				4623562E18FFF35400D67CC5 /* libxml2.dylib in Frameworks */,
+				4623559918FFF12A00D67CC5 /* UIKit.framework in Frameworks */,
+				4623559518FFF12A00D67CC5 /* Foundation.framework in Frameworks */,
+				6EA81663FEB0476DA02E2B05 /* libPods.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		462355AF18FFF12B00D67CC5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				462355B418FFF12B00D67CC5 /* XCTest.framework in Frameworks */,
+				462355B618FFF12B00D67CC5 /* UIKit.framework in Frameworks */,
+				462355B518FFF12B00D67CC5 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4623558818FFF12A00D67CC5 = {
+			isa = PBXGroup;
+			children = (
+				4623559A18FFF12A00D67CC5 /* mistar-with-storyboard */,
+				462355B918FFF12B00D67CC5 /* mistar-with-storyboardTests */,
+				4623559318FFF12A00D67CC5 /* Frameworks */,
+				4623559218FFF12A00D67CC5 /* Products */,
+				50B9C2E0203E49D6B59CC820 /* Pods.xcconfig */,
+			);
+			sourceTree = "<group>";
+		};
+		4623559218FFF12A00D67CC5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4623559118FFF12A00D67CC5 /* mistar-with-storyboard.app */,
+				462355B218FFF12B00D67CC5 /* mistar-with-storyboardTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4623559318FFF12A00D67CC5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4623562D18FFF35400D67CC5 /* libxml2.dylib */,
+				4623559418FFF12A00D67CC5 /* Foundation.framework */,
+				4623559618FFF12A00D67CC5 /* CoreGraphics.framework */,
+				4623559818FFF12A00D67CC5 /* UIKit.framework */,
+				462355B318FFF12B00D67CC5 /* XCTest.framework */,
+				EA5AB13AD0524DEF94299447 /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4623559A18FFF12A00D67CC5 /* mistar-with-storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				462355C918FFF27C00D67CC5 /* MAController.h */,
+				462355CA18FFF27C00D67CC5 /* MAController.m */,
+				462355A318FFF12A00D67CC5 /* MAAppDelegate.h */,
+				462355A418FFF12A00D67CC5 /* MAAppDelegate.m */,
+				462355A618FFF12A00D67CC5 /* Main.storyboard */,
+				462355A918FFF12A00D67CC5 /* MAViewController.h */,
+				462355AA18FFF12A00D67CC5 /* MAViewController.m */,
+				4623562F18FFF38100D67CC5 /* MANavController.h */,
+				4623563018FFF38100D67CC5 /* MANavController.m */,
+				462355F518FFF30900D67CC5 /* Images */,
+				462355AC18FFF12A00D67CC5 /* Images.xcassets */,
+				462355F418FFF2C400D67CC5 /* hpple */,
+				462355EA18FFF2A500D67CC5 /* Grades */,
+				4623559B18FFF12A00D67CC5 /* Supporting Files */,
+			);
+			path = "mistar-with-storyboard";
+			sourceTree = "<group>";
+		};
+		4623559B18FFF12A00D67CC5 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4623559C18FFF12A00D67CC5 /* mistar-with-storyboard-Info.plist */,
+				4623559D18FFF12A00D67CC5 /* InfoPlist.strings */,
+				462355A018FFF12A00D67CC5 /* main.m */,
+				462355A218FFF12A00D67CC5 /* mistar-with-storyboard-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		462355B918FFF12B00D67CC5 /* mistar-with-storyboardTests */ = {
+			isa = PBXGroup;
+			children = (
+				462355BF18FFF12B00D67CC5 /* mistar_with_storyboardTests.m */,
+				462355BA18FFF12B00D67CC5 /* Supporting Files */,
+			);
+			path = "mistar-with-storyboardTests";
+			sourceTree = "<group>";
+		};
+		462355BA18FFF12B00D67CC5 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				462355BB18FFF12B00D67CC5 /* mistar-with-storyboardTests-Info.plist */,
+				462355BC18FFF12B00D67CC5 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		462355EA18FFF2A500D67CC5 /* Grades */ = {
+			isa = PBXGroup;
+			children = (
+				462355CF18FFF29D00D67CC5 /* MAGradeClient.h */,
+				462355D018FFF29D00D67CC5 /* MAGradeClient.m */,
+				462355D118FFF29D00D67CC5 /* MAClass.h */,
+				462355D218FFF29D00D67CC5 /* MAClass.m */,
+				462355D318FFF29D00D67CC5 /* MAGradeReport.h */,
+				462355D418FFF29D00D67CC5 /* MAGradeReport.m */,
+				462355D518FFF29D00D67CC5 /* MAGradeParser.h */,
+				462355D618FFF29D00D67CC5 /* MAGradeParser.m */,
+				462355D718FFF29D00D67CC5 /* MAStudent.h */,
+				462355D818FFF29D00D67CC5 /* MAStudent.m */,
+				462355D918FFF29D00D67CC5 /* MAAssignment.h */,
+				462355DA18FFF29D00D67CC5 /* MAAssignment.m */,
+				462355DB18FFF29D00D67CC5 /* MAGradeCell.h */,
+				462355DC18FFF29D00D67CC5 /* MAGradeCell.m */,
+				462355DD18FFF29D00D67CC5 /* MAGradeTableView.h */,
+				462355DE18FFF29D00D67CC5 /* MAGradeTableView.m */,
+				462355DF18FFF29D00D67CC5 /* MADetailTableViewDelegate.h */,
+				462355E018FFF29D00D67CC5 /* MADetailTableViewDelegate.m */,
+			);
+			name = Grades;
+			sourceTree = "<group>";
+		};
+		462355F418FFF2C400D67CC5 /* hpple */ = {
+			isa = PBXGroup;
+			children = (
+				462355EB18FFF2BB00D67CC5 /* TFHpple.h */,
+				462355EC18FFF2BB00D67CC5 /* TFHpple.m */,
+				462355ED18FFF2BB00D67CC5 /* TFHppleElement.h */,
+				462355EE18FFF2BB00D67CC5 /* TFHppleElement.m */,
+				462355EF18FFF2BB00D67CC5 /* XPathQuery.h */,
+				462355F018FFF2BB00D67CC5 /* XPathQuery.m */,
+			);
+			name = hpple;
+			sourceTree = "<group>";
+		};
+		462355F518FFF30900D67CC5 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				4623562718FFF32E00D67CC5 /* bg.png */,
+				4623562818FFF32E00D67CC5 /* bg@2x.png */,
+				4623562918FFF32E00D67CC5 /* originalImage.jpg */,
+				462355F618FFF31300D67CC5 /* Weather Icons */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		462355F618FFF31300D67CC5 /* Weather Icons */ = {
+			isa = PBXGroup;
+			children = (
+				462355F718FFF32200D67CC5 /* weather-broken.png */,
+				462355F818FFF32200D67CC5 /* weather-broken@2x.png */,
+				462355F918FFF32200D67CC5 /* weather-clear.png */,
+				462355FA18FFF32200D67CC5 /* weather-clear@2x.png */,
+				462355FB18FFF32200D67CC5 /* weather-few-night.png */,
+				462355FC18FFF32200D67CC5 /* weather-few-night@2x.png */,
+				462355FD18FFF32200D67CC5 /* weather-few.png */,
+				462355FE18FFF32200D67CC5 /* weather-few@2x.png */,
+				462355FF18FFF32200D67CC5 /* weather-mist.png */,
+				4623560018FFF32200D67CC5 /* weather-mist@2x.png */,
+				4623560118FFF32200D67CC5 /* weather-moon.png */,
+				4623560218FFF32200D67CC5 /* weather-moon@2x.png */,
+				4623560318FFF32200D67CC5 /* weather-rain-night.png */,
+				4623560418FFF32200D67CC5 /* weather-rain-night@2x.png */,
+				4623560518FFF32200D67CC5 /* weather-rain.png */,
+				4623560618FFF32200D67CC5 /* weather-rain@2x.png */,
+				4623560718FFF32200D67CC5 /* weather-scattered.png */,
+				4623560818FFF32200D67CC5 /* weather-scattered@2x.png */,
+				4623560918FFF32200D67CC5 /* weather-shower.png */,
+				4623560A18FFF32200D67CC5 /* weather-shower@2x.png */,
+				4623560B18FFF32200D67CC5 /* weather-snow.png */,
+				4623560C18FFF32200D67CC5 /* weather-snow@2x.png */,
+				4623560D18FFF32200D67CC5 /* weather-tstorm.png */,
+				4623560E18FFF32200D67CC5 /* weather-tstorm@2x.png */,
+			);
+			name = "Weather Icons";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4623559018FFF12A00D67CC5 /* mistar-with-storyboard */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 462355C318FFF12B00D67CC5 /* Build configuration list for PBXNativeTarget "mistar-with-storyboard" */;
+			buildPhases = (
+				C750F1E8D1474AAB878DA6C6 /* Check Pods Manifest.lock */,
+				4623558D18FFF12A00D67CC5 /* Sources */,
+				4623558E18FFF12A00D67CC5 /* Frameworks */,
+				4623558F18FFF12A00D67CC5 /* Resources */,
+				45B98A06F1154442A08BC4A5 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "mistar-with-storyboard";
+			productName = "mistar-with-storyboard";
+			productReference = 4623559118FFF12A00D67CC5 /* mistar-with-storyboard.app */;
+			productType = "com.apple.product-type.application";
+		};
+		462355B118FFF12B00D67CC5 /* mistar-with-storyboardTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 462355C618FFF12B00D67CC5 /* Build configuration list for PBXNativeTarget "mistar-with-storyboardTests" */;
+			buildPhases = (
+				462355AE18FFF12B00D67CC5 /* Sources */,
+				462355AF18FFF12B00D67CC5 /* Frameworks */,
+				462355B018FFF12B00D67CC5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				462355B818FFF12B00D67CC5 /* PBXTargetDependency */,
+			);
+			name = "mistar-with-storyboardTests";
+			productName = "mistar-with-storyboardTests";
+			productReference = 462355B218FFF12B00D67CC5 /* mistar-with-storyboardTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4623558918FFF12A00D67CC5 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = MA;
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "___FULLUSERNAME___";
+				TargetAttributes = {
+					462355B118FFF12B00D67CC5 = {
+						TestTargetID = 4623559018FFF12A00D67CC5;
+					};
+				};
+			};
+			buildConfigurationList = 4623558C18FFF12A00D67CC5 /* Build configuration list for PBXProject "mistar-with-storyboard" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 4623558818FFF12A00D67CC5;
+			productRefGroup = 4623559218FFF12A00D67CC5 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4623559018FFF12A00D67CC5 /* mistar-with-storyboard */,
+				462355B118FFF12B00D67CC5 /* mistar-with-storyboardTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4623558F18FFF12A00D67CC5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4623561018FFF32200D67CC5 /* weather-broken@2x.png in Resources */,
+				4623561818FFF32200D67CC5 /* weather-mist@2x.png in Resources */,
+				4623561718FFF32200D67CC5 /* weather-mist.png in Resources */,
+				4623561918FFF32200D67CC5 /* weather-moon.png in Resources */,
+				4623562018FFF32200D67CC5 /* weather-scattered@2x.png in Resources */,
+				4623561E18FFF32200D67CC5 /* weather-rain@2x.png in Resources */,
+				4623562618FFF32200D67CC5 /* weather-tstorm@2x.png in Resources */,
+				462355AD18FFF12A00D67CC5 /* Images.xcassets in Resources */,
+				4623562518FFF32200D67CC5 /* weather-tstorm.png in Resources */,
+				4623561418FFF32200D67CC5 /* weather-few-night@2x.png in Resources */,
+				4623562218FFF32200D67CC5 /* weather-shower@2x.png in Resources */,
+				4623559F18FFF12A00D67CC5 /* InfoPlist.strings in Resources */,
+				4623562C18FFF32E00D67CC5 /* originalImage.jpg in Resources */,
+				4623561F18FFF32200D67CC5 /* weather-scattered.png in Resources */,
+				4623562118FFF32200D67CC5 /* weather-shower.png in Resources */,
+				4623561B18FFF32200D67CC5 /* weather-rain-night.png in Resources */,
+				4623561618FFF32200D67CC5 /* weather-few@2x.png in Resources */,
+				4623562418FFF32200D67CC5 /* weather-snow@2x.png in Resources */,
+				4623561218FFF32200D67CC5 /* weather-clear@2x.png in Resources */,
+				4623562A18FFF32E00D67CC5 /* bg.png in Resources */,
+				4623562318FFF32200D67CC5 /* weather-snow.png in Resources */,
+				4623561C18FFF32200D67CC5 /* weather-rain-night@2x.png in Resources */,
+				462355A818FFF12A00D67CC5 /* Main.storyboard in Resources */,
+				4623562B18FFF32E00D67CC5 /* bg@2x.png in Resources */,
+				4623561118FFF32200D67CC5 /* weather-clear.png in Resources */,
+				4623561518FFF32200D67CC5 /* weather-few.png in Resources */,
+				4623561D18FFF32200D67CC5 /* weather-rain.png in Resources */,
+				4623561A18FFF32200D67CC5 /* weather-moon@2x.png in Resources */,
+				4623561318FFF32200D67CC5 /* weather-few-night.png in Resources */,
+				4623560F18FFF32200D67CC5 /* weather-broken.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		462355B018FFF12B00D67CC5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				462355BE18FFF12B00D67CC5 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		45B98A06F1154442A08BC4A5 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C750F1E8D1474AAB878DA6C6 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4623558D18FFF12A00D67CC5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				462355A518FFF12A00D67CC5 /* MAAppDelegate.m in Sources */,
+				4623563118FFF38100D67CC5 /* MANavController.m in Sources */,
+				462355AB18FFF12A00D67CC5 /* MAViewController.m in Sources */,
+				462355E118FFF29D00D67CC5 /* MAGradeClient.m in Sources */,
+				462355E918FFF29D00D67CC5 /* MADetailTableViewDelegate.m in Sources */,
+				462355E218FFF29D00D67CC5 /* MAClass.m in Sources */,
+				462355A118FFF12A00D67CC5 /* main.m in Sources */,
+				462355E818FFF29D00D67CC5 /* MAGradeTableView.m in Sources */,
+				462355F218FFF2BB00D67CC5 /* TFHppleElement.m in Sources */,
+				462355CD18FFF27C00D67CC5 /* MAController.m in Sources */,
+				462355E518FFF29D00D67CC5 /* MAStudent.m in Sources */,
+				462355F118FFF2BB00D67CC5 /* TFHpple.m in Sources */,
+				462355E318FFF29D00D67CC5 /* MAGradeReport.m in Sources */,
+				462355E718FFF29D00D67CC5 /* MAGradeCell.m in Sources */,
+				462355E418FFF29D00D67CC5 /* MAGradeParser.m in Sources */,
+				462355E618FFF29D00D67CC5 /* MAAssignment.m in Sources */,
+				462355F318FFF2BB00D67CC5 /* XPathQuery.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		462355AE18FFF12B00D67CC5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				462355C018FFF12B00D67CC5 /* mistar_with_storyboardTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		462355B818FFF12B00D67CC5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4623559018FFF12A00D67CC5 /* mistar-with-storyboard */;
+			targetProxy = 462355B718FFF12B00D67CC5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		4623559D18FFF12A00D67CC5 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4623559E18FFF12A00D67CC5 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		462355A618FFF12A00D67CC5 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				462355A718FFF12A00D67CC5 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		462355BC18FFF12B00D67CC5 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				462355BD18FFF12B00D67CC5 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		462355C118FFF12B00D67CC5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		462355C218FFF12B00D67CC5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		462355C418FFF12B00D67CC5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 50B9C2E0203E49D6B59CC820 /* Pods.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "mistar-with-storyboard/mistar-with-storyboard-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"\"${PODS_ROOT}/Headers\"",
+					"\"${PODS_ROOT}/Headers/HexColors\"",
+					"\"${PODS_ROOT}/Headers/LBBlurredImage\"",
+					"\"${PODS_ROOT}/Headers/QBFlatButton\"",
+					"\"${PODS_ROOT}/Headers/ReactiveCocoa\"",
+					"\"${PODS_ROOT}/Headers/ReactiveCocoa/ReactiveCocoa\"",
+					"\"${PODS_ROOT}/Headers/TSMessages\"",
+					"${SDKROOT}/usr/include/libxml2",
+				);
+				INFOPLIST_FILE = "mistar-with-storyboard/mistar-with-storyboard-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		462355C518FFF12B00D67CC5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 50B9C2E0203E49D6B59CC820 /* Pods.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "mistar-with-storyboard/mistar-with-storyboard-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"\"${PODS_ROOT}/Headers\"",
+					"\"${PODS_ROOT}/Headers/HexColors\"",
+					"\"${PODS_ROOT}/Headers/LBBlurredImage\"",
+					"\"${PODS_ROOT}/Headers/QBFlatButton\"",
+					"\"${PODS_ROOT}/Headers/ReactiveCocoa\"",
+					"\"${PODS_ROOT}/Headers/ReactiveCocoa/ReactiveCocoa\"",
+					"\"${PODS_ROOT}/Headers/TSMessages\"",
+					"${SDKROOT}/usr/include/libxml2",
+				);
+				INFOPLIST_FILE = "mistar-with-storyboard/mistar-with-storyboard-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		462355C718FFF12B00D67CC5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/mistar-with-storyboard.app/mistar-with-storyboard";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "mistar-with-storyboard/mistar-with-storyboard-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "mistar-with-storyboardTests/mistar-with-storyboardTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		462355C818FFF12B00D67CC5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/mistar-with-storyboard.app/mistar-with-storyboard";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "mistar-with-storyboard/mistar-with-storyboard-Prefix.pch";
+				INFOPLIST_FILE = "mistar-with-storyboardTests/mistar-with-storyboardTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4623558C18FFF12A00D67CC5 /* Build configuration list for PBXProject "mistar-with-storyboard" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				462355C118FFF12B00D67CC5 /* Debug */,
+				462355C218FFF12B00D67CC5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		462355C318FFF12B00D67CC5 /* Build configuration list for PBXNativeTarget "mistar-with-storyboard" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				462355C418FFF12B00D67CC5 /* Debug */,
+				462355C518FFF12B00D67CC5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		462355C618FFF12B00D67CC5 /* Build configuration list for PBXNativeTarget "mistar-with-storyboardTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				462355C718FFF12B00D67CC5 /* Debug */,
+				462355C818FFF12B00D67CC5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4623558918FFF12A00D67CC5 /* Project object */;
+}

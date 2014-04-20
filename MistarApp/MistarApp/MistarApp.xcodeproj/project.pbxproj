@@ -24,7 +24,6 @@
 		4669586E18DF4D7A00A72F85 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4669585618DF4D7900A72F85 /* UIKit.framework */; };
 		4669587618DF4D7A00A72F85 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4669587418DF4D7A00A72F85 /* InfoPlist.strings */; };
 		4669587818DF4D7A00A72F85 /* MistarAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4669587718DF4D7A00A72F85 /* MistarAppTests.m */; };
-		469BEB0518E3B65200A8DCD3 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 469BEB0418E3B65200A8DCD3 /* libPods.a */; };
 		46A6174018DF4EA2001400BC /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 46A6172418DF4EA2001400BC /* bg.png */; };
 		46A6174118DF4EA2001400BC /* bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46A6172518DF4EA2001400BC /* bg@2x.png */; };
 		46A6174218DF4EA2001400BC /* originalImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 46A6172618DF4EA2001400BC /* originalImage.jpg */; };
@@ -101,7 +100,6 @@
 		4669587318DF4D7A00A72F85 /* MistarAppTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MistarAppTests-Info.plist"; sourceTree = "<group>"; };
 		4669587518DF4D7A00A72F85 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4669587718DF4D7A00A72F85 /* MistarAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MistarAppTests.m; sourceTree = "<group>"; };
-		469BEB0418E3B65200A8DCD3 /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
 		46A6172418DF4EA2001400BC /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg.png; sourceTree = "<group>"; };
 		46A6172518DF4EA2001400BC /* bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg@2x.png"; sourceTree = "<group>"; };
 		46A6172618DF4EA2001400BC /* originalImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = originalImage.jpg; sourceTree = "<group>"; };
@@ -148,7 +146,6 @@
 		46DC6D1018E3B381006AA5D8 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		46EBF04718E014C800F3CD75 /* MAGradeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAGradeCell.h; sourceTree = "<group>"; };
 		46EBF04818E014C800F3CD75 /* MAGradeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAGradeCell.m; sourceTree = "<group>"; };
-		52D87429006843B089F31F48 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DAFCE29A7A4474B90B9DC48 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -157,7 +154,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				469BEB0518E3B65200A8DCD3 /* libPods.a in Frameworks */,
 				46DC6D1118E3B381006AA5D8 /* libxml2.dylib in Frameworks */,
 				4669585518DF4D7900A72F85 /* CoreGraphics.framework in Frameworks */,
 				4669585718DF4D7900A72F85 /* UIKit.framework in Frameworks */,
@@ -201,13 +197,11 @@
 		4669585118DF4D7900A72F85 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				469BEB0418E3B65200A8DCD3 /* libPods.a */,
 				46DC6D1018E3B381006AA5D8 /* libxml2.dylib */,
 				4669585218DF4D7900A72F85 /* Foundation.framework */,
 				4669585418DF4D7900A72F85 /* CoreGraphics.framework */,
 				4669585618DF4D7900A72F85 /* UIKit.framework */,
 				4669586B18DF4D7A00A72F85 /* XCTest.framework */,
-				52D87429006843B089F31F48 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -216,16 +210,16 @@
 			isa = PBXGroup;
 			children = (
 				46DC6D0F18E3B2FD006AA5D8 /* hpple */,
-				46A6172318DF4EA2001400BC /* Images */,
-				4669586118DF4D7900A72F85 /* MAAppDelegate.h */,
-				4669586218DF4D7900A72F85 /* MAAppDelegate.m */,
+				46A6177118DF7EA4001400BC /* Grades */,
 				46A6176718DF5000001400BC /* MAController.h */,
 				46A6176818DF5000001400BC /* MAController.m */,
 				46504B1318E1CE7400F0DA99 /* MACustonNavigationController.h */,
 				46504B1418E1CE7400F0DA99 /* MACustonNavigationController.m */,
+				46A6172318DF4EA2001400BC /* Images */,
+				4669586118DF4D7900A72F85 /* MAAppDelegate.h */,
+				4669586218DF4D7900A72F85 /* MAAppDelegate.m */,
 				4669586418DF4D7900A72F85 /* Images.xcassets */,
 				4669585918DF4D7900A72F85 /* Supporting Files */,
-				46A6177118DF7EA4001400BC /* Grades */,
 			);
 			path = MistarApp;
 			sourceTree = "<group>";

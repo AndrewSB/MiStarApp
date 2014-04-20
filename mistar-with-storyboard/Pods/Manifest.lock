@@ -1,0 +1,27 @@
+PODS:
+  - HexColors (2.2.1)
+  - LBBlurredImage (0.2.0)
+  - QBFlatButton (1.0)
+  - ReactiveCocoa (2.3):
+    - ReactiveCocoa/Core
+    - ReactiveCocoa/no-arc
+  - ReactiveCocoa/Core (2.3):
+    - ReactiveCocoa/no-arc
+  - ReactiveCocoa/no-arc (2.3)
+  - TSMessages (0.9.7):
+    - HexColors
+
+DEPENDENCIES:
+  - LBBlurredImage
+  - QBFlatButton
+  - ReactiveCocoa
+  - TSMessages
+
+SPEC CHECKSUMS:
+  HexColors: 99211502e17904af7891fc8f687d0e4958a6d66e
+  LBBlurredImage: 26bacd10063a6e886de6a374f4727c3cefb22fc2
+  QBFlatButton: c0714adb21a8ef29d2cfb7410da5aa5002619030
+  ReactiveCocoa: 1f6265f9d521923d3efcc37b00722cefc16df269
+  TSMessages: 9dd053bcf1a8985275177ebe0fb8c0f1416e92f7
+
+COCOAPODS: 0.31.1
