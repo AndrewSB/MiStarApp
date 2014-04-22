@@ -25,6 +25,11 @@
     [super viewDidLoad];
     NSLog(@"eyyyy im here");
     
+    //[self writeToTextFileWithContent:@"0"];
+    self.loggedIn = [self displayContent];
+    
+    NSLog(@"login status: %d", self.loggedIn);
+    
     [self.navigationController setNavigationBarHidden:YES];
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
                                                   forBarMetrics:UIBarMetricsDefault];
@@ -50,11 +55,40 @@
     [self.view addSubview:self.tableView];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void) writeToTextFileWithContent:(NSString *)contentString{
+    //get the documents directory:
+    NSArray *paths = NSSearchPathForDirectoriesInDomains
+    (NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    
+    //make a file name to write the data to using the documents directory:
+    NSString *fileName = [NSString stringWithFormat:@"%@/config",
+                          documentsDirectory];
+    //save content to the documents directory
+    [contentString writeToFile:fileName
+                    atomically:NO
+                      encoding:NSStringEncodingConversionAllowLossy
+                         error:nil];
+    
 }
+
+-(NSString *) displayContent{
+    //get the documents directory:
+    NSArray *paths = NSSearchPathForDirectoriesInDomains
+    (NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    
+    //make a file name to write the data to using the documents directory:
+    NSString *fileName = [NSString stringWithFormat:@"%@/config",
+                          documentsDirectory];
+    NSString *content = [[NSString alloc] initWithContentsOfFile:fileName
+                                                    usedEncoding:nil
+                                                           error:nil];
+    NSLog(@"content is %@", content);
+    return content;
+    
+}
+
 
 // Make that time *white*
 - (UIStatusBarStyle)preferredStatusBarStyle {
@@ -65,7 +99,7 @@
     NSLog(@"User State UIAlert triggered");
     
     if (self.loggedIn) {
-        // Logout
+        NSLog(@"log out here");
     } else {
         // Login Alert
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Login To Zangle"
@@ -171,8 +205,10 @@
         
         if (self.loggedIn) {
             [userStateButton setTitle:@"Logout" forState:UIControlStateNormal];
+            NSLog(@"login was logout because self.loggedIn = %d", self.loggedIn);
         } else {
             [userStateButton setTitle:@"Login" forState:UIControlStateNormal];
+            NSLog(@"login was login because self.loggedIn = %d", self.loggedIn);
         }
         cell.userStateButton = userStateButton;
         [cellView addSubview:userStateButton];
