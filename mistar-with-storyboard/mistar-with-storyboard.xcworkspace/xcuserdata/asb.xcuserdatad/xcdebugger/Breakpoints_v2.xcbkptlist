@@ -19,5 +19,51 @@
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "mistar-with-storyboard/MAGradeParser.m"
+            timestampString = "419710464.321433"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "114"
+            endingLineNumber = "114"
+            landmarkName = "-getTeachersWithData:"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[MAGradeParser splitClassesWithData:]"
+                  moduleName = "mistar-with-storyboard"
+                  urlString = "file:///Users/asb/Dev/Github/MistarApp/mistar-with-storyboard/mistar-with-storyboard/MAGradeParser.m"
+                  timestampString = "419679474.846089"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "113"
+                  endingLineNumber = "113"
+                  offsetFromSymbolStart = "2097">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[MAGradeParser splitClassesWithData:]"
+                  moduleName = "mistar-with-storyboard"
+                  urlString = "file:///Users/asb/Dev/Github/MistarApp/mistar-with-storyboard/mistar-with-storyboard/MAGradeParser.m"
+                  timestampString = "419679474.846413"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "113"
+                  endingLineNumber = "113"
+                  offsetFromSymbolStart = "2233">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

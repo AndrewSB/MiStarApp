@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import <QBFlatButton.h>
-#import "MAController.h"
 
 @interface MAGradeCell : UITableViewCell
 

@@ -85,7 +85,6 @@
                                                 //the HTML response is = NSLog(@"the html%@",[[NSString alloc] initWithData:gradeData encoding:NSUTF8StringEncoding]);
                                                 MAGradeParser *gradeParser = [[MAGradeParser alloc] init];
                                                 myResult = [gradeParser parseWithData:gradeData];
-                                                NSLog(@"myResult %@",myResult);
                                                 NSLog(@"after myResult");
                                                 
                                             } else {

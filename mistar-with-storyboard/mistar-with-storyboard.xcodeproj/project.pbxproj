@@ -21,12 +21,10 @@
 		462355B618FFF12B00D67CC5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4623559818FFF12A00D67CC5 /* UIKit.framework */; };
 		462355BE18FFF12B00D67CC5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 462355BC18FFF12B00D67CC5 /* InfoPlist.strings */; };
 		462355C018FFF12B00D67CC5 /* mistar_with_storyboardTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 462355BF18FFF12B00D67CC5 /* mistar_with_storyboardTests.m */; };
-		462355CD18FFF27C00D67CC5 /* MAController.m in Sources */ = {isa = PBXBuildFile; fileRef = 462355CA18FFF27C00D67CC5 /* MAController.m */; };
 		462355E118FFF29D00D67CC5 /* MAGradeClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 462355D018FFF29D00D67CC5 /* MAGradeClient.m */; };
 		462355E218FFF29D00D67CC5 /* MAClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 462355D218FFF29D00D67CC5 /* MAClass.m */; };
 		462355E318FFF29D00D67CC5 /* MAGradeReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 462355D418FFF29D00D67CC5 /* MAGradeReport.m */; };
 		462355E418FFF29D00D67CC5 /* MAGradeParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 462355D618FFF29D00D67CC5 /* MAGradeParser.m */; };
-		462355E518FFF29D00D67CC5 /* MAStudent.m in Sources */ = {isa = PBXBuildFile; fileRef = 462355D818FFF29D00D67CC5 /* MAStudent.m */; };
 		462355E618FFF29D00D67CC5 /* MAAssignment.m in Sources */ = {isa = PBXBuildFile; fileRef = 462355DA18FFF29D00D67CC5 /* MAAssignment.m */; };
 		462355E718FFF29D00D67CC5 /* MAGradeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 462355DC18FFF29D00D67CC5 /* MAGradeCell.m */; };
 		462355E818FFF29D00D67CC5 /* MAGradeTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 462355DE18FFF29D00D67CC5 /* MAGradeTableView.m */; };
@@ -63,6 +61,7 @@
 		4623562C18FFF32E00D67CC5 /* originalImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4623562918FFF32E00D67CC5 /* originalImage.jpg */; };
 		4623562E18FFF35400D67CC5 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4623562D18FFF35400D67CC5 /* libxml2.dylib */; };
 		4623563118FFF38100D67CC5 /* MANavController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4623563018FFF38100D67CC5 /* MANavController.m */; };
+		46F48A701903C8A500C278B7 /* MATeacher.m in Sources */ = {isa = PBXBuildFile; fileRef = 46F48A6F1903C8A500C278B7 /* MATeacher.m */; };
 		6EA81663FEB0476DA02E2B05 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5AB13AD0524DEF94299447 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -96,8 +95,6 @@
 		462355BB18FFF12B00D67CC5 /* mistar-with-storyboardTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "mistar-with-storyboardTests-Info.plist"; sourceTree = "<group>"; };
 		462355BD18FFF12B00D67CC5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		462355BF18FFF12B00D67CC5 /* mistar_with_storyboardTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = mistar_with_storyboardTests.m; sourceTree = "<group>"; };
-		462355C918FFF27C00D67CC5 /* MAController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAController.h; sourceTree = "<group>"; };
-		462355CA18FFF27C00D67CC5 /* MAController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAController.m; sourceTree = "<group>"; };
 		462355CF18FFF29D00D67CC5 /* MAGradeClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAGradeClient.h; sourceTree = "<group>"; };
 		462355D018FFF29D00D67CC5 /* MAGradeClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAGradeClient.m; sourceTree = "<group>"; };
 		462355D118FFF29D00D67CC5 /* MAClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAClass.h; sourceTree = "<group>"; };
@@ -106,8 +103,6 @@
 		462355D418FFF29D00D67CC5 /* MAGradeReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAGradeReport.m; sourceTree = "<group>"; };
 		462355D518FFF29D00D67CC5 /* MAGradeParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAGradeParser.h; sourceTree = "<group>"; };
 		462355D618FFF29D00D67CC5 /* MAGradeParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAGradeParser.m; sourceTree = "<group>"; };
-		462355D718FFF29D00D67CC5 /* MAStudent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAStudent.h; sourceTree = "<group>"; };
-		462355D818FFF29D00D67CC5 /* MAStudent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAStudent.m; sourceTree = "<group>"; };
 		462355D918FFF29D00D67CC5 /* MAAssignment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAAssignment.h; sourceTree = "<group>"; };
 		462355DA18FFF29D00D67CC5 /* MAAssignment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAAssignment.m; sourceTree = "<group>"; };
 		462355DB18FFF29D00D67CC5 /* MAGradeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAGradeCell.h; sourceTree = "<group>"; };
@@ -152,6 +147,8 @@
 		4623562D18FFF35400D67CC5 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libxml2.dylib; sourceTree = "<group>"; };
 		4623562F18FFF38100D67CC5 /* MANavController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MANavController.h; sourceTree = "<group>"; };
 		4623563018FFF38100D67CC5 /* MANavController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MANavController.m; sourceTree = "<group>"; };
+		46F48A6E1903C8A500C278B7 /* MATeacher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MATeacher.h; sourceTree = "<group>"; };
+		46F48A6F1903C8A500C278B7 /* MATeacher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MATeacher.m; sourceTree = "<group>"; };
 		50B9C2E0203E49D6B59CC820 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		EA5AB13AD0524DEF94299447 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -218,8 +215,6 @@
 		4623559A18FFF12A00D67CC5 /* mistar-with-storyboard */ = {
 			isa = PBXGroup;
 			children = (
-				462355C918FFF27C00D67CC5 /* MAController.h */,
-				462355CA18FFF27C00D67CC5 /* MAController.m */,
 				462355A318FFF12A00D67CC5 /* MAAppDelegate.h */,
 				462355A418FFF12A00D67CC5 /* MAAppDelegate.m */,
 				462355A618FFF12A00D67CC5 /* Main.storyboard */,
@@ -270,14 +265,14 @@
 			children = (
 				462355CF18FFF29D00D67CC5 /* MAGradeClient.h */,
 				462355D018FFF29D00D67CC5 /* MAGradeClient.m */,
+				46F48A6E1903C8A500C278B7 /* MATeacher.h */,
+				46F48A6F1903C8A500C278B7 /* MATeacher.m */,
 				462355D118FFF29D00D67CC5 /* MAClass.h */,
 				462355D218FFF29D00D67CC5 /* MAClass.m */,
 				462355D318FFF29D00D67CC5 /* MAGradeReport.h */,
 				462355D418FFF29D00D67CC5 /* MAGradeReport.m */,
 				462355D518FFF29D00D67CC5 /* MAGradeParser.h */,
 				462355D618FFF29D00D67CC5 /* MAGradeParser.m */,
-				462355D718FFF29D00D67CC5 /* MAStudent.h */,
-				462355D818FFF29D00D67CC5 /* MAStudent.m */,
 				462355D918FFF29D00D67CC5 /* MAAssignment.h */,
 				462355DA18FFF29D00D67CC5 /* MAAssignment.m */,
 				462355DB18FFF29D00D67CC5 /* MAGradeCell.h */,
@@ -505,6 +500,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				46F48A701903C8A500C278B7 /* MATeacher.m in Sources */,
 				462355A518FFF12A00D67CC5 /* MAAppDelegate.m in Sources */,
 				4623563118FFF38100D67CC5 /* MANavController.m in Sources */,
 				462355AB18FFF12A00D67CC5 /* MAViewController.m in Sources */,
@@ -514,8 +510,6 @@
 				462355A118FFF12A00D67CC5 /* main.m in Sources */,
 				462355E818FFF29D00D67CC5 /* MAGradeTableView.m in Sources */,
 				462355F218FFF2BB00D67CC5 /* TFHppleElement.m in Sources */,
-				462355CD18FFF27C00D67CC5 /* MAController.m in Sources */,
-				462355E518FFF29D00D67CC5 /* MAStudent.m in Sources */,
 				462355F118FFF2BB00D67CC5 /* TFHpple.m in Sources */,
 				462355E318FFF29D00D67CC5 /* MAGradeReport.m in Sources */,
 				462355E718FFF29D00D67CC5 /* MAGradeCell.m in Sources */,

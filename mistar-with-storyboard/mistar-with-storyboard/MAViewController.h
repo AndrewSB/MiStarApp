@@ -13,7 +13,6 @@
 #import "MAAppDelegate.h"
 #import "MAGradeTableView.h"
 #import "MAClass.h"
-#import "MAStudent.h"
 #import "MADetailTableViewDelegate.h"
 
 @interface MAViewController : UIViewController

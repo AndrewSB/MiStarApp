@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "MAAssignment.h"
+#import "MATeacher.h"
 
 @interface MAClass : NSObject
 
@@ -15,7 +16,8 @@
 @property (nonatomic, strong) NSString *grade;
 @property (nonatomic, strong) NSNumber *percentage;
 @property (nonatomic, strong) NSMutableArray *assignments;
+@property (nonatomic, strong) MATeacher *teacher;
 
-- (id)initWithName:(NSString *)name grade:(NSString *)grade percentage:(NSNumber *)percentage assignments:(NSMutableArray *)assignments;
+- (id)initWithName:(NSString *)name grade:(NSString *)grade percentage:(NSNumber *)percentage assignments:(NSMutableArray *)assignments teacher:(MATeacher *)teacher;
 
 @end

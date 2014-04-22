@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "MAController.h"
 #import "MAGradeCell.h"
 
 @class MAGradeCell;

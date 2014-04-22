@@ -49,12 +49,15 @@
 
 - (NSArray *)parseWithData:(NSData *)data {
     NSArray *classes = [self splitClassesWithData:data];
+    NSArray *classArray = [self getClassesWithData:data];
+    NSArray *teacherArray = [self getTeachersWithData:data];
     
-    NSArray *teachers = [self getTeachersWithData:data];
+    NSLog(@"class is %@", [[teacherArray objectAtIndex:1] name1]);
     
     int i = 0;
     for (NSString *string in classes) {
-        NSLog(@"%@", [teachers objectAtIndex:i]);
+        NSLog(@"%d %@ %@", i, [[teacherArray objectAtIndex:i] name], [[teacherArray objectAtIndex:i] email]);
+        
         i++;
     }
     
@@ -112,8 +115,14 @@
     TFHpple *tfhpple = [[TFHpple alloc] initWithData:data isXML:NO];
     NSString *xPathQuery = @"//a[@title=\"Send Email\"]";
     NSArray *test = [tfhpple searchWithXPathQuery:xPathQuery];
+    NSMutableArray *teacherArray;
     
-    return test;
+    for (TFHppleElement *item in test) {
+        MATeacher *teacher = [[MATeacher alloc] initWithName:item.text email:[[item.attributes objectForKey:@"href"] substringFromIndex:7]];
+        NSLog(@"%@ %@", teacher.name, teacher.email);
+        [teacherArray addObject:teacher];
+    }
+    return [teacherArray mutableCopy];
 }
 
 - (NSArray *)getClassesWithData:(NSData *)data {
