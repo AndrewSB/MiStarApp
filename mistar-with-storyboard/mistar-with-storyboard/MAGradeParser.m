@@ -10,55 +10,18 @@
 
 @implementation MAGradeParser
 
-
-//TFHpple *tfhpple = [[TFHpple alloc] initWithData:data isXML:NO];
-//
-//NSString *xPathQuery = @"//tr/td[@valign=\"top\"]";
-//NSArray *test = [tfhpple searchWithXPathQuery:xPathQuery];
-//
-//for (TFHppleElement *element in test) {
-//    NSString *match = [element text];
-//    
-//    NSLog(@"bishhh %@",match);
-//}
-//
-//NSArray *teachers = [self getTeachersWithData:data];
-//NSArray *assignments = [self getAssignmentsWithData:data];
-//NSArray *classes = [self getClassesWithData:data];
-//NSArray *grades = [self getGradesWithData:data];
-
-//    NSLog(@"teach %@",teachers);
-//    NSLog(@"ass %@",assignments);
-//    NSLog(@"class %@",classes);
-//    NSLog(@"datA %@",grades);
-
-
-//    for (TFHppleElement *item in teachers) {
-//        NSLog(@"%@", item.text);
-//        NSLog(@"%@", [[item.attributes objectForKey:@"href"] substringFromIndex:7]);
-//    }
-
-
-//Do the assignments
-
-
-//    for (TFHppleElement *item in classes) {
-//        //NSLog(@"%@", item.text);
-//    }
-
-
 - (NSArray *)parseWithData:(NSData *)data {
     NSArray *classes = [self splitClassesWithData:data];
     NSArray *classArray = [self getClassesWithData:data];
     NSArray *teacherArray = [self getTeachersWithData:data];
+    NSArray *gradeArray = [self getGradesWithData:data];
     
-    NSLog(@"class is %@", [[teacherArray objectAtIndex:1] name1]);
-    
-    int i = 0;
-    for (NSString *string in classes) {
-        NSLog(@"%d %@ %@", i, [[teacherArray objectAtIndex:i] name], [[teacherArray objectAtIndex:i] email]);
-        
-        i++;
+    for (NSString *str in classes) {
+        NSString *percentage = [self getPercentageFromClassString:str];
+        NSLog(@"%@", str);
+        if (percentage != nil) {
+            NSLog(@"%@", percentage);
+        }
     }
     
     return classes;
@@ -115,11 +78,10 @@
     TFHpple *tfhpple = [[TFHpple alloc] initWithData:data isXML:NO];
     NSString *xPathQuery = @"//a[@title=\"Send Email\"]";
     NSArray *test = [tfhpple searchWithXPathQuery:xPathQuery];
-    NSMutableArray *teacherArray;
+    NSMutableArray *teacherArray = [[NSMutableArray alloc] init];
     
     for (TFHppleElement *item in test) {
-        MATeacher *teacher = [[MATeacher alloc] initWithName:item.text email:[[item.attributes objectForKey:@"href"] substringFromIndex:7]];
-        NSLog(@"%@ %@", teacher.name, teacher.email);
+        NSDictionary *teacher = [[NSDictionary alloc] initWithObjectsAndKeys:@"Name", item.text, @"Email", [[item.attributes objectForKey:@"href"] substringFromIndex:7], nil];
         [teacherArray addObject:teacher];
     }
     return [teacherArray mutableCopy];
@@ -158,13 +120,35 @@
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:regexStr options:0 error:&error];
     
     NSArray *matches = [regex matchesInString:searchString options:0 range:(NSRange){0, [searchString length]}];
+    NSMutableArray *returnerMatches = [[NSMutableArray alloc] init];
     
     for (NSTextCheckingResult *match in matches) {
         NSString* matchText = [searchString substringWithRange:[match range]];
-        NSLog(@"match: %@", matchText);
+        matchText = [matchText substringFromIndex:4];
+        [returnerMatches addObject:matchText];
     }
     
-    return matches;
+    return [returnerMatches copy];
+}
+
+- (NSString *)getPercentageFromClassString:(NSString *)string {
+    NSString *percentage;
+    
+    NSString *regexStr = @"\([0-9][0-9]\.[0-9]%\)";
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:regexStr options:0 error:nil];
+    NSArray *matches = [regex matchesInString:string options:0 range:(NSRange){0, [string length]}];
+    
+    for (NSTextCheckingResult *match in matches) {
+        NSString *matchText = [string substringWithRange:[match range]];
+        NSLog(@"matchtext %@", matchText);
+        if (matchText) {
+            percentage = matchText;
+        } else {
+            percentage = nil;
+        }
+    }
+    
+    return percentage;
 }
 
 
