@@ -8,15 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
-#import "MAGradeClient.h"
 #import "MAGradeCell.h"
 #import "MAAppDelegate.h"
 #import "MAGradeTableView.h"
 #import "MAClass.h"
 #import "MADetailTableViewDelegate.h"
+#import "MAGradeParser.h"
 
 @interface MAViewController : UIViewController
 <UITableViewDataSource, UITabBarDelegate, UIScrollViewDelegate>
+
+@property BOOL cancel;
+
+- (NSString *)percentEscapeString:(NSString *)string;
+- (NSArray *)loginToMistarWithPin:(NSString *)pin password:(NSString *)password success:(void (^)(void))successHandler failure:(void (^)(void))failureHandler;
 
 - (void)userStateButtonWasPressed;
 

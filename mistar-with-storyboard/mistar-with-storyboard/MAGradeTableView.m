@@ -59,6 +59,7 @@
         [userStateButton setTitle:@"Logout" forState:UIControlStateNormal];
         cell.userStateButton = userStateButton;
         [cellView addSubview:userStateButton];
+        NSLog(@"went thru magradetableview");
     }
     return cell;
 }
