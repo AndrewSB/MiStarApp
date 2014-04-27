@@ -14,6 +14,9 @@
 {
     // Override point for customization after application launch.
     return YES;
+    
+    MANavController *navController=[[MANavController alloc]init];
+    self.window.rootViewController=navController;
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application

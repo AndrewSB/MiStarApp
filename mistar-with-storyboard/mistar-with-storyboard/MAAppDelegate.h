@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#import "MANavController.h"
+
 @interface MAAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;

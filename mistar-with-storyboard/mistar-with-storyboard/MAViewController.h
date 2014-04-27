@@ -14,6 +14,7 @@
 #import "MAClass.h"
 #import "MADetailTableViewDelegate.h"
 #import "MAGradeParser.h"
+#import "MASMSViewController.h"
 
 @interface MAViewController : UIViewController
 <UITableViewDataSource, UITabBarDelegate, UIScrollViewDelegate>

@@ -8,13 +8,18 @@
 
 #import "MAViewController.h"
 
-@interface MAViewController ()
+@interface MAViewController () <
+    MFMailComposeViewControllerDelegate,
+    MFMessageComposeViewControllerDelegate,
+    UINavigationControllerDelegate
+>
 
 @property (nonatomic, strong) UIImageView *backgroundImageView;
 @property (nonatomic, strong) UIImageView *blurredImageView;
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, assign) CGFloat screenHeight;
 @property (nonatomic, assign) BOOL loggedIn;
+@property (nonatomic, assign) int *loginFailCount;
 
 @end
 
@@ -138,11 +143,47 @@
         NSLog(@"returnpoint");
 ;        NSLog(@"gradeCliented");
     }
+    
+    if ([title isEqualToString:@"Text Andrew"]) {
+        NSLog(@"Text Andrew hit");
+        if ([MFMessageComposeViewController canSendText])
+        {
+            MFMessageComposeViewController *picker = [[MFMessageComposeViewController alloc] init];
+            picker.messageComposeDelegate = self;
+                
+                // You can specify one or more preconfigured recipients.  The user has
+                // the option to remove or add recipients from the message composer view
+                // controller.
+                /* picker.recipients = @[@"Phone number here"]; */
+                
+                // You can specify the initial message text that will appear in the message
+                // composer view controller.
+            picker.body = @"Hello from California!";
+                
+            [self presentViewController:picker animated:YES completion:NULL];
+        } else {
+            UIAlertView *noSMS = [[UIAlertView alloc] initWithTitle:@"Device not configured for iMessage" message:@"You can try emailing me at asbreckenridge@me.com" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [noSMS show];
+        }
+    }
+}
+
+- (void)messageComposeViewController:(MFMessageComposeViewController *)controller
+                 didFinishWithResult:(MessageComposeResult)result
+{
+    NSLog(@"Dismissing SMS view");
+    [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
 - (void)loginFailedAlertView {
-    UIAlertView *loginFailed = [[UIAlertView alloc] initWithTitle:@"Login Failed" message:@"Your username or password was incorrect, try logging in again" delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
-    [loginFailed show];
+    if (self.loginFailCount < 1) {
+        UIAlertView *loginFailed = [[UIAlertView alloc] initWithTitle:@"Login Failed" message:@"Your username or password was incorrect, try logging in again" delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+        [loginFailed show];
+    } else {
+        UIAlertView *loginFailed = [[UIAlertView alloc] initWithTitle:@"Login Failed" message:@"Your username or password was incorrect, you seem to be having problems logging in. Text me and I'll try and help ASAP" delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:@"Text Andrew", nil];
+        [loginFailed show];
+    }
+    self.loginFailCount++;
     return;
 }
 
@@ -159,7 +200,7 @@
 
 #pragma mark - UITableViewDataSource
 
-// 1 = mistarOverview
+// mistarOverview
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
@@ -204,16 +245,15 @@
         [userStateButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         
         if (self.loggedIn) {
-            UILabel *usernameLabel = [[UILabel alloc] initWithFrame:CGRectMake((15), (self.screenHeight/(cellCount * 4)), (cellView.frame.size.width - 100), ((self.screenHeight + (cellCount * cellCount))/(cellCount * 2)))];
-            usernameLabel.text = @"Andrew Breckenridge"; //REPLACE
-            usernameLabel.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:18];
-            usernameLabel.textColor = [UIColor whiteColor];
-
             
-            [self.view addSubview:usernameLabel];
+            
+            cell.textLabel.text = @"Andrew Breckenridge";
+            cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:18];
+
             [userStateButton setTitle:@"Logout" forState:UIControlStateNormal];
         } else {
             [userStateButton setTitle:@"Login" forState:UIControlStateNormal];
+            cell.textLabel.text = @"";
         }
         cell.userStateButton = userStateButton;
         [cellView addSubview:userStateButton];
@@ -281,7 +321,6 @@
     cell.detailTextLabel.text = nil;
     cell.imageView.image = nil;
 }
-
 
 - (void)configureDetailCell:(UITableViewCell *)cell row:(NSInteger *)row {
     cell.imageView.image = nil;
@@ -356,6 +395,7 @@
                 NSLog(@"Mistar login error, returning NO");
                 _cancel = true;
                 NSLog(@"call login error here");
+                [self loginFailedAlertView];
             } else {
                 
                 if (!_cancel) {
@@ -389,6 +429,7 @@
                                                 myResult = [gradeParser parseWithData:gradeData];
                                                 NSLog(@"after myResult");
                                                 [self writeToTextFileWithContent:@"1"];
+                                                [self viewDidLoad];
                                                 
                                                 
                                             } else {

@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#import "MAViewController.h"
+
 @interface MANavController : UINavigationController
 
 @end
