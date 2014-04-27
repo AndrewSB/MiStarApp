@@ -16,6 +16,15 @@
     NSArray *teacherArray = [self getTeachersWithData:data];
     NSArray *gradeArray = [self getGradesWithData:data];
     
+    NSMutableArray *percentArray = [[NSMutableArray alloc] init];
+    for (NSString *str in classes) {
+        NSLog(@"classstr is %@", str);
+        [percentArray addObject:[self getPercentageFromClassString:str]];
+    }
+    
+    
+    NSString *name = [self getNameFromStringWithData:data];
+    
     NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:classArray, @"classes",
                           teacherArray, @"teachers",
                           gradeArray, @"grades",
@@ -24,7 +33,7 @@
     return dict;
 }
 
--(NSArray *)splitClassesWithData:(NSData *)data {
+- (NSArray *)splitClassesWithData:(NSData *)data {
     NSString *htmlString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     
     NSMutableArray *classes = [[NSMutableArray alloc] init];
@@ -55,7 +64,7 @@
             NSString *rangeString = [htmlString substringWithRange:range];
             
             if ([rangeString rangeOfString:@"Academic Adviso"].location == NSNotFound) {
-                [classArray addObject:htmlString];
+                [classArray addObject:rangeString];
             } else {
                 NSLog(@"disinclude AA");
             }
@@ -146,6 +155,12 @@
     }
     
     return percentage;
+}
+
+- (NSString *)getNameFromStringWithData:data {
+    NSString *name;
+    
+    return name;
 }
 
 

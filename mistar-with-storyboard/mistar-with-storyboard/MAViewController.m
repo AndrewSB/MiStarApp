@@ -18,8 +18,16 @@
 @property (nonatomic, strong) UIImageView *blurredImageView;
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, assign) CGFloat screenHeight;
+
+@property UIScrollView *scrollView;
+@property UIView *borderView;
+@property UIView *resizedView;
+@property float borderSize;
+
 @property (nonatomic, assign) BOOL loggedIn;
 @property (nonatomic, assign) int *loginFailCount;
+
+@property NSString *userNAME;
 
 @end
 
@@ -56,6 +64,25 @@
     self.tableView.separatorColor = [UIColor colorWithWhite:1 alpha:0.2];
     self.tableView.pagingEnabled = YES;
     [self.view addSubview:self.tableView];
+    
+    
+    
+    self.borderSize = 50;
+    
+    self.borderView = [[UIView alloc] initWithFrame:CGRectMake(320/2-self.borderSize/2, -(self.borderSize+10), self.borderSize, self.borderSize)];
+    self.borderView.layer.masksToBounds = YES;
+    self.borderView.layer.cornerRadius = self.borderView.frame.size.width/2;;
+    self.borderView.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.borderView.layer.borderWidth = 3;
+    self.borderView.backgroundColor = [UIColor clearColor];
+    [self.tableView addSubview:self.borderView];
+    
+    self.resizedView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.borderSize, self.borderSize)];
+    self.resizedView.layer.masksToBounds = YES;
+    self.resizedView.layer.cornerRadius = self.resizedView.frame.size.width/2;;
+    self.resizedView.backgroundColor = [UIColor whiteColor];
+    [self.borderView addSubview:self.resizedView];
+
     
 }
 
@@ -114,11 +141,7 @@
         NSString *userPin = [alertView textFieldAtIndex:0].text;
         NSString *userPassword = [alertView textFieldAtIndex:1].text;
         NSLog(@"from vc Client is: %@ with credential: %@", userPin, userPassword);
-        [self loginToMistarWithPin:userPin password:userPassword success:^{
-            NSLog(@"successpoint from vc");
-        } failure:^{
-            NSLog(@"Some error in logging into Mistar and getting the UID");
-        }];
+        [self loginToMistarWithPin:userPin password:userPassword];
         NSLog(@"returnpoint");
 ;        NSLog(@"gradeCliented");
     }
@@ -156,10 +179,10 @@
 
 - (void)loginFailedAlertView {
     if (self.loginFailCount < 1) {
-        UIAlertView *loginFailed = [[UIAlertView alloc] initWithTitle:@"Login Failed" message:@"Your username or password was incorrect, try logging in again" delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+        UIAlertView *loginFailed = [[UIAlertView alloc] initWithTitle:@"Login Failed" message:@"Couldn't log in, check your usernamame and password, try logging in again" delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
         [loginFailed show];
     } else {
-        UIAlertView *loginFailed = [[UIAlertView alloc] initWithTitle:@"Login Failed" message:@"Your username or password was incorrect, you seem to be having problems logging in. Text me and I'll try and help ASAP" delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:@"Text Andrew", nil];
+        UIAlertView *loginFailed = [[UIAlertView alloc] initWithTitle:@"Login Failed" message:@"Couldn't log in, check your usernamame and password. You seem to be having problems logging in, text me and I'll try and help ASAP" delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:@"Text Andrew", nil];
         [loginFailed show];
     }
     self.loginFailCount++;
@@ -185,7 +208,7 @@
                          error:nil];
 }
 
--(NSString *) displayContent{
+-(NSString *) displayContent {
     //get the documents directory:
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
@@ -197,6 +220,60 @@
                                                            error:nil];
     return content;
     
+}
+
+-(NSArray *) getPinAndPass {
+    //get the documents directory:
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    
+    //make a file name to write the data to using the documents directory:
+    NSString *fileName = [NSString stringWithFormat:@"%@/config.txt", documentsDirectory];
+    NSString *content = [[NSString alloc] initWithContentsOfFile:fileName
+                                                    usedEncoding:nil
+                                                           error:nil];
+    
+    if (content == nil) {
+        NSLog(@"content was nil");
+        return nil;
+    }
+    int firstSpace = nil;
+    NSString *pass;
+    NSString *pin;
+    NSMutableArray *arr = [[NSMutableArray alloc] init];
+    
+    NSString *toFind = @" ";
+    NSRange searchRange = NSMakeRange(0, [content length]);
+    do {
+        // Search for next occurrence
+        NSRange range = [content rangeOfString:toFind options:0 range:searchRange];
+        if (range.location != NSNotFound) {
+            // If found, range contains the range of the current iteration
+            NSLog(@"found %@", [content substringWithRange:range]);
+            
+            [arr addObject:[NSNumber numberWithInt:(int)range.location]];
+            
+            // Reset search range for next attempt to start after the current found range
+            searchRange.location = range.location + range.length;
+            searchRange.length = [content length] - searchRange.location;
+        } else {
+            // If we didn't find it, we have no more occurrences
+            break;
+        }
+    } while (1);
+    
+    [arr insertObject:[content substringWithRange:NSMakeRange([arr[0] intValue]+1, [arr[1] intValue] - 1 - [arr[0] intValue])] atIndex:0];
+    [arr insertObject:[content substringWithRange:NSMakeRange([arr[2] intValue]+1, [content length] - 1 - [arr[2] intValue])] atIndex:1];
+    [arr removeLastObject];
+    [arr removeLastObject];
+    
+    for (NSString *strn in arr) {
+        NSLog(@"aaa%@", strn);
+    }
+    
+    NSLog(@"myresult is currently: %@", [self readFromDict]);
+    
+    return [arr mutableCopy];
 }
 
 - (void) writeDictToFileWithContent:(NSDictionary *)contentDict {
@@ -218,6 +295,28 @@
     
     return contentDict;
 }
+
+- (void) writeNameToFileWithContent:(NSString *)name {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"/username.txt"];
+    
+    
+    [name writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error:nil];
+
+}
+
+- (NSString *) getUserNAME {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"/username.txt"];
+    
+    NSString *userNAME = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
+    
+    self.userNAME = userNAME;
+    return userNAME;
+}
+
 
 #pragma mark - UITableViewDataSource
 
@@ -250,6 +349,7 @@
     
     if (indexPath.row == 0) {
         UIView *cellView = cell.contentView;
+        
         userStateButton = [[QBFlatButton alloc] initWithFrame:CGRectMake((cellView.frame.size.width - (80 + 20)), (self.screenHeight/(cellCount * 4)), 80, ((self.screenHeight + (cellCount * cellCount))/(cellCount * 2)))];
         [userStateButton addTarget:self action:@selector(userStateButtonWasPressed)forControlEvents:UIControlEventTouchUpInside];
         userStateButton.faceColor = [UIColor clearColor];
@@ -263,13 +363,16 @@
         userStateButton.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:18];
         [userStateButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         
+        
+        
         if (self.loggedIn) {
             
             
-            cell.textLabel.text = @"Andrew Breckenridge";
+            cell.textLabel.text = [[self readFromDict] objectForKey:@"Name"];
             cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:18];
 
             [userStateButton setTitle:@"Logout" forState:UIControlStateNormal];
+            cell.textLabel.text = [self getUserNAME];
         } else {
             [userStateButton setTitle:@"Login" forState:UIControlStateNormal];
             cell.textLabel.text = @"";
@@ -277,7 +380,7 @@
         cell.userStateButton = userStateButton;
         [cellView addSubview:userStateButton];
     } else {
-        cell = [self fillCellWithRow:(indexPath.row-1)];
+        cell = [self fillCellWithRow:(NSInteger *)(indexPath.row-1)];
     }
     
     
@@ -299,6 +402,7 @@
         
         NSArray *classes = [userData objectForKey:@"classes"];
         NSArray *grades = [userData objectForKey:@"grades"];
+        NSArray *percents = [userData objectForKey:@"percents"];
         
         if ((NSUInteger)row < [classes count]) {
             cell.textLabel.text = [classes objectAtIndex:(NSUInteger)row];
@@ -308,7 +412,7 @@
             cell.detailTextLabel.textAlignment = NSTextAlignmentCenter;
             
             
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"%@\n %@", [grades objectAtIndex:(NSUInteger)row], @"perr"];
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%@\n %@", [grades objectAtIndex:(NSUInteger)row], [percents objectAtIndex:(NSUInteger)row]];
             [cell.detailTextLabel sizeToFit];
         }
         
@@ -322,12 +426,6 @@
     if (indexPath.row != 0) {
         // Open progress report
         NSLog(@"Opened progress report");
-        
-        MAProgressReportViewController *progressReport = [[MAProgressReportViewController alloc] init];
-        
-        // Set progress report as the view controller
-        [self.navigationController pushViewController:progressReport animated:YES];
-        [self.navigationController setNavigationBarHidden:NO animated:YES];
     }
 }
 
@@ -360,6 +458,34 @@
     CGFloat position = MAX(scrollView.contentOffset.y, 0.0);
     CGFloat percent = MIN(position / height, 1.0);
     self.blurredImageView.alpha = percent;
+    
+    CGFloat o = -scrollView.contentOffset.y*.7;
+    self.resizedView.frame = CGRectMake(o, o, self.borderSize-2*o, self.borderSize-2*o);
+    self.resizedView.layer.cornerRadius = self.resizedView.frame.size.width/2;
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)sv willDecelerate:(BOOL)decelerate {
+    
+    CGFloat o = -sv.contentOffset.y*.7;
+    if (o>=50) {
+        
+        [UIView animateWithDuration:.5 animations:^{
+            self.borderView.frame = CGRectMake(0, -195, 320, 320);
+            self.resizedView.frame = CGRectMake(0, 0, 320, 320);
+        }];
+        [UIView animateWithDuration:.3 animations:^{
+            self.borderView.alpha = 0;
+        }];
+        
+        [self refreshMistar];
+    }
+    
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    self.borderView.frame = CGRectMake(320/2-self.borderSize/2, -(self.borderSize+10), self.borderSize, self.borderSize);
+    self.resizedView.frame = CGRectMake(0, 0, 50, 50);
+    self.borderView.alpha = 1;
 }
 
 
@@ -374,7 +500,7 @@
     return [result stringByReplacingOccurrencesOfString:@" " withString:@"+"];
 }
 
-- (NSArray *)loginToMistarWithPin:(NSString *)pin password:(NSString *)password success:(void (^)(void))successHandler failure:(void (^)(void))failureHandler{
+- (NSArray *)loginToMistarWithPin:(NSString *)pin password:(NSString *)password {
     _cancel = false;
     
     //Create and send request
@@ -416,6 +542,37 @@
                     [requestHome setHTTPMethod:@"GET"];            [NSURLConnection sendAsynchronousRequest:requestHome queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *homeResponse, NSData *homeData, NSError *homeError) {
                         // do whatever with the data...and errors
                         if ([homeData length] > 0 && homeError == nil) {
+                            NSString *homepageString = [[NSString alloc] initWithData:homeData encoding:NSUTF8StringEncoding];
+                            NSString *regexStr = @"l>&nbsp;.*";
+                            NSError *error = nil;
+                            NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:regexStr options:0 error:&error];
+                            
+                            __block NSString *myResult = nil; //Instanciate returner
+                            
+                            //Enumerate all matches
+                            if (!((regex==nil) && (error!=nil))){
+                                [regex enumerateMatchesInString:homepageString
+                                                        options:0
+                                                          range:NSMakeRange(0, [homepageString length])
+                                                     usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop){
+                                                         if (result!=nil){
+                                                             //Iterate ranges
+                                                             for (int i=0; i<[result numberOfRanges]; i++) {
+                                                                 NSRange range = [result rangeAtIndex:i];
+                                                                 myResult = [homepageString substringWithRange:range];
+                                                                 *stop = YES;
+                                                             }
+                                                         } else {
+                                                             myResult = @"Regex failed";
+                                                             *stop = YES;
+                                                         }
+                                                     }];
+                            
+                                myResult = [myResult substringWithRange:NSMakeRange(8, [myResult length] - 1 - 3 - 8)];
+                                self.userNAME = myResult;
+                                [self writeNameToFileWithContent:myResult];
+                            }
+                            
                             NSString *regexedString = [self userIDRegex:[[NSString alloc] initWithData:homeData encoding:NSUTF8StringEncoding ]];
                             NSString *userID = [self onlyNumbersRegex:regexedString];
                             NSLog(@"UserID is %@", userID);
@@ -441,7 +598,7 @@
                                                 myResult = [gradeParser parseWithData:gradeData];
                                                 NSLog(@"after myResult");
                                                 [self writeDictToFileWithContent:myResult];
-                                                [self writeToTextFileWithContent:@"1"];
+                                                [self writeToTextFileWithContent:[NSString stringWithFormat:@"1 %@ %@", pin, password]];
                                                 [self viewDidLoad];
                                                 
                                                 
@@ -465,9 +622,17 @@
             }
         } else {
             NSLog(@"Couldn't log in");
+            [self loginFailedAlertView];
         }
     }];
     return myResult;
+}
+
+- (void)refreshMistar {
+    if (self.loggedIn) {
+        NSArray *pinAndPass = [self getPinAndPass];
+        [self loginToMistarWithPin:[pinAndPass objectAtIndex:0] password:[pinAndPass objectAtIndex:1]];
+    }
 }
 
 // Parsers
@@ -524,7 +689,6 @@
                                      //Iterate ranges
                                      for (int i=0; i<[result numberOfRanges]; i++) {
                                          NSRange range = [result rangeAtIndex:i];
-                                         //NSLog(@"%ld,%ld group #%d %@", range.location, range.length, i, (range.length==0 ? @"--" : [string substringWithRange:range]));
                                          myResult = [string substringWithRange:range];
                                          *stop = YES;
                                      }

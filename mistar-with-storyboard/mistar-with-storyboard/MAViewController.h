@@ -21,7 +21,7 @@
 @property BOOL cancel;
 
 - (NSString *)percentEscapeString:(NSString *)string;
-- (NSArray *)loginToMistarWithPin:(NSString *)pin password:(NSString *)password success:(void (^)(void))successHandler failure:(void (^)(void))failureHandler;
+- (NSArray *)loginToMistarWithPin:(NSString *)pin password:(NSString *)password;
 
 - (void)userStateButtonWasPressed;
 
