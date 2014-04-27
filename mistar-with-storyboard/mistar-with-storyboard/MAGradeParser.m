@@ -10,21 +10,18 @@
 
 @implementation MAGradeParser
 
-- (NSArray *)parseWithData:(NSData *)data {
+- (NSDictionary *)parseWithData:(NSData *)data {
     NSArray *classes = [self splitClassesWithData:data];
     NSArray *classArray = [self getClassesWithData:data];
     NSArray *teacherArray = [self getTeachersWithData:data];
     NSArray *gradeArray = [self getGradesWithData:data];
     
-    for (NSString *str in classes) {
-        NSString *percentage = [self getPercentageFromClassString:str];
-        NSLog(@"%@", str);
-        if (percentage != nil) {
-            NSLog(@"%@", percentage);
-        }
-    }
+    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:classArray, @"classes",
+                          teacherArray, @"teachers",
+                          gradeArray, @"grades",
+                          nil];
     
-    return classes;
+    return dict;
 }
 
 -(NSArray *)splitClassesWithData:(NSData *)data {
@@ -102,7 +99,7 @@
         }
     }
     
-    return optimizedTest;
+    return [optimizedTest mutableCopy];
 }
 
 - (NSArray *)getAssignmentsWithData:(NSData *)data {

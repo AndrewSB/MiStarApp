@@ -10,11 +10,10 @@
 
 #import "MAGradeCell.h"
 #import "MAAppDelegate.h"
-#import "MAGradeTableView.h"
 #import "MAClass.h"
-#import "MADetailTableViewDelegate.h"
 #import "MAGradeParser.h"
 #import "MASMSViewController.h"
+#import "MAProgressReportViewController.h"
 
 @interface MAViewController : UIViewController
 <UITableViewDataSource, UITabBarDelegate, UIScrollViewDelegate>

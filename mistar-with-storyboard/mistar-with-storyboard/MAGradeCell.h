@@ -13,6 +13,6 @@
 
 @property (nonatomic,strong) QBFlatButton  *userStateButton; //Use your button's Class there instead of UIButton
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier cellForRowAtIndexPath:(NSIndexPath *)indexPath;
+- (id)initWithReuseID:(NSString *)reuseIdentifier cellForRowAtIndexPath:(NSIndexPath *)indexPath;
 
 @end

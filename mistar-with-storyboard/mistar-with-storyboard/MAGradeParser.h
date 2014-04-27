@@ -15,7 +15,7 @@
 
 @interface MAGradeParser : NSObject
 
-- (NSArray *)parseWithData:(NSData *)data;
+- (NSDictionary *)parseWithData:(NSData *)data;
 
 - (NSArray *)getTeachersWithData:(NSData *)data;
 - (NSArray *)getClassesWithData:(NSData *)data;

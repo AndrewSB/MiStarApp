@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		460C030F190CF00700D168C3 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 460C030E190CF00700D168C3 /* MessageUI.framework */; };
 		460C0312190CF17E00D168C3 /* MASMSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 460C0311190CF17E00D168C3 /* MASMSViewController.m */; };
+		460C0315190D0CCD00D168C3 /* MAProgressReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 460C0314190D0CCD00D168C3 /* MAProgressReportViewController.m */; };
 		4623559518FFF12A00D67CC5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4623559418FFF12A00D67CC5 /* Foundation.framework */; };
 		4623559718FFF12A00D67CC5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4623559618FFF12A00D67CC5 /* CoreGraphics.framework */; };
 		4623559918FFF12A00D67CC5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4623559818FFF12A00D67CC5 /* UIKit.framework */; };
@@ -27,8 +28,6 @@
 		462355E418FFF29D00D67CC5 /* MAGradeParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 462355D618FFF29D00D67CC5 /* MAGradeParser.m */; };
 		462355E618FFF29D00D67CC5 /* MAAssignment.m in Sources */ = {isa = PBXBuildFile; fileRef = 462355DA18FFF29D00D67CC5 /* MAAssignment.m */; };
 		462355E718FFF29D00D67CC5 /* MAGradeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 462355DC18FFF29D00D67CC5 /* MAGradeCell.m */; };
-		462355E818FFF29D00D67CC5 /* MAGradeTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 462355DE18FFF29D00D67CC5 /* MAGradeTableView.m */; };
-		462355E918FFF29D00D67CC5 /* MADetailTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 462355E018FFF29D00D67CC5 /* MADetailTableViewDelegate.m */; };
 		462355F118FFF2BB00D67CC5 /* TFHpple.m in Sources */ = {isa = PBXBuildFile; fileRef = 462355EC18FFF2BB00D67CC5 /* TFHpple.m */; };
 		462355F218FFF2BB00D67CC5 /* TFHppleElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 462355EE18FFF2BB00D67CC5 /* TFHppleElement.m */; };
 		462355F318FFF2BB00D67CC5 /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 462355F018FFF2BB00D67CC5 /* XPathQuery.m */; };
@@ -79,6 +78,8 @@
 		460C030E190CF00700D168C3 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		460C0310190CF17E00D168C3 /* MASMSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASMSViewController.h; sourceTree = "<group>"; };
 		460C0311190CF17E00D168C3 /* MASMSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASMSViewController.m; sourceTree = "<group>"; };
+		460C0313190D0CCD00D168C3 /* MAProgressReportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAProgressReportViewController.h; sourceTree = "<group>"; };
+		460C0314190D0CCD00D168C3 /* MAProgressReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAProgressReportViewController.m; sourceTree = "<group>"; };
 		4623559118FFF12A00D67CC5 /* mistar-with-storyboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "mistar-with-storyboard.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4623559418FFF12A00D67CC5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		4623559618FFF12A00D67CC5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -106,10 +107,6 @@
 		462355DA18FFF29D00D67CC5 /* MAAssignment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAAssignment.m; sourceTree = "<group>"; };
 		462355DB18FFF29D00D67CC5 /* MAGradeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAGradeCell.h; sourceTree = "<group>"; };
 		462355DC18FFF29D00D67CC5 /* MAGradeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAGradeCell.m; sourceTree = "<group>"; };
-		462355DD18FFF29D00D67CC5 /* MAGradeTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAGradeTableView.h; sourceTree = "<group>"; };
-		462355DE18FFF29D00D67CC5 /* MAGradeTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAGradeTableView.m; sourceTree = "<group>"; };
-		462355DF18FFF29D00D67CC5 /* MADetailTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MADetailTableViewDelegate.h; sourceTree = "<group>"; };
-		462355E018FFF29D00D67CC5 /* MADetailTableViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MADetailTableViewDelegate.m; sourceTree = "<group>"; };
 		462355EB18FFF2BB00D67CC5 /* TFHpple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFHpple.h; sourceTree = "<group>"; };
 		462355EC18FFF2BB00D67CC5 /* TFHpple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFHpple.m; sourceTree = "<group>"; };
 		462355ED18FFF2BB00D67CC5 /* TFHppleElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFHppleElement.h; sourceTree = "<group>"; };
@@ -276,10 +273,8 @@
 				462355DA18FFF29D00D67CC5 /* MAAssignment.m */,
 				462355DB18FFF29D00D67CC5 /* MAGradeCell.h */,
 				462355DC18FFF29D00D67CC5 /* MAGradeCell.m */,
-				462355DD18FFF29D00D67CC5 /* MAGradeTableView.h */,
-				462355DE18FFF29D00D67CC5 /* MAGradeTableView.m */,
-				462355DF18FFF29D00D67CC5 /* MADetailTableViewDelegate.h */,
-				462355E018FFF29D00D67CC5 /* MADetailTableViewDelegate.m */,
+				460C0313190D0CCD00D168C3 /* MAProgressReportViewController.h */,
+				460C0314190D0CCD00D168C3 /* MAProgressReportViewController.m */,
 			);
 			name = Grades;
 			sourceTree = "<group>";
@@ -507,10 +502,9 @@
 				462355A518FFF12A00D67CC5 /* MAAppDelegate.m in Sources */,
 				4623563118FFF38100D67CC5 /* MANavController.m in Sources */,
 				462355AB18FFF12A00D67CC5 /* MAViewController.m in Sources */,
-				462355E918FFF29D00D67CC5 /* MADetailTableViewDelegate.m in Sources */,
 				462355E218FFF29D00D67CC5 /* MAClass.m in Sources */,
+				460C0315190D0CCD00D168C3 /* MAProgressReportViewController.m in Sources */,
 				462355A118FFF12A00D67CC5 /* main.m in Sources */,
-				462355E818FFF29D00D67CC5 /* MAGradeTableView.m in Sources */,
 				462355F218FFF2BB00D67CC5 /* TFHppleElement.m in Sources */,
 				462355F118FFF2BB00D67CC5 /* TFHpple.m in Sources */,
 				462355E718FFF29D00D67CC5 /* MAGradeCell.m in Sources */,

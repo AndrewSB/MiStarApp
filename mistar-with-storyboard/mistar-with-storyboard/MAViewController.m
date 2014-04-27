@@ -59,43 +59,22 @@
     
 }
 
--(void) writeToTextFileWithContent:(NSString *)contentString{
-    //get the documents directory:
-    NSArray *paths = NSSearchPathForDirectoriesInDomains
-    (NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
+- (void)viewWillLayoutSubviews {
+    [super viewWillLayoutSubviews];
     
-    //make a file name to write the data to using the documents directory:
-    NSString *fileName = [NSString stringWithFormat:@"%@/config.txt",
-                          documentsDirectory];
-    //save content to the documents directory
-    [contentString writeToFile:fileName
-                    atomically:YES
-                      encoding:NSStringEncodingConversionAllowLossy
-                         error:nil];
+    CGRect bounds = self.view.bounds;
+    
+    self.backgroundImageView.frame = bounds;
+    self.blurredImageView.frame = bounds;
+    self.tableView.frame = bounds;
 }
 
--(NSString *) displayContent{
-    //get the documents directory:
-    NSArray *paths = NSSearchPathForDirectoriesInDomains
-    (NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    
-    //make a file name to write the data to using the documents directory:
-    NSString *fileName = [NSString stringWithFormat:@"%@/config.txt",
-                          documentsDirectory];
-    NSString *content = [[NSString alloc] initWithContentsOfFile:fileName
-                                                    usedEncoding:nil
-                                                           error:nil];
-    return content;
-    
-}
-
-
-// Make that time *white*
 - (UIStatusBarStyle)preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
 }
+
+
+#pragma mark - UIAlert methods
 
 - (void)userStateButtonWasPressed {
     NSLog(@"User State UIAlert triggered");
@@ -187,16 +166,58 @@
     return;
 }
 
-- (void)viewWillLayoutSubviews {
-    [super viewWillLayoutSubviews];
+
+#pragma mark - IO methods
+
+-(void) writeToTextFileWithContent:(NSString *)contentString{
+    //get the documents directory:
+    NSArray *paths = NSSearchPathForDirectoriesInDomains
+    (NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
     
-    CGRect bounds = self.view.bounds;
-    
-    self.backgroundImageView.frame = bounds;
-    self.blurredImageView.frame = bounds;
-    self.tableView.frame = bounds;
+    //make a file name to write the data to using the documents directory:
+    NSString *fileName = [NSString stringWithFormat:@"%@/config.txt",
+                          documentsDirectory];
+    //save content to the documents directory
+    [contentString writeToFile:fileName
+                    atomically:YES
+                      encoding:NSStringEncodingConversionAllowLossy
+                         error:nil];
 }
 
+-(NSString *) displayContent{
+    //get the documents directory:
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    
+    //make a file name to write the data to using the documents directory:
+    NSString *fileName = [NSString stringWithFormat:@"%@/config.txt", documentsDirectory];
+    NSString *content = [[NSString alloc] initWithContentsOfFile:fileName
+                                                    usedEncoding:nil
+                                                           error:nil];
+    return content;
+    
+}
+
+- (void) writeDictToFileWithContent:(NSDictionary *)contentDict {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"/userdata.txt"];
+    
+    
+    [contentDict writeToFile:filePath atomically:YES];
+
+}
+
+- (NSDictionary *) readFromDict {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"/userdata.txt"];
+    
+    NSDictionary *contentDict = [NSDictionary dictionaryWithContentsOfFile:filePath];
+    
+    return contentDict;
+}
 
 #pragma mark - UITableViewDataSource
 
@@ -206,19 +227,17 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return MIN(6,6) + 1; //TODO add getNumberOfClasses for people with 7 or 8
+    return MAX(6,[[[self readFromDict] objectForKey:@"grades"] count]) + 1;
 }
-
 
 - (MAGradeCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     self.loggedIn = [[self displayContent] boolValue];
-    NSLog(@"cellforrowatindexpath");
     
     MAGradeCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CellIdentifier"];
     
     if (!cell) {
-        cell = [[MAGradeCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"CellIdentifier" cellForRowAtIndexPath:indexPath];
+        cell = [[MAGradeCell alloc] initWithReuseID:@"CellIdentifier" cellForRowAtIndexPath:indexPath];
     }
     // Sets up attributes of each cell
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -257,6 +276,8 @@
         }
         cell.userStateButton = userStateButton;
         [cellView addSubview:userStateButton];
+    } else {
+        cell = [self fillCellWithRow:(indexPath.row-1)];
     }
     
     
@@ -264,15 +285,32 @@
     return cell;
 }
 
--(MAGradeCell *)fillCellWithRow:(NSNumber *)row {
-    MAGradeCell *cell = [[MAGradeCell alloc] init];
+- (MAGradeCell *)fillCellWithRow:(NSInteger *)row {
+    MAGradeCell *cell = [[MAGradeCell alloc] initWithReuseID:@"CellIdentifier" cellForRowAtIndexPath:nil];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.backgroundColor = [UIColor colorWithWhite:0 alpha:0.2];
+    cell.textLabel.textColor = [UIColor whiteColor];
+    cell.detailTextLabel.textColor = [UIColor whiteColor];
     
     if (!self.loggedIn) {
         return cell;
     } else {
-        //cell.textLabel.text =
-        //cell.detailTextLabel.text =
-        //REPLACE
+        NSDictionary *userData = [self readFromDict];
+        
+        NSArray *classes = [userData objectForKey:@"classes"];
+        NSArray *grades = [userData objectForKey:@"grades"];
+        
+        if ((NSUInteger)row < [classes count]) {
+            cell.textLabel.text = [classes objectAtIndex:(NSUInteger)row];
+            
+            cell.detailTextLabel.numberOfLines = 2;
+            cell.detailTextLabel.lineBreakMode = NSLineBreakByWordWrapping;
+            cell.detailTextLabel.textAlignment = NSTextAlignmentCenter;
+            
+            
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%@\n %@", [grades objectAtIndex:(NSUInteger)row], @"perr"];
+            [cell.detailTextLabel sizeToFit];
+        }
         
         return cell;
     }
@@ -285,31 +323,11 @@
         // Open progress report
         NSLog(@"Opened progress report");
         
-        UIViewController *detailViewControl = [[UIViewController alloc] init];
-        
-        UITableView *detailTableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStylePlain];
-        detailTableView.backgroundColor = [UIColor clearColor];
-        detailTableView.separatorColor = [UIColor colorWithWhite:1 alpha:0.2];
-        detailTableView.pagingEnabled = YES;
-        
-        
-        detailTableView.delegate = self;
-        detailTableView.dataSource = self;
+        MAProgressReportViewController *progressReport = [[MAProgressReportViewController alloc] init];
         
         // Set progress report as the view controller
-        [self.navigationController pushViewController:detailViewControl animated:YES];
+        [self.navigationController pushViewController:progressReport animated:YES];
         [self.navigationController setNavigationBarHidden:NO animated:YES];
-        
-        //self.navigationController.navigationBar.backgroundColor = [UIColor clearColor];
-        detailViewControl.view.backgroundColor = [UIColor blackColor];
-        
-        
-        UIImage *background = [UIImage imageNamed:@"bg"];
-        UIImageView *backgroundImageView = [[UIImageView alloc] initWithImage:background];
-        self.backgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
-        
-        [detailViewControl.view addSubview:backgroundImageView];
-        [detailViewControl.view addSubview:detailTableView];
     }
 }
 
@@ -320,12 +338,6 @@
     cell.textLabel.text = title;
     cell.detailTextLabel.text = nil;
     cell.imageView.image = nil;
-}
-
-- (void)configureDetailCell:(UITableViewCell *)cell row:(NSInteger *)row {
-    cell.imageView.image = nil;
-    cell.detailTextLabel.numberOfLines = 2;
-    cell.detailTextLabel.textAlignment = NSTextAlignmentCenter;
 }
 
 - (void)configureGradesCell:(UITableViewCell *)cell row:(NSInteger *)row {
@@ -368,7 +380,7 @@
     //Create and send request
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://mistar.oakland.k12.mi.us/novi/StudentPortal/Home/Login"]];
     
-    __block NSArray *myResult = nil; //set Returner
+    __block NSDictionary *myResult = nil; //set Returner
     
     [request setHTTPMethod:@"POST"];
     
@@ -428,6 +440,7 @@
                                                 MAGradeParser *gradeParser = [[MAGradeParser alloc] init];
                                                 myResult = [gradeParser parseWithData:gradeData];
                                                 NSLog(@"after myResult");
+                                                [self writeDictToFileWithContent:myResult];
                                                 [self writeToTextFileWithContent:@"1"];
                                                 [self viewDidLoad];
                                                 
@@ -523,6 +536,5 @@
     }
     return myResult;
 }
-
 
 @end

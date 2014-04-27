@@ -10,8 +10,8 @@
 
 @implementation MAGradeCell
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+- (id)initWithReuseID:(NSString *)reuseIdentifier cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    self = [super initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
     }
