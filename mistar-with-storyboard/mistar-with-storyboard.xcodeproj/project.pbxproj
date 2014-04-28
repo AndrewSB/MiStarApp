@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		460C030F190CF00700D168C3 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 460C030E190CF00700D168C3 /* MessageUI.framework */; };
 		460C0312190CF17E00D168C3 /* MASMSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 460C0311190CF17E00D168C3 /* MASMSViewController.m */; };
-		460C0315190D0CCD00D168C3 /* MAProgressReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 460C0314190D0CCD00D168C3 /* MAProgressReportViewController.m */; };
 		4623559518FFF12A00D67CC5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4623559418FFF12A00D67CC5 /* Foundation.framework */; };
 		4623559718FFF12A00D67CC5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4623559618FFF12A00D67CC5 /* CoreGraphics.framework */; };
 		4623559918FFF12A00D67CC5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4623559818FFF12A00D67CC5 /* UIKit.framework */; };
@@ -60,6 +59,7 @@
 		4623562C18FFF32E00D67CC5 /* originalImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4623562918FFF32E00D67CC5 /* originalImage.jpg */; };
 		4623562E18FFF35400D67CC5 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4623562D18FFF35400D67CC5 /* libxml2.dylib */; };
 		4623563118FFF38100D67CC5 /* MANavController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4623563018FFF38100D67CC5 /* MANavController.m */; };
+		46873086190E8F5B009EB331 /* MAProgressReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46873085190E8F5B009EB331 /* MAProgressReportViewController.m */; };
 		46F48A701903C8A500C278B7 /* MATeacher.m in Sources */ = {isa = PBXBuildFile; fileRef = 46F48A6F1903C8A500C278B7 /* MATeacher.m */; };
 		6EA81663FEB0476DA02E2B05 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5AB13AD0524DEF94299447 /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -78,8 +78,6 @@
 		460C030E190CF00700D168C3 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		460C0310190CF17E00D168C3 /* MASMSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASMSViewController.h; sourceTree = "<group>"; };
 		460C0311190CF17E00D168C3 /* MASMSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASMSViewController.m; sourceTree = "<group>"; };
-		460C0313190D0CCD00D168C3 /* MAProgressReportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAProgressReportViewController.h; sourceTree = "<group>"; };
-		460C0314190D0CCD00D168C3 /* MAProgressReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAProgressReportViewController.m; sourceTree = "<group>"; };
 		4623559118FFF12A00D67CC5 /* mistar-with-storyboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "mistar-with-storyboard.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4623559418FFF12A00D67CC5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		4623559618FFF12A00D67CC5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -143,6 +141,8 @@
 		4623562D18FFF35400D67CC5 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libxml2.dylib; sourceTree = "<group>"; };
 		4623562F18FFF38100D67CC5 /* MANavController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MANavController.h; sourceTree = "<group>"; };
 		4623563018FFF38100D67CC5 /* MANavController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MANavController.m; sourceTree = "<group>"; };
+		46873084190E8F5B009EB331 /* MAProgressReportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAProgressReportViewController.h; sourceTree = "<group>"; };
+		46873085190E8F5B009EB331 /* MAProgressReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAProgressReportViewController.m; sourceTree = "<group>"; };
 		46F48A6E1903C8A500C278B7 /* MATeacher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MATeacher.h; sourceTree = "<group>"; };
 		46F48A6F1903C8A500C278B7 /* MATeacher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MATeacher.m; sourceTree = "<group>"; };
 		50B9C2E0203E49D6B59CC820 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
@@ -216,16 +216,22 @@
 				462355A318FFF12A00D67CC5 /* MAAppDelegate.h */,
 				462355A418FFF12A00D67CC5 /* MAAppDelegate.m */,
 				462355A618FFF12A00D67CC5 /* Main.storyboard */,
-				462355A918FFF12A00D67CC5 /* MAViewController.h */,
-				462355AA18FFF12A00D67CC5 /* MAViewController.m */,
 				4623562F18FFF38100D67CC5 /* MANavController.h */,
 				4623563018FFF38100D67CC5 /* MANavController.m */,
+				462355A918FFF12A00D67CC5 /* MAViewController.h */,
+				462355AA18FFF12A00D67CC5 /* MAViewController.m */,
+				462355D518FFF29D00D67CC5 /* MAGradeParser.h */,
+				462355D618FFF29D00D67CC5 /* MAGradeParser.m */,
+				462355DB18FFF29D00D67CC5 /* MAGradeCell.h */,
+				462355DC18FFF29D00D67CC5 /* MAGradeCell.m */,
 				460C0310190CF17E00D168C3 /* MASMSViewController.h */,
 				460C0311190CF17E00D168C3 /* MASMSViewController.m */,
+				46873084190E8F5B009EB331 /* MAProgressReportViewController.h */,
+				46873085190E8F5B009EB331 /* MAProgressReportViewController.m */,
 				462355F518FFF30900D67CC5 /* Images */,
 				462355AC18FFF12A00D67CC5 /* Images.xcassets */,
 				462355F418FFF2C400D67CC5 /* hpple */,
-				462355EA18FFF2A500D67CC5 /* Grades */,
+				462355EA18FFF2A500D67CC5 /* Grades Objects */,
 				4623559B18FFF12A00D67CC5 /* Supporting Files */,
 			);
 			path = "mistar-with-storyboard";
@@ -260,23 +266,17 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		462355EA18FFF2A500D67CC5 /* Grades */ = {
+		462355EA18FFF2A500D67CC5 /* Grades Objects */ = {
 			isa = PBXGroup;
 			children = (
 				46F48A6E1903C8A500C278B7 /* MATeacher.h */,
 				46F48A6F1903C8A500C278B7 /* MATeacher.m */,
 				462355D118FFF29D00D67CC5 /* MAClass.h */,
 				462355D218FFF29D00D67CC5 /* MAClass.m */,
-				462355D518FFF29D00D67CC5 /* MAGradeParser.h */,
-				462355D618FFF29D00D67CC5 /* MAGradeParser.m */,
 				462355D918FFF29D00D67CC5 /* MAAssignment.h */,
 				462355DA18FFF29D00D67CC5 /* MAAssignment.m */,
-				462355DB18FFF29D00D67CC5 /* MAGradeCell.h */,
-				462355DC18FFF29D00D67CC5 /* MAGradeCell.m */,
-				460C0313190D0CCD00D168C3 /* MAProgressReportViewController.h */,
-				460C0314190D0CCD00D168C3 /* MAProgressReportViewController.m */,
 			);
-			name = Grades;
+			name = "Grades Objects";
 			sourceTree = "<group>";
 		};
 		462355F418FFF2C400D67CC5 /* hpple */ = {
@@ -503,7 +503,7 @@
 				4623563118FFF38100D67CC5 /* MANavController.m in Sources */,
 				462355AB18FFF12A00D67CC5 /* MAViewController.m in Sources */,
 				462355E218FFF29D00D67CC5 /* MAClass.m in Sources */,
-				460C0315190D0CCD00D168C3 /* MAProgressReportViewController.m in Sources */,
+				46873086190E8F5B009EB331 /* MAProgressReportViewController.m in Sources */,
 				462355A118FFF12A00D67CC5 /* main.m in Sources */,
 				462355F218FFF2BB00D67CC5 /* TFHppleElement.m in Sources */,
 				462355F118FFF2BB00D67CC5 /* TFHpple.m in Sources */,
@@ -638,6 +638,10 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "mistar-with-storyboard/mistar-with-storyboard-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -670,6 +674,10 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "mistar-with-storyboard/mistar-with-storyboard-Prefix.pch";
 				HEADER_SEARCH_PATHS = (

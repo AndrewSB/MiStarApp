@@ -7,11 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <FPPopover/FPPopoverController.h>
+#import <Shimmer/FBShimmeringView.h>
+
+#import "MAAppDelegate.h"
+
+#import "MAGradeParser.h"
 
 #import "MAGradeCell.h"
-#import "MAAppDelegate.h"
-#import "MAClass.h"
-#import "MAGradeParser.h"
 #import "MASMSViewController.h"
 #import "MAProgressReportViewController.h"
 

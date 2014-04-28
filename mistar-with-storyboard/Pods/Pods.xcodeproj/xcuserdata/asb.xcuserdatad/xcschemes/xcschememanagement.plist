@@ -14,12 +14,27 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-MZAppearance.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-MZFormSheetController.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-QBFlatButton.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
 		<key>Pods-ReactiveCocoa.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-Reveal-iOS-SDK.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -41,42 +56,6 @@
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
-	<dict>
-		<key>2833B40EFC614202B968AB1C</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>5C2519675412498FA1DE0C2B</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>63D4E3E2F70B432BBDD09B20</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>6C4A6B7AF75145598B04555B</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>73C89A8A532F42ABA47B72CB</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>7AE6E42C7BAD4EF299BE8B3B</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>EDC090468FB24240A441E631</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-	</dict>
+	<dict/>
 </dict>
 </plist>

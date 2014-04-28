@@ -18,6 +18,18 @@
 #define COCOAPODS_VERSION_MINOR_LBBlurredImage 2
 #define COCOAPODS_VERSION_PATCH_LBBlurredImage 0
 
+// MZAppearance
+#define COCOAPODS_POD_AVAILABLE_MZAppearance
+#define COCOAPODS_VERSION_MAJOR_MZAppearance 1
+#define COCOAPODS_VERSION_MINOR_MZAppearance 1
+#define COCOAPODS_VERSION_PATCH_MZAppearance 2
+
+// MZFormSheetController
+#define COCOAPODS_POD_AVAILABLE_MZFormSheetController
+#define COCOAPODS_VERSION_MAJOR_MZFormSheetController 2
+#define COCOAPODS_VERSION_MINOR_MZFormSheetController 3
+#define COCOAPODS_VERSION_PATCH_MZFormSheetController 4
+
 // QBFlatButton
 #define COCOAPODS_POD_AVAILABLE_QBFlatButton
 #define COCOAPODS_VERSION_MAJOR_QBFlatButton 1
@@ -41,6 +53,12 @@
 #define COCOAPODS_VERSION_MAJOR_ReactiveCocoa_no_arc 2
 #define COCOAPODS_VERSION_MINOR_ReactiveCocoa_no_arc 3
 #define COCOAPODS_VERSION_PATCH_ReactiveCocoa_no_arc 0
+
+// Reveal-iOS-SDK
+#define COCOAPODS_POD_AVAILABLE_Reveal_iOS_SDK
+#define COCOAPODS_VERSION_MAJOR_Reveal_iOS_SDK 1
+#define COCOAPODS_VERSION_MINOR_Reveal_iOS_SDK 0
+#define COCOAPODS_VERSION_PATCH_Reveal_iOS_SDK 3
 
 // Shimmer
 #define COCOAPODS_POD_AVAILABLE_Shimmer

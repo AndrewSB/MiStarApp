@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "mistar-with-storyboard/MAViewController.m"
-            timestampString = "420336398.178149"
+            timestampString = "420392080.849019"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "338"
-            endingLineNumber = "338"
+            startingLineNumber = "346"
+            endingLineNumber = "346"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -58,7 +58,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "mistar-with-storyboard/MAViewController.m"
-            timestampString = "420334555.238104"
+            timestampString = "420391946.125899"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "148"
@@ -74,13 +74,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "mistar-with-storyboard/MAViewController.m"
-            timestampString = "420336577.846354"
+            timestampString = "420392080.849019"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "426"
-            endingLineNumber = "426"
-            landmarkName = "-fillCellWithRow:"
-            landmarkType = "5">
+            startingLineNumber = "443"
+            endingLineNumber = "443"
+            landmarkName = "@implementation MAViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -136,11 +136,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "mistar-with-storyboard/MAViewController.m"
-            timestampString = "420336398.178149"
+            timestampString = "420392080.849019"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "408"
-            endingLineNumber = "408"
+            startingLineNumber = "427"
+            endingLineNumber = "427"
             landmarkName = "-fillCellWithRow:"
             landmarkType = "5">
          </BreakpointContent>
@@ -152,13 +152,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "mistar-with-storyboard/MAProgressReportViewController.m"
-            timestampString = "420286370.760197"
+            timestampString = "420385236.919417"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "70"
-            endingLineNumber = "70"
-            landmarkName = "-getAssignmentsFromFile"
-            landmarkType = "5">
+            startingLineNumber = "63"
+            endingLineNumber = "63">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -168,11 +166,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "mistar-with-storyboard/MAViewController.m"
-            timestampString = "420336398.178149"
+            timestampString = "420392080.849019"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "336"
-            endingLineNumber = "336"
+            startingLineNumber = "344"
+            endingLineNumber = "344"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -200,7 +198,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "mistar-with-storyboard/MAViewController.m"
-            timestampString = "420336163.282976"
+            timestampString = "420391946.125899"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "96"
@@ -216,11 +214,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "mistar-with-storyboard/MAViewController.m"
-            timestampString = "420336398.178149"
+            timestampString = "420392080.849019"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "299"
-            endingLineNumber = "299"
+            startingLineNumber = "307"
+            endingLineNumber = "307"
             landmarkName = "-readFromDict"
             landmarkType = "5">
          </BreakpointContent>
@@ -232,11 +230,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "mistar-with-storyboard/MAViewController.m"
-            timestampString = "420336314.907703"
+            timestampString = "420392080.849019"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "333"
-            endingLineNumber = "333"
+            startingLineNumber = "341"
+            endingLineNumber = "341"
             landmarkName = "-tableView:numberOfRowsInSection:"
             landmarkType = "5">
          </BreakpointContent>
@@ -248,11 +246,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "mistar-with-storyboard/MAViewController.m"
-            timestampString = "420336321.145107"
+            timestampString = "420392080.849019"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "377"
-            endingLineNumber = "377"
+            startingLineNumber = "396"
+            endingLineNumber = "396"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -264,11 +262,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "mistar-with-storyboard/MAViewController.m"
-            timestampString = "420336327.762574"
+            timestampString = "420392080.849019"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "406"
-            endingLineNumber = "406"
+            startingLineNumber = "425"
+            endingLineNumber = "425"
             landmarkName = "-fillCellWithRow:"
             landmarkType = "5">
          </BreakpointContent>
@@ -280,11 +278,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "mistar-with-storyboard/MAViewController.m"
-            timestampString = "420336577.846354"
+            timestampString = "420392080.849019"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "419"
-            endingLineNumber = "419"
+            startingLineNumber = "436"
+            endingLineNumber = "436"
             landmarkName = "-fillCellWithRow:"
             landmarkType = "5">
          </BreakpointContent>
@@ -296,11 +294,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "mistar-with-storyboard/MAViewController.m"
-            timestampString = "420336577.846354"
+            timestampString = "420392080.849019"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "421"
-            endingLineNumber = "421"
+            startingLineNumber = "438"
+            endingLineNumber = "438"
             landmarkName = "-fillCellWithRow:"
             landmarkType = "5">
          </BreakpointContent>
@@ -308,7 +306,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "mistar-with-storyboard/MAGradeParser.m"
@@ -318,6 +316,22 @@
             startingLineNumber = "182"
             endingLineNumber = "182"
             landmarkName = "-getGradesAndPercentsFromGrades:andPercents:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "mistar-with-storyboard/MAViewController.m"
+            timestampString = "420392080.849019"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "451"
+            endingLineNumber = "451"
+            landmarkName = "-tableView:didSelectRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

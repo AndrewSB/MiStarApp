@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "63D4E3E2F70B432BBDD09B20"
+               BlueprintIdentifier = "B99BF3E441EB472EABCACBC5"
                BuildableName = "libPods-QBFlatButton.a"
                BlueprintName = "Pods-QBFlatButton"
                ReferencedContainer = "container:Pods.xcodeproj">

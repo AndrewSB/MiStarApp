@@ -25,6 +25,8 @@
 
 @property NSString *userNAME;
 
+@property FBShimmeringView *shimmeringView;
+
 @end
 
 @implementation MAViewController
@@ -33,22 +35,20 @@
     [super viewDidLoad];
     NSLog(@"eyyyy im here");
     
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"])
-    {
-        NSLog(@"Not first time");
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"]) {
+        // app already launched
     }
-    else
-    {
-//        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"HasLaunchedOnce"];
-//        [[NSUserDefaults standardUserDefaults] synchronize];
-        NSLog(@"First time");
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"This app is in beta"
-                                                        message:@"Hello person, thank you for downloading my app, it's still in beta and not completely stable mainly due to a lack of time. For support, you can type your password in wrong while logging in and the app will prompt you to text me, giving me bug reports or even opinion would be awesome. The app is open sourced, you can message me for more information. I do plan to keep working on this app later and it should be 100% stable by the end of the year with more features (like being able to see all your assignments as well)"
+    else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"This app is in BETA"
+                                                        message:@"For support, you can type your password in wrong while logging in and the app will prompt you to text me: bug reports, feature improvements, like a joke, whatever.\n\nI do plan to keep working on this app and it (hopefully) will be 100% stable by the end of school year along with a ton of other features (like being able to see all your assignments and adding support for other schools that use Mistar)\n\nThe app is open sourced, contact me for more information."
                                                        delegate:self
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:@"Text Andrew", nil];
-        
+                                              cancelButtonTitle:@"Dismiss"
+                                              otherButtonTitles:@"Never show again", @"Text Andrew", nil];
+
         [alert show];
+
     }
 
     self.loggedIn = [[self displayContent] boolValue];
@@ -156,16 +156,19 @@
         NSString *userPassword = [alertView textFieldAtIndex:1].text;
         NSLog(@"from vc Client is: %@ with credential: %@", userPin, userPassword);
         [self loginToMistarWithPin:userPin password:userPassword];
+        self.shimmeringView.shimmering = YES;
         NSLog(@"returnpoint");
 ;        NSLog(@"gradeCliented");
     }
     
-    if ([title isEqualToString:@"Text Andrew"]) {
+    if ([title isEqualToString:@"Text Andrew"] || [title isEqualToString:@"Message Andrew"]) {
         NSLog(@"Text Andrew hit");
         if ([MFMessageComposeViewController canSendText])
         {
             MFMessageComposeViewController *picker = [[MFMessageComposeViewController alloc] init];
             picker.messageComposeDelegate = self;
+            
+            picker.recipients = @[@"2483456497"];
                 
                 // You can specify one or more preconfigured recipients.  The user has
                 // the option to remove or add recipients from the message composer view
@@ -174,13 +177,18 @@
                 
                 // You can specify the initial message text that will appear in the message
                 // composer view controller.
-            picker.body = @"Hello from California!";
+            picker.body = @"Hey Andrew, I was using your Zangle app and I was having problems with/ think you should _____";
                 
             [self presentViewController:picker animated:YES completion:NULL];
         } else {
             UIAlertView *noSMS = [[UIAlertView alloc] initWithTitle:@"Device not configured for iMessage" message:@"You can try emailing me at asbreckenridge@me.com" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [noSMS show];
         }
+    }
+    
+    if ([title isEqualToString:@"Never show again"]) {
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"HasLaunchedOnce"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
     }
 }
 
@@ -324,7 +332,6 @@
 
 #pragma mark - UITableViewDataSource
 
-// mistarOverview
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
@@ -364,8 +371,19 @@
         userStateButton.depth = 0;
         userStateButton.alpha = 1.0;
         
-        userStateButton.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:18];
+        userStateButton.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:18];
         [userStateButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        
+        self.shimmeringView = [[FBShimmeringView alloc] initWithFrame:userStateButton.bounds];
+        self.shimmeringView.alpha = 1.0;
+        [userStateButton addSubview:self.shimmeringView];
+        
+        UIView * v = [[UIView alloc] initWithFrame:self.shimmeringView.bounds];
+        [v setBackgroundColor:[UIColor whiteColor]];
+        
+        
+        self.shimmeringView.contentView = v;
+        self.shimmeringView.userInteractionEnabled = NO;
         
         
         
@@ -373,7 +391,7 @@
             
             
             cell.textLabel.text = [[self readFromDict] objectForKey:@"Name"];
-            cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:18];
+            cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:18];
 
             [userStateButton setTitle:@"Logout" forState:UIControlStateNormal];
             cell.textLabel.text = [self getUserNAME];
@@ -415,12 +433,10 @@
             cell.detailTextLabel.lineBreakMode = NSLineBreakByWordWrapping;
             cell.detailTextLabel.textAlignment = NSTextAlignmentCenter;
             
-            NSLog(@"the dict is %@", grades);
-            
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"%@\n %@", [[grades objectAtIndex:(NSUInteger)row] objectForKey:@"grade"], [[grades objectAtIndex:(NSUInteger)row] objectForKey:@"percents"]];
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%@    \n %@", [[grades objectAtIndex:(NSUInteger)row] objectForKey:@"grade"], [[grades objectAtIndex:(NSUInteger)row] objectForKey:@"percents"]];
             [cell.detailTextLabel sizeToFit];
         }
-        
+        cell.textLabel.numberOfLines = 1;
         return cell;
     }
 }
@@ -429,7 +445,19 @@
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.row != 0) {
-        // Open progress report
+        MAProgressReportViewController *progressReport = [[MAProgressReportViewController alloc] init];
+        FPPopoverController *popover = [[FPPopoverController alloc] initWithViewController:progressReport];
+        
+        popover.title = [NSString stringWithFormat:@"name of class with %ld", (long)indexPath.row];
+        popover.arrowDirection = FPPopoverNoArrow;
+        popover.alpha = .8;
+        popover.contentSize = CGSizeMake(self.view.frame.size.width - 20, self.view.frame.size.height - 0);
+        popover.border = NO;
+        
+        [popover ]
+        popover.origin.y = 50;
+        //the popover will be presented from the  view
+        [popover presentPopoverFromPoint:CGPointMake(-10, 0)];
         NSLog(@"Opened progress report");
     }
 }
@@ -438,15 +466,15 @@
 #pragma mark - UITableViewDelegate
 
 - (void)configureHeaderCell:(UITableViewCell *)cell title:(NSString *)title {
-    cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:18];
+    cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Thin" size:18];
     cell.textLabel.text = title;
     cell.detailTextLabel.text = nil;
     cell.imageView.image = nil;
 }
 
 - (void)configureGradesCell:(UITableViewCell *)cell row:(NSInteger *)row {
-    cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:18];
-    cell.detailTextLabel.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:18];
+    cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Thin" size:18];
+    cell.detailTextLabel.font = [UIFont fontWithName:@"HelveticaNeue-Thin" size:18];
     
     cell.imageView.image = nil;
 }
@@ -604,6 +632,7 @@
                                                 MAGradeParser *gradeParser = [[MAGradeParser alloc] init];
                                                 myDictResult = [gradeParser parseWithData:gradeData];
                                                 NSLog(@"after myResult");
+                                                self.shimmeringView.shimmering = NO;
                                                 NSLog(@"mydicktresult: %@", myDictResult);
                                                 [self writeDictToFileWithContent:myDictResult];
                                                 [self writeToTextFileWithContent:[NSString stringWithFormat:@"1 %@ %@", pin, password]];
@@ -640,10 +669,10 @@
     if (self.loggedIn) {
         NSArray *pinAndPass = [self getPinAndPass];
         [self loginToMistarWithPin:[pinAndPass objectAtIndex:0] password:[pinAndPass objectAtIndex:1]];
+        self.shimmeringView.shimmering = YES;
     }
 }
 
-// Parsers
 - (NSString *)onlyNumbersRegex:(NSString *)string {
     NSString *regexStr = @"\\d\\d\\d\\d\\d\\d\\d\\d";
     NSError *error = nil;
