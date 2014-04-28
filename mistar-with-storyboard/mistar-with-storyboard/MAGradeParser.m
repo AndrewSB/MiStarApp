@@ -18,16 +18,22 @@
     
     NSMutableArray *percentArray = [[NSMutableArray alloc] init];
     for (NSString *str in classes) {
-        NSLog(@"classstr is %@", str);
-        [percentArray addObject:[self getPercentageFromClassString:str]];
+        
+        NSString *percent = [self getPercentageFromClassString:str];
+        
+        if (!percent) {
+            percent = @" ";
+        }
+        
+        [percentArray addObject:percent];
     }
     
-    
-    NSString *name = [self getNameFromStringWithData:data];
+    NSArray *gradesAndPercents = [self getGradesAndPercentsFromGrades:gradeArray andPercents:percentArray];
+    NSLog(@"grades and percents: %@", gradesAndPercents);
     
     NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:classArray, @"classes",
                           teacherArray, @"teachers",
-                          gradeArray, @"grades",
+                          gradesAndPercents, @"grades",
                           nil];
     
     return dict;
@@ -163,5 +169,27 @@
     return name;
 }
 
+- (NSArray *)getGradesAndPercentsFromGrades:(NSArray *)grades andPercents:(NSArray *)percents {
+    NSMutableArray *gradePercentArray = [[NSMutableArray alloc] init];
+    
+    NSLog(@"The two arrays are: %@\n and %@", grades, percents);
+    
+    int i = 0;
+    NSMutableDictionary *dictForGradesAndPercents = [[NSMutableDictionary alloc] init];
+    for (NSString *grade in grades) {
+        [dictForGradesAndPercents removeAllObjects];
+        [dictForGradesAndPercents setValue:grade forKey:@"grade"];
+        if ([percents count] - 1 >= i) {
+            [dictForGradesAndPercents setValue:[percents objectAtIndex:(NSUInteger)i] forKey:@"percents"];
+        } else {
+            [dictForGradesAndPercents setValue:@" " forKey:@"percents"];
+        }
+        
+        [gradePercentArray addObject:[dictForGradesAndPercents copy]];
+        i++;
+    }
+    
+    return [gradePercentArray mutableCopy];
+}
 
 @end

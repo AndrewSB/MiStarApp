@@ -8,11 +8,7 @@
 
 #import "MAViewController.h"
 
-@interface MAViewController () <
-    MFMailComposeViewControllerDelegate,
-    MFMessageComposeViewControllerDelegate,
-    UINavigationControllerDelegate
->
+@interface MAViewController () <MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate, UINavigationControllerDelegate>
 
 @property (nonatomic, strong) UIImageView *backgroundImageView;
 @property (nonatomic, strong) UIImageView *blurredImageView;
@@ -36,6 +32,24 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSLog(@"eyyyy im here");
+    
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"])
+    {
+        NSLog(@"Not first time");
+    }
+    else
+    {
+//        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"HasLaunchedOnce"];
+//        [[NSUserDefaults standardUserDefaults] synchronize];
+        NSLog(@"First time");
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"This app is in beta"
+                                                        message:@"Hello person, thank you for downloading my app, it's still in beta and not completely stable mainly due to a lack of time. For support, you can type your password in wrong while logging in and the app will prompt you to text me, giving me bug reports or even opinion would be awesome. The app is open sourced, you can message me for more information. I do plan to keep working on this app later and it should be 100% stable by the end of the year with more features (like being able to see all your assignments as well)"
+                                                       delegate:self
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:@"Text Andrew", nil];
+        
+        [alert show];
+    }
 
     self.loggedIn = [[self displayContent] boolValue];
     
@@ -170,29 +184,21 @@
     }
 }
 
-- (void)messageComposeViewController:(MFMessageComposeViewController *)controller
-                 didFinishWithResult:(MessageComposeResult)result
-{
+- (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result {
     NSLog(@"Dismissing SMS view");
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
 - (void)loginFailedAlertView {
-    if (self.loginFailCount < 1) {
-        UIAlertView *loginFailed = [[UIAlertView alloc] initWithTitle:@"Login Failed" message:@"Couldn't log in, check your usernamame and password, try logging in again" delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+    UIAlertView *loginFailed = [[UIAlertView alloc] initWithTitle:@"Login Failed" message:@"Couldn't log in, check your usernamame and password. If you seem to be having problems with the app, text me and I'll try help" delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:@"Text Andrew", nil];
         [loginFailed show];
-    } else {
-        UIAlertView *loginFailed = [[UIAlertView alloc] initWithTitle:@"Login Failed" message:@"Couldn't log in, check your usernamame and password. You seem to be having problems logging in, text me and I'll try and help ASAP" delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:@"Text Andrew", nil];
-        [loginFailed show];
-    }
-    self.loginFailCount++;
     return;
 }
 
 
 #pragma mark - IO methods
 
--(void) writeToTextFileWithContent:(NSString *)contentString{
+- (void)writeToTextFileWithContent:(NSString *)contentString{
     //get the documents directory:
     NSArray *paths = NSSearchPathForDirectoriesInDomains
     (NSDocumentDirectory, NSUserDomainMask, YES);
@@ -208,7 +214,7 @@
                          error:nil];
 }
 
--(NSString *) displayContent {
+- (NSString *)displayContent {
     //get the documents directory:
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
@@ -222,7 +228,7 @@
     
 }
 
--(NSArray *) getPinAndPass {
+- (NSArray *)getPinAndPass {
     //get the documents directory:
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
@@ -271,12 +277,10 @@
         NSLog(@"aaa%@", strn);
     }
     
-    NSLog(@"myresult is currently: %@", [self readFromDict]);
-    
     return [arr mutableCopy];
 }
 
-- (void) writeDictToFileWithContent:(NSDictionary *)contentDict {
+- (void)writeDictToFileWithContent:(NSDictionary *)contentDict {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"/userdata.txt"];
@@ -286,7 +290,7 @@
 
 }
 
-- (NSDictionary *) readFromDict {
+- (NSDictionary *)readFromDict {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"/userdata.txt"];
@@ -296,7 +300,7 @@
     return contentDict;
 }
 
-- (void) writeNameToFileWithContent:(NSString *)name {
+- (void)writeNameToFileWithContent:(NSString *)name {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"/username.txt"];
@@ -306,7 +310,7 @@
 
 }
 
-- (NSString *) getUserNAME {
+- (NSString *)getUserNAME {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"/username.txt"];
@@ -402,7 +406,7 @@
         
         NSArray *classes = [userData objectForKey:@"classes"];
         NSArray *grades = [userData objectForKey:@"grades"];
-        NSArray *percents = [userData objectForKey:@"percents"];
+        
         
         if ((NSUInteger)row < [classes count]) {
             cell.textLabel.text = [classes objectAtIndex:(NSUInteger)row];
@@ -411,8 +415,9 @@
             cell.detailTextLabel.lineBreakMode = NSLineBreakByWordWrapping;
             cell.detailTextLabel.textAlignment = NSTextAlignmentCenter;
             
+            NSLog(@"the dict is %@", grades);
             
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"%@\n %@", [grades objectAtIndex:(NSUInteger)row], [percents objectAtIndex:(NSUInteger)row]];
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%@\n %@", [[grades objectAtIndex:(NSUInteger)row] objectForKey:@"grade"], [[grades objectAtIndex:(NSUInteger)row] objectForKey:@"percents"]];
             [cell.detailTextLabel sizeToFit];
         }
         
@@ -428,6 +433,7 @@
         NSLog(@"Opened progress report");
     }
 }
+
 
 #pragma mark - UITableViewDelegate
 
@@ -501,12 +507,13 @@
 }
 
 - (NSArray *)loginToMistarWithPin:(NSString *)pin password:(NSString *)password {
+    NSLog(@"logging in");
     _cancel = false;
     
     //Create and send request
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://mistar.oakland.k12.mi.us/novi/StudentPortal/Home/Login"]];
     
-    __block NSDictionary *myResult = nil; //set Returner
+    __block NSDictionary *myDictResult = nil; //set Returner
     
     [request setHTTPMethod:@"POST"];
     
@@ -595,9 +602,10 @@
                                             if ([gradeData length] > 0 && gradeError == nil) {
                                                 //the HTML response is = NSLog(@"the html%@",[[NSString alloc] initWithData:gradeData encoding:NSUTF8StringEncoding]);
                                                 MAGradeParser *gradeParser = [[MAGradeParser alloc] init];
-                                                myResult = [gradeParser parseWithData:gradeData];
+                                                myDictResult = [gradeParser parseWithData:gradeData];
                                                 NSLog(@"after myResult");
-                                                [self writeDictToFileWithContent:myResult];
+                                                NSLog(@"mydicktresult: %@", myDictResult);
+                                                [self writeDictToFileWithContent:myDictResult];
                                                 [self writeToTextFileWithContent:[NSString stringWithFormat:@"1 %@ %@", pin, password]];
                                                 [self viewDidLoad];
                                                 
@@ -625,7 +633,7 @@
             [self loginFailedAlertView];
         }
     }];
-    return myResult;
+    return myDictResult;
 }
 
 - (void)refreshMistar {
