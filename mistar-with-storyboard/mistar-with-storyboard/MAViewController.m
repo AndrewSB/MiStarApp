@@ -123,8 +123,11 @@
     if (self.loggedIn) {
         NSLog(@"log out here");
         [self writeToTextFileWithContent:@"0"];
+        [self writeDictToFileWithContent:[[NSDictionary alloc] init]];
         [self.tableView reloadData];
         NSLog(@"%@", [self displayContent]);
+        
+        UIAlertView *logoutAlert = [[UIAlertView alloc] initWithTitle:@"Logout" message:@"Are you sure you want to log out and quit?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Quit", nil];
     } else {
         // Login Alert
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Login To Zangle"
@@ -190,6 +193,10 @@
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"HasLaunchedOnce"];
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
+    
+    if ([title isEqualToString:@"Quit"]) {
+        exit(0);
+    }
 }
 
 - (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result {
@@ -251,9 +258,6 @@
         NSLog(@"content was nil");
         return nil;
     }
-    int firstSpace = nil;
-    NSString *pass;
-    NSString *pin;
     NSMutableArray *arr = [[NSMutableArray alloc] init];
     
     NSString *toFind = @" ";
@@ -341,10 +345,10 @@
 }
 
 - (MAGradeCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     self.loggedIn = [[self displayContent] boolValue];
     
     MAGradeCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CellIdentifier"];
+    
     
     if (!cell) {
         cell = [[MAGradeCell alloc] initWithReuseID:@"CellIdentifier" cellForRowAtIndexPath:indexPath];
@@ -355,6 +359,7 @@
     cell.textLabel.textColor = [UIColor whiteColor];
     cell.detailTextLabel.textColor = [UIColor whiteColor];
     QBFlatButton* userStateButton = nil;
+
     
     NSInteger cellCount = [self tableView:tableView numberOfRowsInSection:indexPath.section];
     
@@ -371,25 +376,12 @@
         userStateButton.depth = 0;
         userStateButton.alpha = 1.0;
         
-        userStateButton.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:18];
+        userStateButton.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:18];
         [userStateButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        
-        self.shimmeringView = [[FBShimmeringView alloc] initWithFrame:userStateButton.bounds];
-        self.shimmeringView.alpha = 1.0;
-        [userStateButton addSubview:self.shimmeringView];
-        
-        UIView * v = [[UIView alloc] initWithFrame:self.shimmeringView.bounds];
-        [v setBackgroundColor:[UIColor whiteColor]];
-        
-        
-        self.shimmeringView.contentView = v;
-        self.shimmeringView.userInteractionEnabled = NO;
-        
+
         
         
         if (self.loggedIn) {
-            
-            
             cell.textLabel.text = [[self readFromDict] objectForKey:@"Name"];
             cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:18];
 
@@ -446,18 +438,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.row != 0) {
         MAProgressReportViewController *progressReport = [[MAProgressReportViewController alloc] init];
-        FPPopoverController *popover = [[FPPopoverController alloc] initWithViewController:progressReport];
-        
-        popover.title = [NSString stringWithFormat:@"name of class with %ld", (long)indexPath.row];
-        popover.arrowDirection = FPPopoverNoArrow;
-        popover.alpha = .8;
-        popover.contentSize = CGSizeMake(self.view.frame.size.width - 20, self.view.frame.size.height - 0);
-        popover.border = NO;
-        
-        [popover ]
-        popover.origin.y = 50;
-        //the popover will be presented from the  view
-        [popover presentPopoverFromPoint:CGPointMake(-10, 0)];
+                //the popover will be presented from the  view
         NSLog(@"Opened progress report");
     }
 }
@@ -466,15 +447,15 @@
 #pragma mark - UITableViewDelegate
 
 - (void)configureHeaderCell:(UITableViewCell *)cell title:(NSString *)title {
-    cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Thin" size:18];
+    cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:18];
     cell.textLabel.text = title;
     cell.detailTextLabel.text = nil;
     cell.imageView.image = nil;
 }
 
 - (void)configureGradesCell:(UITableViewCell *)cell row:(NSInteger *)row {
-    cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Thin" size:18];
-    cell.detailTextLabel.font = [UIFont fontWithName:@"HelveticaNeue-Thin" size:18];
+    cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:18];
+    cell.detailTextLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:18];
     
     cell.imageView.image = nil;
 }
@@ -582,6 +563,9 @@
                             NSError *error = nil;
                             NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:regexStr options:0 error:&error];
                             
+                            NSString *zangleLog = [[NSString alloc] initWithData:homeData encoding:NSUTF8StringEncoding];
+                            NSLog(@"mistar data:%@", zangleLog);
+                            
                             __block NSString *myResult = nil; //Instanciate returner
                             
                             //Enumerate all matches
@@ -628,7 +612,7 @@
                                         [NSURLConnection sendAsynchronousRequest:requestGrades queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *gradeResponse, NSData *gradeData, NSError *gradeError) {
                                             
                                             if ([gradeData length] > 0 && gradeError == nil) {
-                                                //the HTML response is = NSLog(@"the html%@",[[NSString alloc] initWithData:gradeData encoding:NSUTF8StringEncoding]);
+                                                NSLog(@"the html%@",[[NSString alloc] initWithData:gradeData encoding:NSUTF8StringEncoding]);
                                                 MAGradeParser *gradeParser = [[MAGradeParser alloc] init];
                                                 myDictResult = [gradeParser parseWithData:gradeData];
                                                 NSLog(@"after myResult");

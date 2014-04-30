@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <FPPopover/FPPopoverController.h>
 #import <Shimmer/FBShimmeringView.h>
 
 #import "MAAppDelegate.h"

@@ -24,7 +24,7 @@
         if (!percent) {
             percent = @" ";
         }
-        
+        NSLog(@"percent: %@", percent);
         [percentArray addObject:percent];
     }
     
@@ -154,13 +154,12 @@
         NSString *matchText = [string substringWithRange:[match range]];
         NSLog(@"matchtext %@", matchText);
         if (matchText) {
-            percentage = matchText;
+            return matchText;
         } else {
-            percentage = nil;
+            return nil;
         }
     }
-    
-    return percentage;
+    return nil;
 }
 
 - (NSString *)getNameFromStringWithData:data {

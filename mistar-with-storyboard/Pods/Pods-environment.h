@@ -22,7 +22,7 @@
 #define COCOAPODS_POD_AVAILABLE_MZAppearance
 #define COCOAPODS_VERSION_MAJOR_MZAppearance 1
 #define COCOAPODS_VERSION_MINOR_MZAppearance 1
-#define COCOAPODS_VERSION_PATCH_MZAppearance 2
+#define COCOAPODS_VERSION_PATCH_MZAppearance 3
 
 // MZFormSheetController
 #define COCOAPODS_POD_AVAILABLE_MZFormSheetController
@@ -36,29 +36,11 @@
 #define COCOAPODS_VERSION_MINOR_QBFlatButton 0
 #define COCOAPODS_VERSION_PATCH_QBFlatButton 0
 
-// ReactiveCocoa
-#define COCOAPODS_POD_AVAILABLE_ReactiveCocoa
-#define COCOAPODS_VERSION_MAJOR_ReactiveCocoa 2
-#define COCOAPODS_VERSION_MINOR_ReactiveCocoa 3
-#define COCOAPODS_VERSION_PATCH_ReactiveCocoa 0
-
-// ReactiveCocoa/Core
-#define COCOAPODS_POD_AVAILABLE_ReactiveCocoa_Core
-#define COCOAPODS_VERSION_MAJOR_ReactiveCocoa_Core 2
-#define COCOAPODS_VERSION_MINOR_ReactiveCocoa_Core 3
-#define COCOAPODS_VERSION_PATCH_ReactiveCocoa_Core 0
-
-// ReactiveCocoa/no-arc
-#define COCOAPODS_POD_AVAILABLE_ReactiveCocoa_no_arc
-#define COCOAPODS_VERSION_MAJOR_ReactiveCocoa_no_arc 2
-#define COCOAPODS_VERSION_MINOR_ReactiveCocoa_no_arc 3
-#define COCOAPODS_VERSION_PATCH_ReactiveCocoa_no_arc 0
-
-// Reveal-iOS-SDK
-#define COCOAPODS_POD_AVAILABLE_Reveal_iOS_SDK
-#define COCOAPODS_VERSION_MAJOR_Reveal_iOS_SDK 1
-#define COCOAPODS_VERSION_MINOR_Reveal_iOS_SDK 0
-#define COCOAPODS_VERSION_PATCH_Reveal_iOS_SDK 3
+// SVProgressHUD
+#define COCOAPODS_POD_AVAILABLE_SVProgressHUD
+#define COCOAPODS_VERSION_MAJOR_SVProgressHUD 1
+#define COCOAPODS_VERSION_MINOR_SVProgressHUD 0
+#define COCOAPODS_VERSION_PATCH_SVProgressHUD 0
 
 // Shimmer
 #define COCOAPODS_POD_AVAILABLE_Shimmer

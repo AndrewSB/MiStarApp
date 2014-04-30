@@ -29,12 +29,7 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-ReactiveCocoa.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Pods-Reveal-iOS-SDK.xcscheme</key>
+		<key>Pods-SVProgressHUD.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -56,6 +51,52 @@
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
-	<dict/>
+	<dict>
+		<key>1C241333D9764ED1BB48C5AD</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2A3DBB232D60457A979E1666</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>383351EE6CA0429D8E1E6E3E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3C34FDA367E24C56909B6AAC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4CFAB7B578084B2BB0ED466B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6D5D03E912F6466B9698F647</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9764AC2FDDC04229B5F2B752</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DC738E76FB07477AB946F8F9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F609BE515E63412C8DFD745C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
 </dict>
 </plist>
