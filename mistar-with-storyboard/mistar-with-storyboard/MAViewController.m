@@ -31,10 +31,11 @@
 
 @implementation MAViewController
 
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSLog(@"eyyyy im here");
-    
     [[NSUserDefaults standardUserDefaults] synchronize];
     
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"]) {
@@ -50,7 +51,8 @@
         [alert show];
 
     }
-
+    
+    
     self.loggedIn = [[self displayContent] boolValue];
     
     NSLog(@"login status: %d", self.loggedIn);
@@ -96,8 +98,6 @@
     self.resizedView.layer.cornerRadius = self.resizedView.frame.size.width/2;;
     self.resizedView.backgroundColor = [UIColor whiteColor];
     [self.borderView addSubview:self.resizedView];
-
-    
 }
 
 - (void)viewWillLayoutSubviews {
@@ -126,8 +126,6 @@
         [self writeDictToFileWithContent:[[NSDictionary alloc] init]];
         [self.tableView reloadData];
         NSLog(@"%@", [self displayContent]);
-        
-        UIAlertView *logoutAlert = [[UIAlertView alloc] initWithTitle:@"Logout" message:@"Are you sure you want to log out and quit?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Quit", nil];
     } else {
         // Login Alert
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Login To Zangle"
@@ -158,13 +156,15 @@
         NSString *userPin = [alertView textFieldAtIndex:0].text;
         NSString *userPassword = [alertView textFieldAtIndex:1].text;
         NSLog(@"from vc Client is: %@ with credential: %@", userPin, userPassword);
+        [self writeDictToFileWithContent:[[NSDictionary alloc] init]];
         [self loginToMistarWithPin:userPin password:userPassword];
-        self.shimmeringView.shimmering = YES;
+        
+        
         NSLog(@"returnpoint");
-;        NSLog(@"gradeCliented");
+;       NSLog(@"gradeCliented");
     }
     
-    if ([title isEqualToString:@"Text Andrew"] || [title isEqualToString:@"Message Andrew"]) {
+    if ([title isEqualToString:@"Text Andrew"] || [title isEqualToString:@"Message Andrew"] || [title isEqualToString:@"Contact Developer"]) {
         NSLog(@"Text Andrew hit");
         if ([MFMessageComposeViewController canSendText])
         {
@@ -205,7 +205,7 @@
 }
 
 - (void)loginFailedAlertView {
-    UIAlertView *loginFailed = [[UIAlertView alloc] initWithTitle:@"Login Failed" message:@"Couldn't log in, check your usernamame and password. If you seem to be having problems with the app, text me and I'll try help" delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:@"Text Andrew", nil];
+    UIAlertView *loginFailed = [[UIAlertView alloc] initWithTitle:@"Login Failed" message:@"Couldn't log in, check your usernamame and password. If you seem to be having problems with the app, text me and I'll try help" delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:@"Contact Developer", nil];
         [loginFailed show];
     return;
 }
@@ -341,7 +341,12 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return MAX(6,[[[self readFromDict] objectForKey:@"grades"] count]) + 1;
+    if ([[[self readFromDict] objectForKey:@"grades"] count]) {
+        return [[[self readFromDict] objectForKey:@"grades"] count] + 1;
+    } else {
+        return 6;
+    }
+    
 }
 
 - (MAGradeCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -418,14 +423,15 @@
         NSArray *grades = [userData objectForKey:@"grades"];
         
         
-        if ((NSUInteger)row < [classes count]) {
+        if ([grades count] > (NSUInteger)row) {
             cell.textLabel.text = [classes objectAtIndex:(NSUInteger)row];
             
             cell.detailTextLabel.numberOfLines = 2;
             cell.detailTextLabel.lineBreakMode = NSLineBreakByWordWrapping;
             cell.detailTextLabel.textAlignment = NSTextAlignmentCenter;
-            
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"%@    \n %@", [[grades objectAtIndex:(NSUInteger)row] objectForKey:@"grade"], [[grades objectAtIndex:(NSUInteger)row] objectForKey:@"percents"]];
+            if ([grades objectAtIndex:(NSUInteger)row] && [grades objectAtIndex:(NSUInteger)row]) {
+                cell.detailTextLabel.text = [NSString stringWithFormat:@"%@       \n %@", [[grades objectAtIndex:(NSUInteger)row] objectForKey:@"grade"], [[grades objectAtIndex:(NSUInteger)row] objectForKey:@"percents"]];
+            }
             [cell.detailTextLabel sizeToFit];
         }
         cell.textLabel.numberOfLines = 1;
@@ -518,11 +524,20 @@
 - (NSArray *)loginToMistarWithPin:(NSString *)pin password:(NSString *)password {
     NSLog(@"logging in");
     _cancel = false;
+    __block NSDictionary *myDictResult = nil; //set Returner
+    
+    NSString *districtURL = [[NSString alloc] init];
+    
+    __block HTProgressHUD *progressHUD = [[HTProgressHUD alloc] init];
+    progressHUD.animation = HTProgressHUDAnimationTypeShowing;
+    progressHUD.indicatorView = [HTProgressHUDIndicatorView indicatorViewWithType:HTProgressHUDIndicatorTypeRing];
+    progressHUD.backgroundColor = [UIColor clearColor];
+    
+    [progressHUD showInView:self.view animated:YES];
+    [progressHUD hideWithAnimation:YES];
     
     //Create and send request
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://mistar.oakland.k12.mi.us/novi/StudentPortal/Home/Login"]];
-    
-    __block NSDictionary *myDictResult = nil; //set Returner
     
     [request setHTTPMethod:@"POST"];
     
@@ -616,7 +631,6 @@
                                                 MAGradeParser *gradeParser = [[MAGradeParser alloc] init];
                                                 myDictResult = [gradeParser parseWithData:gradeData];
                                                 NSLog(@"after myResult");
-                                                self.shimmeringView.shimmering = NO;
                                                 NSLog(@"mydicktresult: %@", myDictResult);
                                                 [self writeDictToFileWithContent:myDictResult];
                                                 [self writeToTextFileWithContent:[NSString stringWithFormat:@"1 %@ %@", pin, password]];

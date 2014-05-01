@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Pods-HTProgressHUD.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-HexColors.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -29,11 +34,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-SVProgressHUD.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Pods-Shimmer.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -52,47 +52,47 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>1C241333D9764ED1BB48C5AD</key>
+		<key>2635A81E98544776ABBC3B44</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>2A3DBB232D60457A979E1666</key>
+		<key>2C2C08D4ED104895BB6A30F7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>383351EE6CA0429D8E1E6E3E</key>
+		<key>30AC8F9E7B724046BD7D96C7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3C34FDA367E24C56909B6AAC</key>
+		<key>51123C20BCB34009B4713CE3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4CFAB7B578084B2BB0ED466B</key>
+		<key>7EEF0A3D3DD64F20AB5A88F5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6D5D03E912F6466B9698F647</key>
+		<key>9E35CF7DDA22422F9C8A429E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9764AC2FDDC04229B5F2B752</key>
+		<key>9F0710AA08E9481F8B3E182A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>DC738E76FB07477AB946F8F9</key>
+		<key>A8BBC97A4CB44DF4A5A66BE3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F609BE515E63412C8DFD745C</key>
+		<key>C3144915F8AF45D5BDC049A6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
