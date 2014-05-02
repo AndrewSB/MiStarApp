@@ -341,11 +341,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if ([[[self readFromDict] objectForKey:@"grades"] count]) {
-        return [[[self readFromDict] objectForKey:@"grades"] count] + 1;
-    } else {
-        return 6;
-    }
+    return MAX(6,[[[self readFromDict] objectForKey:@"grades"] count]) + 1;
     
 }
 
