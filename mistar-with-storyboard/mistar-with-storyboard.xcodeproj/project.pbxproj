@@ -78,7 +78,7 @@
 		460C030E190CF00700D168C3 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		460C0310190CF17E00D168C3 /* MASMSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASMSViewController.h; sourceTree = "<group>"; };
 		460C0311190CF17E00D168C3 /* MASMSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASMSViewController.m; sourceTree = "<group>"; };
-		4623559118FFF12A00D67CC5 /* mistar-with-storyboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "mistar-with-storyboard.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4623559118FFF12A00D67CC5 /* Zangle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Zangle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4623559418FFF12A00D67CC5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		4623559618FFF12A00D67CC5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		4623559818FFF12A00D67CC5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -190,7 +190,7 @@
 		4623559218FFF12A00D67CC5 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4623559118FFF12A00D67CC5 /* mistar-with-storyboard.app */,
+				4623559118FFF12A00D67CC5 /* Zangle.app */,
 				462355B218FFF12B00D67CC5 /* mistar-with-storyboardTests.xctest */,
 			);
 			name = Products;
@@ -353,7 +353,7 @@
 			);
 			name = "mistar-with-storyboard";
 			productName = "mistar-with-storyboard";
-			productReference = 4623559118FFF12A00D67CC5 /* mistar-with-storyboard.app */;
+			productReference = 4623559118FFF12A00D67CC5 /* Zangle.app */;
 			productType = "com.apple.product-type.application";
 		};
 		462355B118FFF12B00D67CC5 /* mistar-with-storyboardTests */ = {
@@ -594,6 +594,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = Zangle;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -625,6 +626,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				PRODUCT_NAME = Zangle;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -659,7 +661,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Zangle;
 				PROVISIONING_PROFILE = "";
 				USER_HEADER_SEARCH_PATHS = "";
 				WRAPPER_EXTENSION = app;
@@ -695,7 +697,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Zangle;
 				PROVISIONING_PROFILE = "";
 				USER_HEADER_SEARCH_PATHS = "";
 				WRAPPER_EXTENSION = app;
@@ -718,7 +720,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "mistar-with-storyboardTests/mistar-with-storyboardTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "mistar-with-storyboardTests";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -736,7 +738,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "mistar-with-storyboard/mistar-with-storyboard-Prefix.pch";
 				INFOPLIST_FILE = "mistar-with-storyboardTests/mistar-with-storyboardTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "mistar-with-storyboardTests";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};

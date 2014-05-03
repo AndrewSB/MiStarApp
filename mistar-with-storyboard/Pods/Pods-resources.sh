@@ -41,6 +41,7 @@ install_resource()
       ;;
   esac
 }
+install_resource "SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle"
 install_resource "TSMessages/TSMessages/Resources/Images/NotificationBackgroundError.png"
 install_resource "TSMessages/TSMessages/Resources/Images/NotificationBackgroundError@2x.png"
 install_resource "TSMessages/TSMessages/Resources/Images/NotificationBackgroundErrorIcon.png"

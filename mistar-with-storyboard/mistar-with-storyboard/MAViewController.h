@@ -17,12 +17,7 @@
 #import "MASMSViewController.h"
 #import "MAProgressReportViewController.h"
 
-#import <HTProgressHUD.h>
-#import <HTProgressHUD/HTProgressHUDAnimation.h>
-#import <HTProgressHUD/HTProgressHUDRingIndicatorView.h>
-#import <HTProgressHUD/HTProgressHUDFadeAnimation.h>
-#import <HTProgressHUD/HTProgressHUDFadeZoomAnimation.h>
-
+#import <SVProgressHUD/SVProgressHUD.h>
 
 
 @interface MAViewController : UIViewController

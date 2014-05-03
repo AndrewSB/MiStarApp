@@ -43,7 +43,7 @@
     }
     else {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"This app is in BETA"
-                                                        message:@"For support, you can type your password in wrong while logging in and the app will prompt you to text me: bug reports, feature improvements, like a joke, whatever.\n\nI do plan to keep working on this app and it (hopefully) will be 100% stable by the end of school year along with a ton of other features (like being able to see all your assignments and adding support for other schools that use Mistar)\n\nThe app is open sourced, contact me for more information."
+                                                        message:@"Our team will be providing extensive support: bug reports, feature improvements, like a joke, whatever.\n\nWe  plan to keep working on this app and it will (hopefully) be 100% stable and out of beta by the end of school year. We'll be adding a ton of other features, like being able to see all your assignments and adding support for other schools that use Mistar\n\nThe app is open sourced, contact me for more information."
                                                        delegate:self
                                               cancelButtonTitle:@"Dismiss"
                                               otherButtonTitles:@"Never show again", @"Text Andrew", nil];
@@ -121,10 +121,8 @@
     NSLog(@"User State UIAlert triggered");
     
     if (self.loggedIn) {
-        NSLog(@"log out here");
-        [self writeToTextFileWithContent:@"0"];
-        [self writeDictToFileWithContent:[[NSDictionary alloc] init]];
-        [self.tableView reloadData];
+        UIAlertView *logoutAlert = [[UIAlertView alloc] initWithTitle:@"Log out?" message:@"This will also quit the app" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Logout", nil];
+        [logoutAlert show];
         NSLog(@"%@", [self displayContent]);
     } else {
         // Login Alert
@@ -194,7 +192,11 @@
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
     
-    if ([title isEqualToString:@"Quit"]) {
+    if ([title isEqualToString:@"Logout"]) {
+        NSLog(@"log out here");
+        [self writeToTextFileWithContent:@"0"];
+        [self writeDictToFileWithContent:[[NSDictionary alloc] init]];
+        [self.tableView reloadData];
         exit(0);
     }
 }
@@ -205,6 +207,7 @@
 }
 
 - (void)loginFailedAlertView {
+    [SVProgressHUD dismiss];
     UIAlertView *loginFailed = [[UIAlertView alloc] initWithTitle:@"Login Failed" message:@"Couldn't log in, check your usernamame and password. If you seem to be having problems with the app, text me and I'll try help" delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:@"Contact Developer", nil];
         [loginFailed show];
     return;
@@ -341,7 +344,11 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return MAX(6,[[[self readFromDict] objectForKey:@"grades"] count]) + 1;
+    if ([[[self readFromDict] objectForKey:@"grades"] count]) {
+        return [[[self readFromDict] objectForKey:@"grades"] count] + 1;
+    } else {
+        return 7;
+    }
     
 }
 
@@ -426,11 +433,17 @@
             cell.detailTextLabel.lineBreakMode = NSLineBreakByWordWrapping;
             cell.detailTextLabel.textAlignment = NSTextAlignmentCenter;
             if ([grades objectAtIndex:(NSUInteger)row] && [grades objectAtIndex:(NSUInteger)row]) {
-                cell.detailTextLabel.text = [NSString stringWithFormat:@"%@       \n %@", [[grades objectAtIndex:(NSUInteger)row] objectForKey:@"grade"], [[grades objectAtIndex:(NSUInteger)row] objectForKey:@"percents"]];
+                NSString *letterGrade = [[grades objectAtIndex:(NSUInteger)row] objectForKey:@"grade"];
+                NSString *percentGrade = [[grades objectAtIndex:(NSUInteger)row] objectForKey:@"percents"];
+                
+                cell.detailTextLabel.text = [NSString stringWithFormat:@"%@     \n%@", letterGrade, percentGrade];
+                //[cell.detailTextLabel sizeToFit];
+                
+                if ([percentGrade isEqualToString:@" "] || [percentGrade isEqualToString:@""]) {
+                    NSLog(@"righted %@.", cell.detailTextLabel.text);
+                }
             }
-            [cell.detailTextLabel sizeToFit];
         }
-        cell.textLabel.numberOfLines = 1;
         return cell;
     }
 }
@@ -439,9 +452,10 @@
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.row != 0) {
+        UITableViewCell *selectedCell = [tableView cellForRowAtIndexPath:indexPath];
         MAProgressReportViewController *progressReport = [[MAProgressReportViewController alloc] init];
                 //the popover will be presented from the  view
-        NSLog(@"Opened progress report");
+        NSLog(@"Opened progress report with class name %@, number %ld", selectedCell.textLabel.text, (long)indexPath.row);
     }
 }
 
@@ -518,22 +532,17 @@
 }
 
 - (NSArray *)loginToMistarWithPin:(NSString *)pin password:(NSString *)password {
+    [[NSURLCache sharedURLCache] removeAllCachedResponses];
     NSLog(@"logging in");
     _cancel = false;
     __block NSDictionary *myDictResult = nil; //set Returner
     
     NSString *districtURL = [[NSString alloc] init];
-    
-    __block HTProgressHUD *progressHUD = [[HTProgressHUD alloc] init];
-    progressHUD.animation = HTProgressHUDAnimationTypeShowing;
-    progressHUD.indicatorView = [HTProgressHUDIndicatorView indicatorViewWithType:HTProgressHUDIndicatorTypeRing];
-    progressHUD.backgroundColor = [UIColor clearColor];
-    
-    [progressHUD showInView:self.view animated:YES];
-    [progressHUD hideWithAnimation:YES];
+    [SVProgressHUD show];
     
     //Create and send request
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://mistar.oakland.k12.mi.us/novi/StudentPortal/Home/Login"]];
+    [request setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
     
     [request setHTTPMethod:@"POST"];
     
@@ -566,7 +575,10 @@
                 if (!_cancel) {
                     ///////////
                     NSMutableURLRequest *requestHome = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://mistar.oakland.k12.mi.us/novi/StudentPortal/Home/PortalMainPage"]];
-                    [requestHome setHTTPMethod:@"GET"];            [NSURLConnection sendAsynchronousRequest:requestHome queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *homeResponse, NSData *homeData, NSError *homeError) {
+                    [requestHome setHTTPMethod:@"GET"];
+                    [requestHome setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
+                    
+                    [NSURLConnection sendAsynchronousRequest:requestHome queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *homeResponse, NSData *homeData, NSError *homeError) {
                         // do whatever with the data...and errors
                         if ([homeData length] > 0 && homeError == nil) {
                             NSString *homepageString = [[NSString alloc] initWithData:homeData encoding:NSUTF8StringEncoding];
@@ -574,11 +586,8 @@
                             NSError *error = nil;
                             NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:regexStr options:0 error:&error];
                             
-                            NSString *zangleLog = [[NSString alloc] initWithData:homeData encoding:NSUTF8StringEncoding];
-                            NSLog(@"mistar data:%@", zangleLog);
-                            
                             __block NSString *myResult = nil; //Instanciate returner
-                            
+                            NSString *userID;
                             //Enumerate all matches
                             if (!((regex==nil) && (error!=nil))){
                                 [regex enumerateMatchesInString:homepageString
@@ -601,16 +610,46 @@
                                 myResult = [myResult substringWithRange:NSMakeRange(8, [myResult length] - 1 - 3 - 8)];
                                 self.userNAME = myResult;
                                 [self writeNameToFileWithContent:myResult];
+                                
+                                
+                                //Create a regular expression
+                                NSString *regexStr = @"tr id=\"[0-9]*\"";
+                                NSError *error = nil;
+                                NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:regexStr options:0 error:&error];
+                                
+                                __block NSString *myResult = nil; //Instanciate returner
+                                
+                                //Enumerate all matches
+                                if ((regex==nil) && (error!=nil)){} else {
+                                    [regex enumerateMatchesInString:homepageString
+                                                            options:0
+                                                              range:NSMakeRange(0, [homepageString length])
+                                                         usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop){
+                                                             if (result!=nil){
+                                                                 //Iterate ranges
+                                                                 for (int i=0; i<[result numberOfRanges]; i++) {
+                                                                     NSRange range = [result rangeAtIndex:i];
+                                                                     myResult = [homepageString substringWithRange:range];
+                                                                     *stop = YES;
+                                                                 }
+                                                             } else {
+                                                                 myResult = @"Regex failed";
+                                                                 *stop = YES;
+                                                             }
+                                                         }];
+                                }
+                                NSString *regexedString = myResult;
+                                userID = [self onlyNumbersRegex:regexedString];
+                                NSLog(@"UserID is %@", userID);
                             }
                             
-                            NSString *regexedString = [self userIDRegex:[[NSString alloc] initWithData:homeData encoding:NSUTF8StringEncoding ]];
-                            NSString *userID = [self onlyNumbersRegex:regexedString];
-                            NSLog(@"UserID is %@", userID);
+                            
                             
                             if (userID) {
                                 // Request AJAX from mistar
                                 NSMutableURLRequest *setStudentID = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://mistar.oakland.k12.mi.us/novi/StudentPortal/StudentBanner/SetStudentBanner/%@" , userID]]];
                                 [setStudentID setHTTPMethod:@"GET"];
+                                [setStudentID setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
                                 
                                 [NSURLConnection sendAsynchronousRequest:setStudentID queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *studentIDResponse, NSData *studentIDData, NSError *studentIDError) {
                                     
@@ -618,8 +657,9 @@
                                     if ([studentIDData length] > 0 && studentIDError == nil) {
                                         //Get gradePage
                                         
-                                        NSMutableURLRequest *requestGrades = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://mistar.oakland.k12.mi.us/novi/StudentPortal/Home/LoadProfileData/Assignments"]]; // Need to AJAXLoad this number (or something, idk)
+                                        NSMutableURLRequest *requestGrades = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://mistar.oakland.k12.mi.us/novi/StudentPortal/Home/LoadProfileData/Assignments"]];
                                         [requestGrades setHTTPMethod:@"GET"];
+                                        [requestGrades setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
                                         [NSURLConnection sendAsynchronousRequest:requestGrades queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *gradeResponse, NSData *gradeData, NSError *gradeError) {
                                             
                                             if ([gradeData length] > 0 && gradeError == nil) {
@@ -632,6 +672,18 @@
                                                 [self writeToTextFileWithContent:[NSString stringWithFormat:@"1 %@ %@", pin, password]];
                                                 [self viewDidLoad];
                                                 
+                                                NSMutableURLRequest *logout = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://mistar.oakland.k12.mi.us/novi/StudentPortal/Home/Logout"]];
+                                                [logout setHTTPMethod:@"GET"];
+                                                [logout setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
+                                                [NSURLConnection sendAsynchronousRequest:requestGrades queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *logoutResponse, NSData *logoutData, NSError *logoutError) {
+                                                
+                                                    if (logoutError == nil) {
+                                                        [SVProgressHUD dismiss];
+                                                        NSLog(@"loggedout");
+                                                    } else {
+                                                        NSLog(@"logout failed");
+                                                    }
+                                                }];
                                                 
                                             } else {
                                                 NSLog(@"grade Error = %@", gradeError);
@@ -687,39 +739,6 @@
                                      for (int i=0; i<[result numberOfRanges]; i++) {
                                          NSRange range = [result rangeAtIndex:i];
                                          //NSLog(@"%ld,%ld group #%d %@", range.location, range.length, i, (range.length==0 ? @"--" : [string substringWithRange:range]));
-                                         myResult = [string substringWithRange:range];
-                                         *stop = YES;
-                                     }
-                                 } else {
-                                     myResult = @"Regex failed";
-                                     *stop = YES;
-                                 }
-                             }];
-    }
-    return myResult;
-}
-
-- (NSString *)userIDRegex:(NSString *)string {
-    
-    //Create a regular expression
-    NSString *regexStr = @"tr id=\"[0-9]*\"";
-    NSError *error = nil;
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:regexStr options:0 error:&error];
-    
-    __block NSString *myResult = nil; //Instanciate returner
-    
-    //Enumerate all matches
-    if ((regex==nil) && (error!=nil)){
-        return [NSString stringWithFormat:@"Regex failed for url: %@, error was: %@", string, error];
-    } else {
-        [regex enumerateMatchesInString:string
-                                options:0
-                                  range:NSMakeRange(0, [string length])
-                             usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop){
-                                 if (result!=nil){
-                                     //Iterate ranges
-                                     for (int i=0; i<[result numberOfRanges]; i++) {
-                                         NSRange range = [result rangeAtIndex:i];
                                          myResult = [string substringWithRange:range];
                                          *stop = YES;
                                      }

@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "4623559018FFF12A00D67CC5"
-               BuildableName = "mistar-with-storyboard.app"
+               BuildableName = "Zangle.app"
                BlueprintName = "mistar-with-storyboard"
                ReferencedContainer = "container:mistar-with-storyboard.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "462355B118FFF12B00D67CC5"
-               BuildableName = "mistar-with-storyboardTests.xctest"
+               BuildableName = "ZangleTests.xctest"
                BlueprintName = "mistar-with-storyboardTests"
                ReferencedContainer = "container:mistar-with-storyboard.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4623559018FFF12A00D67CC5"
-            BuildableName = "mistar-with-storyboard.app"
+            BuildableName = "Zangle.app"
             BlueprintName = "mistar-with-storyboard"
             ReferencedContainer = "container:mistar-with-storyboard.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4623559018FFF12A00D67CC5"
-            BuildableName = "mistar-with-storyboard.app"
+            BuildableName = "Zangle.app"
             BlueprintName = "mistar-with-storyboard"
             ReferencedContainer = "container:mistar-with-storyboard.xcodeproj">
          </BuildableReference>
@@ -80,7 +80,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4623559018FFF12A00D67CC5"
-            BuildableName = "mistar-with-storyboard.app"
+            BuildableName = "Zangle.app"
             BlueprintName = "mistar-with-storyboard"
             ReferencedContainer = "container:mistar-with-storyboard.xcodeproj">
          </BuildableReference>

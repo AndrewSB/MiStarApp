@@ -15,6 +15,7 @@
     NSArray *classArray = [self getClassesWithData:data];
     NSArray *teacherArray = [self getTeachersWithData:data];
     NSArray *gradeArray = [self getGradesWithData:data];
+    NSArray *assignmentArray = [self getAssignmentsWithData:data];
     
     NSMutableArray *percentArray = [[NSMutableArray alloc] init];
     for (NSString *str in classes) {
@@ -122,12 +123,17 @@
     NSString *xPathQuery = @"//tr/td[@valign=\"top\"]";
     NSArray *test = [tfhpple searchWithXPathQuery:xPathQuery];
     
+    for (TFHppleElement *item in test) {
+        NSLog(@"item matched as assignment:%@", item.text);
+    }
+
+    
     return test;
 }
 
 - (NSArray *)getGradesWithData:(NSData *)data {
     NSString *searchString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    NSString *regexStr = @"(<\\/b>[A-F][+| |-]|<\\/b>[A-F][+| |-] \\(\\d\\d\\.\\d%\\))";
+    NSString *regexStr = @"(<\/b>[ABCDEF]){1}[ +-]?[^A]";
     NSError *error = nil;
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:regexStr options:0 error:&error];
     
@@ -137,6 +143,13 @@
     for (NSTextCheckingResult *match in matches) {
         NSString* matchText = [searchString substringWithRange:[match range]];
         matchText = [matchText substringFromIndex:4];
+        
+        if (!([matchText characterAtIndex:1] == '+' || [matchText characterAtIndex:1] == '-')) {
+            matchText = [matchText substringToIndex:1];
+        } else if (!([matchText characterAtIndex:2] == '+' || [matchText characterAtIndex:2] == '-')) {
+            matchText = [matchText substringToIndex:2];
+        }
+        
         [returnerMatches addObject:matchText];
     }
     
@@ -146,7 +159,7 @@
 - (NSString *)getPercentageFromClassString:(NSString *)string {
     NSString *percentage;
     
-    NSString *regexStr = @"\([0-9][0-9]\.[0-9]%\)";
+    NSString *regexStr = @"\\(\\d\\d\\.\\d\\%\\)";
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:regexStr options:0 error:nil];
     NSArray *matches = [regex matchesInString:string options:0 range:(NSRange){0, [string length]}];
     
@@ -154,7 +167,7 @@
         NSString *matchText = [string substringWithRange:[match range]];
         NSLog(@"matchtext %@", matchText);
         if (matchText) {
-            return matchText;
+            return [matchText substringWithRange:NSMakeRange(1, 5)];
         } else {
             return nil;
         }
