@@ -12,21 +12,37 @@
 		<data>
 		RQGaIN7xh7VRb0OityF8J5lfIB8=
 		</data>
+		<key>AppIcon57x57.png</key>
+		<data>
+		qvVOixMax6+aJhTY9isqJsRQu2k=
+		</data>
+		<key>AppIcon57x57@2x.png</key>
+		<data>
+		VZ7yuXswCGIDFJEP6NcAdrO1pfw=
+		</data>
 		<key>AppIcon60x60@2x.png</key>
 		<data>
 		fqSJPMMrnLuVCA7bDBnVZPBqAoQ=
 		</data>
-		<key>Assets.car</key>
+		<key>Base.lproj/Main.storyboardc/UIViewController-ZJf-Yi-cbb.nib/objects.nib</key>
 		<data>
-		oUlbhJhTRe6vz/6mmBLlLrxukwU=
+		ys8trfvLTzlVz91xhTPMZmAoc54=
 		</data>
-		<key>Base.lproj/Main.storyboardc/UIViewController-ZJf-Yi-cbb.nib</key>
+		<key>Base.lproj/Main.storyboardc/UIViewController-ZJf-Yi-cbb.nib/runtime.nib</key>
 		<data>
-		HAIUvGL7laTA7UIx18T937bRouM=
+		EnTusTDi2dV2Z1dBhphAOo2OXIk=
 		</data>
-		<key>Base.lproj/Main.storyboardc/vXZ-lx-hvc-view-kh9-bI-dsS.nib</key>
+		<key>Base.lproj/Main.storyboardc/vXZ-lx-hvc-view-kh9-bI-dsS.nib/objects.nib</key>
 		<data>
-		rSXsL5Wq5+cZRm0KFBNPLJl7UWo=
+		puVw574u0VEkMVtNxanaJDtwTc8=
+		</data>
+		<key>Base.lproj/Main.storyboardc/vXZ-lx-hvc-view-kh9-bI-dsS.nib/runtime.nib</key>
+		<data>
+		puVw574u0VEkMVtNxanaJDtwTc8=
+		</data>
+		<key>LaunchImage-568h@2x.png</key>
+		<data>
+		V1VdV48TyrImURVWCaose9yz87E=
 		</data>
 		<key>LaunchImage-700-568h@2x.png</key>
 		<data>
@@ -150,7 +166,7 @@
 		</data>
 		<key>embedded.mobileprovision</key>
 		<data>
-		eYqA1EhlO1mWT8L779KfhdZFVsU=
+		DoZxW8zQ30QKjqWVjSAZPz5ujTU=
 		</data>
 		<key>en.lproj/InfoPlist.strings</key>
 		<data>
@@ -267,21 +283,37 @@
 		<data>
 		RQGaIN7xh7VRb0OityF8J5lfIB8=
 		</data>
+		<key>AppIcon57x57.png</key>
+		<data>
+		qvVOixMax6+aJhTY9isqJsRQu2k=
+		</data>
+		<key>AppIcon57x57@2x.png</key>
+		<data>
+		VZ7yuXswCGIDFJEP6NcAdrO1pfw=
+		</data>
 		<key>AppIcon60x60@2x.png</key>
 		<data>
 		fqSJPMMrnLuVCA7bDBnVZPBqAoQ=
 		</data>
-		<key>Assets.car</key>
+		<key>Base.lproj/Main.storyboardc/UIViewController-ZJf-Yi-cbb.nib/objects.nib</key>
 		<data>
-		oUlbhJhTRe6vz/6mmBLlLrxukwU=
+		ys8trfvLTzlVz91xhTPMZmAoc54=
 		</data>
-		<key>Base.lproj/Main.storyboardc/UIViewController-ZJf-Yi-cbb.nib</key>
+		<key>Base.lproj/Main.storyboardc/UIViewController-ZJf-Yi-cbb.nib/runtime.nib</key>
 		<data>
-		HAIUvGL7laTA7UIx18T937bRouM=
+		EnTusTDi2dV2Z1dBhphAOo2OXIk=
 		</data>
-		<key>Base.lproj/Main.storyboardc/vXZ-lx-hvc-view-kh9-bI-dsS.nib</key>
+		<key>Base.lproj/Main.storyboardc/vXZ-lx-hvc-view-kh9-bI-dsS.nib/objects.nib</key>
 		<data>
-		rSXsL5Wq5+cZRm0KFBNPLJl7UWo=
+		puVw574u0VEkMVtNxanaJDtwTc8=
+		</data>
+		<key>Base.lproj/Main.storyboardc/vXZ-lx-hvc-view-kh9-bI-dsS.nib/runtime.nib</key>
+		<data>
+		puVw574u0VEkMVtNxanaJDtwTc8=
+		</data>
+		<key>LaunchImage-568h@2x.png</key>
+		<data>
+		V1VdV48TyrImURVWCaose9yz87E=
 		</data>
 		<key>LaunchImage-700-568h@2x.png</key>
 		<data>
@@ -405,7 +437,7 @@
 		</data>
 		<key>embedded.mobileprovision</key>
 		<data>
-		eYqA1EhlO1mWT8L779KfhdZFVsU=
+		DoZxW8zQ30QKjqWVjSAZPz5ujTU=
 		</data>
 		<key>en.lproj/InfoPlist.strings</key>
 		<data>
