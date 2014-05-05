@@ -35,7 +35,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSLog(@"eyyyy im here");
+    //NSLog(@"eyyyy im here");
     [[NSUserDefaults standardUserDefaults] synchronize];
     
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"]) {
@@ -43,7 +43,7 @@
     }
     else {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"This app is in BETA"
-                                                        message:@"Our team will be providing extensive support: bug reports, feature improvements, like a joke, whatever.\n\nWe  plan to keep working on this app and it will (hopefully) be 100% stable and out of beta by the end of school year. We'll be adding a ton of other features, like being able to see all your assignments and adding support for other schools that use Mistar\n\nThe app is open sourced, contact me for more information."
+                                                        message:@"Our team will be providing extensive support, send us anything: bug reports, feature improvements, like a joke, whatever.\n\nWe  plan to keep working on this app and have it 100% stable and out of beta by the end of this school year. We'll be adding a ton of other features, like being able to see all your assignments and adding support for other schools that use Mistar as soon as we can.\n\nThe app is open sourced, contact me for more information."
                                                        delegate:self
                                               cancelButtonTitle:@"Dismiss"
                                               otherButtonTitles:@"Never show again", @"Text Andrew", nil];
@@ -55,7 +55,7 @@
     
     self.loggedIn = [[self displayContent] boolValue];
     
-    NSLog(@"login status: %d", self.loggedIn);
+    //NSLog(@"login status: %d", self.loggedIn);
     
     [self.navigationController setNavigationBarHidden:YES];
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
@@ -118,12 +118,12 @@
 #pragma mark - UIAlert methods
 
 - (void)userStateButtonWasPressed {
-    NSLog(@"User State UIAlert triggered");
+    //NSLog(@"User State UIAlert triggered");
     
     if (self.loggedIn) {
         UIAlertView *logoutAlert = [[UIAlertView alloc] initWithTitle:@"Log out?" message:@"This will also quit the app" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Logout", nil];
         [logoutAlert show];
-        NSLog(@"%@", [self displayContent]);
+        //NSLog(@"%@", [self displayContent]);
     } else {
         // Login Alert
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Login To Zangle"
@@ -149,21 +149,40 @@
     NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
     
     if ([title isEqualToString:@"Cancel"]) {
-        NSLog(@"Client canceled");
+        //NSLog(@"Client canceled");
     } else if ([title isEqualToString:@"Continue"]) {
         NSString *userPin = [alertView textFieldAtIndex:0].text;
         NSString *userPassword = [alertView textFieldAtIndex:1].text;
-        NSLog(@"from vc Client is: %@ with credential: %@", userPin, userPassword);
+        //NSLog(@"from vc Client is: %@ with credential: %@", userPin, userPassword);
         [self writeDictToFileWithContent:[[NSDictionary alloc] init]];
-        [self loginToMistarWithPin:userPin password:userPassword];
+        
+        //Easter egg and test account
+        if ([userPin isEqualToString:@"6969"]) {
+            
+            NSArray *classes = [[NSArray alloc] initWithObjects:@"Math", @"English", @"History", @"Social Studies", @"Science", @"Language", nil];
+            NSArray *grades = [[NSArray alloc] initWithObjects:[[NSDictionary alloc] initWithObjectsAndKeys:@"A", @"grade", @"94.4%", @"percents", nil], [[NSDictionary alloc] initWithObjectsAndKeys:@"A-", @"grade", @"91.4%", @"percents", nil], [[NSDictionary alloc] initWithObjectsAndKeys:@"A+", @"grade", @"99.4%", @"percents", nil], [[NSDictionary alloc] initWithObjectsAndKeys:@"B+", @"grade", @"89.4%", @"percents", nil], [[NSDictionary alloc] initWithObjectsAndKeys:@"A", @"grade", @"96.4%", @"percents", nil], [[NSDictionary alloc] initWithObjectsAndKeys:@"A", @"grade", @"97.2%", @"percents", nil], nil];
+            
+            NSArray *teachers = [[NSArray alloc] initWithObjects:[[NSDictionary alloc] initWithObjectsAndKeys:@"A", @"Name", @"91.4%", @"Email", nil], nil];
+            
+            NSDictionary *easterEggDict = [[NSDictionary alloc] initWithObjectsAndKeys:classes, @"classes", grades, @"grades", teachers, @"teachers", nil];
+            
+            
+            [self writeDictToFileWithContent:easterEggDict];
+            [self writeToTextFileWithContent:[NSString stringWithFormat:@"1"]];
+            [self viewDidLoad];
+            self.userNAME = @"John Appleseed";
+            [self writeNameToFileWithContent:self.userNAME];
+        } else {
+            [self loginToMistarWithPin:userPin password:userPassword];
+        }
         
         
-        NSLog(@"returnpoint");
-;       NSLog(@"gradeCliented");
+        //NSLog(@"returnpoint");
+;       //NSLog(@"gradeCliented");
     }
     
     if ([title isEqualToString:@"Text Andrew"] || [title isEqualToString:@"Message Andrew"] || [title isEqualToString:@"Contact Developer"]) {
-        NSLog(@"Text Andrew hit");
+        //NSLog(@"Text Andrew hit");
         if ([MFMessageComposeViewController canSendText])
         {
             MFMessageComposeViewController *picker = [[MFMessageComposeViewController alloc] init];
@@ -193,7 +212,7 @@
     }
     
     if ([title isEqualToString:@"Logout"]) {
-        NSLog(@"log out here");
+        //NSLog(@"log out here");
         [self writeToTextFileWithContent:@"0"];
         [self writeDictToFileWithContent:[[NSDictionary alloc] init]];
         [self.tableView reloadData];
@@ -202,12 +221,14 @@
 }
 
 - (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result {
-    NSLog(@"Dismissing SMS view");
+    //NSLog(@"Dismissing SMS view");
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
 - (void)loginFailedAlertView {
     [SVProgressHUD dismiss];
+    [self writeToTextFileWithContent:@"0"];
+    self.loggedIn = NO;
     UIAlertView *loginFailed = [[UIAlertView alloc] initWithTitle:@"Login Failed" message:@"Couldn't log in, check your usernamame and password. If you seem to be having problems with the app, text me and I'll try help" delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:@"Contact Developer", nil];
         [loginFailed show];
     return;
@@ -258,7 +279,7 @@
                                                            error:nil];
     
     if (content == nil) {
-        NSLog(@"content was nil");
+        //NSLog(@"content was nil");
         return nil;
     }
     NSMutableArray *arr = [[NSMutableArray alloc] init];
@@ -270,7 +291,7 @@
         NSRange range = [content rangeOfString:toFind options:0 range:searchRange];
         if (range.location != NSNotFound) {
             // If found, range contains the range of the current iteration
-            NSLog(@"found %@", [content substringWithRange:range]);
+            //NSLog(@"found %@", [content substringWithRange:range]);
             
             [arr addObject:[NSNumber numberWithInt:(int)range.location]];
             
@@ -289,7 +310,7 @@
     [arr removeLastObject];
     
     for (NSString *strn in arr) {
-        NSLog(@"aaa%@", strn);
+        //NSLog(@"aaa%@", strn);
     }
     
     return [arr mutableCopy];
@@ -440,7 +461,7 @@
                 //[cell.detailTextLabel sizeToFit];
                 
                 if ([percentGrade isEqualToString:@" "] || [percentGrade isEqualToString:@""]) {
-                    NSLog(@"righted %@.", cell.detailTextLabel.text);
+                    //NSLog(@"righted %@.", cell.detailTextLabel.text);
                 }
             }
         }
@@ -455,7 +476,7 @@
         UITableViewCell *selectedCell = [tableView cellForRowAtIndexPath:indexPath];
         //MAProgressReportViewController *progressReport = [[MAProgressReportViewController alloc] init];
                 //the popover will be presented from the  view
-        NSLog(@"Opened progress report with class name %@, number %ld", selectedCell.textLabel.text, (long)indexPath.row);
+        //NSLog(@"Opened progress report with class name %@, number %ld", selectedCell.textLabel.text, (long)indexPath.row);
     }
 }
 
@@ -533,7 +554,7 @@
 
 - (NSDictionary *)loginToMistarWithPin:(NSString *)pin password:(NSString *)password {
     [[NSURLCache sharedURLCache] removeAllCachedResponses];
-    NSLog(@"logging in");
+    //NSLog(@"logging in");
     _cancel = false;
     __block NSDictionary *myDictResult = nil; //set Returner
     [SVProgressHUD show];
@@ -557,16 +578,16 @@
             NSDictionary *responseJSON = [NSJSONSerialization JSONObjectWithData:data options:0 error:&parseError];
             NSString *loggedInPage = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
             if (responseJSON) {
-                NSLog(@"Returned as JSON, Good. %@", loggedInPage);
+                //NSLog(@"Returned as JSON, Good. %@", loggedInPage);
                 
             } else {;
-                NSLog(@"Response was not JSON (from login), it was = %@", loggedInPage);
+                //NSLog(@"Response was not JSON (from login), it was = %@", loggedInPage);
             }
             
             if (![loggedInPage  isEqual:@"{\"msg\":\"\",\"valid\":\"1\"}"]) {
-                NSLog(@"Mistar login error, returning NO");
+                //NSLog(@"Mistar login error, returning NO");
                 _cancel = true;
-                NSLog(@"call login error here");
+                //NSLog(@"call login error here");
                 [self loginFailedAlertView];
             } else {
                 
@@ -638,7 +659,7 @@
                                 }
                                 NSString *regexedString = myResult;
                                 userID = [self onlyNumbersRegex:regexedString];
-                                NSLog(@"UserID is %@", userID);
+                                //NSLog(@"UserID is %@", userID);
                             }
                             
                             
@@ -661,10 +682,10 @@
                                         [NSURLConnection sendAsynchronousRequest:requestGrades queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *gradeResponse, NSData *gradeData, NSError *gradeError) {
                                             
                                             if ([gradeData length] > 0 && gradeError == nil) {
-                                                NSLog(@"the html%@",[[NSString alloc] initWithData:gradeData encoding:NSUTF8StringEncoding]);
+                                                //NSLog(@"the html%@",[[NSString alloc] initWithData:gradeData encoding:NSUTF8StringEncoding]);
                                                 MAGradeParser *gradeParser = [[MAGradeParser alloc] init];
                                                 myDictResult = [gradeParser parseWithData:gradeData];
-                                                NSLog(@"after myResult");
+                                                //NSLog(@"after myResult");
                                                 NSLog(@"mydicktresult: %@", myDictResult);
                                                 [self writeDictToFileWithContent:myDictResult];
                                                 [self writeToTextFileWithContent:[NSString stringWithFormat:@"1 %@ %@", pin, password]];
@@ -677,32 +698,32 @@
                                                 
                                                     if (logoutError == nil) {
                                                         [SVProgressHUD dismiss];
-                                                        NSLog(@"loggedout");
+                                                        //NSLog(@"loggedout");
                                                     } else {
-                                                        NSLog(@"logout failed");
+                                                        //NSLog(@"logout failed");
                                                     }
                                                 }];
                                                 
                                             } else {
-                                                NSLog(@"grade Error = %@", gradeError);
+                                                //NSLog(@"grade Error = %@", gradeError);
                                             }
                                         }];
                                     } else {
-                                        NSLog(@"Error setting studentID = %@", studentIDError);
+                                        //NSLog(@"Error setting studentID = %@", studentIDError);
                                     }
                                 }];
                             } else {
-                                NSLog(@"Error: parse error = %@", homeError);
+                                //NSLog(@"Error: parse error = %@", homeError);
                             }
                         } else {
-                            NSLog(@"error: home error: %@", homeError);
+                            //NSLog(@"error: home error: %@", homeError);
                         }
                     }];
                     ///////
                 }
             }
         } else {
-            NSLog(@"Couldn't log in");
+            //NSLog(@"Couldn't log in");
             [self loginFailedAlertView];
         }
     }];
@@ -736,7 +757,7 @@
                                      //Iterate ranges
                                      for (int i=0; i<[result numberOfRanges]; i++) {
                                          NSRange range = [result rangeAtIndex:i];
-                                         //NSLog(@"%ld,%ld group #%d %@", range.location, range.length, i, (range.length==0 ? @"--" : [string substringWithRange:range]));
+                                         ////NSLog(@"%ld,%ld group #%d %@", range.location, range.length, i, (range.length==0 ? @"--" : [string substringWithRange:range]));
                                          myResult = [string substringWithRange:range];
                                          *stop = YES;
                                      }

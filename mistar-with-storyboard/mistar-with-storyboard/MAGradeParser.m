@@ -25,12 +25,12 @@
         if (!percent) {
             percent = @" ";
         }
-        NSLog(@"percent: %@", percent);
+        //NSLog(@"percent: %@", percent);
         [percentArray addObject:percent];
     }
     
     NSArray *gradesAndPercents = [self getGradesAndPercentsFromGrades:gradeArray andPercents:percentArray];
-    NSLog(@"grades and percents: %@", gradesAndPercents);
+    //NSLog(@"grades and percents: %@", gradesAndPercents);
     
     NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:classArray, @"classes",
                           teacherArray, @"teachers",
@@ -73,7 +73,7 @@
             if ([rangeString rangeOfString:@"Academic Adviso"].location == NSNotFound) {
                 [classArray addObject:rangeString];
             } else {
-                NSLog(@"disinclude AA");
+                //NSLog(@"disinclude AA");
             }
             
         } else {
@@ -124,7 +124,7 @@
     NSArray *test = [tfhpple searchWithXPathQuery:xPathQuery];
     
     for (TFHppleElement *item in test) {
-        NSLog(@"item matched as assignment:%@", item.text);
+        //NSLog(@"item matched as assignment:%@", item.text);
     }
 
     
@@ -163,7 +163,7 @@
     
     for (NSTextCheckingResult *match in matches) {
         NSString *matchText = [string substringWithRange:[match range]];
-        NSLog(@"matchtext %@", matchText);
+        //NSLog(@"matchtext %@", matchText);
         if (matchText) {
             return [matchText substringWithRange:NSMakeRange(1, 5)];
         } else {
@@ -182,7 +182,7 @@
 - (NSArray *)getGradesAndPercentsFromGrades:(NSArray *)grades andPercents:(NSArray *)percents {
     NSMutableArray *gradePercentArray = [[NSMutableArray alloc] init];
     
-    NSLog(@"The two arrays are: %@\n and %@", grades, percents);
+    //NSLog(@"The two arrays are: %@\n and %@", grades, percents);
     
     int i = 0;
     NSMutableDictionary *dictForGradesAndPercents = [[NSMutableDictionary alloc] init];
