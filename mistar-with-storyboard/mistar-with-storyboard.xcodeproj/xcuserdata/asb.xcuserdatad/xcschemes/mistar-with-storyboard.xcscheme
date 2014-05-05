@@ -33,7 +33,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "462355B118FFF12B00D67CC5"
-               BuildableName = "ZangleTests.xctest"
+               BuildableName = "mistar-with-storyboardTests.xctest"
                BlueprintName = "mistar-with-storyboardTests"
                ReferencedContainer = "container:mistar-with-storyboard.xcodeproj">
             </BuildableReference>

@@ -102,7 +102,7 @@
 
 - (NSArray *)getClassesWithData:(NSData *)data {
     TFHpple *tfhpple = [[TFHpple alloc] initWithData:data isXML:NO];
-    NSString *xPathQuery = @"//td/\/b";
+    NSString *xPathQuery = @"//td//b";
     NSArray *test = [tfhpple searchWithXPathQuery:xPathQuery];
     
     NSMutableArray *optimizedTest = [[NSMutableArray alloc] init];
@@ -133,7 +133,7 @@
 
 - (NSArray *)getGradesWithData:(NSData *)data {
     NSString *searchString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    NSString *regexStr = @"(<\/b>[ABCDEF]){1}[ +-]?[^A]";
+    NSString *regexStr = @"(</b>[ABCDEF]){1}[ +-]?[^A]";
     NSError *error = nil;
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:regexStr options:0 error:&error];
     
@@ -157,8 +157,6 @@
 }
 
 - (NSString *)getPercentageFromClassString:(NSString *)string {
-    NSString *percentage;
-    
     NSString *regexStr = @"\\(\\d\\d\\.\\d\\%\\)";
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:regexStr options:0 error:nil];
     NSArray *matches = [regex matchesInString:string options:0 range:(NSRange){0, [string length]}];

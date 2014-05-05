@@ -453,7 +453,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.row != 0) {
         UITableViewCell *selectedCell = [tableView cellForRowAtIndexPath:indexPath];
-        MAProgressReportViewController *progressReport = [[MAProgressReportViewController alloc] init];
+        //MAProgressReportViewController *progressReport = [[MAProgressReportViewController alloc] init];
                 //the popover will be presented from the  view
         NSLog(@"Opened progress report with class name %@, number %ld", selectedCell.textLabel.text, (long)indexPath.row);
     }
@@ -531,13 +531,11 @@
     return [result stringByReplacingOccurrencesOfString:@" " withString:@"+"];
 }
 
-- (NSArray *)loginToMistarWithPin:(NSString *)pin password:(NSString *)password {
+- (NSDictionary *)loginToMistarWithPin:(NSString *)pin password:(NSString *)password {
     [[NSURLCache sharedURLCache] removeAllCachedResponses];
     NSLog(@"logging in");
     _cancel = false;
     __block NSDictionary *myDictResult = nil; //set Returner
-    
-    NSString *districtURL = [[NSString alloc] init];
     [SVProgressHUD show];
     
     //Create and send request
