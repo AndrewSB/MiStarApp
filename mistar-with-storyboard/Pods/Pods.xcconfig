@@ -1,5 +1,5 @@
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers" "${PODS_ROOT}/Headers/HexColors" "${PODS_ROOT}/Headers/LBBlurredImage" "${PODS_ROOT}/Headers/MZAppearance" "${PODS_ROOT}/Headers/MZFormSheetController" "${PODS_ROOT}/Headers/QBFlatButton" "${PODS_ROOT}/Headers/SVProgressHUD" "${PODS_ROOT}/Headers/Shimmer" "${PODS_ROOT}/Headers/TSMessages"
-OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers" -isystem "${PODS_ROOT}/Headers/HexColors" -isystem "${PODS_ROOT}/Headers/LBBlurredImage" -isystem "${PODS_ROOT}/Headers/MZAppearance" -isystem "${PODS_ROOT}/Headers/MZFormSheetController" -isystem "${PODS_ROOT}/Headers/QBFlatButton" -isystem "${PODS_ROOT}/Headers/SVProgressHUD" -isystem "${PODS_ROOT}/Headers/Shimmer" -isystem "${PODS_ROOT}/Headers/TSMessages"
+HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers" "${PODS_ROOT}/Headers/LBBlurredImage" "${PODS_ROOT}/Headers/MZAppearance" "${PODS_ROOT}/Headers/MZFormSheetController" "${PODS_ROOT}/Headers/QBFlatButton" "${PODS_ROOT}/Headers/SVProgressHUD"
+OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers" -isystem "${PODS_ROOT}/Headers/LBBlurredImage" -isystem "${PODS_ROOT}/Headers/MZAppearance" -isystem "${PODS_ROOT}/Headers/MZFormSheetController" -isystem "${PODS_ROOT}/Headers/QBFlatButton" -isystem "${PODS_ROOT}/Headers/SVProgressHUD"
 OTHER_LDFLAGS = -ObjC -framework Accelerate -framework CoreGraphics -framework QuartzCore -framework UIKit
 PODS_ROOT = ${SRCROOT}/Pods

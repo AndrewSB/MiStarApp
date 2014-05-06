@@ -15,13 +15,18 @@
     NSArray *classArray = [self getClassesWithData:data];
     NSArray *teacherArray = [self getTeachersWithData:data];
     NSArray *gradeArray = [self getGradesWithData:data];
-    NSArray *assignmentArray = [self getAssignmentsWithData:data];
     
     NSMutableArray *percentArray = [[NSMutableArray alloc] init];
+    NSMutableArray *assignmentArray = [[NSMutableArray alloc] init];
+    
     for (NSString *str in classes) {
+        NSData *strData = [str dataUsingEncoding:NSUTF8StringEncoding];
+        NSLog(@"New class ------");
+        
+        [self getAssignmentsWithData:strData];
+        
         
         NSString *percent = [self getPercentageFromClassString:str];
-        
         if (!percent) {
             percent = @" ";
         }
@@ -109,7 +114,7 @@
     for (TFHppleElement *item in test) {
         if ([item.text rangeOfString:@"("].location != NSNotFound) {
             if ([item.text rangeOfString:@"Academic Advisory"].location == NSNotFound) {
-                NSString *className = [[item.text substringFromIndex:3] substringToIndex:([item.text length] - 14)];
+                NSString *className = [[item.text substringFromIndex:3] substringToIndex:([item.text length] - 10)];
                 [optimizedTest addObject:className];
             }
         }
@@ -122,11 +127,20 @@
     TFHpple *tfhpple = [[TFHpple alloc] initWithData:data isXML:NO];
     NSString *xPathQuery = @"//tr/td[@valign=\"top\"]";
     NSArray *test = [tfhpple searchWithXPathQuery:xPathQuery];
-    
-    for (TFHppleElement *item in test) {
-        //NSLog(@"item matched as assignment:%@", item.text);
+
+    for (TFHppleElement *element in test) {
+        if (element.text != nil) {
+            NSLog(@"Logged %@ with type %@" , element.text, [element.attributes objectForKey:@"id"]);
+            NSString *regEx = @"\\d\\d\\/\\d\\d\\/\\d\\d\\d\\d";
+            NSRange range = [element.text rangeOfString:regEx options:NSRegularExpressionSearch];
+            if (range.location != NSNotFound) {
+                //It's a due date or date assigned
+                NSLog(@"ddate or dass");
+            }
+        }
     }
 
+    
     
     return test;
 }

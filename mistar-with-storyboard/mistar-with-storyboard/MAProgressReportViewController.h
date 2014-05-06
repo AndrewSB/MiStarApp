@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface MAProgressReportViewController : UIViewController
+<UITableViewDataSource, UITabBarDelegate, UIScrollViewDelegate>
 
-@property (nonatomic, assign) NSNumber *indexRow;
+- (void)setClass:(NSInteger *)row;
 
 @end

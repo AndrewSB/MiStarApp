@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "TFHpple.h"
 #import "MAAssignment.h"
-#import "MAClass.h"
 #import "MATeacher.h"
 
 

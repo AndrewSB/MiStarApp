@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <Shimmer/FBShimmeringView.h>
 
 #import "MAAppDelegate.h"
 
@@ -18,6 +17,10 @@
 #import "MAProgressReportViewController.h"
 
 #import <SVProgressHUD/SVProgressHUD.h>
+#import <MZFormSheetController/MZFormSheetController.h>
+#import <MZAppearance/MZAppearance.h>
+#import <MZFormSheetController/MZFormSheetBackgroundWindow.h>
+#import <MZFormSheetController/MZFormSheetBackgroundWindowViewController.h>
 
 
 @interface MAViewController : UIViewController

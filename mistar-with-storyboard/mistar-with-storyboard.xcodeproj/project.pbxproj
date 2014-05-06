@@ -23,7 +23,6 @@
 		462355B618FFF12B00D67CC5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4623559818FFF12A00D67CC5 /* UIKit.framework */; };
 		462355BE18FFF12B00D67CC5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 462355BC18FFF12B00D67CC5 /* InfoPlist.strings */; };
 		462355C018FFF12B00D67CC5 /* mistar_with_storyboardTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 462355BF18FFF12B00D67CC5 /* mistar_with_storyboardTests.m */; };
-		462355E218FFF29D00D67CC5 /* MAClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 462355D218FFF29D00D67CC5 /* MAClass.m */; };
 		462355E418FFF29D00D67CC5 /* MAGradeParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 462355D618FFF29D00D67CC5 /* MAGradeParser.m */; };
 		462355E618FFF29D00D67CC5 /* MAAssignment.m in Sources */ = {isa = PBXBuildFile; fileRef = 462355DA18FFF29D00D67CC5 /* MAAssignment.m */; };
 		462355E718FFF29D00D67CC5 /* MAGradeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 462355DC18FFF29D00D67CC5 /* MAGradeCell.m */; };
@@ -97,8 +96,6 @@
 		462355BB18FFF12B00D67CC5 /* mistar-with-storyboardTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "mistar-with-storyboardTests-Info.plist"; sourceTree = "<group>"; };
 		462355BD18FFF12B00D67CC5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		462355BF18FFF12B00D67CC5 /* mistar_with_storyboardTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = mistar_with_storyboardTests.m; sourceTree = "<group>"; };
-		462355D118FFF29D00D67CC5 /* MAClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAClass.h; sourceTree = "<group>"; };
-		462355D218FFF29D00D67CC5 /* MAClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAClass.m; sourceTree = "<group>"; };
 		462355D518FFF29D00D67CC5 /* MAGradeParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAGradeParser.h; sourceTree = "<group>"; };
 		462355D618FFF29D00D67CC5 /* MAGradeParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAGradeParser.m; sourceTree = "<group>"; };
 		462355D918FFF29D00D67CC5 /* MAAssignment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAAssignment.h; sourceTree = "<group>"; };
@@ -271,8 +268,6 @@
 			children = (
 				46F48A6E1903C8A500C278B7 /* MATeacher.h */,
 				46F48A6F1903C8A500C278B7 /* MATeacher.m */,
-				462355D118FFF29D00D67CC5 /* MAClass.h */,
-				462355D218FFF29D00D67CC5 /* MAClass.m */,
 				462355D918FFF29D00D67CC5 /* MAAssignment.h */,
 				462355DA18FFF29D00D67CC5 /* MAAssignment.m */,
 			);
@@ -499,7 +494,6 @@
 				462355A518FFF12A00D67CC5 /* MAAppDelegate.m in Sources */,
 				4623563118FFF38100D67CC5 /* MANavController.m in Sources */,
 				462355AB18FFF12A00D67CC5 /* MAViewController.m in Sources */,
-				462355E218FFF29D00D67CC5 /* MAClass.m in Sources */,
 				46873086190E8F5B009EB331 /* MAProgressReportViewController.m in Sources */,
 				462355A118FFF12A00D67CC5 /* main.m in Sources */,
 				462355F218FFF2BB00D67CC5 /* TFHppleElement.m in Sources */,
@@ -590,7 +584,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = Zangle;
 				PROVISIONING_PROFILE = "C1A9CC7E-8D34-4B3D-990B-E78FC3AF1071";
@@ -625,7 +619,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = Zangle;
 				PROVISIONING_PROFILE = "C1A9CC7E-8D34-4B3D-990B-E78FC3AF1071";
 				SDKROOT = iphoneos;
@@ -658,7 +652,7 @@
 					"${SDKROOT}/usr/include/libxml2",
 				);
 				INFOPLIST_FILE = "mistar-with-storyboard/mistar-with-storyboard-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -695,7 +689,7 @@
 					"${SDKROOT}/usr/include/libxml2",
 				);
 				INFOPLIST_FILE = "mistar-with-storyboard/mistar-with-storyboard-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -775,7 +769,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = Zangle;
 				PROVISIONING_PROFILE = "C1A9CC7E-8D34-4B3D-990B-E78FC3AF1071";
 				SDKROOT = iphoneos;
@@ -808,7 +802,7 @@
 					"${SDKROOT}/usr/include/libxml2",
 				);
 				INFOPLIST_FILE = "mistar-with-storyboard/mistar-with-storyboard-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
