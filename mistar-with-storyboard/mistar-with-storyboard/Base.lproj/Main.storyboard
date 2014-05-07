@@ -4,6 +4,40 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="3H2-FU-ywp">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="g57-Tt-FjI" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="6Xg-fu-Te6">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="IbW-Fg-tQm" kind="relationship" relationship="rootViewController" id="iEi-oq-IJA"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fbT-ky-tZq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-215" y="-820"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="CPS-K2-MbQ">
+            <objects>
+                <viewController id="IbW-Fg-tQm" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="528-DU-wn1"/>
+                        <viewControllerLayoutGuide type="bottom" id="fCw-t7-uZS"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="UjI-V0-vfQ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="hBc-gu-jqK"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rLw-qC-oqH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="331" y="-820"/>
+        </scene>
         <!--View Controller - mainViewController-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>

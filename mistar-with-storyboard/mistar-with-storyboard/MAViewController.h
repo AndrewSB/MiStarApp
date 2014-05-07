@@ -18,9 +18,7 @@
 
 #import <SVProgressHUD/SVProgressHUD.h>
 #import <MZFormSheetController/MZFormSheetController.h>
-#import <MZAppearance/MZAppearance.h>
-#import <MZFormSheetController/MZFormSheetBackgroundWindow.h>
-#import <MZFormSheetController/MZFormSheetBackgroundWindowViewController.h>
+#import <MZFormSheetController/MZFormSheetSegue.h>
 
 
 @interface MAViewController : UIViewController
