@@ -35,20 +35,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     //NSLog(@"eyyyy im here");
+    //Google API
     [[NSUserDefaults standardUserDefaults] synchronize];
     
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"]) {
-        // app already launched
+        
     }
     else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"This app is in BETA"
-                                                        message:@"Our team will be providing extensive support for this app, send us anything: bug reports, feature improvements, like a joke, whatever.\n\nWe plan to keep working and have the app out of beta by the end of this school year. We'll be adding a ton of other features as well, like being able to see all your assignments and adding support for other schools that use Mistar.\n\nThe app is open sourced, contact us for more information."
-                                                       delegate:self
-                                              cancelButtonTitle:@"Dismiss"
-                                              otherButtonTitles:@"Never show again", @"Text Andrew for help", nil];
-
-        [alert show];
-
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"HasLaunchedOnce"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+        //Google API
     }
     
     
@@ -223,12 +220,7 @@
             [noSMS show];
         }
     }
-    
-    if ([title isEqualToString:@"Never show again"]) {
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"HasLaunchedOnce"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-    }
-    
+
     if ([title isEqualToString:@"Logout"]) {
         //NSLog(@"log out here");
         [self writeToTextFileWithContent:@"0"];

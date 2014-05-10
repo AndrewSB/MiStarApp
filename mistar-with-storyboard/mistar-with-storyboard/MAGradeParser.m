@@ -21,7 +21,7 @@
     
     for (NSString *str in classes) {
         NSData *strData = [str dataUsingEncoding:NSUTF8StringEncoding];
-        NSLog(@"New class ------");
+        //NSLog(@"New class ------");
         
         [self getAssignmentsWithData:strData];
         
@@ -30,12 +30,12 @@
         if (!percent) {
             percent = @" ";
         }
-        //NSLog(@"percent: %@", percent);
+        ////NSLog(@"percent: %@", percent);
         [percentArray addObject:percent];
     }
     
     NSArray *gradesAndPercents = [self getGradesAndPercentsFromGrades:gradeArray andPercents:percentArray];
-    //NSLog(@"grades and percents: %@", gradesAndPercents);
+    ////NSLog(@"grades and percents: %@", gradesAndPercents);
     
     NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:classArray, @"classes",
                           teacherArray, @"teachers",
@@ -78,7 +78,7 @@
             if ([rangeString rangeOfString:@"Academic Adviso"].location == NSNotFound) {
                 [classArray addObject:rangeString];
             } else {
-                //NSLog(@"disinclude AA");
+                ////NSLog(@"disinclude AA");
             }
             
         } else {
@@ -127,22 +127,34 @@
     TFHpple *tfhpple = [[TFHpple alloc] initWithData:data isXML:NO];
     NSString *xPathQuery = @"//tr/td[@valign=\"top\"]";
     NSArray *test = [tfhpple searchWithXPathQuery:xPathQuery];
-
+    NSMutableArray *returnArray = [[NSMutableArray alloc] init];
+    MAAssignment *assignment = [[MAAssignment alloc] init];
+    BOOL resistance = NO;
+    NSInteger i = -1;
+    
     for (TFHppleElement *element in test) {
+        //NSLog(@"element:%@", element.description);
         if (element.text != nil) {
-            NSLog(@"Logged %@ with type %@" , element.text, [element.attributes objectForKey:@"id"]);
+            //NSLog(@"Logged %@ with type %@" , element.text, [element.attributes objectForKey:@"id"]);
+            
             NSString *regEx = @"\\d\\d\\/\\d\\d\\/\\d\\d\\d\\d";
             NSRange range = [element.text rangeOfString:regEx options:NSRegularExpressionSearch];
             if (range.location != NSNotFound) {
                 //It's a due date or date assigned
-                NSLog(@"ddate or dass");
+                resistance = !resistance;
+                if (resistance) {
+                    i = i + 1;
+                    //NSLog(@"assignment is %d", i);
+                    
+                    if (i > 0) {
+                        [returnArray addObject:assignment];
+                    }
+                }
             }
+            
         }
     }
-
-    
-    
-    return test;
+    return returnArray;
 }
 
 - (NSArray *)getGradesWithData:(NSData *)data {
@@ -177,7 +189,7 @@
     
     for (NSTextCheckingResult *match in matches) {
         NSString *matchText = [string substringWithRange:[match range]];
-        //NSLog(@"matchtext %@", matchText);
+        ////NSLog(@"matchtext %@", matchText);
         if (matchText) {
             return [matchText substringWithRange:NSMakeRange(1, 5)];
         } else {
@@ -196,7 +208,7 @@
 - (NSArray *)getGradesAndPercentsFromGrades:(NSArray *)grades andPercents:(NSArray *)percents {
     NSMutableArray *gradePercentArray = [[NSMutableArray alloc] init];
     
-    //NSLog(@"The two arrays are: %@\n and %@", grades, percents);
+    ////NSLog(@"The two arrays are: %@\n and %@", grades, percents);
     
     int i = 0;
     NSMutableDictionary *dictForGradesAndPercents = [[NSMutableDictionary alloc] init];

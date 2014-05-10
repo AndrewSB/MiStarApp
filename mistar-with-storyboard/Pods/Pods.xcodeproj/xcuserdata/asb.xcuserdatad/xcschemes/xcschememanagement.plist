@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Pods-GoogleAnalytics-iOS-SDK.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-LBBlurredImage.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -37,32 +42,37 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>3C8E9125BE5D4E11A95719ED</key>
+		<key>1ED86258B2F7467BBFEE10CD</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4FD25C31031F4BFAA94894D1</key>
+		<key>23E77A7DBB224E93AEECA110</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5D50E6D2A0674834800D2DC5</key>
+		<key>3ADFAE8FD1D641ACB8A0F11C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A397749331F94879AF2F030E</key>
+		<key>8978095FBF674F0DB54AB635</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C0B44AC82DC64B5B8995DF28</key>
+		<key>BDC89D19DFC54CBD988BE9C4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F2DE216B71DB476799123D3E</key>
+		<key>CA24B2691B714BE4A967C806</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E6354475D05946398DB7F69E</key>
 		<dict>
 			<key>primary</key>
 			<true/>

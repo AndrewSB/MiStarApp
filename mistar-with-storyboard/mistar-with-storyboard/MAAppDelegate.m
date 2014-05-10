@@ -14,8 +14,12 @@
 {
     // Override point for customization after application launch.
     return YES;
+    [[GAI sharedInstance] trackerWithTrackingId:@"UA-50802359-1"];
+    id tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAISessionControl
+           value:@"start"];
     
-    MANavController *navController=[[MANavController alloc]init];
+    MANavController *navController = [[MANavController alloc]init];
     self.window.rootViewController=navController;
 }
 							
@@ -43,6 +47,8 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
+    id tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAISessionControl value:@"end"];
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
