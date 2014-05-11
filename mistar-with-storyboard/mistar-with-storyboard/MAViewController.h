@@ -21,7 +21,7 @@
 #import <MZFormSheetController/MZFormSheetSegue.h>
 
 
-@interface MAViewController : UIViewController
+@interface MAViewController : GAITrackedViewController
 <UITableViewDataSource, UITabBarDelegate, UIScrollViewDelegate>
 
 @property BOOL cancel;

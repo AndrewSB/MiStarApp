@@ -35,7 +35,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     //NSLog(@"eyyyy im here");
-    //Google API
+    self.screenName = @"Main Screen";
     [[NSUserDefaults standardUserDefaults] synchronize];
     
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"]) {
@@ -44,8 +44,6 @@
     else {
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"HasLaunchedOnce"];
         [[NSUserDefaults standardUserDefaults] synchronize];
-        
-        //Google API
     }
     
     
