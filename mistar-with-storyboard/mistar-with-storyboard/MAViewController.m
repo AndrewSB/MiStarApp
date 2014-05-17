@@ -8,7 +8,7 @@
 
 #import "MAViewController.h"
 
-@interface MAViewController () <MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate, UINavigationControllerDelegate, MZFormSheetBackgroundWindowDelegate, NSURLConnectionDelegate>
+@interface MAViewController () <MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate, UINavigationControllerDelegate, MZFormSheetBackgroundWindowDelegate, NSURLSessionDelegate, NSURLSessionTaskDelegate, NSURLSessionDataDelegate, NSURLSessionDownloadDelegate>
 
 
 @property (nonatomic, strong) UIImageView *backgroundImageView;
@@ -483,7 +483,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     UIAlertView *comingSoon = [[UIAlertView alloc] initWithTitle:@"Will have assignments in the next version" message:@"Prolly next week" delegate:self cancelButtonTitle:@"Gotcha" otherButtonTitles:nil];
-    if (self.loggedIn) {
+    if (self.loggedIn && indexPath != 0) {
         [comingSoon show];
     }
 }
@@ -561,7 +561,12 @@
 }
 
 - (NSDictionary *)loginToMistarWithPin:(NSString *)pin password:(NSString *)password {
-    NSURLSession *defaultSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate: nil delegateQueue:[NSOperationQueue mainQueue]];
+    
+    NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
+    config.URLCache = NULL;
+    
+    NSURLSession *defaultSession = [NSURLSession sessionWithConfiguration:config delegate: nil delegateQueue:[NSOperationQueue mainQueue]];
+    
     
     NSLog(@"logging in");
     _cancel = false;
@@ -593,6 +598,7 @@
             } else if (!_cancel) {
             	NSMutableURLRequest *userPinRequest = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://mistar.oakland.k12.mi.us/novi/StudentPortal/Home/PortalMainPage"]];
                 [homeRequest setHTTPMethod:@"GET"];
+                [userPinRequest setCachePolicy:NSURLRequestReloadIgnoringCacheData];
                 
                 NSURLSessionDataTask *userPinTask = [defaultSession dataTaskWithRequest:userPinRequest completionHandler:^(NSData *userPinData, NSURLResponse *userPinResponse, NSError *userPinError) {
                     if ([userPinData length] > 0 && userPinError == nil) {
@@ -655,11 +661,13 @@
                             NSLog(@"userID accepted");
                             NSMutableURLRequest *setStudentIDRequest = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://mistar.oakland.k12.mi.us/novi/StudentPortal/StudentBanner/SetStudentBanner/%@" , userID]]];
                             [setStudentIDRequest setHTTPMethod:@"GET"];
+                            [setStudentIDRequest setCachePolicy:NSURLRequestReloadIgnoringCacheData];
                             
                             NSURLSessionDataTask *setStudentIDTask = [defaultSession dataTaskWithRequest:setStudentIDRequest completionHandler:^(NSData *setStudentIDData, NSURLResponse *setStudentIDResponse, NSError *setStudentIDError){
                                 if ([setStudentIDData length] > 0 && setStudentIDError == nil) {
                                     NSMutableURLRequest *requestGradesRequest = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://mistar.oakland.k12.mi.us/novi/StudentPortal/Home/LoadProfileData/Assignments"]];
                                     [requestGradesRequest setHTTPMethod:@"GET"];
+                                    [requestGradesRequest setCachePolicy:NSURLRequestReloadIgnoringCacheData];
                                     
                                     NSURLSessionDataTask *requestGradesTask = [defaultSession dataTaskWithRequest:requestGradesRequest completionHandler:^(NSData *requestGradesData, NSURLResponse *requestGradesResponse, NSError *requestGradesError) {
                                         if ([requestGradesData length] > 0 && requestGradesError == nil) {
@@ -690,6 +698,8 @@
     }];
     [homeTask resume];
 
+    defaultSession = NULL;
+    
     return myDictResult;
 }
                                       
