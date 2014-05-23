@@ -1,0 +1,8 @@
+platform :ios, '7.0'
+
+pod 'LBBlurredImage'
+pod 'QBFlatButton'
+pod 'MZFormSheetController'
+pod 'SVProgressHUD'
+pod 'GoogleAnalytics-iOS-SDK'
+pod 'Reveal-iOS-SDK'

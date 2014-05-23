@@ -1,0 +1,8 @@
+Zangle 
+Designed and developed by Andrew Breckenridge 
+
+Zangle allows you to access your Mistar gradebook on your iOS device, no longer do you have to go through clunky browser interface to see how you're doing in school 
+
+The app is currently enabled for the Novi School District, other school districts will be added in future versions. 
+
+If you are interested in helping with the design or development of future versions, please contact the development team at asbreckenridge@me.com.
