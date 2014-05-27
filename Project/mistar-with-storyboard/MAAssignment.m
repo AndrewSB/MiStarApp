@@ -30,5 +30,22 @@
     return self;
 }
 
+- (id)initWithDate:(NSString *)date assignmentName:(NSString *)assignmentName totalPoints:(NSNumber *)totalPoints recievedPoints:(NSNumber *)recievedPoints {
+    NSDateFormatter *dateF = [[NSDateFormatter alloc] init];
+    [dateF setDateFormat:@"MM/dd/yyyy"];
+    
+    self.date = [dateF dateFromString:date];
+    self.assignmentName = assignmentName;
+    self.totalPoints = totalPoints;
+    self.recievedPoints = recievedPoints;
+    
+    return self;
+}
+
+
+- (void)logObject {
+    NSLog(@"%@ %@ %@ %@", self.date, self.assignmentName, self.totalPoints, self.recievedPoints);
+}
+
 
 @end

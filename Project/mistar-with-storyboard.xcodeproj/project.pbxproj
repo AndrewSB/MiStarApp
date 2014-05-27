@@ -33,8 +33,8 @@
 		4623563118FFF38100D67CC5 /* MANavController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4623563018FFF38100D67CC5 /* MANavController.m */; };
 		46873086190E8F5B009EB331 /* MAProgressReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46873085190E8F5B009EB331 /* MAProgressReportViewController.m */; };
 		46CE86421919D4010055A05D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 462355A618FFF12A00D67CC5 /* Main.storyboard */; };
+		46D64D8F192ECCF6005734AF /* MAClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 46D64D8E192ECCF6005734AF /* MAClass.m */; };
 		46DDE3B01919D0F200B0455E /* mistar-with-storyboard-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4623559C18FFF12A00D67CC5 /* mistar-with-storyboard-Info.plist */; };
-		46F48A701903C8A500C278B7 /* MATeacher.m in Sources */ = {isa = PBXBuildFile; fileRef = 46F48A6F1903C8A500C278B7 /* MATeacher.m */; };
 		6EA81663FEB0476DA02E2B05 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5AB13AD0524DEF94299447 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -91,8 +91,8 @@
 		4623563018FFF38100D67CC5 /* MANavController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MANavController.m; sourceTree = "<group>"; };
 		46873084190E8F5B009EB331 /* MAProgressReportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAProgressReportViewController.h; sourceTree = "<group>"; };
 		46873085190E8F5B009EB331 /* MAProgressReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAProgressReportViewController.m; sourceTree = "<group>"; };
-		46F48A6E1903C8A500C278B7 /* MATeacher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MATeacher.h; sourceTree = "<group>"; };
-		46F48A6F1903C8A500C278B7 /* MATeacher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MATeacher.m; sourceTree = "<group>"; };
+		46D64D8D192ECCF6005734AF /* MAClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAClass.h; sourceTree = "<group>"; };
+		46D64D8E192ECCF6005734AF /* MAClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAClass.m; sourceTree = "<group>"; };
 		50B9C2E0203E49D6B59CC820 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		EA5AB13AD0524DEF94299447 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -217,10 +217,10 @@
 		462355EA18FFF2A500D67CC5 /* Grades Objects */ = {
 			isa = PBXGroup;
 			children = (
-				46F48A6E1903C8A500C278B7 /* MATeacher.h */,
-				46F48A6F1903C8A500C278B7 /* MATeacher.m */,
 				462355D918FFF29D00D67CC5 /* MAAssignment.h */,
 				462355DA18FFF29D00D67CC5 /* MAAssignment.m */,
+				46D64D8D192ECCF6005734AF /* MAClass.h */,
+				46D64D8E192ECCF6005734AF /* MAClass.m */,
 			);
 			name = "Grades Objects";
 			sourceTree = "<group>";
@@ -386,7 +386,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				46F48A701903C8A500C278B7 /* MATeacher.m in Sources */,
 				460C0312190CF17E00D168C3 /* MASMSViewController.m in Sources */,
 				462355A518FFF12A00D67CC5 /* MAAppDelegate.m in Sources */,
 				4623563118FFF38100D67CC5 /* MANavController.m in Sources */,
@@ -396,6 +395,7 @@
 				462355F218FFF2BB00D67CC5 /* TFHppleElement.m in Sources */,
 				462355F118FFF2BB00D67CC5 /* TFHpple.m in Sources */,
 				462355E718FFF29D00D67CC5 /* MAGradeCell.m in Sources */,
+				46D64D8F192ECCF6005734AF /* MAClass.m in Sources */,
 				462355E418FFF29D00D67CC5 /* MAGradeParser.m in Sources */,
 				462355E618FFF29D00D67CC5 /* MAAssignment.m in Sources */,
 				462355F318FFF2BB00D67CC5 /* XPathQuery.m in Sources */,

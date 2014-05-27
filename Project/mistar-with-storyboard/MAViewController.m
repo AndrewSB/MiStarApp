@@ -8,7 +8,7 @@
 
 #import "MAViewController.h"
 
-@interface MAViewController () <MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate, UINavigationControllerDelegate, MZFormSheetBackgroundWindowDelegate, NSURLSessionDelegate, NSURLSessionDataDelegate, NSURLSessionDownloadDelegate>
+@interface MAViewController () <MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate, UINavigationControllerDelegate, MZFormSheetBackgroundWindowDelegate, NSURLSessionDelegate, NSURLSessionDataDelegate, NSURLSessionDownloadDelegate, UITableViewDelegate, UITableViewDataSource>
 
 
 @property (nonatomic, strong) UIImageView *backgroundImageView;

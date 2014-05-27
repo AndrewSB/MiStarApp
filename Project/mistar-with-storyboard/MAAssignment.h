@@ -21,5 +21,8 @@
 
 - (id)initWithDate:(NSString *)date assignmentName:(NSString *)assignmentName totalPoints:(NSNumber *)totalPoints recievedPoints:(NSNumber *)recievedPoints classAverage:(NSString *)classAverage extraCredit:(NSNumber *)extraCredit notGraded:(NSNumber *)notGraded;
 
+- (id)initWithDate:(NSString *)date assignmentName:(NSString *)assignmentName totalPoints:(NSNumber *)totalPoints recievedPoints:(NSNumber *)recievedPoints;
+
+- (void)logObject;
 
 @end

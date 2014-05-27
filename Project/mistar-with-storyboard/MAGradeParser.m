@@ -12,37 +12,17 @@
 
 - (NSDictionary *)parseWithData:(NSData *)data {
     NSArray *classes = [self splitClassesWithData:data];
-    NSArray *classArray = [self getClassesWithData:data];
-    NSArray *teacherArray = [self getTeachersWithData:data];
-    NSArray *gradeArray = [self getGradesWithData:data];
     
-    NSMutableArray *percentArray = [[NSMutableArray alloc] init];
-    NSMutableArray *assignmentArray = [[NSMutableArray alloc] init];
-    
-    for (NSString *str in classes) {
-        NSData *strData = [str dataUsingEncoding:NSUTF8StringEncoding];
-        //NSLog(@"New class ------");
+    for (NSString *class in classes) {
+        NSData *classData = [class dataUsingEncoding:NSUTF8StringEncoding];
+        MAClass *maclass = [[MAClass alloc] init];
         
-        [self getAssignmentsWithData:strData];
-        
-        
-        NSString *percent = [self getPercentageFromClassString:str];
-        if (!percent) {
-            percent = @" ";
-        }
-        ////NSLog(@"percent: %@", percent);
-        [percentArray addObject:percent];
+        maclass.name = [self getClassNameWithString:class];
+        maclass.grade = [self getGradeWithString:class];
+        maclass.teacher = [self getTeachersWithData:classData];
+        maclass.assignments = [self getAssignmentsWithData:classData];
     }
-    
-    NSArray *gradesAndPercents = [self getGradesAndPercentsFromGrades:gradeArray andPercents:percentArray];
-    ////NSLog(@"grades and percents: %@", gradesAndPercents);
-    
-    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:classArray, @"classes",
-                          teacherArray, @"teachers",
-                          gradesAndPercents, @"grades",
-                          nil];
-    
-    return dict;
+    return nil;
 }
 
 - (NSArray *)splitClassesWithData:(NSData *)data {
@@ -92,139 +72,151 @@
     return [classArray copy];
 }
 
-- (NSArray *)getTeachersWithData:(NSData *)data {
+- (NSString *)getClassNameWithString:(NSString *)string {
+    string = [string substringFromIndex:41];
+    NSError *error = nil;
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\\(\\d\\d\\d\\d\\)" options:NSRegularExpressionCaseInsensitive error:&error];
+    
+    NSArray *matches = [regex matchesInString:string options:0 range:NSMakeRange(0, 40)];
+    NSUInteger endNameRange = [[matches objectAtIndex:0] range].location;
+    
+    return [string substringWithRange:NSMakeRange(0, endNameRange)];
+}
+
+- (NSString *)getGradeWithString:(NSString *)string {
+    NSError *error = nil;
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"(<\/b>[ABCDEF]){1}[ +-]?[^A]......" options:NSRegularExpressionCaseInsensitive error:&error];
+    NSArray *matches = [regex matchesInString:string options:nil range:NSMakeRange(0, [string length])];
+    
+    if ([matches count] == 0) {
+        return @" ";
+    } else {
+        string = [[string substringWithRange:[[matches objectAtIndex:0] range]] substringFromIndex:4];
+        if ([string characterAtIndex:1] == '+' || [string characterAtIndex:1] == '-') {
+            if ([string characterAtIndex:3] == '(') {
+                string = [NSString stringWithFormat:@"%@\n%@",[string substringToIndex:1],[string substringWithRange:NSMakeRange(4, 4)]];
+            } else {
+                string = [string substringToIndex:2];
+            }
+        } else {
+            if ([string characterAtIndex:3] == '(') {
+                string = [NSString stringWithFormat:@"%@\n%@",[string substringToIndex:1],[string substringWithRange:NSMakeRange(4, 4)]];
+            } else {
+                string = [string substringToIndex:1];
+            }
+        }
+        
+        return string;
+    }
+}
+
+- (NSDictionary *)getTeachersWithData:(NSData *)data {
     TFHpple *tfhpple = [[TFHpple alloc] initWithData:data isXML:NO];
     NSString *xPathQuery = @"//a[@title=\"Send Email\"]";
     NSArray *test = [tfhpple searchWithXPathQuery:xPathQuery];
-    NSMutableArray *teacherArray = [[NSMutableArray alloc] init];
+    TFHppleElement *element = [test objectAtIndex:0];
+    NSString *name = element.text;
+    NSUInteger commaLocation = [name rangeOfString:@","].location;
+    name = [NSString stringWithFormat:@"%@ %@", [name substringFromIndex:(commaLocation + 2)], [name substringToIndex:commaLocation]];
     
-    for (TFHppleElement *item in test) {
-        NSDictionary *teacher = [[NSDictionary alloc] initWithObjectsAndKeys:@"Name", item.text, @"Email", [[item.attributes objectForKey:@"href"] substringFromIndex:7], nil];
-        [teacherArray addObject:teacher];
-    }
-    return [teacherArray mutableCopy];
-}
-
-- (NSArray *)getClassesWithData:(NSData *)data {
-    TFHpple *tfhpple = [[TFHpple alloc] initWithData:data isXML:NO];
-    NSString *xPathQuery = @"//td//b";
-    NSArray *test = [tfhpple searchWithXPathQuery:xPathQuery];
-    
-    NSMutableArray *optimizedTest = [[NSMutableArray alloc] init];
-    for (TFHppleElement *item in test) {
-        if ([item.text rangeOfString:@"("].location != NSNotFound) {
-            if ([item.text rangeOfString:@"Academic Advisory"].location == NSNotFound) {
-                NSString *className = [[item.text substringFromIndex:3] substringToIndex:([item.text length] - 10)];
-                [optimizedTest addObject:className];
-            }
-        }
-    }
-    
-    return [optimizedTest mutableCopy];
+    NSDictionary *teacher = [[NSDictionary alloc] initWithObjectsAndKeys:name, @"name", [[element.attributes objectForKey:@"href"] substringFromIndex:7], @"email", nil];
+  
+    return teacher;
 }
 
 - (NSArray *)getAssignmentsWithData:(NSData *)data {
     TFHpple *tfhpple = [[TFHpple alloc] initWithData:data isXML:NO];
     NSString *xPathQuery = @"//tr/td[@valign=\"top\"]";
     NSArray *test = [tfhpple searchWithXPathQuery:xPathQuery];
-    NSMutableArray *returnArray = [[NSMutableArray alloc] init];
+    NSMutableArray *assignments = [[NSMutableArray alloc] init];
+    
+    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+    [numberFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
+    [numberFormatter setMaximumFractionDigits:1];
+    
     MAAssignment *assignment = [[MAAssignment alloc] init];
-    BOOL resistance = NO;
-    NSInteger i = -1;
+    int count = 0;
+    BOOL flag = true;
+    NSString *newAssignmentBlock = @"";
+    
+    NSString *curDate = nil;
+    NSString *curName = nil;
+    NSNumber *curPoints = nil;
+    NSNumber *curScore = nil;
     
     for (TFHppleElement *element in test) {
-        //NSLog(@"element:%@", element.description);
-        if (element.text != nil) {
-            NSLog(@"Logged %@ with type %@" , element.text, [element.attributes objectForKey:@"id"]);
+        if (flag) {
+            newAssignmentBlock = element.text;
+            flag = false;
             
-            NSString *regEx = @"\\d\\d\\/\\d\\d\\/\\d\\d\\d\\d";
-            NSRange range = [element.text rangeOfString:regEx options:NSRegularExpressionSearch];
-            if (range.location != NSNotFound) {
-                //It's a due date or date assigned
-                resistance = !resistance;
-                if (resistance) {
-                    i = i + 1;
-                    //NSLog(@"assignment is %d", i);
-                    
-                    if (i > 0) {
-                        [returnArray addObject:assignment];
-                    }
-                }
+            NSLog(@"Split here");
+        }
+        if ([element.text isEqualToString:newAssignmentBlock]) {
+            //Create new assignment, if there was an old one add to array
+            if (curName) {
+                assignment = nil;
+                assignment = [[MAAssignment alloc] initWithDate:curDate assignmentName:curName totalPoints:curPoints recievedPoints:curScore];
+                [assignments addObject:assignment];
+                curDate = nil;
+                curName = nil;
+                curScore = nil;
+                curPoints = nil;
+            }
+            else {
+                
+            }
+            count = 0;
+        }
+        switch (count) {
+            case 1: {
+                curDate = element.text;
+                break;
+            }
+            case 2: {
+                break;
+            }
+            case 3: {
+                curName = element.text;
+                break;
+            }
+            case 4: {
+                curPoints = [numberFormatter numberFromString:element.text];
+                NSLog(@"curPoints is %@", curPoints);
+                break;
+            }
+            case 5: {
+                curScore = [numberFormatter numberFromString:element.text];
+                NSLog(@"curScore is %@", curScore);
+                break;
+            }
+            default: {
+                break;
             }
         }
-    }
-    return returnArray;
-}
-
-- (NSArray *)getGradesWithData:(NSData *)data {
-    NSString *searchString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    NSString *regexStr = @"(</b>[ABCDEF]){1}[ +-]?[^A]";
-    NSError *error = nil;
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:regexStr options:0 error:&error];
-    
-    NSArray *matches = [regex matchesInString:searchString options:0 range:(NSRange){0, [searchString length]}];
-    NSMutableArray *returnerMatches = [[NSMutableArray alloc] init];
-    
-    for (NSTextCheckingResult *match in matches) {
-        NSString* matchText = [searchString substringWithRange:[match range]];
-        matchText = [matchText substringFromIndex:4];
-        
-        if (!([matchText characterAtIndex:1] == '+' || [matchText characterAtIndex:1] == '-')) {
-            matchText = [matchText substringToIndex:1];
-        } else if (!([matchText characterAtIndex:2] == '+' || [matchText characterAtIndex:2] == '-')) {
-            matchText = [matchText substringToIndex:2];
+        if (curName) {
+            assignment = nil;
+            assignment = [[MAAssignment alloc] initWithDate:curDate assignmentName:curName totalPoints:curPoints recievedPoints:curScore];
+            [assignments addObject:assignment];
+            curDate = nil;
+            curName = nil;
+            curScore = nil;
+            curPoints = nil;
         }
         
-        [returnerMatches addObject:matchText];
-    }
-    
-    return [returnerMatches copy];
-}
-
-- (NSString *)getPercentageFromClassString:(NSString *)string {
-    NSString *regexStr = @"\\(\\d\\d\\.\\d\\%\\)";
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:regexStr options:0 error:nil];
-    NSArray *matches = [regex matchesInString:string options:0 range:(NSRange){0, [string length]}];
-    
-    for (NSTextCheckingResult *match in matches) {
-        NSString *matchText = [string substringWithRange:[match range]];
-        ////NSLog(@"matchtext %@", matchText);
-        if (matchText) {
-            return [matchText substringWithRange:NSMakeRange(1, 5)];
-        } else {
-            return nil;
-        }
-    }
-    return nil;
-}
-
-- (NSString *)getNameFromStringWithData:data {
-    NSString *name;
-    
-    return name;
-}
-
-- (NSArray *)getGradesAndPercentsFromGrades:(NSArray *)grades andPercents:(NSArray *)percents {
-    NSMutableArray *gradePercentArray = [[NSMutableArray alloc] init];
-    
-    ////NSLog(@"The two arrays are: %@\n and %@", grades, percents);
-    
-    int i = 0;
-    NSMutableDictionary *dictForGradesAndPercents = [[NSMutableDictionary alloc] init];
-    for (NSString *grade in grades) {
-        [dictForGradesAndPercents removeAllObjects];
-        [dictForGradesAndPercents setValue:grade forKey:@"grade"];
-        if ([percents count] - 1 >= i) {
-            [dictForGradesAndPercents setValue:[percents objectAtIndex:(NSUInteger)i] forKey:@"percents"];
-        } else {
-            [dictForGradesAndPercents setValue:@" " forKey:@"percents"];
-        }
         
-        [gradePercentArray addObject:[dictForGradesAndPercents copy]];
-        i++;
+        NSLog(@"Logged text:%@", element.text);
+        
+        count++;
+    }
+   
+    for (MAAssignment *ass in assignments) {
+        [ass logObject];
     }
     
-    return [gradePercentArray mutableCopy];
+    return [assignments mutableCopy];
+    
 }
+
+
 
 @end

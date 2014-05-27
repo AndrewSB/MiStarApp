@@ -7,18 +7,23 @@
 //
 
 #import <Foundation/Foundation.h>
+
 #import "TFHpple.h"
+
 #import "MAAssignment.h"
-#import "MATeacher.h"
+
+#import "MAClass.h"
 
 
 @interface MAGradeParser : NSObject
 
 - (NSDictionary *)parseWithData:(NSData *)data;
 
-- (NSArray *)getTeachersWithData:(NSData *)data;
-- (NSArray *)getClassesWithData:(NSData *)data;
+- (NSArray *)splitClassesWithData:(NSData *)data;
+- (NSString *)getClassNameWithString:(NSString *)string;
+- (NSString *)getGradeWithString:(NSString *)string;
+- (NSDictionary *)getTeachersWithData:(NSData *)data;
 - (NSArray *)getAssignmentsWithData:(NSData *)data;
-- (NSArray *)getGradesWithData:(NSData *)data;
+
 
 @end
