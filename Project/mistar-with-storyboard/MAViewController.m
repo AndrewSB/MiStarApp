@@ -189,12 +189,15 @@
                 
                 // You can specify the initial message text that will appear in the message
                 // composer view controller.
-            picker.body = @"Hey Andrew, I was using your Zangle app and I was having problems with/ think you should ";
+            picker.body = @"Hey Andrew, I was using your Zangle app and I was having problems with ";
                 
             [self presentViewController:picker animated:YES completion:NULL];
         } else {
-            UIAlertView *noSMS = [[UIAlertView alloc] initWithTitle:@"Device not configured for iMessage" message:@"You can try emailing me at asbreckenridge@me.com" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            UIAlertView *noSMS = [[UIAlertView alloc] initWithTitle:@"Device not configured for iMessage" message:@"You can try emailing me, asbreckenridge@me.com" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [noSMS show];
+            
+            UIAlertView *nameAndSchoolAlert = [[UIAlertView alloc] initWithTitle:@"Include your name and school" message:@"Please also include your name and the school you go to in the message. Really just speeds things up" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [nameAndSchoolAlert show];
         }
     }
 
@@ -418,8 +421,6 @@
 }
 
 - (MAGradeCell *)fillCellWithRow:(NSInteger *)row {
-    NSLog(@"filling cell");
-    
     MAGradeCell *cell = [[MAGradeCell alloc] initWithReuseID:@"CellIdentifier" cellForRowAtIndexPath:nil];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.backgroundColor = [UIColor colorWithWhite:0 alpha:0.2];
@@ -656,7 +657,7 @@
                                     
                                     NSURLSessionDataTask *requestGradesTask = [defaultSession dataTaskWithRequest:requestGradesRequest completionHandler:^(NSData *requestGradesData, NSURLResponse *requestGradesResponse, NSError *requestGradesError) {
                                         if ([requestGradesData length] > 0 && requestGradesError == nil) {
-                                            //NSLog(@"the html%@",[[NSString alloc] initWithData:requestGradesData encoding:NSUTF8StringEncoding]);
+                                            NSLog(@"the html%@",[[NSString alloc] initWithData:requestGradesData encoding:NSUTF8StringEncoding]);
                                             MAGradeParser *gradeParser = [[MAGradeParser alloc] init];
                                             myDictResult = [gradeParser parseWithData:requestGradesData];
                                             NSLog(@"after myResult");
@@ -666,7 +667,11 @@
                                             [self.tableView reloadData];
                                             [self viewDidLoad];
                                             [SVProgressHUD dismiss];
-                                            NSLog(@"dict from inside refresh fdunction is %@", [self readFromDict]);
+                                            
+                                            NSDictionary *innerDict = [self readFromDict];
+                                            for (MAClass *class in [innerDict objectForKey:@"classes"]) {
+                                                NSLog(@"the class is %@", [class logClass]);
+                                            }
                                         }
                                     }];
                                     [requestGradesTask resume];

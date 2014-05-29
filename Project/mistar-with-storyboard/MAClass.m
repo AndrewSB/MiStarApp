@@ -33,7 +33,10 @@
     NSMutableArray *returnArray = [[NSMutableArray alloc] init];
     [returnArray addObject:self.name];
     [returnArray addObject:self.grade];
-    [returnArray addObject:self.assignments];
+    
+    for (MAAssignment *ass in self.assignments) {
+        [returnArray addObject:[ass logObject]];
+    }
     [returnArray addObject:self.teacher];
     
     return [returnArray mutableCopy];

@@ -57,8 +57,8 @@
 }
 
 
-- (void)logObject {
-    NSLog(@"%@ %@ %@ %@", self.date, self.assignmentName, self.totalPoints, self.recievedPoints);
+- (NSString *)logObject {
+    return [NSString stringWithFormat:@"%@ %@ %@ %@", self.date, self.assignmentName, self.totalPoints, self.recievedPoints];
 }
 
 - (void)encodeWithCoder:(NSCoder *)coder

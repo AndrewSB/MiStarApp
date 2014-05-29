@@ -90,16 +90,17 @@
 
 - (NSString *)getGradeWithString:(NSString *)string {
     NSError *error = nil;
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"(<\\/b>[ABCDEF]){1}[ +-]?[^A]......" options:NSRegularExpressionCaseInsensitive error:&error];
-    NSArray *matches = [regex matchesInString:string options:NSMatchingAnchored range:NSMakeRange(0, [string length])];
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"(<\/b>[ABCDEF]){1}[ +-]?[^A]......" options:NSRegularExpressionCaseInsensitive error:&error];
+    NSArray *matches = [regex matchesInString:string options:0 range:NSMakeRange(0, [string length])];
     
     if ([matches count] == 0) {
+        NSLog(@"No grade matches");
         return @" ";
     } else {
         string = [[string substringWithRange:[[matches objectAtIndex:0] range]] substringFromIndex:4];
         if ([string characterAtIndex:1] == '+' || [string characterAtIndex:1] == '-') {
-            if ([string characterAtIndex:3] == '(') {
-                string = [NSString stringWithFormat:@"%@\n%@",[string substringToIndex:1],[string substringWithRange:NSMakeRange(4, 4)]];
+            if ([string characterAtIndex:4] == '(') {
+                string = [NSString stringWithFormat:@"%@\n%@",[string substringToIndex:1],[string substringWithRange:NSMakeRange(5, 4)]];
             } else {
                 string = [string substringToIndex:2];
             }

@@ -23,6 +23,6 @@
 
 - (id)initWithDate:(NSString *)date assignmentName:(NSString *)assignmentName totalPoints:(NSNumber *)totalPoints recievedPoints:(NSNumber *)recievedPoints;
 
-- (void)logObject;
+- (NSString *)logObject;
 
 @end

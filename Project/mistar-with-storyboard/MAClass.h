@@ -18,4 +18,8 @@
 @property (nonatomic, strong) NSArray *assignments;
 @property (nonatomic, strong) NSDictionary *teacher;
 
+
+- (NSArray *)logClass;
+
+
 @end
