@@ -10,6 +10,20 @@
 
 @implementation MAAssignment
 
+- (id)initWithCoder:(NSCoder *)coder
+{
+    self = [super init];
+    self.date = [coder decodeObjectForKey:@"date"];
+    self.assignmentName = [coder decodeObjectForKey:@"assignmentName"];
+    self.totalPoints = [coder decodeObjectForKey:@"totalPoints"];
+    self.recievedPoints = [coder decodeObjectForKey:@"totalPoints"];
+    self.classAverage = [coder decodeObjectForKey:@"classAverage"];
+    self.extraCredit = [coder decodeObjectForKey:@"extraCredit"];
+    self.notGraded = [coder decodeObjectForKey:@"notGraded"];
+    
+    return self;
+}
+
 - (id)initWithDate:(NSString *)date assignmentName:(NSString *)assignmentName totalPoints:(NSNumber *)totalPoints recievedPoints:(NSNumber *)recievedPoints classAverage:(NSNumber *)classAverage extraCredit:(NSNumber *)extraCredit notGraded:(NSNumber *)notGraded {
     
     NSDateFormatter *dateF = [[NSDateFormatter alloc] init];
@@ -46,6 +60,18 @@
 - (void)logObject {
     NSLog(@"%@ %@ %@ %@", self.date, self.assignmentName, self.totalPoints, self.recievedPoints);
 }
+
+- (void)encodeWithCoder:(NSCoder *)coder
+{
+    [coder encodeObject:self.date forKey:@"date"];
+    [coder encodeObject:self.assignmentName forKey:@"assignmentName"];
+    [coder encodeObject:self.totalPoints forKey:@"totalPoints"];
+    [coder encodeObject:self.recievedPoints forKey:@"recievedPoints"];
+    [coder encodeObject:self.classAverage forKey:@"classAverage"];
+    [coder encodeObject:self.extraCredit forKey:@"extraCredit"];
+    [coder encodeObject:self.notGraded forKey:@"notGraded"];
+}
+
 
 
 @end

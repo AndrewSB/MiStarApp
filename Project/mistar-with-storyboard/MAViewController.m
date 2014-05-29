@@ -8,7 +8,7 @@
 
 #import "MAViewController.h"
 
-@interface MAViewController () <MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate, UINavigationControllerDelegate, NSURLSessionDelegate, UITableViewDelegate, UITableViewDataSource>
+@interface MAViewController () <MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate, UINavigationControllerDelegate, NSURLSessionDelegate, UITableViewDelegate, UITableViewDataSource, MZFormSheetBackgroundWindowDelegate>
 
 
 @property (nonatomic, strong) UIImageView *backgroundImageView;
@@ -71,6 +71,7 @@
     self.tableView.separatorColor = [UIColor colorWithWhite:1 alpha:0.2];
     self.tableView.pagingEnabled = YES;
     [self.view addSubview:self.tableView];
+    [self.tableView reloadData];
     
     
     
@@ -202,7 +203,7 @@
         [self writeToTextFileWithContent:@"0"];
         [self writeDictToFileWithContent:[[NSDictionary alloc] init]];
         [self.tableView reloadData];
-        //exit(0);
+        exit(0);
     }
 }
 
@@ -296,7 +297,7 @@
     [arr removeLastObject];
     
     for (NSString *strn in arr) {
-        NSLog(@"aaa%@", strn);
+        NSLog(@"readin %@", strn);
     }
     
     return [arr mutableCopy];
@@ -308,7 +309,8 @@
     NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"/userdata.txt"];
     
     
-    [contentDict writeToFile:filePath atomically:YES];
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:contentDict];
+    [data writeToFile:filePath atomically:YES];
 
 }
 
@@ -317,9 +319,7 @@
     NSString *documentsDirectory = [paths objectAtIndex:0];
     NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"/userdata.txt"];
     
-    NSDictionary *contentDict = [NSDictionary dictionaryWithContentsOfFile:filePath];
-    
-    return contentDict;
+    return [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
 }
 
 - (void)writeNameToFileWithContent:(NSString *)name {
@@ -347,7 +347,7 @@
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -418,6 +418,8 @@
 }
 
 - (MAGradeCell *)fillCellWithRow:(NSInteger *)row {
+    NSLog(@"filling cell");
+    
     MAGradeCell *cell = [[MAGradeCell alloc] initWithReuseID:@"CellIdentifier" cellForRowAtIndexPath:nil];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.backgroundColor = [UIColor colorWithWhite:0 alpha:0.2];
@@ -430,40 +432,45 @@
         NSDictionary *userData = [self readFromDict];
         
         NSArray *classes = [userData objectForKey:@"classes"];
-        NSArray *grades = [userData objectForKey:@"grades"];
         
         
-        if ([grades count] > (NSUInteger)row) {
-            cell.textLabel.text = [classes objectAtIndex:(NSUInteger)row];
+        if ([classes count] > (NSUInteger)row) {
+            cell.textLabel.text = [[classes objectAtIndex:(NSUInteger)row] name];
             
             cell.detailTextLabel.numberOfLines = 2;
             cell.detailTextLabel.lineBreakMode = NSLineBreakByWordWrapping;
             cell.detailTextLabel.textAlignment = NSTextAlignmentCenter;
-            if ([grades objectAtIndex:(NSUInteger)row] && [grades objectAtIndex:(NSUInteger)row]) {
-                NSString *letterGrade = [[grades objectAtIndex:(NSUInteger)row] objectForKey:@"grade"];
-                NSString *percentGrade = [[grades objectAtIndex:(NSUInteger)row] objectForKey:@"percents"];
-                
-                cell.detailTextLabel.text = [NSString stringWithFormat:@"%@     \n%@", letterGrade, percentGrade];
-                
-                if ([percentGrade isEqualToString:@" "] || [percentGrade isEqualToString:@""]) {
-                    if ([[letterGrade substringFromIndex:1] isEqualToString:@"+"] || [[letterGrade substringFromIndex:1] isEqualToString:@"-"]) {
-                        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@       ", letterGrade];
-                    } else {
-                        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@         ", letterGrade];
-                    }
-                    [cell.detailTextLabel sizeToFit];
-                }
-            }
+            cell.detailTextLabel.text = [[classes objectAtIndex:(NSUInteger)row] grade];
         }
         return cell;
     }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    UIViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"nav"];
+    
+    UIViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"modal"];
+    
+    MZFormSheetController *formSheet = [[MZFormSheetController alloc] initWithViewController:vc];
+    
+    formSheet.presentedFormSheetSize = CGSizeMake(300, 298);
+    // formSheet.transitionStyle = MZFormSheetTransitionStyleSlideFromTop;
+    formSheet.shadowRadius = 2.0;
+    formSheet.shadowOpacity = 0.3;
+    formSheet.shouldDismissOnBackgroundViewTap = YES;
+    formSheet.shouldCenterVertically = YES;
+    formSheet.movementWhenKeyboardAppears = MZFormSheetWhenKeyboardAppearsCenterVertically;
 
-    [self mz_presentFormSheetController:vc animated:YES completionHandler:^(MZFormSheetController *formSheetController) {
-        //do sth
+    formSheet.willPresentCompletionHandler = ^(UIViewController *presentedFSViewController) {
+        // Passing data
+        UINavigationController *navController = (UINavigationController *)presentedFSViewController;
+        navController.topViewController.title = @"PASSING DATA";
+    };
+    formSheet.transitionStyle = MZFormSheetTransitionStyleCustom;
+    
+    [MZFormSheetController sharedBackgroundWindow].formSheetBackgroundWindowDelegate = self;
+    
+    [self mz_presentFormSheetController:formSheet animated:YES completionHandler:^(MZFormSheetController *formSheetController) {
+        
     }];
 }
 
@@ -565,7 +572,6 @@
     
     
     NSURLSessionDataTask *homeTask = [defaultSession dataTaskWithRequest:homeRequest completionHandler:^(NSData *homeData, NSURLResponse *homeResponse, NSError *homeError) {
-        NSLog(@"Response form sessions:%@ %@\n", homeResponse, homeError);
         if ([homeData length] > 0 && homeError == nil) {
             NSString *loggedInPage = [[NSString alloc] initWithData:homeData encoding: NSUTF8StringEncoding];
             
@@ -650,14 +656,17 @@
                                     
                                     NSURLSessionDataTask *requestGradesTask = [defaultSession dataTaskWithRequest:requestGradesRequest completionHandler:^(NSData *requestGradesData, NSURLResponse *requestGradesResponse, NSError *requestGradesError) {
                                         if ([requestGradesData length] > 0 && requestGradesError == nil) {
-                                            NSLog(@"the html%@",[[NSString alloc] initWithData:requestGradesData encoding:NSUTF8StringEncoding]);
+                                            //NSLog(@"the html%@",[[NSString alloc] initWithData:requestGradesData encoding:NSUTF8StringEncoding]);
                                             MAGradeParser *gradeParser = [[MAGradeParser alloc] init];
                                             myDictResult = [gradeParser parseWithData:requestGradesData];
                                             NSLog(@"after myResult");
                                             NSLog(@"mydicktresult: %@", myDictResult);
                                             [self writeDictToFileWithContent:myDictResult];
                                             [self writeToTextFileWithContent:[NSString stringWithFormat:@"1 %@ %@", pin, password]];
+                                            [self.tableView reloadData];
                                             [self viewDidLoad];
+                                            [SVProgressHUD dismiss];
+                                            NSLog(@"dict from inside refresh fdunction is %@", [self readFromDict]);
                                         }
                                     }];
                                     [requestGradesTask resume];

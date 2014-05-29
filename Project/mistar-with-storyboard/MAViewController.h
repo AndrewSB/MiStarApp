@@ -16,7 +16,12 @@
 #import "MASMSViewController.h"
 
 #import <SVProgressHUD/SVProgressHUD.h>
+
 #import <MZFormSheetController/MZFormSheetController.h>
+#import <MZFormSheetController/MZFormSheetBackgroundWindowViewController.h>
+#import <MZFormSheetController/MZFormSheetBackgroundWindow.h>
+#import <MZFormSheetController/MZFormSheetSegue.h>
+#import <MZFormSheetController/MZTransition.h>
 
 @interface MAViewController : GAITrackedViewController
 <UITableViewDataSource, UITabBarDelegate, UIScrollViewDelegate>

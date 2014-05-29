@@ -13,6 +13,8 @@
 - (NSDictionary *)parseWithData:(NSData *)data {
     NSArray *classes = [self splitClassesWithData:data];
     
+    NSMutableArray *returnClasses = [[NSMutableArray alloc] init];
+    
     for (NSString *class in classes) {
         NSData *classData = [class dataUsingEncoding:NSUTF8StringEncoding];
         MAClass *maclass = [[MAClass alloc] init];
@@ -21,8 +23,11 @@
         maclass.grade = [self getGradeWithString:class];
         maclass.teacher = [self getTeachersWithData:classData];
         maclass.assignments = [self getAssignmentsWithData:classData];
+        NSLog(@"Should have parsed everything");
+        [returnClasses addObject:maclass];
     }
-    return nil;
+    
+    return [[NSDictionary alloc] initWithObjectsAndKeys:[returnClasses mutableCopy], @"classes", nil];
 }
 
 - (NSArray *)splitClassesWithData:(NSData *)data {
@@ -85,8 +90,8 @@
 
 - (NSString *)getGradeWithString:(NSString *)string {
     NSError *error = nil;
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"(<\/b>[ABCDEF]){1}[ +-]?[^A]......" options:NSRegularExpressionCaseInsensitive error:&error];
-    NSArray *matches = [regex matchesInString:string options:nil range:NSMakeRange(0, [string length])];
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"(<\\/b>[ABCDEF]){1}[ +-]?[^A]......" options:NSRegularExpressionCaseInsensitive error:&error];
+    NSArray *matches = [regex matchesInString:string options:NSMatchingAnchored range:NSMakeRange(0, [string length])];
     
     if ([matches count] == 0) {
         return @" ";
@@ -105,7 +110,7 @@
                 string = [string substringToIndex:1];
             }
         }
-        
+        NSLog(@"returned this grade: %@", string);
         return string;
     }
 }
@@ -148,8 +153,7 @@
         if (flag) {
             newAssignmentBlock = element.text;
             flag = false;
-            
-            NSLog(@"Split here");
+            //NSLog(@"Split here");
         }
         if ([element.text isEqualToString:newAssignmentBlock]) {
             //Create new assignment, if there was an old one add to array
@@ -181,21 +185,19 @@
             }
             case 4: {
                 curPoints = [numberFormatter numberFromString:element.text];
-                NSLog(@"curPoints is %@", curPoints);
+                //NSLog(@"curPoints is %@", curPoints);
                 break;
             }
             case 5: {
                 curScore = [numberFormatter numberFromString:element.text];
-                NSLog(@"curScore is %@", curScore);
+                //NSLog(@"curScore is %@", curScore);
                 break;
             }
             default: {
                 break;
             }
         }
-        
-        
-        NSLog(@"Logged text:%@", element.text);
+        //NSLog(@"Logged text:%@", element.text);
         
         count++;
     }
@@ -208,15 +210,7 @@
         curScore = nil;
         curPoints = nil;
     }
-   
-    for (MAAssignment *ass in assignments) {
-        [ass logObject];
-    }
-    
     return [assignments mutableCopy];
-    
 }
-
-
 
 @end
