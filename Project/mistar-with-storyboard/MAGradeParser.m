@@ -193,20 +193,20 @@
                 break;
             }
         }
-        if (curName) {
-            assignment = nil;
-            assignment = [[MAAssignment alloc] initWithDate:curDate assignmentName:curName totalPoints:curPoints recievedPoints:curScore];
-            [assignments addObject:assignment];
-            curDate = nil;
-            curName = nil;
-            curScore = nil;
-            curPoints = nil;
-        }
         
         
         NSLog(@"Logged text:%@", element.text);
         
         count++;
+    }
+    if (curName) {
+        assignment = nil;
+        assignment = [[MAAssignment alloc] initWithDate:curDate assignmentName:curName totalPoints:curPoints recievedPoints:curScore];
+        [assignments addObject:assignment];
+        curDate = nil;
+        curName = nil;
+        curScore = nil;
+        curPoints = nil;
     }
    
     for (MAAssignment *ass in assignments) {

@@ -14,12 +14,9 @@
 
 #import "MAGradeCell.h"
 #import "MASMSViewController.h"
-#import "MAProgressReportViewController.h"
 
 #import <SVProgressHUD/SVProgressHUD.h>
 #import <MZFormSheetController/MZFormSheetController.h>
-#import <MZFormSheetController/MZFormSheetSegue.h>
-
 
 @interface MAViewController : GAITrackedViewController
 <UITableViewDataSource, UITabBarDelegate, UIScrollViewDelegate>

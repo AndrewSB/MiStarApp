@@ -8,7 +8,7 @@
 
 #import "MAViewController.h"
 
-@interface MAViewController () <MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate, UINavigationControllerDelegate, MZFormSheetBackgroundWindowDelegate, NSURLSessionDelegate, NSURLSessionDataDelegate, NSURLSessionDownloadDelegate, UITableViewDelegate, UITableViewDataSource>
+@interface MAViewController () <MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate, UINavigationControllerDelegate, NSURLSessionDelegate, UITableViewDelegate, UITableViewDataSource>
 
 
 @property (nonatomic, strong) UIImageView *backgroundImageView;
@@ -29,8 +29,6 @@
 @end
 
 @implementation MAViewController
-
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -105,24 +103,6 @@
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
-}
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"formSheet"]) {
-        MZFormSheetSegue *formSheetSegue = (MZFormSheetSegue *)segue;
-        MZFormSheetController *formSheet = formSheetSegue.formSheetController;
-        formSheet.transitionStyle = MZFormSheetTransitionStyleBounce;
-        formSheet.cornerRadius = 8.0;
-        formSheet.didTapOnBackgroundViewCompletionHandler = ^(CGPoint location) {
-            
-        };
-        
-        formSheet.shouldDismissOnBackgroundViewTap = YES;
-        
-        formSheet.didPresentCompletionHandler = ^(UIViewController *presentedFSViewController) {
-            
-        };
-    }
 }
 
 
@@ -480,10 +460,11 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    UIAlertView *comingSoon = [[UIAlertView alloc] initWithTitle:@"Will have assignments in the next version" message:@"Prolly next week" delegate:self cancelButtonTitle:@"Gotcha" otherButtonTitles:nil];
-    if (self.loggedIn && indexPath != 0) {
-        [comingSoon show];
-    }
+    UIViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"nav"];
+
+    [self mz_presentFormSheetController:vc animated:YES completionHandler:^(MZFormSheetController *formSheetController) {
+        //do sth
+    }];
 }
 
 
@@ -738,13 +719,6 @@
                              }];
     }
     return myResult;
-}
-
-
-#pragma mark - NSURLConnection Delegate
-
-- (NSCachedURLResponse *)connection:(NSURLConnection *)connection willCacheResponse:(NSCachedURLResponse *)cachedResponse {
-    return nil;
 }
 
 @end
