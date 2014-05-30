@@ -38,6 +38,8 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    MAClass *class = [[[self readFromDict] objectForKey:@"classes"] objectAtIndex:(int)self.row];
+    self.sourceArray = [class assignments];
 }
 
 - (void)didReceiveMemoryWarning
@@ -55,7 +57,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 4;
+    return [self.sourceArray count];
     //NSLog(@"array is set to %@", self.array);
 }
 
@@ -64,15 +66,27 @@
 {
     static NSString *CellIdentifier = @"CellID";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    MAAssignment *assignment = [self.sourceArray objectAtIndex:indexPath.row];
+    
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    //cell.textLabel.text = [[self.array objectAtIndex:indexPath.row] assignmentName];
-    cell.textLabel.text = [NSString stringWithFormat:@"Il est row %d", (int)self.row];
+    
+    cell.textLabel.text = [NSString stringWithFormat:@"%@ %@/%@", [assignment assignmentName], [assignment totalPoints], [assignment recievedPoints]];
     return cell;
 }
 
 
+- (NSDictionary *)readFromDict {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"/userdata.txt"];
+    
+    return [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
+}
+
+
+                            
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath

@@ -8,11 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+#import "MAClass.h"
 #import "MAAssignment.h"
 
 @interface MAProgressReportTableViewController : UITableViewController
 
 @property (nonatomic, assign) NSInteger *row;
+@property (nonatomic, strong) NSArray *sourceArray;
 
 - (id)initWithRow:(NSInteger *)row;
 
