@@ -18,8 +18,15 @@
 {
     self = [super initWithStyle:style];
     if (self) {
-        self.sourceArray = [[NSArray alloc] init];
+        // Custom init
     }
+    return self;
+}
+
+- (id)initWithRow:(NSInteger *)row
+{
+    self = [super initWithStyle:UITableViewStylePlain];
+    self.row = row;
     return self;
 }
 
@@ -61,7 +68,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     //cell.textLabel.text = [[self.array objectAtIndex:indexPath.row] assignmentName];
-    cell.textLabel.text = @"ast";
+    cell.textLabel.text = [NSString stringWithFormat:@"Il est row %d", (int)self.row];
     return cell;
 }
 

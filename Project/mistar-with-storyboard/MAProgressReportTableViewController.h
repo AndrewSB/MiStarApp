@@ -12,8 +12,8 @@
 
 @interface MAProgressReportTableViewController : UITableViewController
 
-@property (nonatomic, strong) NSArray *sourceArray;
+@property (nonatomic, assign) NSInteger *row;
 
-- (void)setSourceArray:(NSArray *)array;
+- (id)initWithRow:(NSInteger *)row;
 
 @end

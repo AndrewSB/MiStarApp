@@ -452,10 +452,12 @@
     UIView *v = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 250, 200)];
     NSArray *arrayTBS = [[[[self readFromDict] objectForKey:@"classes"] objectAtIndex:indexPath.row] assignments];
     NSLog(@"The array is %@", arrayTBS);
-    MAProgressReportTableViewController *tableVC = [[MAProgressReportTableViewController alloc] initWithStyle:UITableViewStylePlain];
-    [tableVC setSourceArray:arrayTBS];
+    MAProgressReportTableViewController *tableVC = [[MAProgressReportTableViewController alloc] initWithRow:(NSInteger)indexPath.row];
     tableVC.tableView.backgroundColor = [UIColor clearColor];
-    [self.navigationController presentModalViewController:tableVC animated:YES];
+    [self mz_presentFormSheetWithViewController:tableVC animated:YES completionHandler:^(MZFormSheetController *formSheetController) {
+        
+    }];
+    //[self.navigationController presentModalViewController:tableVC animated:YES];
     
     //[av setValue:tableVC forKey:@"accessoryView"];
     [av show];
