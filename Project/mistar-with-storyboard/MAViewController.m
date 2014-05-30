@@ -8,7 +8,7 @@
 
 #import "MAViewController.h"
 
-@interface MAViewController () <MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate, UINavigationControllerDelegate, NSURLSessionDelegate, UITableViewDelegate, UITableViewDataSource, MZFormSheetBackgroundWindowDelegate>
+@interface MAViewController () <MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate, UINavigationControllerDelegate, NSURLSessionDelegate, UITableViewDelegate, UITableViewDataSource>
 
 
 @property (nonatomic, strong) UIImageView *backgroundImageView;
@@ -448,31 +448,17 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Class name" message:@"teacher name" delegate:nil cancelButtonTitle:@"Done" otherButtonTitles:nil];
+    UIView *v = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 250, 200)];
+    NSArray *arrayTBS = [[[[self readFromDict] objectForKey:@"classes"] objectAtIndex:indexPath.row] assignments];
+    NSLog(@"The array is %@", arrayTBS);
+    MAProgressReportTableViewController *tableVC = [[MAProgressReportTableViewController alloc] initWithStyle:UITableViewStylePlain];
+    [tableVC setSourceArray:arrayTBS];
+    tableVC.tableView.backgroundColor = [UIColor clearColor];
+    [self.navigationController presentModalViewController:tableVC animated:YES];
     
-    UIViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"modal"];
-    
-    MZFormSheetController *formSheet = [[MZFormSheetController alloc] initWithViewController:vc];
-    
-    formSheet.presentedFormSheetSize = CGSizeMake(300, 298);
-    // formSheet.transitionStyle = MZFormSheetTransitionStyleSlideFromTop;
-    formSheet.shadowRadius = 2.0;
-    formSheet.shadowOpacity = 0.3;
-    formSheet.shouldDismissOnBackgroundViewTap = YES;
-    formSheet.shouldCenterVertically = YES;
-    formSheet.movementWhenKeyboardAppears = MZFormSheetWhenKeyboardAppearsCenterVertically;
-
-    formSheet.willPresentCompletionHandler = ^(UIViewController *presentedFSViewController) {
-        // Passing data
-        UINavigationController *navController = (UINavigationController *)presentedFSViewController;
-        navController.topViewController.title = @"PASSING DATA";
-    };
-    formSheet.transitionStyle = MZFormSheetTransitionStyleCustom;
-    
-    [MZFormSheetController sharedBackgroundWindow].formSheetBackgroundWindowDelegate = self;
-    
-    [self mz_presentFormSheetController:formSheet animated:YES completionHandler:^(MZFormSheetController *formSheetController) {
-        
-    }];
+    //[av setValue:tableVC forKey:@"accessoryView"];
+    [av show];
 }
 
 

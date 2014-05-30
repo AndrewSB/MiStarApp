@@ -14,16 +14,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-MZAppearance.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Pods-MZFormSheetController.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Pods-QBFlatButton.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -42,37 +32,27 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>2783F679E79A4DCD80489FFE</key>
+		<key>520E6C694B644ADC81842F5F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>30EA3812B3064161996FE456</key>
+		<key>9727325B59FB4AF28D75FEB2</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5892D136C97340B7A7360349</key>
+		<key>AC0BF03B31604D579DCFD1C5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6392B6AFD4044325B69FCC43</key>
+		<key>B4B789C4A3934A5BABEE0192</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BA8C239DB4944CD6A86BA325</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>CD53CAB9246242A29BC0620C</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>DA71EDF0C66D4C189FC40D03</key>
+		<key>D0C13C528D6548988B2FB0B2</key>
 		<dict>
 			<key>primary</key>
 			<true/>

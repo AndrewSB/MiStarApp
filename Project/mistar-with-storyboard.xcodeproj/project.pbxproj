@@ -31,6 +31,7 @@
 		4623562B18FFF32E00D67CC5 /* bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4623562818FFF32E00D67CC5 /* bg@2x.png */; };
 		4623562E18FFF35400D67CC5 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4623562D18FFF35400D67CC5 /* libxml2.dylib */; };
 		4623563118FFF38100D67CC5 /* MANavController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4623563018FFF38100D67CC5 /* MANavController.m */; };
+		46900FFD1937DFD60009F61F /* MAProgressReportTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46900FFC1937DFD60009F61F /* MAProgressReportTableViewController.m */; };
 		46CE86421919D4010055A05D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 462355A618FFF12A00D67CC5 /* Main.storyboard */; };
 		46D64D8F192ECCF6005734AF /* MAClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 46D64D8E192ECCF6005734AF /* MAClass.m */; };
 		46DDE3B01919D0F200B0455E /* mistar-with-storyboard-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4623559C18FFF12A00D67CC5 /* mistar-with-storyboard-Info.plist */; };
@@ -88,6 +89,8 @@
 		4623562D18FFF35400D67CC5 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libxml2.dylib; sourceTree = "<group>"; };
 		4623562F18FFF38100D67CC5 /* MANavController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MANavController.h; sourceTree = "<group>"; };
 		4623563018FFF38100D67CC5 /* MANavController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MANavController.m; sourceTree = "<group>"; };
+		46900FFB1937DFD60009F61F /* MAProgressReportTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAProgressReportTableViewController.h; sourceTree = "<group>"; };
+		46900FFC1937DFD60009F61F /* MAProgressReportTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAProgressReportTableViewController.m; sourceTree = "<group>"; };
 		46D64D8D192ECCF6005734AF /* MAClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAClass.h; sourceTree = "<group>"; };
 		46D64D8E192ECCF6005734AF /* MAClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAClass.m; sourceTree = "<group>"; };
 		50B9C2E0203E49D6B59CC820 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
@@ -171,6 +174,8 @@
 				462355DC18FFF29D00D67CC5 /* MAGradeCell.m */,
 				460C0310190CF17E00D168C3 /* MASMSViewController.h */,
 				460C0311190CF17E00D168C3 /* MASMSViewController.m */,
+				46900FFB1937DFD60009F61F /* MAProgressReportTableViewController.h */,
+				46900FFC1937DFD60009F61F /* MAProgressReportTableViewController.m */,
 				462355F518FFF30900D67CC5 /* Images */,
 				462355AC18FFF12A00D67CC5 /* Images.xcassets */,
 				462355F418FFF2C400D67CC5 /* hpple */,
@@ -391,6 +396,7 @@
 				462355E718FFF29D00D67CC5 /* MAGradeCell.m in Sources */,
 				46D64D8F192ECCF6005734AF /* MAClass.m in Sources */,
 				462355E418FFF29D00D67CC5 /* MAGradeParser.m in Sources */,
+				46900FFD1937DFD60009F61F /* MAProgressReportTableViewController.m in Sources */,
 				462355E618FFF29D00D67CC5 /* MAAssignment.m in Sources */,
 				462355F318FFF2BB00D67CC5 /* XPathQuery.m in Sources */,
 			);
