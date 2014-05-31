@@ -19,6 +19,7 @@
 @property (nonatomic, strong) NSDictionary *teacher;
 
 
+- (id)initWithName:(NSString *)name grade:(NSString *)grade assignments:(NSArray *)assignments;
 - (NSArray *)logClass;
 
 

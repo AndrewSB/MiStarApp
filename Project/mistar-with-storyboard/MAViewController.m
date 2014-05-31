@@ -8,8 +8,8 @@
 
 #import "MAViewController.h"
 
-@interface MAViewController () <MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate, UINavigationControllerDelegate, NSURLSessionDelegate, UITableViewDelegate, UITableViewDataSource>
-
+@interface MAViewController ()
+<MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate, UINavigationControllerDelegate, NSURLSessionDelegate, UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UIImageView *backgroundImageView;
 @property (nonatomic, strong) UIImageView *blurredImageView;
@@ -22,8 +22,6 @@
 @property float borderSize;
 
 @property (nonatomic, assign) BOOL loggedIn;
-@property (nonatomic, assign) int *loginFailCount;
-
 @property NSString *userNAME;
 
 @end
@@ -34,6 +32,11 @@
     [super viewDidLoad];
     NSLog(@"eyyyy im here");
     self.screenName = @"Main Screen";
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName value:[NSString stringWithFormat:@"Main Table View, student %@", self.userNAME]];
+    [tracker send:[[GAIDictionaryBuilder createAppView] build]];
+    
+    
     [[NSUserDefaults standardUserDefaults] synchronize];
     
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"]) {
@@ -151,12 +154,22 @@
         //Easter egg and test account
         if ([userPin isEqualToString:@"6969"]) {
             
-            NSArray *classes = [[NSArray alloc] initWithObjects:@"Math", @"English", @"History", @"Social Studies", @"Science", @"Language", nil];
-            NSArray *grades = [[NSArray alloc] initWithObjects:[[NSDictionary alloc] initWithObjectsAndKeys:@"A", @"grade", @"94.4%", @"percents", nil], [[NSDictionary alloc] initWithObjectsAndKeys:@"A-", @"grade", @"91.4%", @"percents", nil], [[NSDictionary alloc] initWithObjectsAndKeys:@"A+", @"grade", @"99.4%", @"percents", nil], [[NSDictionary alloc] initWithObjectsAndKeys:@"B+", @"grade", @"89.4%", @"percents", nil], [[NSDictionary alloc] initWithObjectsAndKeys:@"A", @"grade", @"96.4%", @"percents", nil], [[NSDictionary alloc] initWithObjectsAndKeys:@"A", @"grade", @"97.2%", @"percents", nil], nil];
             
-            NSArray *teachers = [[NSArray alloc] initWithObjects:[[NSDictionary alloc] initWithObjectsAndKeys:@"A", @"Name", @"91.4%", @"Email", nil], nil];
+            MAAssignment *assignment1 = [[MAAssignment alloc] initWithDate:@"6/23" assignmentName:@"Homework" totalPoints:@10 recievedPoints:@9];
+            MAAssignment *assignment2 = [[MAAssignment alloc] initWithDate:@"6/26" assignmentName:@"Weekly Test" totalPoints:@100 recievedPoints:@96];
             
-            NSDictionary *easterEggDict = [[NSDictionary alloc] initWithObjectsAndKeys:classes, @"classes", grades, @"grades", teachers, @"teachers", nil];
+            MAClass *class1 = [[MAClass alloc] initWithName:@"Math" grade:@"A-\n90.3" assignments:[NSArray arrayWithObjects:assignment1, assignment2, nil]];
+            MAClass *class2 = [[MAClass alloc] initWithName:@"English" grade:@"A\n94.9" assignments:[NSArray arrayWithObjects:assignment1, assignment2, nil]];
+            MAClass *class3 = [[MAClass alloc] initWithName:@"History" grade:@"A\n96.1" assignments:[NSArray arrayWithObjects:assignment1, assignment2, nil]];
+            MAClass *class4 = [[MAClass alloc] initWithName:@"Chemistry" grade:@"B+\n89.1" assignments:[NSArray arrayWithObjects:assignment1, assignment2, nil]];
+            MAClass *class5 = [[MAClass alloc] initWithName:@"Language" grade:@"A-\n88.5" assignments:[NSArray arrayWithObjects:assignment1, assignment2, nil]];
+            MAClass *class6 = [[MAClass alloc] initWithName:@"Gym" grade:@"A+\n99.0" assignments:[NSArray arrayWithObjects:assignment1, assignment2, nil]];
+            
+            
+            
+            NSArray *classes = [NSArray arrayWithObjects:class1,class2,class3,class4,class5,class6,nil];
+            
+            NSDictionary *easterEggDict = [[NSDictionary alloc] initWithObjectsAndKeys:classes, @"classes", nil];
             
             
             [self writeDictToFileWithContent:easterEggDict];
@@ -299,10 +312,6 @@
     [arr removeLastObject];
     [arr removeLastObject];
     
-    for (NSString *strn in arr) {
-        NSLog(@"readin %@", strn);
-    }
-    
     return [arr mutableCopy];
 }
 
@@ -354,8 +363,8 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if ([[[self readFromDict] objectForKey:@"grades"] count]) {
-        return [[[self readFromDict] objectForKey:@"grades"] count] + 1;
+    if ([[[self readFromDict] objectForKey:@"classes"] count]) {
+        return [[[self readFromDict] objectForKey:@"classes"] count] + 1;
     } else {
         return 7;
     }
@@ -375,7 +384,7 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.backgroundColor = [UIColor colorWithWhite:0 alpha:0.2];
     cell.textLabel.textColor = [UIColor whiteColor];
-    cell.detailTextLabel.textColor = [UIColor whiteColor];
+//    cell.detailTextLabel.textColor = [UIColor whiteColor];
     QBFlatButton* userStateButton = nil;
 
     
@@ -434,33 +443,66 @@
         
         NSArray *classes = [userData objectForKey:@"classes"];
         
+        UILabel *classNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, cell.contentView.frame.size.height/2, 320, 22)];
+        UILabel *gradeLabel = [[UILabel alloc] initWithFrame:CGRectMake(cell.contentView.frame.size.width-55, (cell.contentView.frame.size.height/2), 50, cell.contentView.frame.size.height)];
+        
+        classNameLabel.textColor = [UIColor whiteColor];
+        
+        gradeLabel.lineBreakMode = UILineBreakModeWordWrap;
+        gradeLabel.numberOfLines = 0;
+        gradeLabel.textAlignment = NSTextAlignmentCenter;
+        gradeLabel.textColor = [UIColor whiteColor];
         
         if ([classes count] > (NSUInteger)row) {
             cell.textLabel.text = [[classes objectAtIndex:(NSUInteger)row] name];
+            cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:18];
+//            cell.detailTextLabel.numberOfLines = 2;
+//            cell.detailTextLabel.lineBreakMode = NSLineBreakByWordWrapping;
+//            cell.detailTextLabel.textAlignment = NSTextAlignmentCenter;
+//            cell.detailTextLabel.text = [[classes objectAtIndex:(NSUInteger)row] grade];
+            //classNameLabel.text = [[classes objectAtIndex:(NSUInteger)row] name];
+            gradeLabel.text = [[classes objectAtIndex:(NSUInteger)row] grade];
+            [cell.contentView addSubview:classNameLabel];
+            [cell.contentView addSubview:gradeLabel];
             
-            cell.detailTextLabel.numberOfLines = 2;
-            cell.detailTextLabel.lineBreakMode = NSLineBreakByWordWrapping;
-            cell.detailTextLabel.textAlignment = NSTextAlignmentCenter;
-            cell.detailTextLabel.text = [[classes objectAtIndex:(NSUInteger)row] grade];
         }
         return cell;
     }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Class name" message:@"teacher name" delegate:nil cancelButtonTitle:@"Done" otherButtonTitles:nil];
-    UIView *v = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 250, 200)];
-    NSArray *arrayTBS = [[[[self readFromDict] objectForKey:@"classes"] objectAtIndex:indexPath.row] assignments];
-    NSLog(@"The array is %@", arrayTBS);
-    MAProgressReportTableViewController *tableVC = [[MAProgressReportTableViewController alloc] initWithRow:(NSInteger)indexPath.row];
-    tableVC.tableView.backgroundColor = [UIColor clearColor];
-    [self mz_presentFormSheetWithViewController:tableVC animated:YES completionHandler:^(MZFormSheetController *formSheetController) {
-        
+    if (self.loggedIn) {
+        if (indexPath.row != 0) {
+            MAProgressReportTableViewController *tableVC = [[MAProgressReportTableViewController alloc] initWithRow:(NSInteger *)indexPath.row];
+            UINavigationController *navCon = [[UINavigationController alloc] initWithRootViewController:tableVC];
+            tableVC.navigationItem.title = [[[[self readFromDict] objectForKey:@"classes"] objectAtIndex:indexPath.row-1] name];
+            
+            UIButton *mailTeacherButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+            [mailTeacherButton addTarget:self action:@selector(mailTeacher:) forControlEvents:UIControlEventTouchUpInside];
+            [mailTeacherButton setTitle:@"Show View" forState:UIControlStateNormal];
+            mailTeacherButton.frame = CGRectMake(0, 0, 160.0, 40.0);
+            [tableVC.navigationItem.titleView addSubview:mailTeacherButton];
+            
+            MZFormSheetController *formSheet = [[MZFormSheetController alloc] initWithViewController:navCon];
+            formSheet.shouldDismissOnBackgroundViewTap = YES;
+            formSheet.transitionStyle = MZFormSheetTransitionStyleBounce;
+            
+            [self mz_presentFormSheetController:formSheet animated:YES completionHandler:^(MZFormSheetController *formSheetController) {
+                
+            }];
+
+        }
+    }
+}
+
+- (void)dismissWhatever {
+    [self mz_dismissFormSheetControllerAnimated:YES completionHandler:^(MZFormSheetController *formSheetController) {
+        // do sth
     }];
-    //[self.navigationController presentModalViewController:tableVC animated:YES];
-    
-    //[av setValue:tableVC forKey:@"accessoryView"];
-    [av show];
+}
+
+- (void)mailTeacher:(NSIndexPath *)indexPath {
+    NSLog(@"mail the %@ teacher", indexPath.row);
 }
 
 
@@ -536,18 +578,14 @@
 }
 
 - (NSDictionary *)loginToMistarWithPin:(NSString *)pin password:(NSString *)password {
-    
     NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
     config.URLCache = NULL;
-    
     NSURLSession *defaultSession = [NSURLSession sessionWithConfiguration:config delegate: nil delegateQueue:[NSOperationQueue mainQueue]];
-    
     
     NSLog(@"logging in");
     _cancel = false;
     __block NSDictionary *myDictResult = nil; //set Returner as a block so it's assignable *in* the completion block
     [SVProgressHUD show];
-    
     
     NSMutableURLRequest *homeRequest = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://mistar.oakland.k12.mi.us/novi/StudentPortal/Home/Login"]]];
     [homeRequest setCachePolicy:NSURLRequestReloadIgnoringCacheData];
@@ -558,7 +596,6 @@
                             [self percentEscapeString:password]];
     NSData * postBody = [postString dataUsingEncoding:NSUTF8StringEncoding];
     [homeRequest setHTTPBody:postBody];
-    
     
     NSURLSessionDataTask *homeTask = [defaultSession dataTaskWithRequest:homeRequest completionHandler:^(NSData *homeData, NSURLResponse *homeResponse, NSError *homeError) {
         if ([homeData length] > 0 && homeError == nil) {
@@ -650,32 +687,29 @@
                                             myDictResult = [gradeParser parseWithData:requestGradesData];
                                             NSLog(@"after myResult");
                                             NSLog(@"mydicktresult: %@", myDictResult);
+                                            
                                             [self writeDictToFileWithContent:myDictResult];
+                                            
                                             [self writeToTextFileWithContent:[NSString stringWithFormat:@"1 %@ %@", pin, password]];
                                             [self.tableView reloadData];
                                             [self viewDidLoad];
                                             [SVProgressHUD dismiss];
-                                            
-                                            NSDictionary *innerDict = [self readFromDict];
-                                            for (MAClass *class in [innerDict objectForKey:@"classes"]) {
-                                                NSLog(@"the class is %@", [class logClass]);
-                                            }
                                         }
                                     }];
                                     [requestGradesTask resume];
                                     
-                                } else NSLog(@"Error with setStudentID request is either < 0 or there was an error:%@", setStudentIDError);
+                                } //else NSLog(@"Error with setStudentID request is either < 0 or there was an error:%@", setStudentIDError);
                                 
                             }];
                             [setStudentIDTask resume];
                         }
                         
-                    } else NSLog(@"error with getting the userPin data");
+                    } //else NSLog(@"error with getting the userPin data");
                 }];
                 [userPinTask resume];
         
-            } else NSLog(@"Error with logging into mistar, recieved: %@", homeData);
-        } else NSLog(@"Error with homeData or it's length:%@", homeError);
+            } //else NSLog(@"Error with logging into mistar, recieved: %@", homeData);
+        } //else NSLog(@"Error with homeData or it's length:%@", homeError);
     }];
     [homeTask resume];
 

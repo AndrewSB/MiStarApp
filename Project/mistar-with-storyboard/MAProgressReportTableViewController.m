@@ -38,8 +38,26 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.row = (int)self.row - 1;
     MAClass *class = [[[self readFromDict] objectForKey:@"classes"] objectAtIndex:(int)self.row];
     self.sourceArray = [class assignments];
+    
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName value:[NSString stringWithFormat:@"Opened progress report, %@", [class name]]];
+    [tracker send:[[GAIDictionaryBuilder createAppView] build]];
+    
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    
+    if ([self.sourceArray count] == 0) {
+        UIImageView *sadFaceImageView = [[UIImageView alloc] initWithFrame:CGRectMake(55, 10, 180, 180)];
+        [sadFaceImageView setImage:[UIImage imageNamed:@"vine-page-not-found copy"]];
+        
+        UILabel *sadFaceLabel = [[UILabel alloc] initWithFrame:CGRectMake(47, 185, 250, 44)];
+        sadFaceLabel.text = @"No Recent Assignments";
+        
+        [self.tableView addSubview:sadFaceImageView];
+        [self.tableView addSubview:sadFaceLabel];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -61,7 +79,6 @@
     //NSLog(@"array is set to %@", self.array);
 }
 
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"CellID";
@@ -69,13 +86,35 @@
     MAAssignment *assignment = [self.sourceArray objectAtIndex:indexPath.row];
     
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
     }
     
-    cell.textLabel.text = [NSString stringWithFormat:@"%@ %@/%@", [assignment assignmentName], [assignment totalPoints], [assignment recievedPoints]];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@", [assignment assignmentName]];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@/%@", [assignment recievedPoints], [assignment totalPoints]];
+    cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    cell.textLabel.numberOfLines = 0;
+    
     return cell;
 }
 
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+//    self.selectedRowIndex = indexPath;
+//    [tableView beginUpdates];
+//    [tableView endUpdates];
+//}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    //check if the index actually exists
+    if(self.selectedRowIndex && indexPath.row == self.selectedRowIndex.row) {
+        [self tableView:self.tableView cellForRowAtIndexPath:indexPath];
+        return 100;
+    }
+    return 44;
+}
+
+
+
+#pragma mark - I/O
 
 - (NSDictionary *)readFromDict {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);

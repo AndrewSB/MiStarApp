@@ -19,9 +19,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self setNavigationBarHidden:YES animated:YES];
-    
-    MAViewController *vc = [[MAViewController alloc] init];
-    [self pushViewController:vc animated:YES];
+    [self pushViewController:[[MAViewController alloc] init] animated:YES];
 }
 
 - (void)didReceiveMemoryWarning

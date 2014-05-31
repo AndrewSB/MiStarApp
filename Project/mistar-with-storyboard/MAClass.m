@@ -21,6 +21,15 @@
     return self;
 }
 
+- (id)initWithName:(NSString *)name grade:(NSString *)grade assignments:(NSArray *)assignments
+{
+    self. name = name;
+    self.grade = grade;
+    self.assignments = assignments;
+    
+    return [super init];
+}
+
 - (void)encodeWithCoder:(NSCoder *)coder
 {
     [coder encodeObject:self.name forKey:@"name"];

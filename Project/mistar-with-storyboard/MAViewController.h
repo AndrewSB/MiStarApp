@@ -11,9 +11,14 @@
 #import "MAAppDelegate.h"
 
 #import "MAGradeParser.h"
-
 #import "MAGradeCell.h"
+
+#import "MAClass.h"
+#import "MAAssignment.h"
+
 #import "MASMSViewController.h"
+
+#import <GoogleAnalytics-iOS-SDK/GAIDictionaryBuilder.h>
 
 #import <SVProgressHUD/SVProgressHUD.h>
 #import <MZFormSheetController/MZFormSheetBackgroundWindowViewController.h>

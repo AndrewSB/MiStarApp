@@ -23,7 +23,6 @@
         maclass.grade = [self getGradeWithString:class];
         maclass.teacher = [self getTeachersWithData:classData];
         maclass.assignments = [self getAssignmentsWithData:classData];
-        NSLog(@"Should have parsed everything");
         [returnClasses addObject:maclass];
     }
     
@@ -63,7 +62,7 @@
             if ([rangeString rangeOfString:@"Academic Adviso"].location == NSNotFound) {
                 [classArray addObject:rangeString];
             } else {
-                ////NSLog(@"disinclude AA");
+                //NSLog(@"disinclude AA");
             }
             
         } else {
@@ -94,7 +93,7 @@
     NSArray *matches = [regex matchesInString:string options:0 range:NSMakeRange(0, [string length])];
     
     if ([matches count] == 0) {
-        NSLog(@"No grade matches");
+        //NSLog(@"No grade matches");
         return @" ";
     } else {
         string = [[string substringWithRange:[[matches objectAtIndex:0] range]] substringFromIndex:4];
@@ -111,7 +110,6 @@
                 string = [string substringToIndex:1];
             }
         }
-        NSLog(@"returned this grade: %@", string);
         return string;
     }
 }
@@ -186,11 +184,13 @@
             }
             case 4: {
                 curPoints = [numberFormatter numberFromString:element.text];
+                if (!curPoints) curPoints = [NSNumber numberWithInt:0];
                 //NSLog(@"curPoints is %@", curPoints);
                 break;
             }
             case 5: {
                 curScore = [numberFormatter numberFromString:element.text];
+                if (!curScore) curScore = [NSNumber numberWithInt:0];
                 //NSLog(@"curScore is %@", curScore);
                 break;
             }

@@ -13,7 +13,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    return YES;
+    // 1
     [GAI sharedInstance].trackUncaughtExceptions = YES;
     
     // 2
@@ -24,10 +24,11 @@
     
     // 4
     id<GAITracker> tracker = [[GAI sharedInstance] trackerWithTrackingId:@"UA-50802359-1"];
-
     
     MANavController *navController = [[MANavController alloc]init];
     self.window.rootViewController=navController;
+    
+    return YES;
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application

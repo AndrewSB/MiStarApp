@@ -11,9 +11,12 @@
 #import "MAClass.h"
 #import "MAAssignment.h"
 
+#import <GoogleAnalytics-iOS-SDK/GAIDictionaryBuilder.h>
+
 @interface MAProgressReportTableViewController : UITableViewController
 
 @property (nonatomic, assign) NSInteger *row;
+@property (nonatomic, retain) NSIndexPath *selectedRowIndex;
 @property (nonatomic, strong) NSArray *sourceArray;
 
 - (id)initWithRow:(NSInteger *)row;

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		460C030F190CF00700D168C3 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 460C030E190CF00700D168C3 /* MessageUI.framework */; };
 		460C0312190CF17E00D168C3 /* MASMSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 460C0311190CF17E00D168C3 /* MASMSViewController.m */; };
+		46216E201939C3DE0088E4FA /* page-not-found.png in Resources */ = {isa = PBXBuildFile; fileRef = 46216E1F1939C3DE0088E4FA /* page-not-found.png */; };
 		4623559518FFF12A00D67CC5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4623559418FFF12A00D67CC5 /* Foundation.framework */; };
 		4623559718FFF12A00D67CC5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4623559618FFF12A00D67CC5 /* CoreGraphics.framework */; };
 		4623559918FFF12A00D67CC5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4623559818FFF12A00D67CC5 /* UIKit.framework */; };
@@ -32,9 +33,8 @@
 		4623562E18FFF35400D67CC5 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4623562D18FFF35400D67CC5 /* libxml2.dylib */; };
 		4623563118FFF38100D67CC5 /* MANavController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4623563018FFF38100D67CC5 /* MANavController.m */; };
 		46900FFD1937DFD60009F61F /* MAProgressReportTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46900FFC1937DFD60009F61F /* MAProgressReportTableViewController.m */; };
-		46CE86421919D4010055A05D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 462355A618FFF12A00D67CC5 /* Main.storyboard */; };
 		46D64D8F192ECCF6005734AF /* MAClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 46D64D8E192ECCF6005734AF /* MAClass.m */; };
-		46DDE3B01919D0F200B0455E /* mistar-with-storyboard-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4623559C18FFF12A00D67CC5 /* mistar-with-storyboard-Info.plist */; };
+		46FDBA3C193A4606009E1E7E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 462355A618FFF12A00D67CC5 /* Main.storyboard */; };
 		6EA81663FEB0476DA02E2B05 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5AB13AD0524DEF94299447 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +52,7 @@
 		460C030E190CF00700D168C3 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		460C0310190CF17E00D168C3 /* MASMSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASMSViewController.h; sourceTree = "<group>"; };
 		460C0311190CF17E00D168C3 /* MASMSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASMSViewController.m; sourceTree = "<group>"; };
+		46216E1F1939C3DE0088E4FA /* page-not-found.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "page-not-found.png"; sourceTree = "<group>"; };
 		4623559118FFF12A00D67CC5 /* Zangle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Zangle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4623559418FFF12A00D67CC5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		4623559618FFF12A00D67CC5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -85,7 +86,6 @@
 		462355F018FFF2BB00D67CC5 /* XPathQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPathQuery.m; sourceTree = "<group>"; };
 		4623562718FFF32E00D67CC5 /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg.png; sourceTree = "<group>"; };
 		4623562818FFF32E00D67CC5 /* bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg@2x.png"; sourceTree = "<group>"; };
-		4623562918FFF32E00D67CC5 /* originalImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = originalImage.jpg; sourceTree = "<group>"; };
 		4623562D18FFF35400D67CC5 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libxml2.dylib; sourceTree = "<group>"; };
 		4623562F18FFF38100D67CC5 /* MANavController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MANavController.h; sourceTree = "<group>"; };
 		4623563018FFF38100D67CC5 /* MANavController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MANavController.m; sourceTree = "<group>"; };
@@ -243,7 +243,7 @@
 			children = (
 				4623562718FFF32E00D67CC5 /* bg.png */,
 				4623562818FFF32E00D67CC5 /* bg@2x.png */,
-				4623562918FFF32E00D67CC5 /* originalImage.jpg */,
+				46216E1F1939C3DE0088E4FA /* page-not-found.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -330,10 +330,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				46DDE3B01919D0F200B0455E /* mistar-with-storyboard-Info.plist in Resources */,
-				46CE86421919D4010055A05D /* Main.storyboard in Resources */,
+				46FDBA3C193A4606009E1E7E /* Main.storyboard in Resources */,
 				462355AD18FFF12A00D67CC5 /* Images.xcassets in Resources */,
 				4623562A18FFF32E00D67CC5 /* bg.png in Resources */,
+				46216E201939C3DE0088E4FA /* page-not-found.png in Resources */,
 				4623562B18FFF32E00D67CC5 /* bg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
