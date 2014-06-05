@@ -37,7 +37,6 @@ extern NSString *const kGAIAppName;
 extern NSString *const kGAIAppVersion;
 extern NSString *const kGAIAppId;
 extern NSString *const kGAIAppInstallerId;
-extern NSString *const kGAIUserId;
 
 extern NSString *const kGAIEventCategory;
 extern NSString *const kGAIEventAction;

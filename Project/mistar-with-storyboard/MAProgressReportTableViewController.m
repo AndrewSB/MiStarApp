@@ -49,18 +49,15 @@
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 100)];
     
     if ([self.sourceArray count] == 1) {
-        UIImageView *sadFaceImageView = [[UIImageView alloc] initWithFrame:CGRectMake(55, 45, 160, 160)];
+        UIImageView *sadFaceImageView = [[UIImageView alloc] initWithFrame:CGRectMake(55, 36, 170, 170)];
         [sadFaceImageView setImage:[UIImage imageNamed:@"page-not-found"]];
         
-        self.tableView.tableHeaderView.frame = CGRectMake(0, 200, 200, 100);
-        
-        UILabel *sadFaceLabel = [[UILabel alloc] initWithFrame:CGRectMake(47, 200, 250, 44)];
+        UILabel *sadFaceLabel = [[UILabel alloc] initWithFrame:CGRectMake(47, 205, 250, 44)];
         sadFaceLabel.text = @"No Recent Assignments";
         
         [self.tableView addSubview:sadFaceImageView];
         [self.tableView addSubview:sadFaceLabel];
     }
-    self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 5)];
 }
 
 - (void)didReceiveMemoryWarning

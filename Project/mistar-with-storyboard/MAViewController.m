@@ -24,9 +24,6 @@
 @property (nonatomic, assign) BOOL loggedIn;
 @property NSString *userNAME;
 
-@property (nonatomic, assign) NSInteger *progressReportIndex;
-@property (nonatomic, strong) NSArray *progressReportArray;
-
 @end
 
 @implementation MAViewController
@@ -143,22 +140,18 @@
     }
 };
 
-- (void)progressReportButtonHit:(id)sender {
+- (void)progressReportButtonHit:(id) sender {
     [self mz_dismissFormSheetControllerAnimated:YES completionHandler:^(MZFormSheetController *formSheetController){
-        UIViewController *webViewVC = [[UIViewController alloc] init];
-        UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 10, self.view.frame.size.width, self.view.frame.size.height-10)];
-        NSArray *relevantAssignmentArray = [[[[self readFromDict] objectForKey:@"classes"] objectAtIndex:(NSUInteger)self.progressReportIndex-1] assignments];
-        NSString *urlString = [[relevantAssignmentArray objectAtIndex:[relevantAssignmentArray count]-1] assignmentName];
-        
-        NSLog(@"urlstring is %@", urlString);
-        
-        NSURL *targetURL = [NSURL URLWithString:urlString];
+        UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(10, 10, 200, 200)];
+        QBFlatButton *buttonClicked = (QBFlatButton *)sender;
+        //NSLog(@"number of rows %@", [[[[[self readFromDict] objectForKey:@"classes"] objectAtIndex:[buttonClicked.accessibilityHint intValue]] assignments] count]);
+        NSLog(@"asdasa");
+        NSURL *targetURL = [NSURL URLWithString:@"http://developer.apple.com/iphone/library/documentation/UIKit/Reference/UIWebView_Class/UIWebView_Class.pdf"];
         NSURLRequest *request = [NSURLRequest requestWithURL:targetURL];
         [webView loadRequest:request];
-        [webViewVC.view addSubview:webView];
+        [self dismissModalViewControllerAnimated:YES];
         
-        [self.navigationController setNavigationBarHidden:NO animated:YES];
-        [self.navigationController presentModalViewController:webViewVC animated:YES];
+        [self.view addSubview:webView];
     }];
 }
 
@@ -514,10 +507,9 @@
             btn.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:16];
             [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
             [btn setTitle:[NSString stringWithFormat:@"Open Progress Report"] forState:UIControlStateNormal]; //[[self.sourceArray objectAtIndex:([self.sourceArray count] - 1)] assignmentName]]
-
-            [tableVC.tableView.tableFooterView addSubview:btn];
+            [btn setAccessibilityHint:[NSString stringWithFormat:@"%d", (int)indexPath.row-1]];
             
-            NSLog(@"number of rows in ssection %ld", (long)[tableVC.tableView numberOfRowsInSection:0]);
+            [tableVC.view addSubview:btn];
             
             UIButton *mailTeacherButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
             [mailTeacherButton addTarget:self action:@selector(mailTeacher:) forControlEvents:UIControlEventTouchUpInside];
@@ -530,7 +522,7 @@
             formSheet.transitionStyle = MZFormSheetTransitionStyleBounce;
             
             [self mz_presentFormSheetController:formSheet animated:YES completionHandler:^(MZFormSheetController *formSheetController) {
-                self.progressReportIndex = (NSInteger *)[indexPath row];
+                
             }];
 
         }
@@ -724,15 +716,11 @@
                                     
                                     NSURLSessionDataTask *requestGradesTask = [defaultSession dataTaskWithRequest:requestGradesRequest completionHandler:^(NSData *requestGradesData, NSURLResponse *requestGradesResponse, NSError *requestGradesError) {
                                         if ([requestGradesData length] > 0 && requestGradesError == nil) {
-                                            NSLog(@"the html %@",[[NSString alloc] initWithData:requestGradesData encoding:NSUTF8StringEncoding]);
+                                            NSLog(@"the html%@",[[NSString alloc] initWithData:requestGradesData encoding:NSUTF8StringEncoding]);
                                             MAGradeParser *gradeParser = [[MAGradeParser alloc] init];
                                             myDictResult = [gradeParser parseWithData:requestGradesData];
                                             NSLog(@"after myResult");
                                             NSLog(@"mydicktresult: %@", myDictResult);
-                                            
-                                            for (MAClass *class in myDictResult) {
-                                                [[[class assignments] objectAtIndex:[[class assignments] count]-1] setAssignmentName:@"lolno.com"];
-                                            }
                                             
                                             [self writeDictToFileWithContent:myDictResult];
                                             
