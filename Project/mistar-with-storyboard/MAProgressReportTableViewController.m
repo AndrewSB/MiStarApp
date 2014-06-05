@@ -47,27 +47,12 @@
     [tracker send:[[GAIDictionaryBuilder createAppView] build]];
     
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 100)];
-    QBFlatButton *btn = [QBFlatButton buttonWithType:UIButtonTypeCustom];
-    btn.frame = CGRectMake(0, 0, 100, 30);
-    
-    btn.faceColor = [UIColor colorWithRed:0.333 green:0.631 blue:0.851 alpha:1.0];
-    btn.sideColor = [UIColor colorWithRed:0.310 green:0.498 blue:0.702 alpha:1.0];
-    
-    btn.radius = 6.0;
-    btn.margin = 4.0;
-    btn.depth = 3.0;
-    
-    btn.titleLabel.font = [UIFont boldSystemFontOfSize:16];
-    [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [btn setTitle:@"Button" forState:UIControlStateNormal];
-    
-    [self.tableView.tableFooterView addSubview:btn];
     
     if ([self.sourceArray count] == 1) {
-        UIImageView *sadFaceImageView = [[UIImageView alloc] initWithFrame:CGRectMake(55, 10, 180, 180)];
+        UIImageView *sadFaceImageView = [[UIImageView alloc] initWithFrame:CGRectMake(55, 36, 170, 170)];
         [sadFaceImageView setImage:[UIImage imageNamed:@"page-not-found"]];
         
-        UILabel *sadFaceLabel = [[UILabel alloc] initWithFrame:CGRectMake(47, 185, 250, 44)];
+        UILabel *sadFaceLabel = [[UILabel alloc] initWithFrame:CGRectMake(47, 205, 250, 44)];
         sadFaceLabel.text = @"No Recent Assignments";
         
         [self.tableView addSubview:sadFaceImageView];

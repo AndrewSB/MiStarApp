@@ -140,6 +140,21 @@
     }
 };
 
+- (void)progressReportButtonHit:(id) sender {
+    [self mz_dismissFormSheetControllerAnimated:YES completionHandler:^(MZFormSheetController *formSheetController){
+        UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(10, 10, 200, 200)];
+        QBFlatButton *buttonClicked = (QBFlatButton *)sender;
+        //NSLog(@"number of rows %@", [[[[[self readFromDict] objectForKey:@"classes"] objectAtIndex:[buttonClicked.accessibilityHint intValue]] assignments] count]);
+        NSLog(@"asdasa");
+        NSURL *targetURL = [NSURL URLWithString:@"http://developer.apple.com/iphone/library/documentation/UIKit/Reference/UIWebView_Class/UIWebView_Class.pdf"];
+        NSURLRequest *request = [NSURLRequest requestWithURL:targetURL];
+        [webView loadRequest:request];
+        [self dismissModalViewControllerAnimated:YES];
+        
+        [self.view addSubview:webView];
+    }];
+}
+
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     
     NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
@@ -476,6 +491,25 @@
             MAProgressReportTableViewController *tableVC = [[MAProgressReportTableViewController alloc] initWithRow:(NSInteger *)indexPath.row];
             UINavigationController *navCon = [[UINavigationController alloc] initWithRootViewController:tableVC];
             tableVC.navigationItem.title = [[[[self readFromDict] objectForKey:@"classes"] objectAtIndex:indexPath.row-1] name];
+            
+            QBFlatButton *btn = [QBFlatButton buttonWithType:UIButtonTypeCustom];
+            btn.frame = CGRectMake(50, 2, 180, 33);
+            
+            btn.faceColor = [UIColor colorWithRed:108/255.0f green:185/255.0f blue:145/255.0f alpha:1.0f];
+            btn.sideColor = [UIColor clearColor];
+            
+            btn.radius = 6.0;
+            btn.margin = 4.0;
+            btn.depth = 0.0;
+            
+            [btn addTarget:self action:@selector(progressReportButtonHit:)forControlEvents:UIControlEventTouchUpInside];
+            
+            btn.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:16];
+            [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            [btn setTitle:[NSString stringWithFormat:@"Open Progress Report"] forState:UIControlStateNormal]; //[[self.sourceArray objectAtIndex:([self.sourceArray count] - 1)] assignmentName]]
+            [btn setAccessibilityHint:[NSString stringWithFormat:@"%d", (int)indexPath.row-1]];
+            
+            [tableVC.view addSubview:btn];
             
             UIButton *mailTeacherButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
             [mailTeacherButton addTarget:self action:@selector(mailTeacher:) forControlEvents:UIControlEventTouchUpInside];
