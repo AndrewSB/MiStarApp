@@ -39,14 +39,15 @@
     
     [[NSUserDefaults standardUserDefaults] synchronize];
     
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"]) {
-        
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"JustUpdated"]) {
     }
     else {
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"HasLaunchedOnce"];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"JustUpdated"];
         [[NSUserDefaults standardUserDefaults] synchronize];
+        [self writeDictToFileWithContent:nil];
+        [self writeNameToFileWithContent:@""];
+        [self writeToTextFileWithContent:@"0"];
     }
-    
     
     self.loggedIn = [[self displayContent] boolValue];
     
@@ -338,7 +339,6 @@
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"/username.txt"];
-    
     
     [name writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error:nil];
 

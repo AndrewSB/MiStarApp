@@ -46,11 +46,26 @@
     [tracker set:kGAIScreenName value:[NSString stringWithFormat:@"Opened progress report, %@", [class name]]];
     [tracker send:[[GAIDictionaryBuilder createAppView] build]];
     
-    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 100)];
+    QBFlatButton *btn = [QBFlatButton buttonWithType:UIButtonTypeCustom];
+    btn.frame = CGRectMake(0, 0, 100, 30);
     
-    if ([self.sourceArray count] == 0) {
+    btn.faceColor = [UIColor colorWithRed:0.333 green:0.631 blue:0.851 alpha:1.0];
+    btn.sideColor = [UIColor colorWithRed:0.310 green:0.498 blue:0.702 alpha:1.0];
+    
+    btn.radius = 6.0;
+    btn.margin = 4.0;
+    btn.depth = 3.0;
+    
+    btn.titleLabel.font = [UIFont boldSystemFontOfSize:16];
+    [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [btn setTitle:@"Button" forState:UIControlStateNormal];
+    
+    [self.tableView.tableFooterView addSubview:btn];
+    
+    if ([self.sourceArray count] == 1) {
         UIImageView *sadFaceImageView = [[UIImageView alloc] initWithFrame:CGRectMake(55, 10, 180, 180)];
-        [sadFaceImageView setImage:[UIImage imageNamed:@"vine-page-not-found copy"]];
+        [sadFaceImageView setImage:[UIImage imageNamed:@"page-not-found"]];
         
         UILabel *sadFaceLabel = [[UILabel alloc] initWithFrame:CGRectMake(47, 185, 250, 44)];
         sadFaceLabel.text = @"No Recent Assignments";
@@ -75,7 +90,8 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.sourceArray count];
+    if ([self.sourceArray count] == 0) return 0;
+    else return [self.sourceArray count] - 1;
     //NSLog(@"array is set to %@", self.array);
 }
 

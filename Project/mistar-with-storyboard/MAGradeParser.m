@@ -211,7 +211,18 @@
         curScore = nil;
         curPoints = nil;
     }
+    
+    MAAssignment *progressReport = [[MAAssignment alloc] initWithDate:@"1/2/12" assignmentName:[self getProgressReportWithData:data] totalPoints:0 recievedPoints:0];
+    
+    [assignments addObject:progressReport];
+
     return [assignments mutableCopy];
+}
+
+- (NSString *)getProgressReportWithData:(NSData *)data {
+    NSString *url = @"someURL";
+    
+    return url;
 }
 
 @end
