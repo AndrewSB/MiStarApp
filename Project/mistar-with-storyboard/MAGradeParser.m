@@ -198,7 +198,7 @@
                 break;
             }
         }
-        //NSLog(@"Logged text:%@", element.text);
+        NSLog(@"Logged text:%@", element.text);
         
         count++;
     }
