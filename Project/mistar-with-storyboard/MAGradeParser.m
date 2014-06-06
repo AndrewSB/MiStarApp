@@ -97,7 +97,7 @@
         return @" ";
     } else {
         string = [[string substringWithRange:[[matches objectAtIndex:0] range]] substringFromIndex:4];
-        if ([string characterAtIndex:1] == '+' || [string characterAtIndex:1] == '-') {
+        if ([string characterAtIndex:1] != ' ') {
             if ([string characterAtIndex:4] == '(') {
                 string = [NSString stringWithFormat:@"%@\n%@",[string substringToIndex:1],[string substringWithRange:NSMakeRange(5, 4)]];
             } else {
@@ -220,8 +220,10 @@
 }
 
 - (NSString *)getProgressReportWithData:(NSData *)data {
-    NSString *url = @"someURL";
+    NSString *url = @"http://www.google.com";
+    url = [NSString stringWithFormat:@"https://mistar.oakland.k12.mi.us/novi/StudentPortal/Home/PrintProgressReport/%@^HS4", [[[[[[TFHpple alloc] initWithData:data isXML:NO] searchWithXPathQuery:@"//a[@title=\"Student Progress Report\"]"] objectAtIndex:0] objectForKey:@"onclick"] substringWithRange:NSMakeRange(25, 8)]];
     
+    NSLog(@"URL is %@", url);
     return url;
 }
 

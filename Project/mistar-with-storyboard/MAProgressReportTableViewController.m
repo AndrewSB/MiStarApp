@@ -38,7 +38,7 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    self.row = (int)self.row - 1;
+    self.row = (NSInteger *)self.row - 1;
     MAClass *class = [[[self readFromDict] objectForKey:@"classes"] objectAtIndex:(int)self.row];
     self.sourceArray = [class assignments];
     
