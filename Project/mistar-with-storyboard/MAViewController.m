@@ -497,7 +497,9 @@
         if (indexPath.row != 0) {
             MAProgressReportTableViewController *tableVC = [[MAProgressReportTableViewController alloc] initWithRow:(NSInteger *)indexPath.row];
             UINavigationController *navCon = [[UINavigationController alloc] initWithRootViewController:tableVC];
-            tableVC.navigationItem.title = [[[[self readFromDict] objectForKey:@"classes"] objectAtIndex:indexPath.row-1] name];
+            
+            
+            //tableVC.navigationItem.title = [[[[self readFromDict] objectForKey:@"classes"] objectAtIndex:indexPath.row-1] name];
             
             QBFlatButton *btn = [QBFlatButton buttonWithType:UIButtonTypeCustom];
             btn.frame = CGRectMake(50, 2, 180, 33);
