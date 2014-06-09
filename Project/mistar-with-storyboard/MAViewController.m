@@ -466,7 +466,7 @@
         NSArray *classes = [userData objectForKey:@"classes"];
         
         UILabel *classNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, cell.contentView.frame.size.height/2, 320, 22)];
-        UILabel *gradeLabel = [[UILabel alloc] initWithFrame:CGRectMake(cell.contentView.frame.size.width-55, (cell.contentView.frame.size.height/2), 50, cell.contentView.frame.size.height)];
+        UILabel *gradeLabel = [[UILabel alloc] initWithFrame:CGRectMake(cell.contentView.frame.size.width-55, (cell.contentView.frame.size.height/2) + (.5*cell.contentView.frame.size.height), 50, cell.contentView.frame.size.height)];
         
         classNameLabel.textColor = [UIColor whiteColor];
         
@@ -729,6 +729,19 @@
                                             myDictResult = [gradeParser parseWithData:requestGradesData];
                                             NSLog(@"after myResult");
                                             NSLog(@"mydicktresult: %@", myDictResult);
+                                            
+                                            for (MAClass *class in [myDictResult objectForKey:@"classes"]) {
+                                                NSString *PRURL = [[[class assignments] objectAtIndex:[[class assignments] count]-1] assignmentName];
+                                                NSLog(@"PRURL is %@", PRURL);
+                                                
+                                                NSURLSessionDataTask *progressReportTask = [defaultSession dataTaskWithURL:[NSURL URLWithString:PRURL] completionHandler:^(NSData *progressReportData, NSURLResponse *progressReportResponse, NSError *progressReportError) {
+                                                    if ([progressReportData length] > 0 && progressReportError == nil) {
+                                                        NSLog(@"got dat data");
+                                                    } else NSLog(@"Error with getting data data:%@\nresponse:%@\nerror:%@", progressReportData, progressReportResponse, progressReportError);
+                                                }];
+                                                [progressReportTask resume];
+                                                NSLog(@"After request");
+                                            }
                                             
                                             [self writeDictToFileWithContent:myDictResult];
                                             
