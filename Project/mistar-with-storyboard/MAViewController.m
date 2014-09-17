@@ -23,24 +23,16 @@
 
 @property (nonatomic, assign) BOOL loggedIn;
 @property NSString *userNAME;
-@property UITextField *link;
-@property NSString *path;
-@property NSString *urltest;
 
 @property (nonatomic, assign) NSInteger *progressReportIndex;
 @property (nonatomic, strong) NSArray *progressReportArray;
 
--(NSString*) getUrl:(NSString*)fullUrl;
-
 @end
 
 @implementation MAViewController
-@synthesize link;
 
 - (void)viewDidLoad {
-    
     [super viewDidLoad];
-    link.delegate = self;
     NSLog(@"eyyyy im here");
     self.screenName = @"Main Screen";
     id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
@@ -50,14 +42,15 @@
     
     [[NSUserDefaults standardUserDefaults] synchronize];
     
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"]) {
-        
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"JustUpdated"]) {
     }
     else {
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"HasLaunchedOnce"];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"JustUpdated"];
         [[NSUserDefaults standardUserDefaults] synchronize];
+        [self writeDictToFileWithContent:nil];
+        [self writeNameToFileWithContent:@""];
+        [self writeToTextFileWithContent:@"0"];
     }
-    
     
     self.loggedIn = [[self displayContent] boolValue];
     
@@ -68,7 +61,7 @@
                                                   forBarMetrics:UIBarMetricsDefault];
     self.navigationController.navigationBar.shadowImage = [UIImage new];
     self.navigationController.navigationBar.translucent = YES;
-    
+
     self.screenHeight = [UIScreen mainScreen].bounds.size.height;
     UIImage *background = [UIImage imageNamed:@"bg"];
     
@@ -172,7 +165,7 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     
     NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
-    self.path = self.link.text;
+    
     if ([title isEqualToString:@"Cancel"]) {
         NSLog(@"Client canceled");
     } else if ([title isEqualToString:@"Continue"]) {
@@ -180,15 +173,15 @@
         NSString *userPassword = [alertView textFieldAtIndex:1].text;
         NSLog(@"from vc Client is: %@ with credential: %@", userPin, userPassword);
         [self writeDictToFileWithContent:[[NSDictionary alloc] init]];
-        [self.view endEditing:YES];
         
         //Easter egg and test account
         if ([userPin isEqualToString:@"6969"]) {
             
+            
             MAAssignment *assignment1 = [[MAAssignment alloc] initWithDate:@"6/23" assignmentName:@"Homework" totalPoints:@10 recievedPoints:@9];
             MAAssignment *assignment2 = [[MAAssignment alloc] initWithDate:@"6/26" assignmentName:@"Weekly Test" totalPoints:@100 recievedPoints:@96];
             
-            MAClass *class1 = [[MAClass alloc] initWithName:@"Math" grade:@"A-\n90.3" assignments:@[assignment1, assignment2]];
+            MAClass *class1 = [[MAClass alloc] initWithName:@"Math" grade:@"A-\n90.3" assignments:[NSArray arrayWithObjects:assignment1, assignment2, nil]];
             MAClass *class2 = [[MAClass alloc] initWithName:@"English" grade:@"A\n94.9" assignments:[NSArray arrayWithObjects:assignment1, assignment2, nil]];
             MAClass *class3 = [[MAClass alloc] initWithName:@"History" grade:@"A\n96.1" assignments:[NSArray arrayWithObjects:assignment1, assignment2, nil]];
             MAClass *class4 = [[MAClass alloc] initWithName:@"Chemistry" grade:@"B+\n89.1" assignments:[NSArray arrayWithObjects:assignment1, assignment2, nil]];
@@ -213,7 +206,7 @@
         
         
         NSLog(@"returnpoint");
-        ;       NSLog(@"gradeCliented");
+;       NSLog(@"gradeCliented");
     }
     
     if ([title isEqualToString:@"Text Andrew"] || [title isEqualToString:@"Message Andrew"] || [title isEqualToString:@"Contact Developer"] || [title isEqualToString:@"Text Andrew for help"]) {
@@ -224,16 +217,16 @@
             picker.messageComposeDelegate = self;
             
             picker.recipients = @[@"2483456497"];
-            
-            // You can specify one or more preconfigured recipients.  The user has
-            // the option to remove or add recipients from the message composer view
-            // controller.
-            /* picker.recipients = @[@"Phone number here"]; */
-            
-            // You can specify the initial message text that will appear in the message
-            // composer view controller.
+                
+                // You can specify one or more preconfigured recipients.  The user has
+                // the option to remove or add recipients from the message composer view
+                // controller.
+                /* picker.recipients = @[@"Phone number here"]; */
+                
+                // You can specify the initial message text that will appear in the message
+                // composer view controller.
             picker.body = @"Hey Andrew, I was using your Zangle app and I was having problems with ";
-            
+                
             [self presentViewController:picker animated:YES completion:NULL];
         } else {
             UIAlertView *noSMS = [[UIAlertView alloc] initWithTitle:@"Device not configured for iMessage" message:@"You can try emailing me, asbreckenridge@me.com" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
@@ -243,7 +236,7 @@
             [nameAndSchoolAlert show];
         }
     }
-    
+
     if ([title isEqualToString:@"Logout"]) {
         NSLog(@"log out here");
         [self writeToTextFileWithContent:@"0"];
@@ -263,7 +256,7 @@
     [self writeToTextFileWithContent:@"0"];
     self.loggedIn = NO;
     UIAlertView *loginFailed = [[UIAlertView alloc] initWithTitle:@"Login Failed" message:@"Couldn't log in, check your usernamame and password. If you seem to be having problems with the app, text me and I'll try help" delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:@"Contact Developer", nil];
-    [loginFailed show];
+        [loginFailed show];
     return;
 }
 
@@ -353,7 +346,7 @@
     
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:contentDict];
     [data writeToFile:filePath atomically:YES];
-    
+
 }
 
 - (NSDictionary *)readFromDict {
@@ -369,9 +362,8 @@
     NSString *documentsDirectory = [paths objectAtIndex:0];
     NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"/username.txt"];
     
-    
     [name writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error:nil];
-    
+
 }
 
 - (NSString *)getUserNAME {
@@ -414,27 +406,16 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.backgroundColor = [UIColor colorWithWhite:0 alpha:0.2];
     cell.textLabel.textColor = [UIColor whiteColor];
-    //    cell.detailTextLabel.textColor = [UIColor whiteColor];
+//    cell.detailTextLabel.textColor = [UIColor whiteColor];
     QBFlatButton* userStateButton = nil;
-    
+
     
     NSInteger cellCount = [self tableView:tableView numberOfRowsInSection:indexPath.section];
-    int rowNo = 0;
-    if (!self.loggedIn) {
-        rowNo = 3;
-    }
-    if (indexPath.row == rowNo) {
+    
+    if (indexPath.row == 0) {
         UIView *cellView = cell.contentView;
-        int btnPlace = 0;
         
-        if(self.loggedIn){
-            btnPlace = 80;
-        }
-        else{
-            btnPlace = 200;
-        }
-        
-        userStateButton = [[QBFlatButton alloc] initWithFrame:CGRectMake((cellView.frame.size.width - (btnPlace)), (self.screenHeight/(cellCount * 4)), 80, ((self.screenHeight + (cellCount * cellCount))/(cellCount * 2)))];
+        userStateButton = [[QBFlatButton alloc] initWithFrame:CGRectMake((cellView.frame.size.width - (80 + 20)), (self.screenHeight/(cellCount * 4)), 80, ((self.screenHeight + (cellCount * cellCount))/(cellCount * 2)))];
         [userStateButton addTarget:self action:@selector(userStateButtonWasPressed)forControlEvents:UIControlEventTouchUpInside];
         userStateButton.faceColor = [UIColor clearColor];
         userStateButton.sideColor = [UIColor clearColor];
@@ -442,21 +423,17 @@
         userStateButton.radius = 6.0;
         userStateButton.margin = 4.0;
         userStateButton.depth = 0;
-        userStateButton.alpha = 0.7f;
-        if (!self.loggedIn) {
-            userStateButton.backgroundColor = [UIColor redColor];
-        }
-        
+        userStateButton.alpha = 1.0;
         
         userStateButton.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:18];
         [userStateButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        
+
         
         
         if (self.loggedIn) {
             cell.textLabel.text = [[self readFromDict] objectForKey:@"Name"];
             cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:18];
-            
+
             [userStateButton setTitle:@"Logout" forState:UIControlStateNormal];
             cell.textLabel.text = [self getUserNAME];
         } else {
@@ -465,49 +442,13 @@
         }
         cell.userStateButton = userStateButton;
         [cellView addSubview:userStateButton];
-    }
-    
-    
-    else if(indexPath.row == 1){
-        UIView *cellView = cell.contentView;
-        if (!self.loggedIn) {
-            self.link = [[UITextField alloc] initWithFrame:CGRectMake(15, 25, 290, 30)];
-            self.link.adjustsFontSizeToFitWidth = YES;
-            self.link.textColor = [UIColor blackColor];
-            self.link.borderStyle = UITextBorderStyleRoundedRect;
-            self.link.backgroundColor = [UIColor whiteColor];
-            self.link.alpha = 0.5f;
-            [cellView addSubview:self.link];
-            
-        }
-        else{
-            cell = [self fillCellWithRow:(NSInteger *)(indexPath.row-1)];
-        }
-        
-    }
-    
-    
-    else if(indexPath.row == 2){
-        UIView *cellView = cell.contentView;
-        if (!self.loggedIn) {
-            cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
-            cell.textLabel.numberOfLines = 0;
-            cell.textLabel.textAlignment = UITextAlignmentCenter;
-            cell.textLabel.text =@"Please copy and paste the link of your school's main Mistar page below by once opening it in your browser!";
-        }
-        else{
-            cell = [self fillCellWithRow:(NSInteger *)(indexPath.row-1)];
-        }
-    }
-    
-    else {
+    } else {
         cell = [self fillCellWithRow:(NSInteger *)(indexPath.row-1)];
     }
+    
+    
+    
     return cell;
-}
-
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-    [self.link endEditing:YES];// this will do the trick
 }
 
 - (MAGradeCell *)fillCellWithRow:(NSInteger *)row {
@@ -525,7 +466,7 @@
         NSArray *classes = [userData objectForKey:@"classes"];
         
         UILabel *classNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, cell.contentView.frame.size.height/2, 320, 22)];
-        UILabel *gradeLabel = [[UILabel alloc] initWithFrame:CGRectMake(cell.contentView.frame.size.width-55, (cell.contentView.frame.size.height/2), 50, cell.contentView.frame.size.height)];
+        UILabel *gradeLabel = [[UILabel alloc] initWithFrame:CGRectMake(cell.contentView.frame.size.width-55, (cell.contentView.frame.size.height/2) + (.5*cell.contentView.frame.size.height), 50, cell.contentView.frame.size.height)];
         
         classNameLabel.textColor = [UIColor whiteColor];
         
@@ -537,10 +478,10 @@
         if ([classes count] > (NSUInteger)row) {
             cell.textLabel.text = [[classes objectAtIndex:(NSUInteger)row] name];
             cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:18];
-            //            cell.detailTextLabel.numberOfLines = 2;
-            //            cell.detailTextLabel.lineBreakMode = NSLineBreakByWordWrapping;
-            //            cell.detailTextLabel.textAlignment = NSTextAlignmentCenter;
-            //            cell.detailTextLabel.text = [[classes objectAtIndex:(NSUInteger)row] grade];
+//            cell.detailTextLabel.numberOfLines = 2;
+//            cell.detailTextLabel.lineBreakMode = NSLineBreakByWordWrapping;
+//            cell.detailTextLabel.textAlignment = NSTextAlignmentCenter;
+//            cell.detailTextLabel.text = [[classes objectAtIndex:(NSUInteger)row] grade];
             //classNameLabel.text = [[classes objectAtIndex:(NSUInteger)row] name];
             gradeLabel.text = [[classes objectAtIndex:(NSUInteger)row] grade];
             [cell.contentView addSubview:classNameLabel];
@@ -556,7 +497,27 @@
         if (indexPath.row != 0) {
             MAProgressReportTableViewController *tableVC = [[MAProgressReportTableViewController alloc] initWithRow:(NSInteger *)indexPath.row];
             UINavigationController *navCon = [[UINavigationController alloc] initWithRootViewController:tableVC];
-            tableVC.navigationItem.title = [[[[self readFromDict] objectForKey:@"classes"] objectAtIndex:indexPath.row-1] name];
+            //tableVC.navigationItem.title = [[[[self readFromDict] objectForKey:@"classes"] objectAtIndex:indexPath.row-1] name];
+            
+            QBFlatButton *btn = [QBFlatButton buttonWithType:UIButtonTypeCustom];
+            btn.frame = CGRectMake(50, 2, 180, 33);
+            
+            btn.faceColor = [UIColor colorWithRed:108/255.0f green:185/255.0f blue:145/255.0f alpha:1.0f];
+            btn.sideColor = [UIColor clearColor];
+            
+            btn.radius = 6.0;
+            btn.margin = 4.0;
+            btn.depth = 0.0;
+            
+            [btn addTarget:self action:@selector(progressReportButtonHit:)forControlEvents:UIControlEventTouchUpInside];
+            
+            btn.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:16];
+            [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            [btn setTitle:[NSString stringWithFormat:@"Open Progress Report"] forState:UIControlStateNormal]; //[[self.sourceArray objectAtIndex:([self.sourceArray count] - 1)] assignmentName]]
+            [tableVC.tableView.tableFooterView addSubview:btn];
+            
+            NSLog(@"number of rows in ssection %ld", (long)[tableVC.tableView numberOfRowsInSection:0]);
+            
             
             UIButton *mailTeacherButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
             [mailTeacherButton addTarget:self action:@selector(mailTeacher:) forControlEvents:UIControlEventTouchUpInside];
@@ -569,9 +530,9 @@
             formSheet.transitionStyle = MZFormSheetTransitionStyleBounce;
             
             [self mz_presentFormSheetController:formSheet animated:YES completionHandler:^(MZFormSheetController *formSheetController) {
-                
+                self.progressReportIndex = (NSInteger *)[indexPath row];
             }];
-            
+
         }
     }
 }
@@ -657,35 +618,18 @@
                                                                                  kCFStringEncodingUTF8));
     return [result stringByReplacingOccurrencesOfString:@" " withString:@"+"];
 }
--(NSString *) getUrl:(NSString *)fullUrl{
-    NSURL* url = [NSURL URLWithString:fullUrl];
-    NSArray *pathArr = [url pathComponents];
-    NSString* returnPath = [NSString stringWithFormat:@"%@://%@/",url.scheme,url.host];
-    int i = 1;
-    while (i<[pathArr count]) {
-        if([pathArr[i] isEqualToString:@"StudentPortal"]){
-            break;
-        }
-        returnPath = [returnPath stringByAppendingString:pathArr[i]];
-        returnPath = [returnPath stringByAppendingString:@"/"];
-        i++;
-    }
-    return returnPath;
-}
 
 - (NSDictionary *)loginToMistarWithPin:(NSString *)pin password:(NSString *)password {
-    
-    NSString *partURL = [self getUrl:self.path];
-    
     NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
     config.URLCache = NULL;
     NSURLSession *defaultSession = [NSURLSession sessionWithConfiguration:config delegate: nil delegateQueue:[NSOperationQueue mainQueue]];
+    
     NSLog(@"logging in");
     _cancel = false;
     __block NSDictionary *myDictResult = nil; //set Returner as a block so it's assignable *in* the completion block
     [SVProgressHUD show];
     
-    NSMutableURLRequest *homeRequest = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[partURL stringByAppendingString:@"StudentPortal/Home/Login"]]];
+    NSMutableURLRequest *homeRequest = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://mistar.oakland.k12.mi.us/novi/StudentPortal/Home/Login"]]];
     [homeRequest setCachePolicy:NSURLRequestReloadIgnoringCacheData];
     [homeRequest setHTTPMethod:@"POST"];
     
@@ -705,8 +649,7 @@
                 NSLog(@"call login error here");
                 [self loginFailedAlertView];
             } else if (!_cancel) {
-                
-                NSMutableURLRequest *userPinRequest = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[partURL stringByAppendingString:@"StudentPortal/Home/PortalMainPage"]]];
+            	NSMutableURLRequest *userPinRequest = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://mistar.oakland.k12.mi.us/novi/StudentPortal/Home/PortalMainPage"]];
                 [homeRequest setHTTPMethod:@"GET"];
                 [userPinRequest setCachePolicy:NSURLRequestReloadIgnoringCacheData];
                 
@@ -723,7 +666,7 @@
                         if (!((userNameRegex==nil) && (userNameRegexError!=nil))) {
                             [userNameRegex enumerateMatchesInString:userNameString options:0 range:NSMakeRange(0, [userNameString length]) usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
                                 if (result!=nil) {
-                                    //Iterate ranges and stop after the first one
+                                //Iterate ranges and stop after the first one
                                     for (int i=0; i<[result numberOfRanges]; i++) {
                                         NSRange range = [result rangeAtIndex:i];
                                         userNameRegexResult = [userNameString substringWithRange:range];
@@ -750,7 +693,7 @@
                             if ((userPinRegex!=nil) && (userPinRegexError==nil)) {
                                 [userPinRegex enumerateMatchesInString:userNameString options:0 range:NSMakeRange(0, [userNameString length]) usingBlock:^(NSTextCheckingResult *userPinResult, NSMatchingFlags flags, BOOL *stop){
                                     if (userPinResult!=nil){
-                                        //Iterate ranges and stop after the first one
+                                    //Iterate ranges and stop after the first one
                                         for (int i=0; i<[userPinResult numberOfRanges]; i++) {
                                             NSRange range = [userPinResult rangeAtIndex:i];
                                             userPinRegexResult = [userNameString substringWithRange:range];
@@ -769,14 +712,13 @@
                         
                         if (userID) {
                             NSLog(@"userID accepted");
-                            NSString *IDrequest = [NSString stringWithFormat:@"StudentPortal/StudentBanner/SetStudentBanner/%@", userID];
-                            NSMutableURLRequest *setStudentIDRequest = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[partURL stringByAppendingString:IDrequest]]];
+                            NSMutableURLRequest *setStudentIDRequest = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://mistar.oakland.k12.mi.us/novi/StudentPortal/StudentBanner/SetStudentBanner/%@" , userID]]];
                             [setStudentIDRequest setHTTPMethod:@"GET"];
                             [setStudentIDRequest setCachePolicy:NSURLRequestReloadIgnoringCacheData];
                             
                             NSURLSessionDataTask *setStudentIDTask = [defaultSession dataTaskWithRequest:setStudentIDRequest completionHandler:^(NSData *setStudentIDData, NSURLResponse *setStudentIDResponse, NSError *setStudentIDError){
                                 if ([setStudentIDData length] > 0 && setStudentIDError == nil) {
-                                    NSMutableURLRequest *requestGradesRequest = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[partURL stringByAppendingString:@"StudentPortal/Home/LoadProfileData/Assignments"]]];
+                                    NSMutableURLRequest *requestGradesRequest = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://mistar.oakland.k12.mi.us/novi/StudentPortal/Home/LoadProfileData/Assignments"]];
                                     [requestGradesRequest setHTTPMethod:@"GET"];
                                     [requestGradesRequest setCachePolicy:NSURLRequestReloadIgnoringCacheData];
                                     
@@ -787,6 +729,19 @@
                                             myDictResult = [gradeParser parseWithData:requestGradesData];
                                             NSLog(@"after myResult");
                                             NSLog(@"mydicktresult: %@", myDictResult);
+                                            
+                                            for (MAClass *class in [myDictResult objectForKey:@"classes"]) {
+                                                NSString *PRURL = [[[class assignments] objectAtIndex:[[class assignments] count]-1] assignmentName];
+                                                NSLog(@"PRURL is %@", PRURL);
+                                                
+                                                NSURLSessionDataTask *progressReportTask = [defaultSession dataTaskWithURL:[NSURL URLWithString:PRURL] completionHandler:^(NSData *progressReportData, NSURLResponse *progressReportResponse, NSError *progressReportError) {
+                                                    if ([progressReportData length] > 0 && progressReportError == nil) {
+                                                        NSLog(@"got dat data");
+                                                    } else NSLog(@"Error with getting data data:%@\nresponse:%@\nerror:%@", progressReportData, progressReportResponse, progressReportError);
+                                                }];
+                                                [progressReportTask resume];
+                                                NSLog(@"After request");
+                                            }
                                             
                                             [self writeDictToFileWithContent:myDictResult];
                                             
@@ -807,17 +762,17 @@
                     } //else NSLog(@"error with getting the userPin data");
                 }];
                 [userPinTask resume];
-                
+        
             } //else NSLog(@"Error with logging into mistar, recieved: %@", homeData);
         } //else NSLog(@"Error with homeData or it's length:%@", homeError);
     }];
     [homeTask resume];
-    
+
     defaultSession = NULL;
     
     return myDictResult;
 }
-
+                                      
 - (void)refreshMistar {
     if (self.loggedIn) {
         NSArray *pinAndPass = [self getPinAndPass];
