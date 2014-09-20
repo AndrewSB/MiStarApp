@@ -94,6 +94,9 @@
     cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
     cell.textLabel.numberOfLines = 0;
     
+   // [cell.textLabel sizeThatFits:CGSizeMake(cell.textLabel.text size, 44)];
+    [cell.detailTextLabel sizeToFit];
+    
     return cell;
 }
 

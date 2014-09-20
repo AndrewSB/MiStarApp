@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		460C030F190CF00700D168C3 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 460C030E190CF00700D168C3 /* MessageUI.framework */; };
 		460C0312190CF17E00D168C3 /* MASMSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 460C0311190CF17E00D168C3 /* MASMSViewController.m */; };
-		46216E201939C3DE0088E4FA /* page-not-found.png in Resources */ = {isa = PBXBuildFile; fileRef = 46216E1F1939C3DE0088E4FA /* page-not-found.png */; };
 		4623559518FFF12A00D67CC5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4623559418FFF12A00D67CC5 /* Foundation.framework */; };
 		4623559718FFF12A00D67CC5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4623559618FFF12A00D67CC5 /* CoreGraphics.framework */; };
 		4623559918FFF12A00D67CC5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4623559818FFF12A00D67CC5 /* UIKit.framework */; };
@@ -52,7 +51,6 @@
 		460C030E190CF00700D168C3 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		460C0310190CF17E00D168C3 /* MASMSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASMSViewController.h; sourceTree = "<group>"; };
 		460C0311190CF17E00D168C3 /* MASMSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASMSViewController.m; sourceTree = "<group>"; };
-		46216E1F1939C3DE0088E4FA /* page-not-found.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "page-not-found.png"; sourceTree = "<group>"; };
 		4623559118FFF12A00D67CC5 /* Zangle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Zangle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4623559418FFF12A00D67CC5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		4623559618FFF12A00D67CC5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -243,7 +241,6 @@
 			children = (
 				4623562718FFF32E00D67CC5 /* bg.png */,
 				4623562818FFF32E00D67CC5 /* bg@2x.png */,
-				46216E1F1939C3DE0088E4FA /* page-not-found.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -333,7 +330,6 @@
 				46FDBA3C193A4606009E1E7E /* Main.storyboard in Resources */,
 				462355AD18FFF12A00D67CC5 /* Images.xcassets in Resources */,
 				4623562A18FFF32E00D67CC5 /* bg.png in Resources */,
-				46216E201939C3DE0088E4FA /* page-not-found.png in Resources */,
 				4623562B18FFF32E00D67CC5 /* bg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
