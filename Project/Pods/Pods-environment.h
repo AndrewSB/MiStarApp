@@ -10,7 +10,7 @@
 #define COCOAPODS_POD_AVAILABLE_GoogleAnalytics_iOS_SDK
 #define COCOAPODS_VERSION_MAJOR_GoogleAnalytics_iOS_SDK 3
 #define COCOAPODS_VERSION_MINOR_GoogleAnalytics_iOS_SDK 0
-#define COCOAPODS_VERSION_PATCH_GoogleAnalytics_iOS_SDK 6
+#define COCOAPODS_VERSION_PATCH_GoogleAnalytics_iOS_SDK 9
 
 // LBBlurredImage
 #define COCOAPODS_POD_AVAILABLE_LBBlurredImage
@@ -27,13 +27,19 @@
 // MZFormSheetController
 #define COCOAPODS_POD_AVAILABLE_MZFormSheetController
 #define COCOAPODS_VERSION_MAJOR_MZFormSheetController 2
-#define COCOAPODS_VERSION_MINOR_MZFormSheetController 3
-#define COCOAPODS_VERSION_PATCH_MZFormSheetController 4
+#define COCOAPODS_VERSION_MINOR_MZFormSheetController 4
+#define COCOAPODS_VERSION_PATCH_MZFormSheetController 0
+
+// MZFormSheetController/Core
+#define COCOAPODS_POD_AVAILABLE_MZFormSheetController_Core
+#define COCOAPODS_VERSION_MAJOR_MZFormSheetController_Core 2
+#define COCOAPODS_VERSION_MINOR_MZFormSheetController_Core 4
+#define COCOAPODS_VERSION_PATCH_MZFormSheetController_Core 0
 
 // QBFlatButton
 #define COCOAPODS_POD_AVAILABLE_QBFlatButton
 #define COCOAPODS_VERSION_MAJOR_QBFlatButton 1
-#define COCOAPODS_VERSION_MINOR_QBFlatButton 0
+#define COCOAPODS_VERSION_MINOR_QBFlatButton 1
 #define COCOAPODS_VERSION_PATCH_QBFlatButton 0
 
 // SVProgressHUD

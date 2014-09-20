@@ -1,1 +1,1 @@
-../../QBFlatButton/QBFlatButton/Classes/QBFlatButton.h
+../../QBFlatButton/Pod/Classes/QBFlatButton.h
