@@ -10,29 +10,29 @@
 	<string>mistar-with-storyboard</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>FBDBEDB4-D946-40F1-BB1B-BEEB929EA414</key>
+		<key>7037C0CB30832E8ED90F09DDEC6AEA26861735D4</key>
 		<string>https://github.com/AndrewSB/MistarApp.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>Project/mistar-with-storyboard.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>FBDBEDB4-D946-40F1-BB1B-BEEB929EA414</key>
+		<key>7037C0CB30832E8ED90F09DDEC6AEA26861735D4</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/AndrewSB/MistarApp.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>FBDBEDB4-D946-40F1-BB1B-BEEB929EA414</string>
+	<string>7037C0CB30832E8ED90F09DDEC6AEA26861735D4</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>FBDBEDB4-D946-40F1-BB1B-BEEB929EA414</string>
+			<string>7037C0CB30832E8ED90F09DDEC6AEA26861735D4</string>
 			<key>IDESourceControlWCCName</key>
 			<string>MistarApp</string>
 		</dict>
