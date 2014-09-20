@@ -18,7 +18,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    //[self setNavigationBarHidden:YES animated:YES];
+    [self setNavigationBarHidden:YES animated:YES];
     [self pushViewController:[[MAViewController alloc] init] animated:YES];
 }
 

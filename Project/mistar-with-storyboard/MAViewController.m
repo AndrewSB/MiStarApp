@@ -24,9 +24,6 @@
 @property (nonatomic, assign) BOOL loggedIn;
 @property NSString *userNAME;
 
-@property (nonatomic, assign) NSInteger *progressReportIndex;
-@property (nonatomic, strong) NSArray *progressReportArray;
-
 @end
 
 @implementation MAViewController
@@ -42,15 +39,14 @@
     
     [[NSUserDefaults standardUserDefaults] synchronize];
     
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"JustUpdated"]) {
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"]) {
+        
     }
     else {
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"JustUpdated"];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"HasLaunchedOnce"];
         [[NSUserDefaults standardUserDefaults] synchronize];
-        [self writeDictToFileWithContent:nil];
-        [self writeNameToFileWithContent:@""];
-        [self writeToTextFileWithContent:@"0"];
     }
+    
     
     self.loggedIn = [[self displayContent] boolValue];
     
@@ -142,25 +138,6 @@
         [alert show];
     }
 };
-
-- (void)progressReportButtonHit:(id) sender {
-    [self mz_dismissFormSheetControllerAnimated:YES completionHandler:^(MZFormSheetController *formSheetController){
-        UIViewController *webViewVC = [[UIViewController alloc] init];
-        UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 10, self.view.frame.size.width, self.view.frame.size.height-10)];
-        NSArray *relevantAssignmentArray = [[[[self readFromDict] objectForKey:@"classes"] objectAtIndex:(NSUInteger)self.progressReportIndex-1] assignments];
-        NSString *urlString = [[relevantAssignmentArray objectAtIndex:[relevantAssignmentArray count]-1] assignmentName];
-        
-        NSLog(@"urlstring is %@", urlString);
-        
-        NSURL *targetURL = [NSURL URLWithString:urlString];
-        NSURLRequest *request = [NSURLRequest requestWithURL:targetURL];
-        [webView loadRequest:request];
-        [webViewVC.view addSubview:webView];
-        
-        [self.navigationController setNavigationBarHidden:NO animated:YES];
-        [self.navigationController presentModalViewController:webViewVC animated:YES];
-    }];
-}
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     
@@ -362,6 +339,7 @@
     NSString *documentsDirectory = [paths objectAtIndex:0];
     NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"/username.txt"];
     
+    
     [name writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error:nil];
 
 }
@@ -466,7 +444,7 @@
         NSArray *classes = [userData objectForKey:@"classes"];
         
         UILabel *classNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, cell.contentView.frame.size.height/2, 320, 22)];
-        UILabel *gradeLabel = [[UILabel alloc] initWithFrame:CGRectMake(cell.contentView.frame.size.width-55, (cell.contentView.frame.size.height/2) + (.5*cell.contentView.frame.size.height), 50, cell.contentView.frame.size.height)];
+        UILabel *gradeLabel = [[UILabel alloc] initWithFrame:CGRectMake(cell.contentView.frame.size.width-55, (cell.contentView.frame.size.height/2), 50, cell.contentView.frame.size.height)];
         
         classNameLabel.textColor = [UIColor whiteColor];
         
@@ -497,27 +475,7 @@
         if (indexPath.row != 0) {
             MAProgressReportTableViewController *tableVC = [[MAProgressReportTableViewController alloc] initWithRow:(NSInteger *)indexPath.row];
             UINavigationController *navCon = [[UINavigationController alloc] initWithRootViewController:tableVC];
-            //tableVC.navigationItem.title = [[[[self readFromDict] objectForKey:@"classes"] objectAtIndex:indexPath.row-1] name];
-            
-            QBFlatButton *btn = [QBFlatButton buttonWithType:UIButtonTypeCustom];
-            btn.frame = CGRectMake(50, 2, 180, 33);
-            
-            btn.faceColor = [UIColor colorWithRed:108/255.0f green:185/255.0f blue:145/255.0f alpha:1.0f];
-            btn.sideColor = [UIColor clearColor];
-            
-            btn.radius = 6.0;
-            btn.margin = 4.0;
-            btn.depth = 0.0;
-            
-            [btn addTarget:self action:@selector(progressReportButtonHit:)forControlEvents:UIControlEventTouchUpInside];
-            
-            btn.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:16];
-            [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-            [btn setTitle:[NSString stringWithFormat:@"Open Progress Report"] forState:UIControlStateNormal]; //[[self.sourceArray objectAtIndex:([self.sourceArray count] - 1)] assignmentName]]
-            [tableVC.tableView.tableFooterView addSubview:btn];
-            
-            NSLog(@"number of rows in ssection %ld", (long)[tableVC.tableView numberOfRowsInSection:0]);
-            
+            tableVC.navigationItem.title = [[[[self readFromDict] objectForKey:@"classes"] objectAtIndex:indexPath.row-1] name];
             
             UIButton *mailTeacherButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
             [mailTeacherButton addTarget:self action:@selector(mailTeacher:) forControlEvents:UIControlEventTouchUpInside];
@@ -530,7 +488,7 @@
             formSheet.transitionStyle = MZFormSheetTransitionStyleBounce;
             
             [self mz_presentFormSheetController:formSheet animated:YES completionHandler:^(MZFormSheetController *formSheetController) {
-                self.progressReportIndex = (NSInteger *)[indexPath row];
+                
             }];
 
         }
@@ -544,7 +502,7 @@
 }
 
 - (void)mailTeacher:(NSIndexPath *)indexPath {
-    NSLog(@"mail the %ld teacher", (long)indexPath.row);
+    NSLog(@"mail the %@ teacher", indexPath.row);
 }
 
 
@@ -729,19 +687,6 @@
                                             myDictResult = [gradeParser parseWithData:requestGradesData];
                                             NSLog(@"after myResult");
                                             NSLog(@"mydicktresult: %@", myDictResult);
-                                            
-                                            for (MAClass *class in [myDictResult objectForKey:@"classes"]) {
-                                                NSString *PRURL = [[[class assignments] objectAtIndex:[[class assignments] count]-1] assignmentName];
-                                                NSLog(@"PRURL is %@", PRURL);
-                                                
-                                                NSURLSessionDataTask *progressReportTask = [defaultSession dataTaskWithURL:[NSURL URLWithString:PRURL] completionHandler:^(NSData *progressReportData, NSURLResponse *progressReportResponse, NSError *progressReportError) {
-                                                    if ([progressReportData length] > 0 && progressReportError == nil) {
-                                                        NSLog(@"got dat data");
-                                                    } else NSLog(@"Error with getting data data:%@\nresponse:%@\nerror:%@", progressReportData, progressReportResponse, progressReportError);
-                                                }];
-                                                [progressReportTask resume];
-                                                NSLog(@"After request");
-                                            }
                                             
                                             [self writeDictToFileWithContent:myDictResult];
                                             

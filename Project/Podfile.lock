@@ -1,5 +1,5 @@
 PODS:
-  - GoogleAnalytics-iOS-SDK (3.0.7)
+  - GoogleAnalytics-iOS-SDK (3.0.6)
   - LBBlurredImage (0.2.0)
   - MZAppearance (1.1.3)
   - MZFormSheetController (2.3.4):
@@ -15,7 +15,7 @@ DEPENDENCIES:
   - SVProgressHUD
 
 SPEC CHECKSUMS:
-  GoogleAnalytics-iOS-SDK: bb285d8eef15a682f1b82971becd0d22edd0e53b
+  GoogleAnalytics-iOS-SDK: 4577fb25381a71c5beac455b18ebb288fc4f44e9
   LBBlurredImage: 30cc42be977bbcece286d26d2d9c08b8be7f05e8
   MZAppearance: c88502c0c2345120630c34e09d5ff09e2969ba30
   MZFormSheetController: 8c453908080c338274e68908849029435d3e2736

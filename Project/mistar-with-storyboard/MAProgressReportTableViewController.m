@@ -46,13 +46,13 @@
     [tracker set:kGAIScreenName value:[NSString stringWithFormat:@"Opened progress report, %@", [class name]]];
     [tracker send:[[GAIDictionaryBuilder createAppView] build]];
     
-    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 100)];
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
-    if ([self.sourceArray count] == 1) {
-        UIImageView *sadFaceImageView = [[UIImageView alloc] initWithFrame:CGRectMake(55, 36, 170, 170)];
-        [sadFaceImageView setImage:[UIImage imageNamed:@"page-not-found"]];
+    if ([self.sourceArray count] == 0) {
+        UIImageView *sadFaceImageView = [[UIImageView alloc] initWithFrame:CGRectMake(55, 10, 180, 180)];
+        [sadFaceImageView setImage:[UIImage imageNamed:@"vine-page-not-found copy"]];
         
-        UILabel *sadFaceLabel = [[UILabel alloc] initWithFrame:CGRectMake(47, 205, 250, 44)];
+        UILabel *sadFaceLabel = [[UILabel alloc] initWithFrame:CGRectMake(47, 185, 250, 44)];
         sadFaceLabel.text = @"No Recent Assignments";
         
         [self.tableView addSubview:sadFaceImageView];
@@ -75,8 +75,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if ([self.sourceArray count] == 0) return 0;
-    else return [self.sourceArray count] - 1;
+    return [self.sourceArray count];
     //NSLog(@"array is set to %@", self.array);
 }
 

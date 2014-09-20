@@ -12,7 +12,6 @@
 #import "MAAssignment.h"
 
 #import <GoogleAnalytics-iOS-SDK/GAIDictionaryBuilder.h>
-#import <QBFlatButton.h>
 
 @interface MAProgressReportTableViewController : UITableViewController
 

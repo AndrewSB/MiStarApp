@@ -24,7 +24,6 @@
 - (NSString *)getGradeWithString:(NSString *)string;
 - (NSDictionary *)getTeachersWithData:(NSData *)data;
 - (NSArray *)getAssignmentsWithData:(NSData *)data;
-- (NSString *)getProgressReportWithData:(NSData *)data;
 
 
 @end
