@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Pods-FPPopover.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-GoogleAnalytics-iOS-SDK.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -41,42 +46,6 @@
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
-	<dict>
-		<key>0AD2709CD8444F2290B01456</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>14C2EC5653B74F28BBC794D6</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>2F46B7812EBA4C839EDE1E31</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>3AAF439A56A5496880FDE62B</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>E4F3E469D27D4438BF5441D0</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>EFE84391652B41E3B4EB34AD</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>F4A7D74424054CA2B866C6C5</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-	</dict>
+	<dict/>
 </dict>
 </plist>

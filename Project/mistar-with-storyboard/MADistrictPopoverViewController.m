@@ -9,7 +9,7 @@
 #import "MADistrictPopoverViewController.h"
 #import "MAURLClickerView.h"
 
-@interface MADistrictPopoverViewController ()
+@interface MADistrictPopoverViewController () <UIPickerViewDataSource, UIPickerViewDelegate>
 
 @property (weak, nonatomic) IBOutlet MAURLClickerView *clicker;
 @property (weak, nonatomic) IBOutlet UITextField *districtTextField;
@@ -29,7 +29,6 @@
         self.savedDistricts = [NSArray new];
     }
     
-    self.clicker
     
 }
 
@@ -38,14 +37,9 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
+#pragma mark - UIPickerViewDataSource methods
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+- (void)
+
 
 @end
