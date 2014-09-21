@@ -6,12 +6,6 @@
 // project.
 
 
-// FPPopover
-#define COCOAPODS_POD_AVAILABLE_FPPopover
-#define COCOAPODS_VERSION_MAJOR_FPPopover 1
-#define COCOAPODS_VERSION_MINOR_FPPopover 4
-#define COCOAPODS_VERSION_PATCH_FPPopover 1
-
 // GoogleAnalytics-iOS-SDK
 #define COCOAPODS_POD_AVAILABLE_GoogleAnalytics_iOS_SDK
 #define COCOAPODS_VERSION_MAJOR_GoogleAnalytics_iOS_SDK 3
@@ -47,4 +41,10 @@
 #define COCOAPODS_VERSION_MAJOR_SVProgressHUD 1
 #define COCOAPODS_VERSION_MINOR_SVProgressHUD 0
 #define COCOAPODS_VERSION_PATCH_SVProgressHUD 0
+
+// WYPopoverController
+#define COCOAPODS_POD_AVAILABLE_WYPopoverController
+#define COCOAPODS_VERSION_MAJOR_WYPopoverController 0
+#define COCOAPODS_VERSION_MINOR_WYPopoverController 3
+#define COCOAPODS_VERSION_PATCH_WYPopoverController 0
 

@@ -28,6 +28,10 @@
 
 #import "MAProgressReportTableViewController.h"
 
+#import <FPPopover/FPPopoverController.h>
+#import <FPPopover/FPPopoverView.h>
+#import <FPPopover/FPTouchView.h>
+
 @interface MAViewController : GAITrackedViewController
 <UITableViewDataSource, UITabBarDelegate, UIScrollViewDelegate>
 

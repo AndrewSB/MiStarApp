@@ -124,8 +124,8 @@
         // Login Alert
         MADistrictPopoverViewController *popoverview = [[MADistrictPopoverViewController alloc] init];
         [[NSBundle mainBundle] loadNibNamed:@"MADistrictPopoverViewController" owner:popoverview options:nil];
-        UIPopoverController *popover = [[UIPopoverController alloc] initWithContentViewController:popoverview];
-        [popover presentPopoverFromRect:CGRectMake(20, 20, 80, 44) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+        FPPopoverController *popover = [[FPPopoverController alloc] initWithViewController:popoverview];
+        [popover presentPopoverFromPoint:CGPointMake(self.view.frame.size.width-20, 10)];
 //        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Login To Zangle"
 //                                                        message:@"Enter your Zangle information"
 //                                                       delegate:self
