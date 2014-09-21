@@ -33,6 +33,9 @@
 		4623562E18FFF35400D67CC5 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4623562D18FFF35400D67CC5 /* libxml2.dylib */; };
 		4623563118FFF38100D67CC5 /* MANavController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4623563018FFF38100D67CC5 /* MANavController.m */; };
 		46900FFD1937DFD60009F61F /* MAProgressReportTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46900FFC1937DFD60009F61F /* MAProgressReportTableViewController.m */; };
+		46B11E7319CE8BA50022C131 /* MAURLClickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 46B11E7219CE8BA50022C131 /* MAURLClickerView.m */; };
+		46B11E7719CE93570022C131 /* MADistrictPopoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46B11E7519CE93570022C131 /* MADistrictPopoverViewController.m */; };
+		46B11E7819CE93570022C131 /* MADistrictPopoverViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46B11E7619CE93570022C131 /* MADistrictPopoverViewController.xib */; };
 		46D64D8F192ECCF6005734AF /* MAClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 46D64D8E192ECCF6005734AF /* MAClass.m */; };
 		46FDBA3C193A4606009E1E7E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 462355A618FFF12A00D67CC5 /* Main.storyboard */; };
 		6EA81663FEB0476DA02E2B05 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5AB13AD0524DEF94299447 /* libPods.a */; };
@@ -91,6 +94,11 @@
 		4623563018FFF38100D67CC5 /* MANavController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MANavController.m; sourceTree = "<group>"; };
 		46900FFB1937DFD60009F61F /* MAProgressReportTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAProgressReportTableViewController.h; sourceTree = "<group>"; };
 		46900FFC1937DFD60009F61F /* MAProgressReportTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAProgressReportTableViewController.m; sourceTree = "<group>"; };
+		46B11E7119CE8BA50022C131 /* MAURLClickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAURLClickerView.h; sourceTree = "<group>"; };
+		46B11E7219CE8BA50022C131 /* MAURLClickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAURLClickerView.m; sourceTree = "<group>"; };
+		46B11E7419CE93570022C131 /* MADistrictPopoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MADistrictPopoverViewController.h; sourceTree = "<group>"; };
+		46B11E7519CE93570022C131 /* MADistrictPopoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MADistrictPopoverViewController.m; sourceTree = "<group>"; };
+		46B11E7619CE93570022C131 /* MADistrictPopoverViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MADistrictPopoverViewController.xib; sourceTree = "<group>"; };
 		46D64D8D192ECCF6005734AF /* MAClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAClass.h; sourceTree = "<group>"; };
 		46D64D8E192ECCF6005734AF /* MAClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAClass.m; sourceTree = "<group>"; };
 		50B9C2E0203E49D6B59CC820 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
@@ -166,8 +174,13 @@
 				462355A618FFF12A00D67CC5 /* Main.storyboard */,
 				4623562F18FFF38100D67CC5 /* MANavController.h */,
 				4623563018FFF38100D67CC5 /* MANavController.m */,
+				46B11E7419CE93570022C131 /* MADistrictPopoverViewController.h */,
+				46B11E7519CE93570022C131 /* MADistrictPopoverViewController.m */,
+				46B11E7619CE93570022C131 /* MADistrictPopoverViewController.xib */,
 				462355A918FFF12A00D67CC5 /* MAViewController.h */,
 				462355AA18FFF12A00D67CC5 /* MAViewController.m */,
+				46B11E7119CE8BA50022C131 /* MAURLClickerView.h */,
+				46B11E7219CE8BA50022C131 /* MAURLClickerView.m */,
 				462355D518FFF29D00D67CC5 /* MAGradeParser.h */,
 				462355D618FFF29D00D67CC5 /* MAGradeParser.m */,
 				462355DB18FFF29D00D67CC5 /* MAGradeCell.h */,
@@ -334,6 +347,7 @@
 				462355AD18FFF12A00D67CC5 /* Images.xcassets in Resources */,
 				4623562A18FFF32E00D67CC5 /* bg.png in Resources */,
 				46216E201939C3DE0088E4FA /* page-not-found.png in Resources */,
+				46B11E7819CE93570022C131 /* MADistrictPopoverViewController.xib in Resources */,
 				4623562B18FFF32E00D67CC5 /* bg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -387,6 +401,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				460C0312190CF17E00D168C3 /* MASMSViewController.m in Sources */,
+				46B11E7719CE93570022C131 /* MADistrictPopoverViewController.m in Sources */,
 				462355A518FFF12A00D67CC5 /* MAAppDelegate.m in Sources */,
 				4623563118FFF38100D67CC5 /* MANavController.m in Sources */,
 				462355AB18FFF12A00D67CC5 /* MAViewController.m in Sources */,
@@ -398,6 +413,7 @@
 				462355E418FFF29D00D67CC5 /* MAGradeParser.m in Sources */,
 				46900FFD1937DFD60009F61F /* MAProgressReportTableViewController.m in Sources */,
 				462355E618FFF29D00D67CC5 /* MAAssignment.m in Sources */,
+				46B11E7319CE8BA50022C131 /* MAURLClickerView.m in Sources */,
 				462355F318FFF2BB00D67CC5 /* XPathQuery.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -549,7 +565,7 @@
 					"${SDKROOT}/usr/include/libxml2",
 				);
 				INFOPLIST_FILE = "mistar-with-storyboard/mistar-with-storyboard-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -587,7 +603,7 @@
 					"${SDKROOT}/usr/include/libxml2",
 				);
 				INFOPLIST_FILE = "mistar-with-storyboard/mistar-with-storyboard-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -701,7 +717,7 @@
 					"${SDKROOT}/usr/include/libxml2",
 				);
 				INFOPLIST_FILE = "mistar-with-storyboard/mistar-with-storyboard-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",

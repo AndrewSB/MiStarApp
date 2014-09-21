@@ -7,6 +7,7 @@
 //
 
 #import "MAViewController.h"
+#import "MADistrictPopoverViewController.h"
 
 @interface MAViewController ()
 <MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate, UINavigationControllerDelegate, NSURLSessionDelegate, UITableViewDelegate, UITableViewDataSource>
@@ -121,21 +122,25 @@
         NSLog(@"%@", [self displayContent]);
     } else {
         // Login Alert
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Login To Zangle"
-                                                        message:@"Enter your Zangle information"
-                                                       delegate:self
-                                              cancelButtonTitle:@"Cancel"
-                                              otherButtonTitles:@"Continue", nil];
-        
-        alert.alertViewStyle = UIAlertViewStyleLoginAndPasswordInput;
-        UITextField *pinTextField = [alert textFieldAtIndex:0];
-        UITextField *passwordTextField = [alert textFieldAtIndex:1];
-        pinTextField.keyboardType = UIKeyboardTypeNumberPad;
-        pinTextField.placeholder = @"Student ID";
-        passwordTextField.placeholder = @"Password";
-        pinTextField.keyboardAppearance = UIKeyboardAppearanceDark;
-        passwordTextField.keyboardAppearance = UIKeyboardAppearanceDark;
-        [alert show];
+        MADistrictPopoverViewController *popoverview = [[MADistrictPopoverViewController alloc] init];
+        [[NSBundle mainBundle] loadNibNamed:@"MADistrictPopoverViewController" owner:popoverview options:nil];
+        UIPopoverController *popover = [[UIPopoverController alloc] initWithContentViewController:popoverview];
+        [popover presentPopoverFromRect:CGRectMake(20, 20, 80, 44) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Login To Zangle"
+//                                                        message:@"Enter your Zangle information"
+//                                                       delegate:self
+//                                              cancelButtonTitle:@"Cancel"
+//                                              otherButtonTitles:@"Continue", nil];
+//        
+//        alert.alertViewStyle = UIAlertViewStyleLoginAndPasswordInput;
+//        UITextField *pinTextField = [alert textFieldAtIndex:0];
+//        UITextField *passwordTextField = [alert textFieldAtIndex:1];
+//        pinTextField.keyboardType = UIKeyboardTypeNumberPad;
+//        pinTextField.placeholder = @"Student ID";
+//        passwordTextField.placeholder = @"Password";
+//        pinTextField.keyboardAppearance = UIKeyboardAppearanceDark;
+//        passwordTextField.keyboardAppearance = UIKeyboardAppearanceDark;
+//        [alert show];
     }
 };
 
