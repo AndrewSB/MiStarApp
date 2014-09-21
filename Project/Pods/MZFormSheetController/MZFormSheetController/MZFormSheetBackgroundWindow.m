@@ -26,7 +26,6 @@
 #import "MZFormSheetBackgroundWindow.h"
 #import <QuartzCore/QuartzCore.h>
 #import "UIImage+Additional.h"
-#import "MZMacro.h"
 
 CGFloat const MZFormSheetControllerDefaultBackgroundOpacity = 0.5;
 CGFloat const MZFormSheetControllerDefaultBackgroundBlurRadius = 2.0;
@@ -38,7 +37,6 @@ UIWindowLevel const MZFormSheetBackgroundWindowLevelBelowStatusBar = 2;
 extern CGFloat MZFormSheetControllerWindowTag;
 
 static CGFloat const UIInterfaceOrientationAngleOfOrientation(UIInterfaceOrientation orientation) {
-    
     switch (orientation)
     {
         case UIInterfaceOrientationPortraitUpsideDown: return M_PI;
@@ -64,9 +62,6 @@ static UIInterfaceOrientationMask const UIInterfaceOrientationMaskFromOrientatio
 
 #pragma mark - Class methods
 
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wwarning-flag"
-
 + (void)initialize
 {
     if (self == [MZFormSheetBackgroundWindow class]) {
@@ -78,8 +73,6 @@ static UIInterfaceOrientationMask const UIInterfaceOrientationMaskFromOrientatio
         [[self appearance] setDynamicBlurInterval:0.0f];
     }
 }
-
-#pragma clang diagnostic pop
 
 + (id)appearance
 {
@@ -304,24 +297,13 @@ static UIInterfaceOrientationMask const UIInterfaceOrientationMaskFromOrientatio
 
 - (UIImage *)rotateImageToStatusBarOrientation:(UIImage *)image
 {
-    if (MZSystemVersionGreaterThanOrEqualTo_iOS8()) {
-        if ([self windowOrientation] == UIInterfaceOrientationLandscapeLeft) {
-            return [image imageRotatedByDegrees:-90];
-        } else if ([self windowOrientation] == UIInterfaceOrientationLandscapeRight) {
-            return [image imageRotatedByDegrees:90];
-        } else if ([self windowOrientation] == UIInterfaceOrientationPortraitUpsideDown) {
-            return [image imageRotatedByDegrees:180];
-        }
-    } else {
-        if ([self windowOrientation] == UIInterfaceOrientationLandscapeLeft) {
-            return [image imageRotatedByDegrees:90];
-        } else if ([self windowOrientation] == UIInterfaceOrientationLandscapeRight) {
-            return [image imageRotatedByDegrees:-90];
-        } else if ([self windowOrientation] == UIInterfaceOrientationPortraitUpsideDown) {
-            return [image imageRotatedByDegrees:180];
-        }
+    if ([self windowOrientation] == UIInterfaceOrientationLandscapeLeft) {
+        return [image imageRotatedByDegrees:90];
+    } else if ([self windowOrientation] == UIInterfaceOrientationLandscapeRight) {
+        return [image imageRotatedByDegrees:-90];
+    } else if ([self windowOrientation] == UIInterfaceOrientationPortraitUpsideDown) {
+        return [image imageRotatedByDegrees:180];
     }
-    
     return image;
 }
 
@@ -372,10 +354,8 @@ static UIInterfaceOrientationMask const UIInterfaceOrientationMaskFromOrientatio
 {
     CGFloat angle = UIInterfaceOrientationAngleOfOrientation([self windowOrientation]);
     CGAffineTransform transform = CGAffineTransformMakeRotation(angle);
-    
-    if (MZSystemVersionLessThan_iOS8()) {
-        [self makeTransform:transform forView:self.backgroundImageView inFrame:self.bounds];
-    }
+
+    [self makeTransform:transform forView:self.backgroundImageView inFrame:self.bounds];
 }
 
 - (void)makeTransform:(CGAffineTransform)transform forView:(UIView *)view inFrame:(CGRect)frame

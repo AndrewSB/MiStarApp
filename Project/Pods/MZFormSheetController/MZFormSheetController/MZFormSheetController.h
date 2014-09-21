@@ -27,7 +27,12 @@
 #import "MZAppearance.h"
 #import "MZFormSheetBackgroundWindow.h"
 #import "MZTransition.h"
-#import "MZMacro.h"
+
+#if defined(__GNUC__) && ((__GNUC__ >= 4) || ((__GNUC__ == 3) && (__GNUC_MINOR__ >= 1)))
+#define MZ_DEPRECATED_ATTRIBUTE(message) __attribute__((deprecated(message)))
+#else
+#define MZ_DEPRECATED_ATTRIBUTE(message)
+#endif
 
 extern CGFloat const MZFormSheetControllerDefaultAnimationDuration;
 extern CGFloat const MZFormSheetControllerWindowTag;
@@ -120,9 +125,9 @@ typedef void(^MZFormSheetTransitionCompletionHandler)();
 /**
  The view controller that is presenting this form sheet controller.
  This is only set up if you use UIViewController (MZFormSheet) category to present form sheet controller.
- presentingFSViewController --> MZFormSheetController (self) --> presentedFSViewController
+ presentingViewController --> MZFormSheetController (self) --> presentedFSViewController
  */
-@property (nonatomic, readonly, weak) UIViewController *presentingFSViewController;
+@property (nonatomic, readonly, weak) UIViewController *presentingViewController;
 
 /**
  The transition style to use when presenting the receiver.

@@ -30,9 +30,15 @@
 #import "MZFormSheetBackgroundWindowViewController.h"
 #import "UIViewController+TargetViewController.h"
 
+#ifndef kCFCoreFoundationVersionNumber_iOS_7_0
+#define kCFCoreFoundationVersionNumber_iOS_7_0 847.2
+#endif
+
 #ifndef OS_OBJECT_USE_OBJC_RETAIN_RELEASE
 #define OS_OBJECT_USE_OBJC_RETAIN_RELEASE 0
 #endif
+
+#define MZSystemVersionGreaterThanOrEqualTo_iOS7() (kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber_iOS_7_0)
 
 NSString * const MZFormSheetDidPresentNotification = @"MZFormSheetDidPresentNotification";
 NSString * const MZFormSheetDidDismissNotification = @"MZFormSheetDidDismissNotification";
@@ -96,8 +102,8 @@ static BOOL MZFromSheetControllerIsViewControllerBasedStatusBarAppearance(void) 
         // Hack: I set rootViewController to presentingViewController because
         // if View controller-based status bar appearance is YES and background window was hiding animated,
         // there was problem with preferredStatusBarStyle (half second always black status bar)
-        if (MZFromSheetControllerIsViewControllerBasedStatusBarAppearance() && MZSystemVersionLessThan_iOS8()) {
-            UIViewController *mostTopViewController = [[[[MZFormSheetController formSheetControllersStack] firstObject] presentingFSViewController] mz_parentTargetViewController];
+        if (MZFromSheetControllerIsViewControllerBasedStatusBarAppearance()) {
+            UIViewController *mostTopViewController = [[[[MZFormSheetController formSheetControllersStack] firstObject] presentingViewController] mz_parentTargetViewController];
 			
             // find controllers responsible for status bar style and hidden state
             UIViewController* statusBarStyleResponsibleViewController = [mostTopViewController mz_childTargetViewControllerForStatusBarStyle];
@@ -107,10 +113,6 @@ static BOOL MZFromSheetControllerIsViewControllerBasedStatusBarAppearance(void) 
             _instanceOfFormSheetBackgroundWindow.rootViewController = [MZFormSheetBackgroundWindowViewController viewControllerWithPreferredStatusBarStyle:statusBarStyleResponsibleViewController.preferredStatusBarStyle prefersStatusBarHidden:statusBarHiddenResponsibleViewController.prefersStatusBarHidden];
         }
 
-        if (MZSystemVersionGreaterThanOrEqualTo_iOS8() && UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)) {
-            _instanceOfFormSheetBackgroundWindow.frame = CGRectMake(0, 0, _instanceOfFormSheetBackgroundWindow.bounds.size.height, _instanceOfFormSheetBackgroundWindow.bounds.size.width);
-        }
-        
         [_instanceOfFormSheetBackgroundWindow makeKeyAndVisible];
 
         _instanceOfFormSheetBackgroundWindow.alpha = 0;
@@ -181,20 +183,17 @@ static BOOL MZFromSheetControllerIsViewControllerBasedStatusBarAppearance(void) 
 
 - (CGPoint)convertPoint:(CGPoint)point toInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    if (MZSystemVersionLessThan_iOS8())
-    {
-        CGSize windowSize = self.bounds.size;
-        
-        if (interfaceOrientation == UIInterfaceOrientationLandscapeLeft) {
-            return CGPointMake(windowSize.height-point.y, point.x);
-            
-        } else if (interfaceOrientation == UIInterfaceOrientationLandscapeRight) {
-            return CGPointMake(point.y, windowSize.width-point.x);
-            
-        } else if (interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown) {
-            
-            return CGPointMake(windowSize.width-point.x, windowSize.height-point.y);
-        }        
+    CGSize windowSize = self.bounds.size;
+
+    if (interfaceOrientation == UIInterfaceOrientationLandscapeLeft) {
+        return CGPointMake(windowSize.height-point.y, point.x);
+
+    } else if (interfaceOrientation == UIInterfaceOrientationLandscapeRight) {
+        return CGPointMake(point.y, windowSize.width-point.x);
+
+    } else if (interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown) {
+
+        return CGPointMake(windowSize.width-point.x, windowSize.height-point.y);
     }
     return point;
 }
@@ -219,7 +218,7 @@ static BOOL MZFromSheetControllerIsViewControllerBasedStatusBarAppearance(void) 
 #pragma mark - MZFormSheetController
 
 @interface MZFormSheetController () <UIGestureRecognizerDelegate>
-@property (nonatomic, weak) UIViewController *presentingFSViewController;
+@property (nonatomic, weak) UIViewController *presentingViewController;
 @property (nonatomic, strong) UIViewController *presentedFSViewController;
 
 @property (nonatomic, strong) UITapGestureRecognizer *backgroundTapGestureRecognizer;
@@ -235,7 +234,7 @@ static BOOL MZFromSheetControllerIsViewControllerBasedStatusBarAppearance(void) 
 @end
 
 @implementation MZFormSheetController
-@synthesize presentingFSViewController = _presentingFSViewController;
+@synthesize presentingViewController = _presentingViewController;
 
 #pragma mark - Helpers
 
@@ -243,16 +242,11 @@ static BOOL MZFromSheetControllerIsViewControllerBasedStatusBarAppearance(void) 
 {
     UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
 
-    if (MZSystemVersionGreaterThanOrEqualTo_iOS8()) {
-        return [UIApplication sharedApplication].statusBarFrame.size.height;
+    if(UIInterfaceOrientationIsLandscape(orientation)) {
+        return [UIApplication sharedApplication].statusBarFrame.size.width;
     } else {
-        if(UIInterfaceOrientationIsLandscape(orientation)) {
-            return [UIApplication sharedApplication].statusBarFrame.size.width;
-        } else {
-            return [UIApplication sharedApplication].statusBarFrame.size.height;
-        }
+        return [UIApplication sharedApplication].statusBarFrame.size.height;
     }
-
 }
 
 + (BOOL)isAutoLayoutAvailable
@@ -339,10 +333,10 @@ static BOOL MZFromSheetControllerIsViewControllerBasedStatusBarAppearance(void) 
 
 #pragma mark - Setters
 
-- (void)setPresentingFSViewController:(UIViewController *)presentingViewController
+- (void)setPresentingViewController:(UIViewController *)presentingViewController
 {
-    if (_presentingFSViewController != presentingViewController) {
-        _presentingFSViewController = presentingViewController;
+    if (_presentingViewController != presentingViewController) {
+        _presentingViewController = presentingViewController;
     }
 }
 
@@ -488,8 +482,8 @@ static BOOL MZFromSheetControllerIsViewControllerBasedStatusBarAppearance(void) 
     
     self.applicationKeyWindow = [UIApplication sharedApplication].keyWindow;
 
-    if (!self.presentingFSViewController) {
-        self.presentingFSViewController = [self.applicationKeyWindow.rootViewController mz_parentTargetViewController];
+    if (!self.presentingViewController) {
+        self.presentingViewController = [self.applicationKeyWindow.rootViewController mz_parentTargetViewController];
     }
 
     if (![[MZFormSheetController sharedQueue] containsObject:self]) {
@@ -600,7 +594,6 @@ static BOOL MZFromSheetControllerIsViewControllerBasedStatusBarAppearance(void) 
     dispatch_release(dissmissGroup);
 #endif
 
-    self.applicationKeyWindow = [[[UIApplication sharedApplication] delegate] window];
     [self.applicationKeyWindow makeKeyWindow];
     self.applicationKeyWindow.hidden = NO;
 }
@@ -803,12 +796,8 @@ static BOOL MZFromSheetControllerIsViewControllerBasedStatusBarAppearance(void) 
     self.backgroundTapGestureRecognizer = tapGesture;
     
     [self.formSheetWindow addGestureRecognizer:tapGesture];
-
-    if (self.presentedFSViewController) {
-        [self addChildViewController:self.presentedFSViewController];
-        [self.view addSubview:self.presentedFSViewController.view];
-        [self.presentedFSViewController didMoveToParentViewController:self];
-    }
+    
+    [self.view addSubview:self.presentedFSViewController.view];
 
     // This fix UINavigationBar bug for iOS7 when navigationBar is translucent has a white shadow inside like in iOS6
     if ([self.presentedFSViewController isKindOfClass:[UINavigationController class]]) {
@@ -889,7 +878,7 @@ static BOOL MZFromSheetControllerIsViewControllerBasedStatusBarAppearance(void) 
 - (void)cleanup
 {
     self.presentedFSViewController.formSheetController = nil;
-    self.presentingFSViewController.formSheetController = nil;
+    self.presentingViewController.formSheetController = nil;
 
     [self.formSheetWindow removeGestureRecognizer:self.backgroundTapGestureRecognizer];
     self.formSheetWindow.hidden = YES;
@@ -905,9 +894,7 @@ static BOOL MZFromSheetControllerIsViewControllerBasedStatusBarAppearance(void) 
 
 - (void)cleanupPresentedViewController
 {
-    [self.presentedFSViewController willMoveToParentViewController:nil];
     [self.presentedFSViewController.view removeFromSuperview];
-    [self.presentedFSViewController removeFromParentViewController];
     self.presentedFSViewController = nil;
 }
 
@@ -928,7 +915,7 @@ static BOOL MZFromSheetControllerIsViewControllerBasedStatusBarAppearance(void) 
 - (void)mz_presentFormSheetController:(MZFormSheetController *)formSheetController animated:(BOOL)animated completionHandler:(MZFormSheetPresentationCompletionHandler)completionHandler
 {
     self.formSheetController = formSheetController;
-    formSheetController.presentingFSViewController = self;
+    formSheetController.presentingViewController = self;
 
     [formSheetController presentAnimated:animated completionHandler:^(UIViewController *presentedFSViewController){
         if (completionHandler) {
@@ -948,7 +935,7 @@ static BOOL MZFromSheetControllerIsViewControllerBasedStatusBarAppearance(void) 
     formSheetController.transitionStyle = transitionStyle;
 
     self.formSheetController = formSheetController;
-    formSheetController.presentingFSViewController = self;
+    formSheetController.presentingViewController = self;
 
     [formSheetController presentAnimated:animated completionHandler:^(UIViewController *presentedFSViewController){
         if (completionHandler) {
