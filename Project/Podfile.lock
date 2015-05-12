@@ -1,12 +1,17 @@
 PODS:
-  - GoogleAnalytics-iOS-SDK (3.0.6)
-  - LBBlurredImage (0.2.0)
-  - MZAppearance (1.1.3)
-  - MZFormSheetController (2.3.4):
-    - MZAppearance (~> 1.1.3)
-  - QBFlatButton (1.0)
-  - SVProgressHUD (1.0)
-  - WYPopoverController (0.3.0)
+  - GoogleAnalytics-iOS-SDK (3.11):
+    - GoogleAnalytics-iOS-SDK/Core (= 3.11)
+  - GoogleAnalytics-iOS-SDK/Core (3.11)
+  - LBBlurredImage (0.2.2)
+  - MZAppearance (1.1.4)
+  - MZFormSheetController (3.0.3):
+    - MZAppearance
+    - MZFormSheetController/Core (= 3.0.3)
+  - MZFormSheetController/Core (3.0.3):
+    - MZAppearance
+  - QBFlatButton (1.1)
+  - SVProgressHUD (1.1.3)
+  - WYPopoverController (0.3.7)
 
 DEPENDENCIES:
   - GoogleAnalytics-iOS-SDK
@@ -17,12 +22,12 @@ DEPENDENCIES:
   - WYPopoverController
 
 SPEC CHECKSUMS:
-  GoogleAnalytics-iOS-SDK: 4577fb25381a71c5beac455b18ebb288fc4f44e9
-  LBBlurredImage: 30cc42be977bbcece286d26d2d9c08b8be7f05e8
-  MZAppearance: c88502c0c2345120630c34e09d5ff09e2969ba30
-  MZFormSheetController: 8c453908080c338274e68908849029435d3e2736
-  QBFlatButton: 06548c44a2fdfecf7ce7d668bbde60184127d979
-  SVProgressHUD: 5034c6e22b8c2ca3e09402e48d41ed0340aa1c50
-  WYPopoverController: baedfa782641cf1d59b95730a5a9a9d613a9a12c
+  GoogleAnalytics-iOS-SDK: fb15cc7e3d01d06d531653f37443fda90274d53d
+  LBBlurredImage: 700634c17922bc2d22343118e7deb6a3ca12db43
+  MZAppearance: 417ac97a5dd739329545e44372e06f715b7e5c15
+  MZFormSheetController: 36771856696eeef2eaec9b18c75791d3c95cb661
+  QBFlatButton: 3cf272985cdbdd04d6bc8b7ae01e4dd62cb09c17
+  SVProgressHUD: 748080e4f36e603f6c02aec292664239df5279c1
+  WYPopoverController: ebefa50c477bdbbd9dc992dfdffafa168c4484eb
 
-COCOAPODS: 0.35.0
+COCOAPODS: 0.36.4
