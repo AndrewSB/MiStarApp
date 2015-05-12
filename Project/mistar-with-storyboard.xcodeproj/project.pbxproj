@@ -52,6 +52,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1C7FC3768E961668DF56A9FB /* Pods.distribution.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.distribution.xcconfig; path = "Pods/Target Support Files/Pods/Pods.distribution.xcconfig"; sourceTree = "<group>"; };
 		460C030E190CF00700D168C3 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		460C0310190CF17E00D168C3 /* MASMSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASMSViewController.h; sourceTree = "<group>"; };
 		460C0311190CF17E00D168C3 /* MASMSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASMSViewController.m; sourceTree = "<group>"; };
@@ -101,7 +102,8 @@
 		46B11E7619CE93570022C131 /* MADistrictPopoverViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MADistrictPopoverViewController.xib; sourceTree = "<group>"; };
 		46D64D8D192ECCF6005734AF /* MAClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAClass.h; sourceTree = "<group>"; };
 		46D64D8E192ECCF6005734AF /* MAClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAClass.m; sourceTree = "<group>"; };
-		50B9C2E0203E49D6B59CC820 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		4F879ED7BABF3A7BD6A22A82 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		C6A61A64201846419CC31D36 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		EA5AB13AD0524DEF94299447 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -132,6 +134,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		26BAC30E40CFA440D26E1103 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4F879ED7BABF3A7BD6A22A82 /* Pods.debug.xcconfig */,
+				C6A61A64201846419CC31D36 /* Pods.release.xcconfig */,
+				1C7FC3768E961668DF56A9FB /* Pods.distribution.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		4623558818FFF12A00D67CC5 = {
 			isa = PBXGroup;
 			children = (
@@ -139,7 +151,7 @@
 				462355B918FFF12B00D67CC5 /* mistar-with-storyboardTests */,
 				4623559318FFF12A00D67CC5 /* Frameworks */,
 				4623559218FFF12A00D67CC5 /* Products */,
-				50B9C2E0203E49D6B59CC820 /* Pods.xcconfig */,
+				26BAC30E40CFA440D26E1103 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -312,7 +324,7 @@
 				ORGANIZATIONNAME = "___FULLUSERNAME___";
 				TargetAttributes = {
 					4623559018FFF12A00D67CC5 = {
-						DevelopmentTeam = JQUR3MJ3GB;
+						DevelopmentTeam = 2Z475Y2H59;
 					};
 					462355B118FFF12B00D67CC5 = {
 						TestTargetID = 4623559018FFF12A00D67CC5;
@@ -375,7 +387,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C750F1E8D1474AAB878DA6C6 /* Check Pods Manifest.lock */ = {
@@ -542,12 +554,12 @@
 		};
 		462355C418FFF12B00D67CC5 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 50B9C2E0203E49D6B59CC820 /* Pods.xcconfig */;
+			baseConfigurationReference = 4F879ED7BABF3A7BD6A22A82 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Douglas Breckenridge (JQUR3MJ3GB)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -570,8 +582,36 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-l\"GoogleAnalyticsServices\"",
+					"-l\"Pods-GoogleAnalytics-iOS-SDK\"",
+					"-l\"Pods-LBBlurredImage\"",
+					"-l\"Pods-MZAppearance\"",
+					"-l\"Pods-MZFormSheetController\"",
+					"-l\"Pods-QBFlatButton\"",
+					"-l\"Pods-SVProgressHUD\"",
+					"-l\"Pods-WYPopoverController\"",
+					"-l\"sqlite3\"",
+					"-l\"z\"",
+					"-framework",
+					"\"Accelerate\"",
+					"-framework",
+					"\"CFNetwork\"",
+					"-framework",
+					"\"CoreData\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"UIKit\"",
+					"$(inherited)",
+				);
 				PRODUCT_NAME = Zangle;
-				PROVISIONING_PROFILE = "C1A9CC7E-8D34-4B3D-990B-E78FC3AF1071";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "";
 				WRAPPER_EXTENSION = app;
@@ -580,12 +620,12 @@
 		};
 		462355C518FFF12B00D67CC5 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 50B9C2E0203E49D6B59CC820 /* Pods.xcconfig */;
+			baseConfigurationReference = C6A61A64201846419CC31D36 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Douglas Breckenridge (JQUR3MJ3GB)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -608,8 +648,36 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-l\"GoogleAnalyticsServices\"",
+					"-l\"Pods-GoogleAnalytics-iOS-SDK\"",
+					"-l\"Pods-LBBlurredImage\"",
+					"-l\"Pods-MZAppearance\"",
+					"-l\"Pods-MZFormSheetController\"",
+					"-l\"Pods-QBFlatButton\"",
+					"-l\"Pods-SVProgressHUD\"",
+					"-l\"Pods-WYPopoverController\"",
+					"-l\"sqlite3\"",
+					"-l\"z\"",
+					"-framework",
+					"\"Accelerate\"",
+					"-framework",
+					"\"CFNetwork\"",
+					"-framework",
+					"\"CoreData\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"UIKit\"",
+					"$(inherited)",
+				);
 				PRODUCT_NAME = Zangle;
-				PROVISIONING_PROFILE = "C1A9CC7E-8D34-4B3D-990B-E78FC3AF1071";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "";
 				WRAPPER_EXTENSION = app;
@@ -658,7 +726,6 @@
 		};
 		462407BC191851AB007A93EA /* Distribution */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 50B9C2E0203E49D6B59CC820 /* Pods.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -694,12 +761,12 @@
 		};
 		462407BD191851AB007A93EA /* Distribution */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 50B9C2E0203E49D6B59CC820 /* Pods.xcconfig */;
+			baseConfigurationReference = 1C7FC3768E961668DF56A9FB /* Pods.distribution.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Douglas Breckenridge (JQUR3MJ3GB)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -722,8 +789,36 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-l\"GoogleAnalyticsServices\"",
+					"-l\"Pods-GoogleAnalytics-iOS-SDK\"",
+					"-l\"Pods-LBBlurredImage\"",
+					"-l\"Pods-MZAppearance\"",
+					"-l\"Pods-MZFormSheetController\"",
+					"-l\"Pods-QBFlatButton\"",
+					"-l\"Pods-SVProgressHUD\"",
+					"-l\"Pods-WYPopoverController\"",
+					"-l\"sqlite3\"",
+					"-l\"z\"",
+					"-framework",
+					"\"Accelerate\"",
+					"-framework",
+					"\"CFNetwork\"",
+					"-framework",
+					"\"CoreData\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"UIKit\"",
+					"$(inherited)",
+				);
 				PRODUCT_NAME = Zangle;
-				PROVISIONING_PROFILE = "C1A9CC7E-8D34-4B3D-990B-E78FC3AF1071";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "";
 				WRAPPER_EXTENSION = app;
